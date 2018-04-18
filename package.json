@@ -1,0 +1,47 @@
+{
+  "name": "olympus",
+  "version": "1.0.0",
+  "description": "Experimenting mass media on musou with nuxt.js",
+  "author": "Department of Technology at Watchout <dev@watchout.tw>",
+  "private": true,
+  "config": {
+    "nuxt": {
+      "port": "9020"
+    }
+  },
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "precommit": "npm run lint"
+  },
+  "dependencies": {
+    "@nuxtjs/google-tag-manager": "^1.1.0",
+    "axios": "^0.17.1",
+    "lodash.debounce": "^4.0.8",
+    "nuxt": "^1.0.0",
+    "query-string": "^4.3.4"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "css-loader": "^0.28.0",
+    "eslint": "^4.3.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-html": "^3.1.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "html-loader": "^0.5.5",
+    "node-sass": "^4.7.2",
+    "sass-loader": "^6.0.6",
+    "url-loader": "^0.5.8",
+    "vue-loader": "^12.1.0",
+    "vue-style-loader": "^3.0.1",
+    "watchout-common-assets": "file:../watchout-common-assets",
+    "watchout-common-functions": "file:../watchout-common-functions"
+  }
+}
