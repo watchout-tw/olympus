@@ -1,0 +1,170 @@
+[
+    {
+        "x": "2015/4",
+        "y": "355447",
+        "label": "ma-2",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "2015/5",
+        "y": "372766",
+        "label": "ma-2",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "2015/6",
+        "y": "308087",
+        "label": "ma-2",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "2015/7",
+        "y": "352625",
+        "label": "ma-2",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "2015/8",
+        "y": "367736",
+        "label": "ma-2",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "2015/9",
+        "y": "345243",
+        "label": "ma-2",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "2015/10",
+        "y": "383585",
+        "label": "ma-2",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "2015/11",
+        "y": "357655",
+        "label": "ma-2",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "2015/12",
+        "y": "327129",
+        "label": "ma-2",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "2016/1",
+        "y": "366409",
+        "label": "ma-2",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "2016/2",
+        "y": "405307",
+        "label": "ma-2",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "2016/3",
+        "y": "363878",
+        "label": "ma-2",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "2016/4",
+        "y": "375567",
+        "label": "ma-2",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "2016/5",
+        "y": "327254",
+        "label": "tsai-1",
+        "show": false,
+        "fix": false
+    },
+    {
+        "x": "2016/6",
+        "y": "271478",
+        "label": "tsai-1",
+        "show": false,
+        "fix": false
+    },
+    {
+        "x": "2016/7",
+        "y": "299805",
+        "label": "tsai-1",
+        "show": false,
+        "fix": false
+    },
+    {
+        "x": "2016/8",
+        "y": "248538",
+        "label": "tsai-1",
+        "show": false,
+        "fix": false
+    },
+    {
+        "x": "2016/9",
+        "y": "214764",
+        "label": "tsai-1",
+        "show": false,
+        "fix": false
+    },
+    {
+        "x": "2016/10",
+        "y": "215390",
+        "label": "tsai-1",
+        "show": false,
+        "fix": false
+    },
+    {
+        "x": "2016/11",
+        "y": "202986",
+        "label": "tsai-1",
+        "show": false,
+        "fix": false
+    },
+    {
+        "x": "2016/12",
+        "y": "220358",
+        "label": "tsai-1",
+        "show": false,
+        "fix": false
+    },
+    {
+        "x": "2017/1",
+        "y": "255689",
+        "label": "tsai-1",
+        "show": false,
+        "fix": false
+    },
+    {
+        "x": "2017/2",
+        "y": "202287",
+        "label": "tsai-1",
+        "show": false,
+        "fix": false
+    },
+    {
+        "x": "2017/3",
+        "y": "201599",
+        "label": "tsai-1",
+        "show": false,
+        "fix": false
+    }
+]

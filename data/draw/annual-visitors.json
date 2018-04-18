@@ -1,0 +1,121 @@
+[
+    {
+        "x": "2000",
+        "y": "2624037",
+        "label": "bian-1",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "2001",
+        "y": "2831035",
+        "label": "bian-1",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "2002",
+        "y": "2977692",
+        "label": "bian-1",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "2003",
+        "y": "2248117",
+        "label": "bian-1",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "2004",
+        "y": "2950342",
+        "label": "bian-2",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "2005",
+        "y": "3378118",
+        "label": "bian-2",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "2006",
+        "y": "3519827",
+        "label": "bian-2",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "2007",
+        "y": "3716063",
+        "label": "bian-2",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "2008",
+        "y": "3845187",
+        "label": "ma-1",
+        "show": false,
+        "fix": false
+    },
+    {
+        "x": "2009",
+        "y": "4395004",
+        "label": "ma-1",
+        "show": false,
+        "fix": false
+    },
+    {
+        "x": "2010",
+        "y": "5567277",
+        "label": "ma-1",
+        "show": false,
+        "fix": false
+    },
+    {
+        "x": "2011",
+        "y": "6087484",
+        "label": "ma-1",
+        "show": false,
+        "fix": false
+    },
+    {
+        "x": "2012",
+        "y": "7311470",
+        "label": "ma-2",
+        "show": false,
+        "fix": false
+    },
+    {
+        "x": "2013",
+        "y": "8016280",
+        "label": "ma-2",
+        "show": false,
+        "fix": false
+    },
+    {
+        "x": "2014",
+        "y": "9910204",
+        "label": "ma-2",
+        "show": false,
+        "fix": false
+    },
+    {
+        "x": "2015",
+        "y": "10439785",
+        "label": "ma-2",
+        "show": false,
+        "fix": false
+    },
+    {
+        "x": "2016",
+        "y": "10690279",
+        "label": "tsai-1",
+        "show": false,
+        "fix": false
+    }
+]
