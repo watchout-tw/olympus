@@ -1,4 +1,10 @@
 export default {
+  id: 'congress-midterm-mock-exam',
+  module: 'qz',
+  title: '國會草知識期中模擬考',
+  image: 'congress-midterm-mock-exam.jpg',
+  date: '2018-04-14 20:00:00',
+  breaking: true,
   authorship: [
     {
       job: '編輯',

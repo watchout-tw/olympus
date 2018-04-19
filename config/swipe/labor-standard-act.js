@@ -1,4 +1,10 @@
 export default {
+  id: 'labor-standard-act',
+  module: 'swipe',
+  title: '《勞基法》流言終結者',
+  image: 'swipe.png',
+  date: '2018-01-26 20:00:00',
+  breaking: true,
   cards: [
     {
       type: 'text',
