@@ -1,4 +1,10 @@
 <template>
+<div class="page module">
+  <header>
+    <h1 class="small">{{ module.title }}</h1>
+  </header>
+  <nuxt-link class="project a-block" v-for="project of projects" :key="project.id" :to="{ name: 'moduleSlug-projectSlug', params: { moduleSlug: project.module, projectSlug: project.id }}"><span class="a-target">{{ project.title }}</span></nuxt-link>
+</div>
 </template>
 
 <script>
