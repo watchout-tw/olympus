@@ -6,30 +6,22 @@ function getProjectLogo(projectID) {
   return 'https://raw.githubusercontent.com/watchout-tw/watchout-common-assets/master/images/logo/' + projectID + '/large.png'
 }
 module.exports = {
-  /*
-  ** Headers of the page
-  */
   head: {
     title: '→沃草←國會無雙↑媒體實驗',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '沃草《國會無雙》媒體實驗是⋯' }
+      { name: 'description', content: '沃草《國會無雙》媒體實驗是⋯', hid: 'description' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: getFavicon('musou-media-experiment') },
       { rel: 'apple-touch-icon', sizes: '256x256', href: getProjectLogo('musou-media-experiment') }
     ]
   },
-  /*
-  ** Customize the progress bar color
-  */
   loading: {
-    color: '#FF5368'
+    color: '#FF5368',
+    height: '4px'
   },
-  /*
-  ** Build configuration
-  */
   build: {
     vender: ['axios', 'vuex'],
     /*
