@@ -3,22 +3,23 @@ import projTsaiFirstYear from '~/config/draw/tsai-first-year'
 import proj748 from '~/config/map/748'
 import projTerror30 from '~/config/role-play/terror-30'
 import projRepublicOfChina from '~/config/qz/republic-of-china'
-import proj3Principles from '~/config/qz/3-principles'
+import projThreePrinciples from '~/config/qz/3-principles'
 import projCongressMidtermMockExam from '~/config/qz/congress-midterm-mock-exam'
 import projLaborStandardAct from '~/config/swipe/labor-standard-act'
 import projAnotherFuture from '~/config/journey/another-future'
 
 export const projects = [
-  projYulamchia,
-  projTsaiFirstYear,
-  proj748,
-  projTerror30,
-  projRepublicOfChina,
-  proj3Principles,
-  projCongressMidtermMockExam,
+  projAnotherFuture,
   projLaborStandardAct,
-  projAnotherFuture
+  projCongressMidtermMockExam,
+  projThreePrinciples,
+  projRepublicOfChina,
+  projTerror30,
+  proj748,
+  projTsaiFirstYear,
+  projYulamchia
 ]
+
 export const modules = [
   {
     id: 'journey',
