@@ -273,14 +273,11 @@ export default {
           content: 'Lorem ipsum.'
         }
       ]
-    },
-    {
-      type: 'text',
-      id: 'last',
-      title: '沒了',
-      content: '記得分享喔。'
     }
   ],
+  share: {
+    message: '看完了，是不會說謝謝嗎？我們做得這麼辛苦，真是的。不會？那記得分享喔。'
+  },
   authorship: [
     {
       job: '編輯設計',
@@ -291,5 +288,10 @@ export default {
       people: ['游知澔']
     }
   ],
-  references: []
+  references: [],
+  container: {
+    styles: {
+      backgroundColor: 'rgba(255, 83, 104, 0.25)'
+    }
+  }
 }
