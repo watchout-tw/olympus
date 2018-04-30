@@ -1,27 +1,38 @@
 <template>
-<div class="page project">
+<div class="page project" :style="pageStyles">
+  <div class="main">
+    <template v-if="project.module === 'swipe'">
+      <swipe :data="project"></swipe>
+    </template>
+    <template v-else>
+      <div class="not-available" style="margin: 1rem;">技術升級中，需要多一點點時間。</div>
+    </template>
+  </div>
   <header>
-    <h2 class="small"><nuxt-link :to="{ name: 'moduleSlug', params: { moduleSlug: module.id }}" class="a-text">{{ module.title }}</nuxt-link></h2>
-    <h1 class="small">{{ project.title }}</h1>
-  </header>
-  <div class="credit">
-    <div class="authorship">
-      <div class="item" v-for="item of project.authorship" :key="item.job">
-        <div class="job">{{ item.job }}</div>
-        <div class="person" v-for="person of item.people" :key="person">{{ person }}</div>
+    <hgroup>
+      <h2 class="small"><nuxt-link :to="{ name: 'moduleSlug', params: { moduleSlug: module.id }}" class="a-text">{{ module.title }}</nuxt-link></h2>
+      <h1 class="small">{{ project.title }}</h1>
+    </hgroup>
+    <div class="credit">
+      <div class="authorship">
+        <div class="item" v-for="item of project.authorship" :key="item.job">
+          <div class="job">{{ item.job }}</div>
+          <div class="person" v-for="person of item.people" :key="person">{{ person }}</div>
+        </div>
       </div>
+      <div class="date">{{ project.date }}</div>
     </div>
-    <div class="date">{{ project.date }}</div>
     <ul class="references font-size-smaller" v-if="project.references && project.references.length > 0">
       <li class="item paragraphs no-margin a-text-parent" v-for="item of project.references" v-html="markdown(item)"></li>
     </ul>
-  </div>
+  </header>
 </div>
 </template>
 
 <script>
 import { projects, modules } from '~/config'
 import { knowsMarkdown } from 'watchout-common-functions/interfaces'
+import Swipe from '~/components/Swipe'
 
 export default {
   mixins: [knowsMarkdown],
@@ -33,22 +44,38 @@ export default {
       project,
       module
     }
+  },
+  computed: {
+    pageStyles() {
+      return this.project.page && this.project.page.styles ? this.project.page.styles : {}
+    }
+  },
+  components: {
+    Swipe
   }
 }
 </script>
 
 <style lang="scss">
+@import '~watchout-common-assets/styles/resources';
+
 .page.project {
-  > .credit {
-    > .authorship {
-      > .item {
-        display: flex;
-        > .job {
-          flex-basis: 4rem;
-          margin-right: 1rem;
-        }
-        > .person {
-          margin-right: 1rem;
+  > .main {
+  }
+  > header {
+    margin: 1rem;
+    > .credit {
+      font-size: 0.875rem;
+      > .authorship {
+        > .item {
+          display: flex;
+          > .job {
+            flex-basis: 4rem;
+            margin-right: 1rem;
+          }
+          > .person {
+            margin-right: 1rem;
+          }
         }
       }
     }
