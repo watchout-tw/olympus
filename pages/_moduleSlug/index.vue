@@ -8,6 +8,8 @@
 </template>
 
 <script>
+import * as info from '~/data/info'
+import { generateMeta } from 'watchout-common-functions/functions'
 import { projects, modules } from '~/config'
 
 export default {
@@ -18,6 +20,15 @@ export default {
     return {
       projects: projectsOfModule,
       module
+    }
+  },
+  head() {
+    let pageTitle = info.L_SINGLE_BRACKET + this.module.title + info.R_SINGLE_BRACKET + info.SITE_TITLE
+    let pageDescription = info.SITE_DESCRIPTION
+    let pageCover = require('~/static/musou.png')
+    return {
+      title: pageTitle,
+      meta: generateMeta(pageTitle, pageDescription, pageCover)
     }
   }
 }

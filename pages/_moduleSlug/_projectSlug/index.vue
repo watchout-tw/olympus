@@ -30,6 +30,8 @@
 </template>
 
 <script>
+import * as info from '~/data/info'
+import { generateMeta } from 'watchout-common-functions/functions'
 import { projects, modules } from '~/config'
 import { knowsMarkdown } from 'watchout-common-functions/interfaces'
 import Swipe from '~/components/Swipe'
@@ -43,6 +45,15 @@ export default {
     return {
       project,
       module
+    }
+  },
+  head() {
+    let pageTitle = info.L_SINGLE_BRACKET + this.project.title + info.R_SINGLE_BRACKET + info.SITE_TITLE
+    let pageDescription = this.project.description
+    let pageCover = require('~/static/' + this.project.image)
+    return {
+      title: pageTitle,
+      meta: generateMeta(pageTitle, pageDescription, pageCover)
     }
   },
   computed: {
