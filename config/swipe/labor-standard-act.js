@@ -240,7 +240,12 @@ export default {
       people: ['游知澔']
     }
   ],
-  references: [],
+  references: [
+    '[廢止放寬七休一函釋](https://www.mol.gov.tw/media/3809646/1050629-%E5%BB%A2%E6%AD%A2%E5%85%A7%E6%94%BF%E9%83%A875%E5%B9%B45%E6%9C%8817%E6%97%A5398001%E8%99%9F%E5%87%BD%E4%BB%A4.pdf)',
+    '[適用放寬七休一行業](https://www.mol.gov.tw/media/5758708/%E6%8C%87%E5%AE%9A%E5%8B%9E%E5%8B%95%E5%9F%BA%E6%BA%96%E6%B3%95%E7%AC%AC36%E6%A2%9D%E7%AC%AC4%E9%A0%85%E8%A1%8C%E6%A5%AD.pdf)',
+    '[適用縮短輪班間隔行業](https://www.mol.gov.tw/media/5758558/%E6%96%B0%E8%81%9E%E7%A8%BF%E9%99%84%E4%BB%B61.pdf)',
+    '[勞動部線上申訴網站](https://docweb.mol.gov.tw/email_query_osha/)'
+  ],
   container: {
     styles: {
       backgroundColor: 'rgba(255, 83, 104, 0.25)'
