@@ -41,11 +41,11 @@
           <div class="more">
             <div class="section" v-if="activeCard.data.more" v-for="section in activeCard.data.more" :class="section.type">
               <template v-if="section.type === 'markdown'">
-                <div class="content a-text-only" v-if="section.content" v-html="markdown(section.content)"></div>
+                <div class="content paragraphs a-text-only" v-if="section.content" v-html="markdown(section.content)"></div>
               </template>
               <template v-else-if="section.type === 'figure'">
                 <iframe v-if="section.platform === 'infogram'" class="figure" :src="`https://e.infogram.com/${section.id}?src=embed`" width="100%" :height="section.height" scrolling="no" frameborder="0"></iframe>
-                <div class="description" v-if="section.description" v-html="markdown(section.description)"></div>
+                <div class="description paragraphs" v-if="section.description" v-html="markdown(section.description)"></div>
               </template>
             </div>
           </div>
@@ -333,7 +333,7 @@ $color-paper-white: #fffdfd;
       padding-bottom: 100%;
       > .swipe-desktop {
         width: 100%;
-        padding: 2rem;
+        padding: 1.25rem;
         position: absolute;
         > .message {
           margin: 1rem 0;
@@ -452,6 +452,12 @@ $color-paper-white: #fffdfd;
       padding: 1rem;
       background: white;
       @include shadow-lifted-darker;
+
+      > .more {
+        h4 {
+          margin: 0.25rem 0;
+        }
+      }
     }
   }
 }
