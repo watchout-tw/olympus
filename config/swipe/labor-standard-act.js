@@ -3,14 +3,14 @@ export default {
   module: 'swipe',
   title: '《勞基法》流言終結者',
   image: 'swipe.png',
-  date: '2018-01-26 20:00:00',
+  date: '2018-05-01 20:00:00',
   breaking: true,
   cards: [
     {
       type: 'text',
       id: 'cover',
       title: '勞基法流言終結者',
-      content: '《沃草》幫你整理這次《勞基法》修法最常見的九個似是而非的說法，都已經這麼簡單了，你還不看嗎？\n\n左右滑滑看吧！不然，用下面的兩個按鈕也可以。',
+      content: '《沃草》幫你整理這次《勞基法》修法最常見的幾種似是而非的說法，我們已經努力把它變簡單了，快來看看吧！\n\n用手機左右滑滑看，或是用下面的兩個按鈕也可以。',
       options: {
         left: {
           type: 'NO',
@@ -42,7 +42,7 @@ export default {
       more: [
         {
           type: 'markdown',
-          content: '每過六十秒，就有一分鐘過去。'
+          content: '很好，就是這樣。準備開始囉！'
         }
       ]
     },
