@@ -43,11 +43,11 @@
             </div>
           </div>
           <div class="buttons form-field-many-inputs form-field-align-center">
-            <button class="input button small cuboid default" @click="showResult = showMore = false">下一題謝謝</button>
+            <button class="input button small cuboid default" @click="showResult = showMore = false">{{ nextCardPrompt }}</button>
           </div>
         </template>
         <div v-else class="buttons form-field-many-inputs form-field-align-center">
-          <button class="input button small cuboid default" @click="showResult = showMore = false">下一題謝謝</button>
+          <button class="input button small cuboid default" @click="showResult = showMore = false">{{ nextCardPrompt }}</button>
           <button class="input button small cuboid musou" @click="showMore = true">繼續說下去</button>
         </div>
       </div>
@@ -110,6 +110,9 @@ export default {
         classes.push('empty')
       }
       return classes
+    },
+    nextCardPrompt() {
+      return this.deckIsEmpty ? '結束了喔' : '下一題謝謝'
     },
     shareURL() {
       return this.getMusouProjectURL(this.module.id, this.project.id)
@@ -326,7 +329,7 @@ $color-paper-white: #fffdfd;
       padding-bottom: 100%;
       > .swipe-desktop {
         width: 100%;
-        padding: 1.25rem;
+        padding: 1.5rem;
         position: absolute;
         > .message {
           margin: 1rem 0;
@@ -353,6 +356,9 @@ $color-paper-white: #fffdfd;
           @include shadow-lifted;
         }
 
+        > .paragraphs {
+          max-width: 14rem;
+        }
         > .image {
           width: 100%;
           margin: 0 auto;
@@ -450,7 +456,7 @@ $color-paper-white: #fffdfd;
       @include shadow-lifted-darker;
 
       > .more {
-        h4 {
+        h3 {
           margin: 0.25rem 0;
         }
       }
