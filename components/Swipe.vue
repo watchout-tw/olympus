@@ -124,7 +124,6 @@ export default {
   },
   watch: {
     showResult() {
-      console.log(this.showResult)
       const html = document.documentElement
       const body = document.body
       const className = 'no-scroll'
@@ -318,7 +317,7 @@ $color-paper-white: #fffdfd;
     width: 100%;
     max-width: 16rem;
     margin: 0 auto;
-    padding: 1rem 0;
+    padding: 1.5rem 0;
     @include bp-sm-up {
       max-width: 20rem;
       padding: 2rem 0;
