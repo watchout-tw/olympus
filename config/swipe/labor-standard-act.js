@@ -238,8 +238,8 @@ export default {
   },
   authorship: [
     {
-      job: '編輯設計',
-      people: ['洪國鈞']
+      job: '編輯',
+      people: ['洪國鈞', '薛翰駿']
     },
     {
       job: '設計開發',
