@@ -8,7 +8,7 @@ export default {
   module: 'journey',
   beforeTitle: '《二二八日記》',
   title: '你不知道你失去了什麼',
-  image: 'another-future-light.jpg',
+  image: 'journey/another-future.jpg',
   date: '2018-02-27 20:00:00',
   breaking: true,
   sequence: {

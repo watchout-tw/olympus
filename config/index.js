@@ -5,12 +5,12 @@ import projTerror30 from '~/config/role-play/terror-30'
 import projRepublicOfChina from '~/config/qz/republic-of-china'
 import projThreePrinciples from '~/config/qz/3-principles'
 import projCongressMidtermMockExam from '~/config/qz/congress-midterm-mock-exam'
-import projLaborStandardAct from '~/config/swipe/labor-standard-act'
 import projAnotherFuture from '~/config/journey/another-future'
+import projLaborStandardAct from '~/config/swipe/labor-standard-act'
 
 export const projects = [
-  projAnotherFuture,
   projLaborStandardAct,
+  projAnotherFuture,
   projCongressMidtermMockExam,
   projThreePrinciples,
   projRepublicOfChina,

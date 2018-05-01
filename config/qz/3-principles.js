@@ -2,7 +2,7 @@ export default {
   id: '3-principles',
   module: 'qz',
   title: '你唸過三民主義嗎？',
-  image: '3-principles.jpg',
+  image: 'qz/3-principles.jpg',
   date: '2017-11-12 20:00:00',
   breaking: false,
   authorship: [

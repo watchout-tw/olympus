@@ -2,7 +2,7 @@ export default {
   id: 'terror-30',
   module: 'role-play',
   title: '你是戒嚴時代的誰呢？',
-  image: 'terror-30.jpg',
+  image: 'role-play/terror-30.jpg',
   date: '2017-07-13 21:00:00',
   breaking: false,
   authorship: [

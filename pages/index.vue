@@ -6,8 +6,8 @@
     </div>
   </div>
   <div class="tcl-container">
-    <div class="tcl-panel" v-for="project of projects">
-      <nuxt-link class="project a-block" :key="project.id" :to="{ name: 'moduleSlug-projectSlug', params: { moduleSlug: project.module, projectSlug: project.id }}"><span class="a-target">{{ project.title }}</span></nuxt-link>
+    <div class="tcl-panel with-top-bottom-margin" v-for="project of projects" :key="project.id">
+      <project-signature :module="getModule(project.module)" :project="project" />
     </div>
     <div class="tcl-panel"></div>
   </div>
@@ -19,6 +19,7 @@ import * as info from '~/data/info'
 import { generateMeta } from 'watchout-common-functions/functions'
 import { projects, modules } from '~/config'
 import Welcome from 'watchout-common-functions/components/Welcome'
+import ProjectSignature from '~/components/ProjectSignature'
 
 export default {
   head() {
@@ -36,8 +37,14 @@ export default {
       modules
     }
   },
+  methods: {
+    getModule(id) {
+      return this.modules.find(module => module.id === id)
+    }
+  },
   components: {
-    Welcome
+    Welcome,
+    ProjectSignature
   }
 }
 </script>

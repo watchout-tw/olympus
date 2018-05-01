@@ -1,9 +1,16 @@
 <template>
 <div class="page module">
-  <header>
-    <h1 class="small">{{ module.title }}</h1>
+  <header class="tcl-container">
+    <div class="tcl-panel with-top-bottom-margin with-double-top-margin">
+      <h1 class="text-align-center small">{{ module.title }}</h1>
+    </div>
   </header>
-  <nuxt-link class="project a-block" v-for="project of projects" :key="project.id" :to="{ name: 'moduleSlug-projectSlug', params: { moduleSlug: project.module, projectSlug: project.id }}"><span class="a-target">{{ project.title }}</span></nuxt-link>
+  <div class="tcl-container">
+    <div class="tcl-panel with-top-bottom-margin" v-for="project of projects" :key="project.id">
+      <project-signature :module="module" :project="project" />
+    </div>
+    <div class="tcl-panel"></div>
+  </div>
 </div>
 </template>
 
@@ -11,6 +18,7 @@
 import * as info from '~/data/info'
 import { generateMeta } from 'watchout-common-functions/functions'
 import { projects, modules } from '~/config'
+import ProjectSignature from '~/components/ProjectSignature'
 
 export default {
   async asyncData({ params }) {
@@ -25,11 +33,14 @@ export default {
   head() {
     let pageTitle = info.L_SINGLE_BRACKET + this.module.title + info.R_SINGLE_BRACKET + info.SITE_TITLE
     let pageDescription = info.SITE_DESCRIPTION
-    let pageCover = require('~/static/musou.png')
+    let pageCover = require('~/static/modules/' + this.module.id + '.png')
     return {
       title: pageTitle,
       meta: generateMeta(pageTitle, pageDescription, pageCover)
     }
+  },
+  components: {
+    ProjectSignature
   }
 }
 </script>

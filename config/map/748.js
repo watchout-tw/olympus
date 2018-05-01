@@ -2,6 +2,7 @@ export default {
   id: '748',
   module: 'map',
   title: '同志結婚會滅國？醒醒吧，你沒有▁▁',
+  image: 'modules/map.jpg',
   date: '2017-06-14 21:00:00',
   breaking: false,
   dataSource: 'same-sex-marriage-international-news-coverage',
