@@ -2,7 +2,7 @@
 <div class="page project" :style="pageStyles">
   <div class="main">
     <template v-if="project.module === 'swipe'">
-      <swipe :data="project"></swipe>
+      <swipe :module="module" :project="project"></swipe>
     </template>
     <template v-else>
       <div class="not-available" style="margin: 1rem;">技術升級中，需要多一點點時間。</div>
