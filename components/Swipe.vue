@@ -350,7 +350,7 @@ $color-paper-white: #fffdfd;
         background: $color-paper-white;
         cursor: pointer;
 
-        @include cuboid(2px, #aaa, #ddd);
+        @include cuboid(2px, $color-cuboid-default-darker, $color-cuboid-default);
 
         // shadows
         @include shadow-minimum;
