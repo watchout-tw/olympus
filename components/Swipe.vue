@@ -14,16 +14,9 @@
         <template v-else>
           <h2 class="title">{{ card.data.title }}</h2>
         </template>
-        <template v-if="card.data.type === 'question'">
-          <div class="content">
-            <div class="paragraphs" v-html="markdown(card.data.question)"></div>
-          </div>
-        </template>
-        <template v-else-if="card.data.type === 'text'">
-          <div class="content">
-            <div class="paragraphs" v-html="markdown(card.data.content)"></div>
-          </div>
-        </template>
+        <div v-if="card.data.type === 'question'" class="paragraphs" v-html="markdown(card.data.question)"></div>
+        <div v-else-if="card.data.type === 'text'" class="paragraphs" v-html="markdown(card.data.content)"></div>
+        <div v-if="card.data.image" class="image" :style="{ backgroundImage: `url(${card.data.image.url})`, width: `${card.data.image.width}px`, height: `${card.data.image.height}px` }"></div>
       </div>
     </div>
     <div class="swipe-actions d-flex justify-content-center">
@@ -360,6 +353,11 @@ $color-paper-white: #fffdfd;
           @include shadow-lifted;
         }
 
+        > .image {
+          width: 100%;
+          margin: 0 auto;
+          background-size: contain;
+        }
         > .index {
           display: block;
           position: absolute;
@@ -373,13 +371,11 @@ $color-paper-white: #fffdfd;
           background-color: rgba(black, 0.1);
           color: rgba(black, 0.25);
         }
-        > .content {
-          width: 100%;
-        }
         &.is-out {
           > .index,
           > .title,
-          > .content,
+          > .paragraphs,
+          > .image,
           > .actions {
             opacity: 0.35;
           }
