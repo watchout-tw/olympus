@@ -1,43 +1,40 @@
 <template>
 <div class="swipe" :style="containerStyles">
-  <div class="swipe-interaction">
-      <div class="desktop">
-        <div class="message">{{ data.share.message }}</div>
-        <div class="share-buttons d-flex justify-content-center">
-          <button class="share-button twitter"></button>
-          <button class="share-button facebook"></button>
-        </div>
+  <div class="swipe-interaction" :class="interactionClasses">
+    <div class="swipe-deck">
+      <div class="swipe-desktop">
+        <div class="message">{{ project.share.message }}</div>
+        <share-to-platforms :classes="['cuboids']" :url="shareURL" />
       </div>
-      <div class="swipe-cards">
-        <div v-for="(card, index) of cards" class="swipe-card" :data-card-index="index" :class="cardClasses(index)" :style="cardStyles(index)">
-          <label v-if="index > 0" class="index">{{ index }}</label>
-          <template v-if="card.data.id === 'cover'">
-            <h1 class="title medium">{{ card.data.title }}</h1>
-          </template>
-          <template v-else>
-            <h2 class="title">{{ card.data.title }}</h2>
-          </template>
-          <template v-if="card.data.type === 'question'">
-            <div class="content">
-              <div class="paragraphs" v-html="markdown(card.data.question)"></div>
-            </div>
-          </template>
-          <template v-else-if="card.data.type === 'text'">
-            <div class="content">
-              <div class="paragraphs" v-html="markdown(card.data.content)"></div>
-            </div>
-          </template>
-        </div>
-      </div>
-      <div class="swipe-actions d-flex justify-content-center">
-        <button class="swipe-action d-flex justify-content-center align-items-center" @click="swipe(swipeActionEnabled('left') ? -1 : 0)" :class="swipeActionClasses('left')"></button>
-        <button class="swipe-action d-flex justify-content-center align-items-center" @click="swipe(swipeActionEnabled('right') ? +1 : 0)" :class="swipeActionClasses('right')"></button>
+      <div v-for="(card, index) of cards" class="swipe-card" :data-card-index="index" :class="cardClasses(index)" :style="cardStyles(index)">
+        <label v-if="index > 0" class="index">{{ index }}</label>
+        <template v-if="card.data.id === 'cover'">
+          <h1 class="title medium">{{ card.data.title }}</h1>
+        </template>
+        <template v-else>
+          <h2 class="title">{{ card.data.title }}</h2>
+        </template>
+        <template v-if="card.data.type === 'question'">
+          <div class="content">
+            <div class="paragraphs" v-html="markdown(card.data.question)"></div>
+          </div>
+        </template>
+        <template v-else-if="card.data.type === 'text'">
+          <div class="content">
+            <div class="paragraphs" v-html="markdown(card.data.content)"></div>
+          </div>
+        </template>
       </div>
     </div>
-    <transition name="modal">
+    <div class="swipe-actions d-flex justify-content-center">
+      <button class="swipe-action d-flex justify-content-center align-items-center" @click="swipe(swipeActionEnabled('left') ? -1 : 0)" :class="swipeActionClasses('left')"></button>
+      <button class="swipe-action d-flex justify-content-center align-items-center" @click="swipe(swipeActionEnabled('right') ? +1 : 0)" :class="swipeActionClasses('right')"></button>
+    </div>
+  </div>
+  <transition name="modal">
     <div v-if="showResult" class="swipe-result d-flex justify-content-center align-items-start" @click.self="showResult = showMore = false">
       <div class="result">
-        <div class="question paragraphs" v-html="markdown(activeCard.hasOwnProperty('recap') ? activeCard.data.recap : activeCard.data.question)"></div>
+        <div class="question paragraphs first" v-html="markdown(activeCard.data.hasOwnProperty('recap') ? activeCard.data.recap : activeCard.data.question)"></div>
         <div class="answer" :class="activeCard.data.answer"></div>
         <div class="but paragraphs" v-html="markdown(activeCard.data.but)"></div>
         <template v-if="showMore">
@@ -52,13 +49,13 @@
               </template>
             </div>
           </div>
-          <div class="buttons">
-            <button class="flat" @click="showResult = showMore = false">下一題謝謝</button>
+          <div class="buttons form-field-many-inputs form-field-align-center">
+            <button class="input button small cuboid default" @click="showResult = showMore = false">下一題謝謝</button>
           </div>
         </template>
-        <div v-else class="buttons">
-          <button class="flat" @click="showResult = showMore = false">下一題謝謝</button>
-          <button class="flat musou" @click="showMore = true">繼續說下去</button>
+        <div v-else class="buttons form-field-many-inputs form-field-align-center">
+          <button class="input button small cuboid default" @click="showResult = showMore = false">下一題謝謝</button>
+          <button class="input button small cuboid musou" @click="showMore = true">繼續說下去</button>
         </div>
       </div>
     </div>
@@ -67,12 +64,14 @@
 </template>
 
 <script>
-import { knowsMarkdown } from 'watchout-common-functions/interfaces'
+import { knowsDOM, knowsMarkdown, knowsWatchout } from 'watchout-common-functions/interfaces'
+import ShareToPlatforms from 'watchout-common-functions/components/ShareToPlatforms'
+
 export default {
-  mixins: [knowsMarkdown],
-  props: ['data'],
+  mixins: [knowsDOM, knowsMarkdown, knowsWatchout],
+  props: ['module', 'project'],
   data() {
-    var cards = this.data.cards.map(card => ({
+    var cards = this.project.cards.map(card => ({
       data: card,
       ...card.options && { options: card.options },
       el: null,
@@ -107,11 +106,25 @@ export default {
       return this.mirror.length > 0 ? this.cards[this.mirror[this.mirror.length - 1]] : null
     },
     containerStyles() {
-      return this.data.container && this.data.container.styles ? this.data.container.styles : {}
+      return this.project.container && this.project.container.styles ? this.project.container.styles : {}
+    },
+    deckIsEmpty() {
+      return this.mirror.length < 1
+    },
+    interactionClasses() {
+      let classes = []
+      if(this.deckIsEmpty) {
+        classes.push('empty')
+      }
+      return classes
+    },
+    shareURL() {
+      return this.getMusouProjectURL(this.module.id, this.project.id)
     }
   },
   watch: {
     showResult() {
+      console.log(this.showResult)
       const html = document.documentElement
       const body = document.body
       const className = 'no-scroll'
@@ -140,7 +153,8 @@ export default {
     cardStyles(index) {
       let offset = index % 10 * 2
       let styles = {
-        transform: `translate(${offset}px, ${offset}px)`
+        marginTop: `${offset}px`,
+        marginLeft: `${offset}px`
       }
       return styles
     },
@@ -238,13 +252,16 @@ export default {
           console.error('broken mirror')
         }
         // show result if card is a question
-        if(this.cards[index].type === 'question') {
+        if(this.cards[index].data.type === 'question') {
           this.showResult = true
         }
         // flag card as has-been-out
         this.cards[index].state.hasBeenOut = true
       }
     })
+  },
+  components: {
+    ShareToPlatforms
   }
 }
 </script>
@@ -277,37 +294,20 @@ $color-paper-white: #fffdfd;
   @include line($size, $color, 45deg);
 }
 
-@mixin cuboid($depth, $color-bottom, $color-side) {
-  &:before,
-  &:after {
-    content: '';
-    position: absolute;
-    display: block;
-  }
-  // bottom
-  &:before {
-    top: 100%;
-    left: $depth / 2;
-    width: 100%;
-    height: $depth;
-    background: $color-bottom;
-    transform: skewX(45deg);
-  }
-  // side
-  &:after {
-    top: $depth / 2;
-    left: 100%;
-    width: $depth;
-    height: 100%;
-    background: $color-side;
-    transform: skewY(45deg);
+// vertical breakpoints
+@mixin v-bp-sm-down {
+  @media (max-height: #{$bp-sm}) {
+    @content;
   }
 }
-
-@mixin pushable($offset) {
-  &:active {
-    box-shadow: none;
-    transform: translate($offset, $offset);
+@mixin v-bp-sm-up {
+  @media (min-height: #{$bp-sm}) {
+    @content;
+  }
+}
+@mixin v-bp-md-up {
+  @media (min-height: #{$bp-md}) {
+    @content;
   }
 }
 
@@ -326,36 +326,20 @@ $color-paper-white: #fffdfd;
     @include bp-md-up {
       padding: 8vw 0;
     }
-    > .desktop {
-      width: 100%;
-      position: absolute;
-      > .share-buttons {
-        width: 100%;
-        > .share-button {
-          position: relative;
-          margin: 0 1rem;
-          width: 4rem;
-          height: 4rem;
-          background-color: white;
 
-          $button-depth: 8px;
-          &.twitter {
-            background-color: $color-twitter-light;
-            @include cuboid($button-depth, $color-twitter-darker, $color-twitter);
-          }
-          &.facebook {
-            background-color: $color-facebook-light;
-            @include cuboid($button-depth, $color-facebook-darker, $color-facebook);
-          }
-          @include pushable($button-depth);
-        }
-      }
-    }
-    > .swipe-cards {
+    > .swipe-deck {
       position: relative;
       width: 100%;
       height: 0;
       padding-bottom: 100%;
+      > .swipe-desktop {
+        width: 100%;
+        padding: 2rem;
+        position: absolute;
+        > .message {
+          margin: 1rem 0;
+        }
+      }
       > .swipe-card {
         position: absolute;
         top: 0;
@@ -436,8 +420,39 @@ $color-paper-white: #fffdfd;
             @include backward-slash(1.5rem, white);
           }
         }
-        @include pushable($button-depth);
+        &:active {
+          box-shadow: none;
+          transform: translate($button-depth, $button-depth);
+        }
       }
+    }
+  }
+  > .swipe-result {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(black, 0.65);
+    z-index: $z-interaction;
+    padding-top: $nav-height;
+    transition: opacity .3s ease;
+
+    > .result {
+      position: relative;
+      margin-top: 2rem;
+      max-width: 24rem;
+      max-height: 22rem;
+      @include v-bp-md-up {
+        margin-top: 4rem;
+        max-height: 32rem;
+      }
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 1rem;
+      background: white;
+      @include shadow-lifted-darker;
     }
   }
 }
