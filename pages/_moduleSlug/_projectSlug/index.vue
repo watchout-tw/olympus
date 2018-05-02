@@ -37,14 +37,13 @@
 
 <script>
 import * as info from '~/data/info'
-import { generateMeta } from 'watchout-common-functions/functions'
 import { projects, modules } from '~/config'
-import { knowsMarkdown } from 'watchout-common-functions/interfaces'
+import { knowsMarkdown, knowsWatchout } from 'watchout-common-functions/interfaces'
 import Swipe from '~/components/Swipe'
 import LongForm from '~/components/LongForm'
 
 export default {
-  mixins: [knowsMarkdown],
+  mixins: [knowsMarkdown, knowsWatchout],
   async asyncData({ params }) {
     let project = projects.find(project => project.id === params.projectSlug)
     let module = modules.find(module => module.id === params.moduleSlug)
@@ -61,7 +60,7 @@ export default {
 
     return {
       title: pageTitle,
-      meta: generateMeta(pageTitle, pageDescription, pageCover)
+      meta: this.generateMeta('musou', pageTitle, pageDescription, pageCover)
     }
   },
   computed: {

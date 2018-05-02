@@ -16,19 +16,20 @@
 
 <script>
 import * as info from '~/data/info'
-import { generateMeta } from 'watchout-common-functions/functions'
+import { knowsWatchout } from 'watchout-common-functions/interfaces'
 import { projects, modules } from '~/config'
 import Welcome from 'watchout-common-functions/components/Welcome'
 import ProjectSignature from '~/components/ProjectSignature'
 
 export default {
+  mixins: [knowsWatchout],
   head() {
     let pageTitle = info.SITE_TITLE
     let pageDescription = info.SITE_DESCRIPTION
     let pageCover = require('~/static/musou.png')
     return {
       title: pageTitle,
-      meta: generateMeta(pageTitle, pageDescription, pageCover)
+      meta: this.generateMeta('musou', pageTitle, pageDescription, pageCover)
     }
   },
   data() {

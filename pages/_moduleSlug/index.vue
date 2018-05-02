@@ -16,11 +16,12 @@
 
 <script>
 import * as info from '~/data/info'
-import { generateMeta } from 'watchout-common-functions/functions'
+import { knowsWatchout } from 'watchout-common-functions/interfaces'
 import { projects, modules } from '~/config'
 import ProjectSignature from '~/components/ProjectSignature'
 
 export default {
+  mixins: [knowsWatchout],
   async asyncData({ params }) {
     let projectsOfModule = projects.filter(project => project.module === params.moduleSlug)
     let module = modules.find(module => module.id === params.moduleSlug)
@@ -36,7 +37,7 @@ export default {
     let pageCover = require('~/static/modules/' + this.module.id + '.png')
     return {
       title: pageTitle,
-      meta: generateMeta(pageTitle, pageDescription, pageCover)
+      meta: this.generateMeta('musou', pageTitle, pageDescription, pageCover)
     }
   },
   components: {
