@@ -7,6 +7,9 @@
     <template v-else-if="['role-play', 'qz'].includes(project.module)">
       <long-form :module="module" :project="project" />
     </template>
+    <template v-else-if="project.module === 'draw'">
+      <draw :module="module" :project="project" />
+    </template>
     <template v-else>
       <div class="not-available" style="margin: 1rem;">技術升級中，需要多一點點時間。</div>
     </template>
@@ -40,6 +43,7 @@ import * as info from '~/data/info'
 import { projects, modules } from '~/config'
 import { knowsMarkdown, knowsWatchout } from 'watchout-common-functions/interfaces'
 import Swipe from '~/components/Swipe'
+import Draw from '~/components/Draw'
 import LongForm from '~/components/LongForm'
 
 export default {
@@ -70,6 +74,7 @@ export default {
   },
   components: {
     Swipe,
+    Draw,
     LongForm
   }
 }
