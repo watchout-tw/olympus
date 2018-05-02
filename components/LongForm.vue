@@ -40,6 +40,7 @@ export default {
       .then(results => {
         if(window.plotdb) {
           window.plotdb.load(this.project.chart.id, chart => {
+            console.log(chart)
             chart.attach(document.getElementById(this.mountingPoint), {})
             this.isLoading = false
           })
@@ -90,6 +91,11 @@ export default {
       margin-bottom: 1rem;
     }
   }
+  h1 {
+    font-size: 2.5rem;
+    line-height: $line-height-compact;
+    margin: 1rem 0;
+  }
   a {
     text-decoration: none;
   }
@@ -99,19 +105,33 @@ export default {
     max-width: 100%;
   }
   ul.choices {
-    display: block;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
     margin: 1rem 0;
     padding: 0;
-    text-align: center;
+
     > li {
-      display: inline-block;
-      max-width: 24em;
-      margin: 0.5rem 0.25rem;
-      padding: 0.5rem 1rem;
-      border: 2px black solid;
-      border-radius: 2px;
-      font-size: 1.25rem;
+      @include appearance-button;
+      flex-basis: 100%;
+      margin: 0.5rem 0;
+      height: auto;
+      font-size: 1.125rem;
+      line-height: $line-height-tight;
+      text-align: center;
       cursor: pointer;
+
+      @include bp-sm-up {
+        flex-basis: calc(50% - 1rem);
+        margin: 0.5rem;
+        &:only-child {
+          flex-basis: calc(100% - 1rem);
+        }
+      }
+      &:hover {
+        line-height: $line-height-tight;
+      }
     }
   }
   .block {
@@ -125,10 +145,62 @@ export default {
       line-height: $line-height-compact;
     }
   }
-  h1 {
-    font-size: 2.5rem;
-    line-height: $line-height-compact;
+  ol {
+    padding-left: 0;
+    list-style: none;
+    > li {
+      padding: 1rem 0 2rem;
+      margin-bottom: 2rem;
+      &:first-child {
+        padding-top: 0;
+      }
+
+      > ul.choices {
+        > li {
+          &.active {
+            background: rgba($color-watchout, 0.85);
+          }
+        }
+      }
+    }
+  }
+  hr {
+    border: none;
+    margin: 4rem;
+  }
+  #final-score-label {
+    margin: 0.25rem 0;
+    text-align: center;
+  }
+  #final-score-label + p {
+    font-size: 6rem;
+    line-height: 1;
+    letter-spacing: -0.25rem;
+    text-align: center;
+    color: $color-musou;
+  }
+  // exam possible results
+  .result {
+    display: none;
     margin: 1rem 0;
+    font-size: 1.25rem;
+    line-height: 1.5;
+
+    &.active {
+      display: block;
+      font-size: 1.5rem;
+    }
+  }
+  #answer-sheet-title {
+    margin: 2rem 0 1rem;
+  }
+  #answer-sheet-title + ol {
+    padding-left: 1.5rem;
+    list-style: decimal;
+  }
+  #answer-sheet-title + ol > li {
+    margin: 0;
+    padding: 0;
   }
 }
 </style>

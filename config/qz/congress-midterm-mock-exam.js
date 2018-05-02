@@ -17,7 +17,7 @@ export default {
   ],
   chart: {
     id: 17070,
-    contentStyle: {
+    styles: {
       backgroundColor: 'white',
       color: 'black'
     }
