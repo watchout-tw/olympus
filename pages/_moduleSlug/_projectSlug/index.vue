@@ -4,7 +4,7 @@
     <template v-if="project.module === 'swipe'">
       <swipe :module="module" :project="project" />
     </template>
-    <template v-if="['role-play', 'qz'].includes(project.module)">
+    <template v-else-if="['role-play', 'qz'].includes(project.module)">
       <long-form :module="module" :project="project" />
     </template>
     <template v-else>
