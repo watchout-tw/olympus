@@ -2,7 +2,10 @@
 <div class="page project" :style="pageStyles">
   <div class="main">
     <template v-if="project.module === 'swipe'">
-      <swipe :module="module" :project="project"></swipe>
+      <swipe :module="module" :project="project" />
+    </template>
+    <template v-if="project.module === 'role-play'">
+      <long-form :module="module" :project="project" />
     </template>
     <template v-else>
       <div class="not-available" style="margin: 1rem;">技術升級中，需要多一點點時間。</div>
@@ -38,6 +41,7 @@ import { generateMeta } from 'watchout-common-functions/functions'
 import { projects, modules } from '~/config'
 import { knowsMarkdown } from 'watchout-common-functions/interfaces'
 import Swipe from '~/components/Swipe'
+import LongForm from '~/components/LongForm'
 
 export default {
   mixins: [knowsMarkdown],
@@ -66,7 +70,8 @@ export default {
     }
   },
   components: {
-    Swipe
+    Swipe,
+    LongForm
   }
 }
 </script>
