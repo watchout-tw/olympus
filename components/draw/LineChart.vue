@@ -24,7 +24,6 @@
 
 <script>
 import { knowsMarkdown } from 'watchout-common-functions/interfaces'
-import $ from 'jquery'
 import * as d3 from 'd3'
 
 const colors = {
@@ -383,7 +382,7 @@ export default {
         return row.fix && i + 1 < this.rows.orig.length && !this.rows.orig[i + 1].fix
       }).pop()
 
-      var viewport = $(window).width()
+      var viewport = window.innerWidth
       var zoom = viewport > this.size.w ? 1 : viewport / this.size.w
       this.el.container.select('.you-draw')
         .style('top', this.util.axes.y.scale(lastOrig.y) * zoom - 54 + 'px')
