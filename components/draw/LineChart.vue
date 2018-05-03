@@ -87,16 +87,17 @@ export default {
     }
   },
   created() {
-    this.rows.orig = require('@/data/draw/' + this.config.id + '.json')
+    const { id, compare } = this.config
+    this.rows.orig = require('~/data/draw/' + id + '.json')
     this.rows.user = JSON.parse(JSON.stringify(this.rows.orig))
     this.rows.user.forEach((row, index, rows) => {
       if(row.fix && !(index + 1 < rows.length && !rows[index + 1].fix)) {
         row.show = false
       }
     })
-    if(this.config.compare) {
-      this.rows.comp = this.config.compare.map(compareThis =>
-        require('@/data/draw/' + compareThis.id + '.json').map(row =>
+    if(compare) {
+      this.rows.comp = compare.map(compareThis =>
+        require('~/data/draw/' + compareThis.id + '.json').map(row =>
           Object.assign({}, row, {show: true, fix: true}) // have to use fresh empty object
         )
       )
