@@ -11,7 +11,7 @@
     </div>
   </div>
   <div class="after">
-    <button>不想畫啦</button>
+    <button>畫好了啦</button>
     <div class="score">
       <div>畫的有</div>
       <div class="number">{{ score }}</div>
@@ -334,6 +334,11 @@ export default {
       // add button to finish and show comparison
       this.el.button = d3.select(this.$el).select('.after > button')
         .on('click', function() {
+          if (self.rows.user.find(target => !target.show && !target.fix)) {
+            // TODO show noticing `you have to complete the chart`
+            return
+          }
+
           // remove animation
           self.el.container.select('.you-draw').remove()
 
@@ -351,8 +356,6 @@ export default {
       function redraw() {
         // remove animation
         self.el.container.select('.you-draw').remove()
-        // toggle button text
-        self.el.button.text('畫好了啦')
 
         // get input position
         const m = d3.mouse(this)
