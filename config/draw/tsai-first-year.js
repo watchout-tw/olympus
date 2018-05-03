@@ -25,6 +25,10 @@ export default {
       id: 'unemployment',
       title: '每年失業率',
       sheetID: '541577362',
+      speechTarget: {
+        id: 175,
+        type: 'musou_line_chart_response'
+      },
       axes: {
         x: {
           divider: 1,
@@ -56,6 +60,10 @@ export default {
       id: 'annual-visitors',
       title: '每年來台旅客人數',
       sheetID: '1810543594',
+      speechTarget: {
+        id: 176,
+        type: 'musou_line_chart_response'
+      },
       axes: {
         x: {
           divider: 1,
@@ -87,6 +95,10 @@ export default {
       id: 'monthly-visitors-china',
       title: '中國旅客每月來台人數',
       sheetID: '918177893', // run get.py and get sheetID from data/graphs.json
+      speechTarget: {
+        id: 177,
+        type: 'musou_line_chart_response'
+      },
       axes: {
         x: {
           divider: 1,
@@ -118,6 +130,10 @@ export default {
       id: 'monthly-visitors-world',
       title: '世界旅客每月來台人數',
       sheetID: '918177893', // run get.py and get sheetID from data/graphs.json
+      speechTarget: {
+        id: 178,
+        type: 'musou_line_chart_response'
+      },
       axes: {
         x: {
           divider: 1,
@@ -155,6 +171,10 @@ export default {
       id: 'annual-revenue',
       title: '中央政府歲入',
       sheetID: '1456792974',
+      speechTarget: {
+        id: 179,
+        type: 'musou_line_chart_response'
+      },
       axes: {
         x: {
           divider: 1,
@@ -187,6 +207,10 @@ export default {
       id: 'annual-spending',
       title: '中央政府歲出',
       sheetID: '1456792974',
+      speechTarget: {
+        id: 180,
+        type: 'musou_line_chart_response'
+      },
       axes: {
         x: {
           divider: 1,
@@ -225,6 +249,10 @@ export default {
       id: 'public-debt',
       title: '中央政府一年以上公共債務未償餘額',
       sheetID: '92876274',
+      speechTarget: {
+        id: 181,
+        type: 'musou_line_chart_response'
+      },
       axes: {
         x: {
           divider: 1,
