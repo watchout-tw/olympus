@@ -25,6 +25,7 @@
 <script>
 import { knowsMarkdown } from 'watchout-common-functions/interfaces'
 import * as d3 from 'd3'
+import * as core from '../../lib/core'
 
 const colors = {
   'bian-1': 'rgba(0, 255, 0, 0.25)',
@@ -108,6 +109,10 @@ export default {
     this.draw()
   },
   methods: {
+    createSpeech: function() {
+      const { speechTarget } = this.config
+      core.createLineChartSpeech(speechTarget, this.rows.user)
+    },
     drawComp: function(i, title) {
       this.drawPath(this.el.comp[i], this.rows.comp[i], title)
     },
@@ -338,6 +343,8 @@ export default {
             // TODO show noticing `you have to complete the chart`
             return
           }
+
+          self.createSpeech()
 
           // remove animation
           self.el.container.select('.you-draw').remove()
