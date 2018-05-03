@@ -12,3 +12,5 @@ npm-debug.log
 
 # Nuxt generate
 dist
+
+config/config.js
