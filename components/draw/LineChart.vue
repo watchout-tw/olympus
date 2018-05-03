@@ -19,9 +19,9 @@
 </template>
 
 <script>
+import { knowsMarkdown } from 'watchout-common-functions/interfaces'
 import $ from 'jquery'
 import * as d3 from 'd3'
-import marked from 'marked'
 
 const colors = {
   'bian-1': 'rgba(0, 255, 0, 0.25)',
@@ -37,7 +37,8 @@ const presidents = {
 }
 
 export default {
-  props: ['id', 'config'],
+  mixins: [knowsMarkdown],
+  props: ['config'],
   data() {
     return {
       el: {},
@@ -385,9 +386,6 @@ export default {
         .style('left', this.util.axes.x.scale(lastOrig.x) * zoom + 'px')
         .style('transform', 'scale(' + zoom + ')')
         .style('transform-origin', 'center left')
-    },
-    markdown: function(text) {
-      return marked(text)
     }
   }
 }
