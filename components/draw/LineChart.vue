@@ -1,8 +1,8 @@
 <template>
 <div class="line-chart" :id="config.id">
-  <div class="before textgroup">
+  <div class="before">
     <div class="title"><h2>{{ config.text.title }}</h2></div>
-    <div class="text a-text-only" v-html="markdown(config.text.before)"></div>
+    <div class="text" v-html="markdown(config.text.before)"></div>
   </div>
   <div class="chart">
     <div class="you-draw">
@@ -10,10 +10,14 @@
       <div class="hand"></div>
     </div>
   </div>
-  <div class="after textgroup">
+  <div class="after">
     <button>不想畫啦</button>
-    <div class="score d-flex justify-content-center align-items-center"><div>畫的有</div><div class="number">{{ score }}</div><div>分像呢</div></div>
-    <div class="text a-text-only" v-html="markdown(config.text.after)"></div>
+    <div class="score">
+      <div>畫的有</div>
+      <div class="number">{{ score }}</div>
+      <div>分像呢</div>
+    </div>
+    <div class="text" v-html="markdown(config.text.after)"></div>
   </div>
 </div>
 </template>

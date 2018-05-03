@@ -1,21 +1,21 @@
 <template>
-<article class="draw">
+<article>
   <header>
-    <div class="text textgroup">
+    <div>
       <hgroup>
         <h2>{{ module.title }}</h2>
         <h1>{{ project.title }}</h1>
       </hgroup>
-      <div class="description" v-html="markdown(project.description)"></div>
+      <div v-html="markdown(project.description)"></div>
     </div>
   </header>
-  <section class="graphs">
+  <section>
     <line-chart v-for="config in graphs" :key="config.id" :config="config"></line-chart>
   </section>
-  <section class="bridge">畫完了，然後呢？</section>
-  <section class="conclusion textgroup">
-    <h2 class="title">{{ conclusion.title }}</h2>
-    <div class="description a-text-only" v-html="markdown(conclusion.description)"></div>
+  <section>畫完了，然後呢？</section>
+  <section>
+    <h2>{{ conclusion.title }}</h2>
+    <div v-html="markdown(conclusion.description)"></div>
   </section>
 </article>
 </template>
@@ -29,8 +29,8 @@ export default {
   mixins: [knowsMarkdown],
   props: ['module', 'project'],
   data() {
-    const { graphs, conclusion, authorship } = this.project
-    return { graphs, conclusion, authorship }
+    const { graphs, conclusion } = this.project
+    return { graphs, conclusion }
   },
   components: {
     LineChart
