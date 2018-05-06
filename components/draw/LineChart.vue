@@ -111,7 +111,8 @@ export default {
   methods: {
     createSpeech: function() {
       const { speechTarget } = this.config
-      core.createLineChartSpeech(speechTarget, this.rows.user)
+      const data = this.rows.user.filter(u => !u.fix)
+      core.createLineChartSpeech(speechTarget, data)
     },
     drawComp: function(i, title) {
       this.drawPath(this.el.comp[i], this.rows.comp[i], title)
