@@ -25,6 +25,10 @@ export default {
       id: 'unemployment',
       title: '每年失業率',
       sheetID: '541577362',
+      speechTarget: {
+        id: 175,
+        type: 'musou_line_chart_response'
+      },
       axes: {
         x: {
           divider: 1,
@@ -56,6 +60,10 @@ export default {
       id: 'annual-visitors',
       title: '每年來台旅客人數',
       sheetID: '1810543594',
+      speechTarget: {
+        id: 176,
+        type: 'musou_line_chart_response'
+      },
       axes: {
         x: {
           divider: 1,
@@ -87,6 +95,10 @@ export default {
       id: 'monthly-visitors-china',
       title: '中國旅客每月來台人數',
       sheetID: '918177893', // run get.py and get sheetID from data/graphs.json
+      speechTarget: {
+        id: 177,
+        type: 'musou_line_chart_response'
+      },
       axes: {
         x: {
           divider: 1,
@@ -118,6 +130,10 @@ export default {
       id: 'monthly-visitors-world',
       title: '世界旅客每月來台人數',
       sheetID: '918177893', // run get.py and get sheetID from data/graphs.json
+      speechTarget: {
+        id: 178,
+        type: 'musou_line_chart_response'
+      },
       axes: {
         x: {
           divider: 1,
@@ -155,6 +171,10 @@ export default {
       id: 'annual-revenue',
       title: '中央政府歲入',
       sheetID: '1456792974',
+      speechTarget: {
+        id: 179,
+        type: 'musou_line_chart_response'
+      },
       axes: {
         x: {
           divider: 1,
@@ -187,6 +207,10 @@ export default {
       id: 'annual-spending',
       title: '中央政府歲出',
       sheetID: '1456792974',
+      speechTarget: {
+        id: 180,
+        type: 'musou_line_chart_response'
+      },
       axes: {
         x: {
           divider: 1,
@@ -225,6 +249,10 @@ export default {
       id: 'public-debt',
       title: '中央政府一年以上公共債務未償餘額',
       sheetID: '92876274',
+      speechTarget: {
+        id: 181,
+        type: 'musou_line_chart_response'
+      },
       axes: {
         x: {
           divider: 1,
@@ -253,6 +281,7 @@ export default {
       }
     }
   ],
+  beforeConclusion: '畫完了，然後呢？',
   conclusion: {
     title: '結論：關心政治、持續監督',
     description: '這次你得了幾分呢？蔡總統第一年的表現和你想的一樣嗎？\n\n真實的數據，是否讓你感到意外？逐年攀升的國債是否令你吃驚呢？事實上，現在立法院正在審查前瞻基礎建設特別條例，未來八年很可能會再舉債八千八百多億，國債也會繼續攀升，或許明年再看到這些圖表的時候，你會更為驚訝。\n\n在沃草，我們持續以各種方式報導國會，**努力降低理解複雜議題的門檻**。像《蔡總統的第一年》這樣的資訊新聞需要許多人力整理資料、設計、製作，如果你喜歡沃草的內容，請別忘了[支持我們](https://watchout.tw/#support)！'
