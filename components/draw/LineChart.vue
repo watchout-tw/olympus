@@ -11,7 +11,7 @@
     </div>
   </div>
   <div class="after tcl-left-right-margin">
-    <button class="input button submit musou">畫好了啦</button>
+    <submit-button :classes="['musou']" :label="'畫好了啦'" :state.sync="submit.state" :message.sync="submit.message" @click.native="onSubmit"></submit-button>
     <div class="score">
       <div>畫的有</div>
       <div class="number">{{ score }}</div>
@@ -24,6 +24,8 @@
 
 <script>
 import { knowsMarkdown } from 'watchout-common-functions/interfaces'
+import SubmitButton from 'watchout-common-functions/components/button/Submit'
+import * as STATES from 'watchout-common-functions/lib/states'
 import * as d3 from 'd3'
 import * as core from '../../lib/core'
 
@@ -39,6 +41,7 @@ const presidents = {
   'ma': '馬英九',
   'tsai': '蔡英文'
 }
+const UNDONE_SCORE = -1
 
 export default {
   mixins: [knowsMarkdown],
@@ -60,31 +63,32 @@ export default {
         sequence: {
           label: {}
         }
+      },
+      submit: {
+        state: STATES.DEFAULT,
+        message: null
       }
     }
   },
   computed: {
     score: function() {
-      if(!(this.rows && this.rows.user)) {
-        return 87
-      }
-
-      var self = this
       var s = 0.2
       var y = s * (this.config.axes.y.max - this.config.axes.y.min)
       var n = 0
+      var answered = 0
       var d = 0
       var sum = 0
-      this.rows.user.forEach(function(row, i) {
+      this.rows.user.forEach((row, i) => {
         if(!row.fix) {
           n = n + 1
           if(row.show) {
-            d = Math.abs(row.y - self.rows.orig[i].y)
+            answered = answered + 1
+            d = Math.abs(row.y - this.rows.orig[i].y)
             sum = sum + (1 - (d > y ? y : d) / y) * 100
           }
         }
       })
-      return n === 0 ? 0 : Math.round(sum / n)
+      return n === answered ? Math.round(sum / n) : UNDONE_SCORE
     }
   },
   created() {
@@ -109,6 +113,16 @@ export default {
     this.draw()
   },
   methods: {
+    onSubmit: function() {
+      if (this.score === UNDONE_SCORE) {
+        this.submit = {
+          state: STATES.FAILED,
+          message: '要畫完ㄛ'
+        }
+        return
+      }
+      // TODO if it's finished
+    },
     createSpeech: function() {
       const { speechTarget } = this.config
       const data = this.rows.user.filter(u => !u.fix)
@@ -338,10 +352,10 @@ export default {
       this.el.orig = this.el.root.append('g').attr('class', 'sequence orig')
 
       // add button to finish and show comparison
-      this.el.button = d3.select(this.$el).select('.after > .submit')
+      this.el.button = d3.select(this.$el).select('.after > .submit-button')
         .on('click', function() {
-          if (self.rows.user.find(target => !target.show && !target.fix)) {
-            // TODO show noticing `you have to complete the chart`
+          if(self.score === UNDONE_SCORE) {
+            // TODO
             return
           }
 
@@ -402,6 +416,9 @@ export default {
         .style('transform', 'scale(' + zoom + ')')
         .style('transform-origin', 'center left')
     }
+  },
+  components: {
+    SubmitButton
   }
 }
 </script>
@@ -532,7 +549,7 @@ export default {
   }
   > .after {
     position: relative;
-    > *:not(.submit) {
+    > *:not(.submit-button) {
       visibility: hidden;
     }
     &.reveal {
