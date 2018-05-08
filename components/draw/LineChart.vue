@@ -89,7 +89,7 @@ export default {
   },
   created() {
     const { id, compare } = this.config
-    this.rows.orig = require('~/data/draw/' + id + '.json')
+    this.rows.orig = this.getDataPoints(id)
     this.rows.user = JSON.parse(JSON.stringify(this.rows.orig))
     this.rows.user.forEach((row, index, rows) => {
       if(row.fix && !(index + 1 < rows.length && !rows[index + 1].fix)) {
@@ -97,9 +97,10 @@ export default {
       }
     })
     if(compare) {
+      const fixed = {show: true, fix: true}
       this.rows.comp = compare.map(compareThis =>
-        require('~/data/draw/' + compareThis.id + '.json').map(row =>
-          Object.assign({}, row, {show: true, fix: true}) // have to use fresh empty object
+        this.getDataPoints(compareThis.id).map(row =>
+          Object.assign({}, row, fixed) // have to use fresh empty object
         )
       )
     }
@@ -109,6 +110,9 @@ export default {
     this.draw()
   },
   methods: {
+    getDataPoints: function(id) {
+      return require('~/data/draw/' + id + '.json')
+    },
     createSpeech: function() {
       const { speechTarget } = this.config
       const data = this.rows.user.filter(u => !u.fix)
