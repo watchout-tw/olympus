@@ -1,8 +1,8 @@
 <template>
 <div class="line-chart" :id="config.id">
-  <div class="before">
-    <div class="title"><h2>{{ config.text.title }}</h2></div>
-    <div class="text" v-html="markdown(config.text.before)"></div>
+  <div class="before tcl-left-right-margin">
+    <h3 class="title">{{ config.text.title }}</h3>
+    <div class="paragraphs no-margin" v-html="markdown(config.text.before)"></div>
   </div>
   <div class="chart">
     <div class="you-draw">
@@ -10,14 +10,14 @@
       <div class="hand"></div>
     </div>
   </div>
-  <div class="after">
-    <button>畫好了啦</button>
+  <div class="after tcl-left-right-margin">
+    <button class="input button submit musou">畫好了啦</button>
     <div class="score">
       <div>畫的有</div>
       <div class="number">{{ score }}</div>
       <div>分像呢</div>
     </div>
-    <div class="text" v-html="markdown(config.text.after)"></div>
+    <div class="paragraphs no-margin" v-html="markdown(config.text.after)"></div>
   </div>
 </div>
 </template>
@@ -230,7 +230,7 @@ export default {
 
           tick.selectAll('text').remove()
           var text = tick.append('g')
-            .attr('transform', 'translate(' + [-util.axes.x.scale.step() / 2, size.h - size.p - size.r * 8 + 2].join(',') + ')')
+            .attr('transform', 'translate(' + [-util.axes.x.scale.step() / 2, size.h - size.p - size.r * 8].join(',') + ')')
 
           // omit year when repeat
           if(d.indexOf('/') > -1) {
@@ -273,7 +273,7 @@ export default {
           .attr('x', 0)
         g.select('.tick:last-of-type').append('text')
           .classed('unit-label', true)
-          .attr('dy', -1 * size.rem)
+          .attr('dy', -0.75 * size.rem)
           .text(config.axes.y.label)
       }
     },
@@ -338,7 +338,7 @@ export default {
       this.el.orig = this.el.root.append('g').attr('class', 'sequence orig')
 
       // add button to finish and show comparison
-      this.el.button = d3.select(this.$el).select('.after > button')
+      this.el.button = d3.select(this.$el).select('.after > .submit')
         .on('click', function() {
           if (self.rows.user.find(target => !target.show && !target.fix)) {
             // TODO show noticing `you have to complete the chart`
@@ -407,27 +407,20 @@ export default {
 </script>
 
 <style lang="scss">
-@import '~watchout-common-assets/styles/_resources';
+@import '~watchout-common-assets/styles/resources';
 
 .line-chart {
   max-width: 30rem;
-  margin: 4rem auto 2rem;
-
-  > .before,
-  > .after {
-    margin-left: 1rem;
-    margin-right: 1rem;
-  }
+  margin: 0 auto;
   > .before {
     > .title {
-      margin: 0.5rem 0;
+      margin-bottom: 0.25rem;
     }
   }
   > .chart {
     position: relative;
     width: 100%;
     margin: 0 auto;
-
     @keyframes grow {
       0% { width: 0; }
       100% { width: 60px; }
@@ -444,7 +437,6 @@ export default {
       position: absolute;
       width: 120px;
       height: 120px;
-
       > .line {
         width: 60px;
         height: 5px;
@@ -462,7 +454,7 @@ export default {
         left: -16px;
         width: 40px;
         height: 60px;
-        background-image: url(/static/draw/hand.svg);
+        background-image: url('/static/draw/hand.svg');
         animation: move $animation-time $animation-iteration-count;
       }
     }
@@ -479,7 +471,6 @@ export default {
         fill: none;
       }
       text {
-        @include font-monospace;
         font-size: 0.75rem;
         &.unit-label {
           text-anchor: start;
@@ -501,7 +492,6 @@ export default {
         text-anchor: start;
         font-size: 1rem;
         font-weight: bold;
-        @include font-serif;
         opacity: 0.25;
       }
       .sequence {
@@ -542,15 +532,14 @@ export default {
   }
   > .after {
     position: relative;
-
-    > *:not(button) {
+    > *:not(.submit) {
       visibility: hidden;
     }
     &.reveal {
-      > button {
+      > .submit {
         display: none;
       }
-      > *:not(button) {
+      > *:not(.submit) {
         visibility: visible;
       }
     }
@@ -558,11 +547,12 @@ export default {
     > .score {
       text-align: center;
       font-size: 0.875rem;
+      padding: 1rem 0;
       > .number {
         line-height: 1em;
-        @include font-monospace;
         font-size: 4rem;
         font-weight: bold;
+        letter-spacing: -1px;
         color: $color-musou;
         margin: 0 0.25rem;
       }
@@ -570,26 +560,14 @@ export default {
     > .text {
       margin-top: 1rem;
     }
-
-    > button {
+    > .submit {
       position: absolute;
       top: 0.5rem;
       left: 50%;
       transform: translateX(-50%);
       display: block;
-      padding: 0.5rem 1rem;
-      background: $color-musou;
-      border-radius: 2px;
       color: white;
-      font-size: 1rem;
-      text-align: center;
-      cursor: pointer;
-
-      &:active, &:focus {
-        outline: none;
-      }
     }
   }
 }
 </style>
-

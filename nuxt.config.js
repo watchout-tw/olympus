@@ -35,7 +35,6 @@ module.exports = {
           loader: 'eslint-loader',
           exclude: /(node_modules)/
         })
-        config.resolve.alias['~data'] = `${process.cwd()}/data/`
       }
       if (isServer) {
         config.externals = [

@@ -1,3 +1,3 @@
 export default {
-  coreBaseURL: 'https://sample.watchout.com'
+  coreBaseURL: 'https://sample.watchout.tw'
 }

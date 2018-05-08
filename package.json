@@ -24,7 +24,6 @@
     "color": "^3.0.0",
     "d3": "^5.1.0",
     "lodash.debounce": "^4.0.8",
-    "marked": "^0.3.19",
     "nuxt": "^1.0.0",
     "query-string": "^4.3.4",
     "swing": "^3.1.1"
