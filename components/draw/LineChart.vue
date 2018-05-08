@@ -65,24 +65,16 @@ export default {
   },
   computed: {
     score: function() {
-      if(!(this.rows && this.rows.user)) {
-        return 87
-      }
-
-      var self = this
       var s = 0.2
       var y = s * (this.config.axes.y.max - this.config.axes.y.min)
       var n = 0
       var d = 0
       var sum = 0
-      this.rows.user.forEach(function(row, i) {
-        if(!row.fix) {
-          n = n + 1
-          if(row.show) {
-            d = Math.abs(row.y - self.rows.orig[i].y)
-            sum = sum + (1 - (d > y ? y : d) / y) * 100
-          }
-        }
+      this.rows.user.forEach((row, i) => {
+        if(!row.fix) return
+        n = n + 1
+        d = Math.abs(row.y - this.rows.orig[i].y)
+        sum = sum + (1 - (d > y ? y : d) / y) * 100
       })
       return n === 0 ? 0 : Math.round(sum / n)
     }
@@ -201,7 +193,7 @@ export default {
       size.a = size.h / size.w
       size.p = size.r * 8
 
-      // containers
+      // container
       this.el.container = d3.select(this.$el).select('.chart')
 
       // x & y scale
