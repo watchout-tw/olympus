@@ -10,7 +10,7 @@
     </div>
   </header>
   <section>
-    <line-chart v-for="config in graphs" :key="config.id" :config="config"></line-chart>
+    <line-chart v-for="config in charts" :key="config.id" :config="config"></line-chart>
   </section>
   <section>畫完了，然後呢？</section>
   <section>
@@ -29,8 +29,8 @@ export default {
   mixins: [knowsMarkdown],
   props: ['module', 'project'],
   data() {
-    const { graphs, conclusion } = this.project
-    return { graphs, conclusion }
+    const { charts, conclusion } = this.project
+    return { charts, conclusion }
   },
   components: {
     LineChart
