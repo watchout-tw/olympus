@@ -88,6 +88,7 @@ export default {
           }
         }
       })
+      // have to finish all the points
       return n === answered ? Math.round(sum / n) : UNDONE_SCORE
     }
   },
@@ -119,9 +120,14 @@ export default {
           state: STATES.FAILED,
           message: '要畫完ㄛ'
         }
-        return
+      } else {
+        this.rows.orig.forEach(function(row) {
+          row.show = true
+        })
+        this.drawOrig()
+
+        this.createSpeech()
       }
-      // TODO if it's finished
     },
     createSpeech: function() {
       const { speechTarget } = this.config
@@ -350,29 +356,6 @@ export default {
       }
       this.el.user = this.el.root.append('g').attr('class', 'sequence user')
       this.el.orig = this.el.root.append('g').attr('class', 'sequence orig')
-
-      // add button to finish and show comparison
-      this.el.button = d3.select(this.$el).select('.after > .submit-button')
-        .on('click', function() {
-          if(self.score === UNDONE_SCORE) {
-            // TODO
-            return
-          }
-
-          self.createSpeech()
-
-          // remove animation
-          self.el.container.select('.you-draw').remove()
-
-          self.rows.orig.forEach(function(row) {
-            row.show = true
-          })
-          self.drawOrig()
-          self.el.root.on('click', null)
-          self.el.root.on('mousedown.drag', null)
-
-          d3.select(self.$el).select('.after').classed('reveal', true)
-        })
 
       // make callback to redraw at user input
       function redraw() {
