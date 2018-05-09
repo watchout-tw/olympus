@@ -474,7 +474,7 @@ export default {
     }
 
     > .loading {
-      @include spinner($color: red);
+      @include spinner($color: $color-musou);
       top: 50%;
       left: 50%;
     }
@@ -570,11 +570,9 @@ export default {
       margin-top: 1rem;
     }
     > .submit-button {
-      position: absolute;
-      top: 0.5rem;
       left: 50%;
       transform: translateX(-50%);
-      display: block;
+      display: inline-block;
       color: white;
     }
   }
