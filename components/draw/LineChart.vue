@@ -5,10 +5,11 @@
     <div class="paragraphs no-margin" v-html="markdown(config.text.before)"></div>
   </div>
   <div class="chart">
-    <div class="you-draw">
+    <div class="you-draw" :class="{ hide: !drawn }">
       <div class="line"></div>
       <div class="hand"></div>
     </div>
+    <div v-if="!drawn" class="loading"></div>
   </div>
   <div class="after tcl-left-right-margin">
     <template v-if="submit.done">
@@ -70,7 +71,8 @@ export default {
         state: STATES.DEFAULT,
         message: null,
         done: false
-      }
+      },
+      drawn: false
     }
   },
   computed: {
@@ -115,6 +117,7 @@ export default {
   mounted() {
     this.init()
     this.draw()
+    this.drawn = true
   },
   methods: {
     onSubmit: function() {
@@ -426,6 +429,8 @@ export default {
     position: relative;
     width: 100%;
     margin: 0 auto;
+    width: 472px;
+    height: 472px;
     @keyframes grow {
       0% { width: 0; }
       100% { width: 60px; }
@@ -462,6 +467,16 @@ export default {
         background-image: url('/static/draw/hand.svg');
         animation: move $animation-time $animation-iteration-count;
       }
+    }
+
+    > .hide {
+      visibility: hidden;
+    }
+
+    > .loading {
+      @include spinner($color: red);
+      top: 50%;
+      left: 50%;
     }
 
     > svg {
