@@ -391,10 +391,10 @@ export default {
       // draw original sequence
       this.drawOrig()
 
-      // setup animation
-      var lastOrig = this.rows.orig.filter((row, i) => {
+      // setup `you-draw` animation
+      var lastOrig = this.rows.orig.find((row, i) => {
         return row.fix && i + 1 < this.rows.orig.length && !this.rows.orig[i + 1].fix
-      }).pop()
+      })
 
       var viewport = window.innerWidth
       var zoom = viewport > this.size.w ? 1 : viewport / this.size.w
