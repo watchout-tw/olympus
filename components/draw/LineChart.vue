@@ -11,13 +11,15 @@
     </div>
   </div>
   <div class="after tcl-left-right-margin">
-    <submit-button :classes="['musou']" :label="'畫好了啦'" :state.sync="submit.state" :message.sync="submit.message" @click.native="onSubmit"></submit-button>
-    <div class="score">
-      <div>畫的有</div>
-      <div class="number">{{ score }}</div>
-      <div>分像呢</div>
-    </div>
-    <div class="paragraphs no-margin" v-html="markdown(config.text.after)"></div>
+    <template v-if="submit.done">
+      <div class="score">
+        <div>畫的有</div>
+        <div class="number">{{ score }}</div>
+        <div>分像呢</div>
+      </div>
+      <div class="paragraphs no-margin" v-html="markdown(config.text.after)"></div>
+    </template>
+    <submit-button v-else :classes="['musou']" :label="'畫好了啦'" :state.sync="submit.state" :message.sync="submit.message" @click.native="onSubmit"></submit-button>
   </div>
 </div>
 </template>
@@ -66,7 +68,8 @@ export default {
       },
       submit: {
         state: STATES.DEFAULT,
-        message: null
+        message: null,
+        done: false
       }
     }
   },
@@ -115,12 +118,14 @@ export default {
   },
   methods: {
     onSubmit: function() {
-      if (this.score === UNDONE_SCORE) {
-        this.submit = {
-          state: STATES.FAILED,
-          message: '要畫完ㄛ'
-        }
+      if(this.submit.done) return
+
+      if(this.score === UNDONE_SCORE) {
+        this.submit.state = STATES.FAILED
+        this.submit.message = '要畫完ㄛ'
       } else {
+        this.submit.done = true
+
         this.rows.orig.forEach(function(row) {
           row.show = true
         })
@@ -532,17 +537,6 @@ export default {
   }
   > .after {
     position: relative;
-    > *:not(.submit-button) {
-      visibility: hidden;
-    }
-    &.reveal {
-      > .submit {
-        display: none;
-      }
-      > *:not(.submit) {
-        visibility: visible;
-      }
-    }
 
     > .score {
       text-align: center;
@@ -560,7 +554,7 @@ export default {
     > .text {
       margin-top: 1rem;
     }
-    > .submit {
+    > .submit-button {
       position: absolute;
       top: 0.5rem;
       left: 50%;
