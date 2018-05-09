@@ -5,11 +5,11 @@
     <div class="paragraphs no-margin" v-html="markdown(config.text.before)"></div>
   </div>
   <div class="chart">
+    <div v-if="!drawn" class="loading"></div>
     <div class="you-draw" :class="{ hide: !drawn }">
       <div class="line"></div>
       <div class="hand"></div>
     </div>
-    <div v-if="!drawn" class="loading"></div>
   </div>
   <div class="after tcl-left-right-margin">
     <template v-if="submit.done">
