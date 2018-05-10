@@ -20,7 +20,7 @@
       </div>
       <div class="paragraphs no-margin" v-html="markdown(config.text.after)"></div>
     </template>
-    <submit-button v-else :classes="['musou']" :label="'畫好了啦'" :state.sync="submit.state" :message.sync="submit.message" @click.native="onSubmit"></submit-button>
+    <submit-button v-else :classes="['musou']" :label="'畫好了啦'" :state.sync="submit.state" :message.sync="submit.message" @click.native="onSubmit" @reset="submitted"></submit-button>
   </div>
 </div>
 </template>
@@ -121,13 +121,13 @@ export default {
   },
   methods: {
     onSubmit() {
-      if(this.submit.done) return
+      if(this.submit.state !== STATES.DEFAULT) return
 
       if(this.score === UNDONE_SCORE) {
         this.submit.state = STATES.FAILED
         this.submit.message = '要畫完ㄛ'
       } else {
-        this.submit.done = true
+        this.submit.state = STATES.LOADING
 
         this.rows.orig.forEach(function(row) {
           row.show = true
@@ -135,6 +135,13 @@ export default {
         this.drawOrig()
 
         this.createSpeech()
+        this.submit.state = STATES.SUCCESS
+        this.submit.message = '已記錄'
+      }
+    },
+    submitted() {
+      if(this.submit.state === STATES.SUCCESS) {
+        this.submit.done = true
       }
     },
     createSpeech() {
