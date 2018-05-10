@@ -440,9 +440,8 @@ export default {
   > .chart {
     position: relative;
     width: 100%;
+    min-height: 6rem;
     margin: 0 auto;
-    width: 472px;
-    height: 472px;
     @keyframes grow {
       0% { width: 0; }
       100% { width: 60px; }
@@ -487,8 +486,10 @@ export default {
 
     > .loading {
       @include spinner($color: $color-musou);
+      position: absolute;
       top: 50%;
       left: 50%;
+      transform: translateY(-50%);
     }
 
     > svg {
