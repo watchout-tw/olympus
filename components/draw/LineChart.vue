@@ -76,7 +76,7 @@ export default {
     }
   },
   computed: {
-    score: function() {
+    score() {
       var s = 0.2
       var y = s * (this.config.axes.y.max - this.config.axes.y.min)
       var n = 0
@@ -120,7 +120,7 @@ export default {
     this.drawn = true
   },
   methods: {
-    onSubmit: function() {
+    onSubmit() {
       if(this.submit.done) return
 
       if(this.score === UNDONE_SCORE) {
@@ -137,21 +137,21 @@ export default {
         this.createSpeech()
       }
     },
-    createSpeech: function() {
+    createSpeech() {
       const { speechTarget } = this.config
       const data = this.rows.user.filter(u => !u.fix)
       core.createLineChartSpeech(speechTarget, data)
     },
-    drawComp: function(i, title) {
+    drawComp(i, title) {
       this.drawPath(this.el.comp[i], this.rows.comp[i], title)
     },
-    drawUser: function() {
+    drawUser() {
       this.drawPath(this.el.user, this.rows.user)
     },
-    drawOrig: function() {
+    drawOrig() {
       this.drawPath(this.el.orig, this.rows.orig)
     },
-    drawPath: function(el, points, title) {
+    drawPath(el, points, title) {
       // https://github.com/d3/d3-selection/blob/master/README.md#selection_data
       // General Update Pattern
       // select → data → exit → remove → enter → append → merge
@@ -213,7 +213,7 @@ export default {
           .text(title)
       }
     },
-    init: function() {
+    init() {
       var size = this.size
       var util = this.util
       var config = this.config
@@ -305,7 +305,7 @@ export default {
           .text(config.axes.y.label)
       }
     },
-    draw: function() {
+    draw() {
       var self = this
 
       this.el.root = this.el.container.append('svg')
