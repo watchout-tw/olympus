@@ -45,6 +45,10 @@ const presidents = {
   'tsai': '蔡英文'
 }
 const UNDONE_SCORE = -1
+const SUBMIT_MESSAGES = {
+  [STATES.FAILED]: '要畫完ㄛ',
+  [STATES.SUCCESS]: '已記錄'
+}
 
 export default {
   mixins: [knowsMarkdown],
@@ -121,13 +125,14 @@ export default {
   },
   methods: {
     onSubmit() {
-      if(this.submit.state !== STATES.DEFAULT) return
+      const { SUCCESS, DEFAULT, FAILED, LOADING } = STATES
+      if(this.submit.state !== DEFAULT) return
 
       if(this.score === UNDONE_SCORE) {
-        this.submit.state = STATES.FAILED
-        this.submit.message = '要畫完ㄛ'
+        this.submit.state = FAILED
+        this.submit.message = SUBMIT_MESSAGES[FAILED]
       } else {
-        this.submit.state = STATES.LOADING
+        this.submit.state = LOADING
 
         this.rows.orig.forEach(function(row) {
           row.show = true
@@ -135,8 +140,8 @@ export default {
         this.drawOrig()
 
         this.createSpeech()
-        this.submit.state = STATES.SUCCESS
-        this.submit.message = '已記錄'
+        this.submit.state = SUCCESS
+        this.submit.message = SUBMIT_MESSAGES[SUCCESS]
       }
     },
     submitted() {
@@ -577,6 +582,7 @@ export default {
       margin-top: 1rem;
     }
     > .submit-button {
+      min-width: 6rem;
       left: 50%;
       transform: translateX(-50%);
       display: inline-block;
