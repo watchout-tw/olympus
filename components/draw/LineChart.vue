@@ -407,9 +407,9 @@ export default {
       this.drawOrig()
 
       // setup `you-draw` animation
-      var lastOrig = this.rows.orig.find((row, i) => {
+      var lastOrig = this.rows.orig.filter((row, i) => {
         return row.fix && i + 1 < this.rows.orig.length && !this.rows.orig[i + 1].fix
-      })
+      }).pop()
 
       var viewport = window.innerWidth
       var zoom = viewport > this.size.w ? 1 : viewport / this.size.w
