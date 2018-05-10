@@ -5,8 +5,8 @@
     <div class="paragraphs no-margin" v-html="markdown(config.text.before)"></div>
   </div>
   <div class="chart">
-    <div v-if="!drawn" class="loading"></div>
-    <div class="you-draw" :class="{ hide: !drawn }">
+    <div v-show="!drawn" class="loading"></div>
+    <div v-show="drawn" class="you-draw">
       <div class="line"></div>
       <div class="hand"></div>
     </div>
@@ -478,10 +478,6 @@ export default {
         background-image: url('/static/draw/hand.svg');
         animation: move $animation-time $animation-iteration-count;
       }
-    }
-
-    > .hide {
-      visibility: hidden;
     }
 
     > .loading {
