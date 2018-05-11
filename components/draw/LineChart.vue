@@ -27,10 +27,11 @@
 
 <script>
 import { knowsMarkdown } from 'watchout-common-functions/interfaces'
+import * as coralreef from 'watchout-common-functions/lib/coralreef'
 import SubmitButton from 'watchout-common-functions/components/button/Submit'
 import * as STATES from 'watchout-common-functions/lib/states'
 import * as d3 from 'd3'
-import * as core from '../../lib/core'
+
 
 const colors = {
   'bian-1': 'rgba(0, 255, 0, 0.25)',
@@ -150,9 +151,26 @@ export default {
       }
     },
     createSpeech() {
+      console.info('createSpeech')
+      
+      const keys = ['x', 'y', 'label']
+      const points = this.rows.user.filter(u => !u.fix)
+      const dataPoints = points.map(function(point) {
+        return keys.reduce(function(r, key) {
+          r[key] = point[key]
+          return r
+        }, {})
+      })
       const { speechTarget } = this.config
-      const data = this.rows.user.filter(u => !u.fix)
-      core.createLineChartSpeech(speechTarget, data)
+      const data = {
+        persona_speech_target_id: speechTarget.id,
+        type: speechTarget.type,
+        content: 'musouIsGood',
+        data: {
+          dataPoints
+        }
+      }
+      coralreef.createLineChartSpeech(data)
     },
     drawComp(i, title) {
       this.drawPath(this.el.comp[i], this.rows.comp[i], title)
