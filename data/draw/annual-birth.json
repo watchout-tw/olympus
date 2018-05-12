@@ -1,128 +1,163 @@
 [
     {
+        "x": "1996",
+        "y": "325545",
+        "label": "hui-1",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "1997",
+        "y": "326002",
+        "label": "hui-1",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "1998",
+        "y": "271450",
+        "label": "hui-1",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "1999",
+        "y": "283661",
+        "label": "hui-1",
+        "show": true,
+        "fix": true
+    },
+    {
         "x": "2000",
-        "y": "2624037",
+        "y": "305312",
         "label": "bian-1",
         "show": true,
         "fix": true
     },
     {
         "x": "2001",
-        "y": "2831035",
+        "y": "260354",
         "label": "bian-1",
         "show": true,
         "fix": true
     },
     {
         "x": "2002",
-        "y": "2977692",
+        "y": "247530",
         "label": "bian-1",
         "show": true,
         "fix": true
     },
     {
         "x": "2003",
-        "y": "2248117",
+        "y": "227070",
         "label": "bian-1",
         "show": true,
         "fix": true
     },
     {
         "x": "2004",
-        "y": "2950342",
+        "y": "216419",
         "label": "bian-2",
         "show": true,
         "fix": true
     },
     {
         "x": "2005",
-        "y": "3378118",
+        "y": "205854",
         "label": "bian-2",
         "show": true,
         "fix": true
     },
     {
         "x": "2006",
-        "y": "3519827",
+        "y": "204459",
         "label": "bian-2",
         "show": true,
         "fix": true
     },
     {
         "x": "2007",
-        "y": "3716063",
+        "y": "204414",
+        "label": "bian-2",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "2007",
+        "y": "204414",
         "label": "bian-2",
         "show": true,
         "fix": true
     },
     {
         "x": "2008",
-        "y": "3845187",
+        "y": "198733",
         "label": "ma-1",
         "show": false,
         "fix": false
     },
     {
         "x": "2009",
-        "y": "4395004",
+        "y": "191310",
         "label": "ma-1",
         "show": false,
         "fix": false
     },
     {
         "x": "2010",
-        "y": "5567277",
+        "y": "166886",
         "label": "ma-1",
         "show": false,
         "fix": false
     },
     {
         "x": "2011",
-        "y": "6087484",
+        "y": "196627",
         "label": "ma-1",
         "show": false,
         "fix": false
     },
     {
         "x": "2012",
-        "y": "7311470",
+        "y": "229481",
         "label": "ma-2",
         "show": false,
         "fix": false
     },
     {
         "x": "2013",
-        "y": "8016280",
+        "y": "199113",
         "label": "ma-2",
         "show": false,
         "fix": false
     },
     {
         "x": "2014",
-        "y": "9910204",
+        "y": "210383",
         "label": "ma-2",
         "show": false,
         "fix": false
     },
     {
         "x": "2015",
-        "y": "10439785",
+        "y": "213598",
         "label": "ma-2",
         "show": false,
         "fix": false
     },
     {
         "x": "2016",
-        "y": "10690279",
+        "y": "208440",
         "label": "tsai-1",
         "show": false,
         "fix": false
     },
     {
         "x": "2017",
-        "y": "10739601",
+        "y": "193844",
         "label": "tsai-1",
         "show": false,
         "fix": false
-    }
+    },
 ]
