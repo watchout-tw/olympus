@@ -22,155 +22,9 @@ export default {
   ],
   graphs: [
     {
-      id: 'annual-birth',
-      title: '出生率',
-      sheetID: '',
-      speechTarget: {
-        id: 178,
-        type: 'musou_line_chart_response'
-      },
-      axes: {
-        x: {
-          divider: 1,
-          unit: 'year',
-          label: '年'
-        },
-        y: {
-          divider: 10000,
-          unit: 'person',
-          label: '萬人',
-          min: 0,
-          max: 500000,
-          ticks: [0, 300000, 500000],
-          formatString: 'd'
-        }
-      },
-      sequence: {
-        label: {
-          formatString: '.1f'
-        }
-      },
-      compare: [
-        {
-          id: 'annual-death',
-          label: '死亡率'
-        }
-      ],
-      text: {
-        title: '出生率',
-        before: '',
-        after: ''
-      }
-    },
-    {
-      id: 'annual-death',
-      title: '死亡率',
-      sheetID: '',
-      speechTarget: {
-        id: 178,
-        type: 'musou_line_chart_response'
-      },
-      axes: {
-        x: {
-          divider: 1,
-          unit: 'year',
-          label: '年'
-        },
-        y: {
-          divider: 10000,
-          unit: 'person',
-          label: '萬人',
-          min: 0,
-          max: 900000,
-          ticks: [0, 500000, 900000],
-          formatString: 'd'
-        }
-      },
-      sequence: {
-        label: {
-          formatString: '.1f'
-        }
-      },
-      text: {
-        title: '死亡率',
-        before: '',
-        after: ''
-      }
-    },
-    {
-      id: 'annual-visitors',
-      title: '每年來台旅客人數',
-      sheetID: '',
-      speechTarget: {
-        id: 176,
-        type: 'musou_line_chart_response'
-      },
-      axes: {
-        x: {
-          divider: 1,
-          unit: 'year',
-          label: '年'
-        },
-        y: {
-          divider: 1000000,
-          unit: 'person',
-          label: '百萬人',
-          min: 0,
-          max: 12000000,
-          ticks: [0, 5000000, 10000000, 12000000],
-          formatString: 'd'
-        }
-      },
-      sequence: {
-        label: {
-          formatString: '.1f'
-        }
-      },
-      text: {
-        title: '來臺旅客有多少',
-        before: '政黨輪替後，被視為推展觀光績效的來臺旅客人數常被拿出來檢驗，到底蔡英文政府執政的第一年，不分國籍的旅客來臺旅客是增加還是減少呢？',
-        after: '蔡政府執政第一年，來臺旅客**持續增加**中。\n\n根據交通部觀光局[統計數據](http://admin.taiwan.net.tw/statistics/year.aspx?no=134)，民進黨扁政府2007年卸任前來臺旅客為371萬人。國民黨馬政府執政後，來臺旅客人數持續攀高，至2015年達1,043萬人。2016年民進黨蔡政府執政後，來臺旅客人數則持續上升至1,069萬人。'
-      }
-    },
-    {
-      id: 'annual-stock',
-      title: 'STOCK',
-      sheetID: '',
-      speechTarget: {
-        id: 178,
-        type: 'musou_line_chart_response'
-      },
-      axes: {
-        x: {
-          divider: 1,
-          unit: 'year',
-          label: '年'
-        },
-        y: {
-          divider: 10000,
-          unit: 'person',
-          label: '萬人',
-          min: 0,
-          max: 12000,
-          ticks: [0, 60000, 12000],
-          formatString: 'd'
-        }
-      },
-      sequence: {
-        label: {
-          formatString: '.1f'
-        }
-      },
-      text: {
-        title: 'stock',
-        before: '',
-        after: ''
-      }
-    },
-    {
       id: 'unemployment',
       title: '每年失業率',
-      sheetID: '',
+      sheetID: '541577362',
       speechTarget: {
         id: 175,
         type: 'musou_line_chart_response'
@@ -203,11 +57,11 @@ export default {
       }
     },
     {
-      id: 'economy-growth-rate',
-      title: '經濟成長率',
-      sheetID: '',
+      id: 'annual-visitors',
+      title: '每年來台旅客人數',
+      sheetID: '1810543594',
       speechTarget: {
-        id: 175,
+        id: 176,
         type: 'musou_line_chart_response'
       },
       axes: {
@@ -217,12 +71,12 @@ export default {
           label: '年'
         },
         y: {
-          divider: 1,
-          unit: '%',
-          label: '%',
-          min: -5,
-          max: 10,
-          ticks: [0, 5, 10],
+          divider: 1000000,
+          unit: 'person',
+          label: '百萬人',
+          min: 0,
+          max: 12000000,
+          ticks: [0, 5000000, 10000000, 12000000],
           formatString: 'd'
         }
       },
@@ -232,15 +86,50 @@ export default {
         }
       },
       text: {
-        title: '經濟成長率',
-        before: '',
-        after: ''
+        title: '來臺旅客有多少',
+        before: '政黨輪替後，被視為推展觀光績效的來臺旅客人數常被拿出來檢驗，到底蔡英文政府執政的第一年，不分國籍的旅客來臺旅客是增加還是減少呢？',
+        after: '蔡政府執政第一年，來臺旅客**持續增加**中。\n\n根據交通部觀光局[統計數據](http://admin.taiwan.net.tw/statistics/year.aspx?no=134)，民進黨扁政府2007年卸任前來臺旅客為371萬人。國民黨馬政府執政後，來臺旅客人數持續攀高，至2015年達1,043萬人。2016年民進黨蔡政府執政後，來臺旅客人數則持續上升至1,069萬人。'
       }
     },
     {
-      id: 'annual-income',
-      title: '年均所得',
-      sheetID: '', // run get.py and get sheetID from data/graphs.json
+      id: 'monthly-visitors-china',
+      title: '中國旅客每月來台人數',
+      sheetID: '918177893', // run get.py and get sheetID from data/graphs.json
+      speechTarget: {
+        id: 177,
+        type: 'musou_line_chart_response'
+      },
+      axes: {
+        x: {
+          divider: 1,
+          unit: 'month',
+          label: '月'
+        },
+        y: {
+          divider: 10000,
+          unit: 'person',
+          label: '萬人',
+          min: 0,
+          max: 900000,
+          ticks: [0, 500000, 900000],
+          formatString: 'd'
+        }
+      },
+      sequence: {
+        label: {
+          formatString: '.1f'
+        }
+      },
+      text: {
+        title: '中國旅客有多少',
+        before: '國民黨馬政府執政時，中國旅客來臺人數連年攀高，在民進黨蔡政府執政這一年，你認為會怎麼變化呢？',
+        after: '蔡英文執政後，中國旅客人數**逐月下降**。\n\n根據交通部觀光局[統計數據](http://admin.taiwan.net.tw/statistics/year.aspx?no=134)，2015年4月，每月來臺旅客中有超過35萬人為中國人，約佔全體來臺旅客4成。至2016年2月總統馬英九卸任前夕，中國旅客更是單月突破四十萬人，比例高達44%成為近年高峰。\n\n2016年5月政黨輪替後，中國旅客人數逐月下降，於2016年6月起低於30萬人。至今年3月，來臺中國旅客人數降至20萬人，佔總體來臺旅客22%。'
+      }
+    },
+    {
+      id: 'monthly-visitors-world',
+      title: '世界旅客每月來台人數',
+      sheetID: '918177893', // run get.py and get sheetID from data/graphs.json
       speechTarget: {
         id: 178,
         type: 'musou_line_chart_response'
@@ -253,11 +142,11 @@ export default {
         },
         y: {
           divider: 10000,
-          unit: 'NTD',
-          label: '萬元',
-          min: 40000,
-          max: 50000,
-          ticks: [40000, 50000],
+          unit: 'person',
+          label: '萬人',
+          min: 0,
+          max: 900000,
+          ticks: [0, 500000, 900000],
           formatString: 'd'
         }
       },
@@ -268,22 +157,22 @@ export default {
       },
       compare: [
         {
-          id: 'customer-price-index',
+          id: 'monthly-visitors-china',
           label: '中國旅客每月來台人數'
         }
       ],
       text: {
-        title: '年均所得',
-        before: '',
-        after: ''
+        title: '中國以外國際旅客有多少',
+        before: '民進黨蔡政府執政一年來，中國旅客以外的國際旅客來臺人數，你認為是增加還是減少呢？',
+        after: '一年來，中國以外國際旅客**增加35.5%**。\n\n交通部觀光局[統計](http://admin.taiwan.net.tw/statistics/year.aspx?no=134)，2016年4月政黨輪替前，除中國外其他國家來臺旅客與前一年同期相近，約為53萬人，佔總體旅客人數約58%。\n\n政黨輪替後，其他國家旅客不斷攀升，至2016年底更一度突破80萬人，到今年3月份則為72萬人，佔總體旅客78%。'
       }
     },
     {
-      id: 'customer-price-index',
-      title: '消費者物價指數',
-      sheetID: '',
+      id: 'annual-revenue',
+      title: '中央政府歲入',
+      sheetID: '1456792974',
       speechTarget: {
-        id: 175,
+        id: 179,
         type: 'musou_line_chart_response'
       },
       axes: {
@@ -293,32 +182,33 @@ export default {
           label: '年'
         },
         y: {
-          divider: 1,
-          unit: '',
-          label: '',
-          min: 80,
-          max: 110,
-          ticks: [80, 110],
+          divider: 1000000,
+          unit: 'ntd',
+          label: '兆元',
+          min: 1000000,
+          max: 2400000,
+          ticks: [1000000, 2000000],
           formatString: 'd'
         }
       },
+      sequenceCount: 2,
       sequence: {
         label: {
-          formatString: '.1f'
+          formatString: '.2f'
         }
       },
       text: {
-        title: '消費者物價指數',
-        before: '',
-        after: ''
+        title: '政府每年收入',
+        before: '民進黨執政一年來，政府藉由稅收、營業盈餘等各項財政收入所構成的「歲入」預算，你覺得跟馬政府比起來有什麼不同？',
+        after: '維持馬政府時的趨勢，歲入**穩定上升**中。\n\n行政院主計處[統計資料](http://www.dgbas.gov.tw/public/data/dgbas01/106/106Ctab/106C歷年中央政府收支概況表.PDF)指出，政府歲入於民進黨扁政府2007年卸任前為1兆6355億元。到了國民黨馬政府時期，2010年曾一度下滑至1兆4974億，到卸任前2015年時則增加到1兆8857億元。民進黨蔡政府執政後，2017年預算歲入則為1兆8411億元。'
       }
     },
     {
-      id: 'workhour',
-      title: '工時',
-      sheetID: '',
+      id: 'annual-spending',
+      title: '中央政府歲出',
+      sheetID: '1456792974',
       speechTarget: {
-        id: 175,
+        id: 180,
         type: 'musou_line_chart_response'
       },
       axes: {
@@ -328,143 +218,39 @@ export default {
           label: '年'
         },
         y: {
-          divider: 1,
-          unit: 'hr',
-          label: '小時',
-          min: 160,
-          max: 200,
-          ticks: [160, 200],
+          divider: 1000000,
+          unit: 'ntd',
+          label: '兆元',
+          min: 1000000,
+          max: 2400000,
+          ticks: [1000000, 2000000],
           formatString: 'd'
         }
       },
+      sequenceCount: 2,
       sequence: {
         label: {
-          formatString: '.1f'
-        }
-      },
-      text: {
-        title: '工時',
-        before: '',
-        after: ''
-      }
-    },
-    {
-      id: 'air-pollution-shalu',
-      title: '空氣指數-沙鹿',
-      sheetID: '',
-      speechTarget: {
-        id: 175,
-        type: 'musou_line_chart_response'
-      },
-      axes: {
-        x: {
-          divider: 1,
-          unit: 'year',
-          label: '年'
-        },
-        y: {
-          divider: 1,
-          unit: '',
-          label: '',
-          min: 10,
-          max: 45,
-          ticks: [10, 20, 45],
-          formatString: 'd'
-        }
-      },
-      sequence: {
-        label: {
-          formatString: '.1f'
-        }
-      },
-      text: {
-        title: '空氣指數-沙鹿',
-        before: '',
-        after: ''
-      }
-    },
-    {
-      id: 'air-pollution-nanzi',
-      title: '空氣指數-楠梓',
-      sheetID: '',
-      speechTarget: {
-        id: 175,
-        type: 'musou_line_chart_response'
-      },
-      axes: {
-        x: {
-          divider: 1,
-          unit: 'year',
-          label: '年'
-        },
-        y: {
-          divider: 1,
-          unit: '',
-          label: '',
-          min: 10,
-          max: 55,
-          ticks: [10, 30, 55],
-          formatString: 'd'
-        }
-      },
-      sequence: {
-        label: {
-          formatString: '.1f'
-        }
-      },
-      text: {
-        title: '空氣指數-楠梓',
-        before: '',
-        after: ''
-      }
-    },
-    {
-      id: 'power-generate',
-      title: '再生能源',
-      sheetID: '',
-      speechTarget: {
-        id: 175,
-        type: 'musou_line_chart_response'
-      },
-      axes: {
-        x: {
-          divider: 1,
-          unit: 'year',
-          label: '年'
-        },
-        y: {
-          divider: 1,
-          unit: '',
-          label: '',
-          min: 0,
-          max: 120,
-          ticks: [0, 60, 120],
-          formatString: 'd'
-        }
-      },
-      sequence: {
-        label: {
-          formatString: '.1f'
+          formatString: '.2f'
         }
       },
       compare: [
         {
-          id: 'nuclear-power',
-          label: '核能'
+          id: 'annual-revenue',
+          label: '中央政府歲入'
         }
       ],
       text: {
-        title: '再生能源',
-        before: '',
-        after: ''
+        title: '政府每年支出',
+        before: '這一年下來，政府每年推動各項政務的「歲出」預算，你認為跟馬英九政府相比如何呢？',
+        after: '蔡政府第一年歲出預算維持和前一年相當，**無明顯成長**。\n\n依據行政院主計處[統計資料](http://www.dgbas.gov.tw/public/data/dgbas01/106/106Ctab/106C歷年中央政府收支概況表.PDF)，於2006年民進黨扁政府執政期間，開始出現收入大於支出，2007年在歲出為1兆5520億元下，還創造了834億元餘絀。\n\n國民黨政府上任後，除政黨輪替第一年（2008）仍有餘絀，其餘7年都呈現超支，其中以2012年超支2140億元為最。而民進黨再次執政後，目前仍是歲出大於歲入，以2017年預算來看，歲入1兆8411億元、歲出1兆9740億元，超支1329億元。'
       }
     },
     {
-      id: 'nuclear-power',
-      title: '核能',
-      sheetID: '',
+      id: 'public-debt',
+      title: '中央政府一年以上公共債務未償餘額',
+      sheetID: '92876274',
       speechTarget: {
-        id: 175,
+        id: 181,
         type: 'musou_line_chart_response'
       },
       axes: {
@@ -474,12 +260,12 @@ export default {
           label: '年'
         },
         y: {
-          divider: 1,
-          unit: '',
-          label: '',
-          min: 200,
-          max: 420,
-          ticks: [200, 310, 420],
+          divider: 1000000,
+          unit: 'ntd',
+          label: '兆元',
+          min: 0,
+          max: 8000000,
+          ticks: [0, 5000000, 8000000],
           formatString: 'd'
         }
       },
@@ -489,9 +275,9 @@ export default {
         }
       },
       text: {
-        title: '核能',
-        before: '',
-        after: ''
+        title: '政府累積債務',
+        before: '自2010年國民黨政府到現在民進黨政府執政一年來，政府積欠的「一年以上未償公共債務」，你認為該如何變化呢？',
+        after: '原先累積速度趨緩的債務**又有上升的趨勢**。\n\n根據財政部[統計資料](http://www.mof.gov.tw/Pages/public/Data/statistic/monthly/10602/22150_10602.pdf)，民進黨扁政府卸任前「公共債務」為3兆7182億元。國民黨馬政府就任後，在首次任期屆滿前、2011年時，國債增加到4兆7551億元。\n\n而馬英九政府2015年卸任前，國債更增加到5兆3012億元。民進黨政府上任一年，截至2017年2月底國債額度則為5兆3808億元，依據預算預計年底債務將為5兆5194億元。'
       }
     }
   ],

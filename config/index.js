@@ -1,5 +1,6 @@
 import projYulamchia from '~/config/role-play/yulamchia'
 import projTsaiFirstYear from '~/config/draw/tsai-first-year'
+import projTsaiSecondYear from '~/config/draw/tsai-second-year'
 import proj748 from '~/config/map/748'
 import projTerror30 from '~/config/role-play/terror-30'
 import projRepublicOfChina from '~/config/qz/republic-of-china'
@@ -17,6 +18,7 @@ export const projects = [
   projTerror30,
   proj748,
   projTsaiFirstYear,
+  projTsaiSecondYear,
   projYulamchia
 ]
 
