@@ -13,7 +13,7 @@ export default {
     },
     {
       job: '編輯',
-      people: ['蕭長展', '洪國鈞']
+      people: ['洪國鈞']
     },
     {
       job: '設計開發',
