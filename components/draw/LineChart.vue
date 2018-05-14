@@ -234,25 +234,31 @@ export default {
           var text = tick.append('g')
             .attr('transform', 'translate(' + [-util.axes.x.scale.step() / 2, size.h - size.p - size.r * 8].join(',') + ')')
 
-          // omit year when repeat
-          if(d.indexOf('/') > -1) {
-            var [y, m] = d.split('/')
+          // draw labels
+          let delim = null
+          if(d.indexOf('/') > -1) { // y/m
+            delim = '/'
+          } else if(d.indexOf('Q') > -1) { // y/q
+            delim = 'Q'
+          }
+          if(delim) {
+            var [a, b] = d.split(delim).map(i => parseInt(i))
             var target = this.previousSibling
-            while(!!target && d3.select(target).datum().indexOf('/') < 0) {
+            while(!!target && d3.select(target).datum().indexOf(delim) < 0) {
               target = target.previousSibling
             }
-            if(!(!!target && d3.select(target).datum().indexOf(y) > -1)) {
+            if(!(!!target && d3.select(target).datum().indexOf(a) > -1)) {
               text.append('text')
-                .attr('dy', 2 * size.rem)
-                .text(y)
+                .attr('dy', 1.875 * size.rem)
+                .text(a)
             }
-            d = m
+            d = b
           }
           if(d % 2 === (nodes.length % 2 === 0 ? 0 : 1)) {
             return
           }
           text.append('text')
-            .text(d + (!this.nextSibling ? config.axes.x.label : ''))
+            .text((config.axes.x.labelBefore ? config.axes.x.labelBefore : '') + d + (!this.nextSibling && config.axes.x.label ? config.axes.x.label : ''))
             .attr('dy', 1 * size.rem)
         })
       }

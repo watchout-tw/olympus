@@ -1,6 +1,5 @@
 import projYulamchia from '~/config/role-play/yulamchia'
 import projTsaiFirstYear from '~/config/draw/tsai-first-year'
-import projTsaiSecondYear from '~/config/draw/tsai-second-year'
 import proj748 from '~/config/map/748'
 import projTerror30 from '~/config/role-play/terror-30'
 import projRepublicOfChina from '~/config/qz/republic-of-china'
@@ -8,8 +7,10 @@ import projThreePrinciples from '~/config/qz/3-principles'
 import projCongressMidtermMockExam from '~/config/qz/congress-midterm-mock-exam'
 import projAnotherFuture from '~/config/journey/another-future'
 import projLaborStandardAct from '~/config/swipe/labor-standard-act'
+import projTsaiSecondYear from '~/config/draw/tsai-second-year'
 
 export const projects = [
+  projTsaiSecondYear,
   projLaborStandardAct,
   projAnotherFuture,
   projCongressMidtermMockExam,
@@ -18,7 +19,6 @@ export const projects = [
   projTerror30,
   proj748,
   projTsaiFirstYear,
-  projTsaiSecondYear,
   projYulamchia
 ]
 
