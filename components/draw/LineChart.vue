@@ -33,7 +33,7 @@ import * as STATES from 'watchout-common-functions/lib/states'
 import * as d3 from 'd3'
 
 const colors = {
-  'hui-1': 'rgba(0, 255, 0, 0.35)',
+  'hui-1': 'rgba(0, 0, 255, 0.35)',
   'bian-1': 'rgba(0, 255, 0, 0.25)',
   'bian-2': 'rgba(0, 255, 0, 0.35)',
   'ma-1': 'rgba(0, 0, 255, 0.25)',
@@ -358,7 +358,7 @@ export default {
         .attr('height', this.util.axes.y.scale(this.config.axes.y.min) - this.util.axes.y.scale(this.config.axes.y.max))
         .attr('fill', function(d) { return colors[d.label] })
 
-      var lastPresident = 'hui'
+      var lastPresident = 'chiang'
       this.rows.user.forEach(function(row, i, rows) {
         var [president] = row.label.split('-')
         if(president !== lastPresident) {

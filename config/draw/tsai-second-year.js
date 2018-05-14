@@ -40,7 +40,7 @@ export default {
           unit: 'person',
           label: '萬人',
           min: 0,
-          max: 900000,
+          max: 500000,
           ticks: [0, 450000, 900000],
           formatString: 'd'
         }
@@ -127,9 +127,9 @@ export default {
         }
       },
       text: {
-        title: '來臺旅客有多少',
-        before: '政黨輪替後，被視為推展觀光績效的來臺旅客人數常被拿出來檢驗，到底蔡英文政府執政的第一年，不分國籍的旅客來臺旅客是增加還是減少呢？',
-        after: '蔡政府執政第一年，來臺旅客**持續增加**中。\n\n根據交通部觀光局[統計數據](http://admin.taiwan.net.tw/statistics/year.aspx?no=134)，民進黨扁政府2007年卸任前來臺旅客為371萬人。國民黨馬政府執政後，來臺旅客人數持續攀高，至2015年達1,043萬人。2016年民進黨蔡政府執政後，來臺旅客人數則持續上升至1,069萬人。'
+        title: '來台旅客有多少',
+        before: '政黨輪替後，被視為推展觀光績效的來台旅客人數常被拿出來檢驗，到底蔡英文政府執政的第一年，不分國籍的旅客來台旅客是增加還是減少呢？',
+        after: '蔡政府執政第一年，來台旅客**持續增加**中。\n\n根據交通部觀光局[統計數據](http://admin.taiwan.net.tw/statistics/year.aspx?no=134)，民進黨扁政府2007年卸任前來台旅客為371萬人。國民黨馬政府執政後，來台旅客人數持續攀高，至2015年達1,043萬人。2016年民進黨蔡政府執政後，來台旅客人數則持續上升至1,069萬人。'
       }
     },
     {
@@ -149,7 +149,7 @@ export default {
         y: {
           divider: 1000,
           unit: '千點',
-          label: '',
+          label: '千點',
           min: 0,
           max: 12000,
           ticks: [0, 4000, 8000, 12000],
@@ -221,8 +221,8 @@ export default {
           unit: '%',
           label: '%',
           min: -5,
-          max: 10,
-          ticks: [-5, 0, 5, 10],
+          max: 15,
+          ticks: [-5, 0, 5, 10, 15],
           formatString: 'd'
         }
       },
@@ -255,9 +255,9 @@ export default {
           divider: 1,
           unit: '',
           label: '',
-          min: 80,
-          max: 110,
-          ticks: [80, 95, 110],
+          min: 60,
+          max: 120,
+          ticks: [60, 80, 100, 120],
           formatString: 'd'
         }
       },
@@ -290,9 +290,9 @@ export default {
           divider: 1,
           unit: '',
           label: '',
-          min: 80,
-          max: 110,
-          ticks: [80, 95, 110],
+          min: 60,
+          max: 120,
+          ticks: [60, 80, 100, 120],
           formatString: 'd'
         }
       },
@@ -333,7 +333,7 @@ export default {
           label: '小時',
           min: 160,
           max: 200,
-          ticks: [160, 180, 200],
+          ticks: [160, 170, 180, 190, 200],
           formatString: 'd'
         }
       },
@@ -367,8 +367,8 @@ export default {
           unit: '',
           label: '',
           min: 0,
-          max: 45,
-          ticks: [0, 22.5, 45],
+          max: 75,
+          ticks: [0, 25, 50, 75],
           formatString: 'd'
         }
       },
@@ -402,8 +402,8 @@ export default {
           unit: '',
           label: '',
           min: 0,
-          max: 55,
-          ticks: [0, 27.5, 55],
+          max: 75,
+          ticks: [0, 25, 50, 75],
           formatString: 'd'
         }
       },
@@ -437,8 +437,8 @@ export default {
           unit: '',
           label: '',
           min: 0,
-          max: 420,
-          ticks: [0, 105, 210, 315, 420],
+          max: 500,
+          ticks: [0, 100, 200, 300, 400, 500],
           formatString: 'd'
         }
       },
@@ -472,8 +472,8 @@ export default {
           unit: '',
           label: '',
           min: 0,
-          max: 420,
-          ticks: [0, 105, 210, 315, 420],
+          max: 500,
+          ticks: [0, 100, 200, 300, 400, 500],
           formatString: 'd'
         }
       },
