@@ -4,7 +4,7 @@ export default {
   title: '蔡總統的第二年',
   description: '蔡英文政府已執政滿兩週年，跟過去幾年相比，到底表現好不好呢？沃草透過比較從扁政府、馬政府到蔡政府第一、二年的各項數據，請你先自己畫出心中的感受，再來看看跟真實數據的差多少？',
   image: 'modules/draw.png',
-  date: '2017-05-19 21:00:00',
+  date: '2017-05-17 22:00:00',
   breaking: false,
   authorship: [
     {
