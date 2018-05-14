@@ -5,10 +5,14 @@
     <div class="paragraphs no-margin" v-html="markdown(config.text.before)"></div>
   </div>
   <div class="chart">
-    <div v-show="!drawn" class="loading"></div>
-    <div v-show="drawn" class="you-draw">
+    <div v-show="initialized" class="you-draw">
       <div class="line"></div>
       <div class="hand"></div>
+    </div>
+    <div v-if="!initialized" class="loading">
+      <div class="content">
+        <div class="spinner"></div>
+      </div>
     </div>
   </div>
   <div class="actions form-field-align-center">
@@ -78,7 +82,7 @@ export default {
         message: null,
         done: false
       },
-      drawn: false
+      initialized: false
     }
   },
   computed: {
@@ -123,7 +127,7 @@ export default {
   mounted() {
     this.init()
     this.draw()
-    this.drawn = true
+    this.initialized = true
   },
   methods: {
     onSubmit() {
@@ -161,11 +165,11 @@ export default {
       })
       const { speechTarget } = this.config
       const data = {
-        classes: [speechTarget.type],
         targetID: speechTarget.id,
-        data: {points}
+        classes: [speechTarget.speechType],
+        data: { points }
       }
-      coralreef.createLineChartSpeech(data, this.getTokenCookie())
+      coralreef.createSpeech(data, this.getTokenCookie())
     },
     drawComp(i, title) {
       this.drawPath(this.el.comp[i], this.rows.comp[i], title)
@@ -433,7 +437,7 @@ export default {
       var viewport = window.innerWidth
       var zoom = viewport > this.size.w ? 1 : viewport / this.size.w
       this.el.container.select('.you-draw')
-        .style('top', this.util.axes.y.scale(lastOrig.y) * zoom - 54 + 'px')
+        .style('top', this.util.axes.y.scale(lastOrig.y) * zoom - 60 + 'px')
         .style('left', this.util.axes.x.scale(lastOrig.x) * zoom + 'px')
         .style('transform', 'scale(' + zoom + ')')
         .style('transform-origin', 'center left')
@@ -459,7 +463,6 @@ export default {
   > .chart {
     position: relative;
     width: 100%;
-    min-height: 6rem;
     margin: 0 auto;
     @keyframes grow {
       0% { width: 0; }
@@ -469,7 +472,7 @@ export default {
       0% { transform: none; }
       100% { transform: translate(52px, -30px); }
     }
-    $animation-time: 1s;
+    $animation-time: 1.5s;
     $animation-iteration-count: infinite;
 
     > .you-draw {
@@ -500,11 +503,17 @@ export default {
     }
 
     > .loading {
-      @include spinner($color: $color-musou);
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translateY(-50%);
+      position: relative;
+      width: 100%;
+      @include rect(1);
+      > .content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        > .spinner {
+          @include spinner($color: $color-musou-light);
+        }
+      }
     }
 
     > svg {

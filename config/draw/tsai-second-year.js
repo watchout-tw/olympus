@@ -27,7 +27,7 @@ export default {
       sheetID: '',
       speechTarget: {
         id: 178,
-        type: 'musou_line_chart_response'
+        speechType: 'musou_line_chart_response'
       },
       axes: {
         x: {
@@ -41,7 +41,7 @@ export default {
           label: '萬人',
           min: 0,
           max: 500000,
-          ticks: [0, 450000, 900000],
+          ticks: [0, 250000, 500000],
           formatString: 'd'
         }
       },
@@ -62,7 +62,7 @@ export default {
       sheetID: '',
       speechTarget: {
         id: 178,
-        type: 'musou_line_chart_response'
+        speechType: 'musou_line_chart_response'
       },
       axes: {
         x: {
@@ -103,7 +103,7 @@ export default {
       sheetID: '',
       speechTarget: {
         id: 176,
-        type: 'musou_line_chart_response'
+        speechType: 'musou_line_chart_response'
       },
       axes: {
         x: {
@@ -138,7 +138,7 @@ export default {
       sheetID: '',
       speechTarget: {
         id: 178,
-        type: 'musou_line_chart_response'
+        speechType: 'musou_line_chart_response'
       },
       axes: {
         x: {
@@ -173,7 +173,7 @@ export default {
       sheetID: '',
       speechTarget: {
         id: 175,
-        type: 'musou_line_chart_response'
+        speechType: 'musou_line_chart_response'
       },
       axes: {
         x: {
@@ -208,7 +208,7 @@ export default {
       sheetID: '',
       speechTarget: {
         id: 175,
-        type: 'musou_line_chart_response'
+        speechType: 'musou_line_chart_response'
       },
       axes: {
         x: {
@@ -243,7 +243,7 @@ export default {
       sheetID: '',
       speechTarget: {
         id: 175,
-        type: 'musou_line_chart_response'
+        speechType: 'musou_line_chart_response'
       },
       axes: {
         x: {
@@ -278,7 +278,7 @@ export default {
       sheetID: '', // run get.py and get sheetID from data/graphs.json
       speechTarget: {
         id: 178,
-        type: 'musou_line_chart_response'
+        speechType: 'musou_line_chart_response'
       },
       axes: {
         x: {
@@ -319,7 +319,7 @@ export default {
       sheetID: '',
       speechTarget: {
         id: 175,
-        type: 'musou_line_chart_response'
+        speechType: 'musou_line_chart_response'
       },
       axes: {
         x: {
@@ -350,11 +350,11 @@ export default {
     },
     {
       id: 'air-pollution-shalu',
-      title: '空氣指數-沙鹿',
+      title: '空氣指數【沙鹿】',
       sheetID: '',
       speechTarget: {
         id: 175,
-        type: 'musou_line_chart_response'
+        speechType: 'musou_line_chart_response'
       },
       axes: {
         x: {
@@ -378,24 +378,24 @@ export default {
         }
       },
       text: {
-        title: '空氣指數-沙鹿',
+        title: '空氣指數【沙鹿】',
         before: '',
         after: ''
       }
     },
     {
       id: 'air-pollution-nanzi',
-      title: '空氣指數-楠梓',
+      title: '空氣指數【楠梓】',
       sheetID: '',
       speechTarget: {
         id: 175,
-        type: 'musou_line_chart_response'
+        speechType: 'musou_line_chart_response'
       },
       axes: {
         x: {
           divider: 1,
           unit: 'quarter',
-          label: ''
+          labelBefore: 'Q'
         },
         y: {
           divider: 1,
@@ -413,7 +413,7 @@ export default {
         }
       },
       text: {
-        title: '空氣指數-楠梓',
+        title: '空氣指數【楠梓】',
         before: '',
         after: ''
       }
@@ -424,7 +424,7 @@ export default {
       sheetID: '',
       speechTarget: {
         id: 175,
-        type: 'musou_line_chart_response'
+        speechType: 'musou_line_chart_response'
       },
       axes: {
         x: {
@@ -434,8 +434,8 @@ export default {
         },
         y: {
           divider: 1,
-          unit: '',
-          label: '',
+          unit: '億度',
+          label: '億度',
           min: 0,
           max: 500,
           ticks: [0, 100, 200, 300, 400, 500],
@@ -459,7 +459,7 @@ export default {
       sheetID: '',
       speechTarget: {
         id: 175,
-        type: 'musou_line_chart_response'
+        speechType: 'musou_line_chart_response'
       },
       axes: {
         x: {
@@ -469,8 +469,8 @@ export default {
         },
         y: {
           divider: 1,
-          unit: '',
-          label: '',
+          unit: '億度',
+          label: '億度',
           min: 0,
           max: 500,
           ticks: [0, 100, 200, 300, 400, 500],
