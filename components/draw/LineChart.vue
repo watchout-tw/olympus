@@ -28,6 +28,7 @@ import * as d3 from 'd3'
 import * as core from '../../lib/core'
 
 const colors = {
+  'hui-1': 'rgba(0, 255, 0, 0.35)',
   'bian-1': 'rgba(0, 255, 0, 0.25)',
   'bian-2': 'rgba(0, 255, 0, 0.35)',
   'ma-1': 'rgba(0, 0, 255, 0.25)',
@@ -35,6 +36,7 @@ const colors = {
   'tsai-1': 'rgba(0, 255, 0, 0.25)'
 }
 const presidents = {
+  'hui': '李登輝',
   'bian': '陳水扁',
   'ma': '馬英九',
   'tsai': '蔡英文'
