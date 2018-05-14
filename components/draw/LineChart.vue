@@ -1,17 +1,20 @@
 <template>
-<div class="line-chart" :id="config.id">
+<div class="line-chart" :id="config.id" :class="submit.done ? ['done'] : []">
   <div class="before tcl-left-right-margin">
     <h3 class="title">{{ config.text.title }}</h3>
     <div class="paragraphs no-margin" v-html="markdown(config.text.before)"></div>
   </div>
   <div class="chart">
-    <div class="you-draw">
+    <div v-show="!drawn" class="loading"></div>
+    <div v-show="drawn" class="you-draw">
       <div class="line"></div>
       <div class="hand"></div>
     </div>
   </div>
+  <div class="actions form-field-align-center">
+    <submit-button :classes="['musou']" :label="'畫好了啦'" :state.sync="submit.state" :message.sync="submit.message" :once="true" @click.native="onSubmit" @reset="submitted"></submit-button>
+  </div>
   <div class="after tcl-left-right-margin">
-    <button class="input button submit musou">畫好了啦</button>
     <div class="score">
       <div>畫的有</div>
       <div class="number">{{ score }}</div>
@@ -23,9 +26,11 @@
 </template>
 
 <script>
-import { knowsMarkdown } from 'watchout-common-functions/interfaces'
+import { knowsAuth, knowsMarkdown } from 'watchout-common-functions/interfaces'
+import * as coralreef from 'watchout-common-functions/lib/coralreef'
+import SubmitButton from 'watchout-common-functions/components/button/Submit'
+import * as STATES from 'watchout-common-functions/lib/states'
 import * as d3 from 'd3'
-import * as core from '../../lib/core'
 
 const colors = {
   'bian-1': 'rgba(0, 255, 0, 0.25)',
@@ -39,9 +44,14 @@ const presidents = {
   'ma': '馬英九',
   'tsai': '蔡英文'
 }
+const UNDONE_SCORE = -1
+const SUBMIT_MESSAGES = {
+  [STATES.FAILED]: '你沒畫完',
+  [STATES.SUCCESS]: '已記錄'
+}
 
 export default {
-  mixins: [knowsMarkdown],
+  mixins: [knowsAuth, knowsMarkdown],
   props: ['config'],
   data() {
     return {
@@ -60,31 +70,35 @@ export default {
         sequence: {
           label: {}
         }
-      }
+      },
+      submit: {
+        state: STATES.DEFAULT,
+        message: null,
+        done: false
+      },
+      drawn: false
     }
   },
   computed: {
-    score: function() {
-      if(!(this.rows && this.rows.user)) {
-        return 87
-      }
-
-      var self = this
+    score() {
       var s = 0.2
       var y = s * (this.config.axes.y.max - this.config.axes.y.min)
       var n = 0
+      var answered = 0
       var d = 0
       var sum = 0
-      this.rows.user.forEach(function(row, i) {
+      this.rows.user.forEach((row, i) => {
         if(!row.fix) {
           n = n + 1
           if(row.show) {
-            d = Math.abs(row.y - self.rows.orig[i].y)
+            answered = answered + 1
+            d = Math.abs(row.y - this.rows.orig[i].y)
             sum = sum + (1 - (d > y ? y : d) / y) * 100
           }
         }
       })
-      return n === 0 ? 0 : Math.round(sum / n)
+      // have to finish all the points
+      return n === answered ? Math.round(sum / n) : UNDONE_SCORE
     }
   },
   created() {
@@ -107,23 +121,60 @@ export default {
   mounted() {
     this.init()
     this.draw()
+    this.drawn = true
   },
   methods: {
-    createSpeech: function() {
-      const { speechTarget } = this.config
-      const data = this.rows.user.filter(u => !u.fix)
-      core.createLineChartSpeech(speechTarget, data)
+    onSubmit() {
+      const { SUCCESS, DEFAULT, FAILED, LOADING } = STATES
+      if(this.submit.state !== DEFAULT) {
+        return
+      }
+      if(this.score === UNDONE_SCORE) {
+        this.submit.state = FAILED
+        this.submit.message = SUBMIT_MESSAGES[FAILED]
+      } else {
+        this.submit.state = LOADING
+        this.rows.orig.forEach(function(row) {
+          row.show = true
+        })
+        this.drawOrig()
+        this.createSpeech()
+        this.submit.state = SUCCESS
+        this.submit.message = SUBMIT_MESSAGES[SUCCESS]
+      }
     },
-    drawComp: function(i, title) {
+    submitted() {
+      if(this.submit.state === STATES.SUCCESS) {
+        this.submit.done = true
+      }
+    },
+    createSpeech() {
+      const keys = ['x', 'y', 'label']
+      var points = this.rows.user.filter(u => !u.fix)
+      points = points.map(function(point) {
+        return keys.reduce(function(r, key) {
+          r[key] = point[key]
+          return r
+        }, {})
+      })
+      const { speechTarget } = this.config
+      const data = {
+        classes: [speechTarget.type],
+        targetID: speechTarget.id,
+        data: {points}
+      }
+      coralreef.createLineChartSpeech(data, this.getTokenCookie())
+    },
+    drawComp(i, title) {
       this.drawPath(this.el.comp[i], this.rows.comp[i], title)
     },
-    drawUser: function() {
+    drawUser() {
       this.drawPath(this.el.user, this.rows.user)
     },
-    drawOrig: function() {
+    drawOrig() {
       this.drawPath(this.el.orig, this.rows.orig)
     },
-    drawPath: function(el, points, title) {
+    drawPath(el, points, title) {
       // https://github.com/d3/d3-selection/blob/master/README.md#selection_data
       // General Update Pattern
       // select → data → exit → remove → enter → append → merge
@@ -185,7 +236,7 @@ export default {
           .text(title)
       }
     },
-    init: function() {
+    init() {
       var size = this.size
       var util = this.util
       var config = this.config
@@ -277,7 +328,7 @@ export default {
           .text(config.axes.y.label)
       }
     },
-    draw: function() {
+    draw() {
       var self = this
 
       this.el.root = this.el.container.append('svg')
@@ -337,29 +388,6 @@ export default {
       this.el.user = this.el.root.append('g').attr('class', 'sequence user')
       this.el.orig = this.el.root.append('g').attr('class', 'sequence orig')
 
-      // add button to finish and show comparison
-      this.el.button = d3.select(this.$el).select('.after > .submit')
-        .on('click', function() {
-          if (self.rows.user.find(target => !target.show && !target.fix)) {
-            // TODO show noticing `you have to complete the chart`
-            return
-          }
-
-          self.createSpeech()
-
-          // remove animation
-          self.el.container.select('.you-draw').remove()
-
-          self.rows.orig.forEach(function(row) {
-            row.show = true
-          })
-          self.drawOrig()
-          self.el.root.on('click', null)
-          self.el.root.on('mousedown.drag', null)
-
-          d3.select(self.$el).select('.after').classed('reveal', true)
-        })
-
       // make callback to redraw at user input
       function redraw() {
         // remove animation
@@ -389,7 +417,7 @@ export default {
       // draw original sequence
       this.drawOrig()
 
-      // setup animation
+      // setup `you-draw` animation
       var lastOrig = this.rows.orig.filter((row, i) => {
         return row.fix && i + 1 < this.rows.orig.length && !this.rows.orig[i + 1].fix
       }).pop()
@@ -402,6 +430,9 @@ export default {
         .style('transform', 'scale(' + zoom + ')')
         .style('transform-origin', 'center left')
     }
+  },
+  components: {
+    SubmitButton
   }
 }
 </script>
@@ -420,6 +451,7 @@ export default {
   > .chart {
     position: relative;
     width: 100%;
+    min-height: 6rem;
     margin: 0 auto;
     @keyframes grow {
       0% { width: 0; }
@@ -457,6 +489,14 @@ export default {
         background-image: url('/static/draw/hand.svg');
         animation: move $animation-time $animation-iteration-count;
       }
+    }
+
+    > .loading {
+      @include spinner($color: $color-musou);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateY(-50%);
     }
 
     > svg {
@@ -530,20 +570,12 @@ export default {
       }
     }
   }
+  > .actions {
+    margin: 0.5rem 0;
+  }
   > .after {
-    position: relative;
-    > *:not(.submit) {
-      visibility: hidden;
-    }
-    &.reveal {
-      > .submit {
-        display: none;
-      }
-      > *:not(.submit) {
-        visibility: visible;
-      }
-    }
-
+    visibility: hidden;
+    margin-bottom: 2rem;
     > .score {
       text-align: center;
       font-size: 0.875rem;
@@ -560,13 +592,10 @@ export default {
     > .text {
       margin-top: 1rem;
     }
-    > .submit {
-      position: absolute;
-      top: 0.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: block;
-      color: white;
+  }
+  &.done {
+    > .after {
+      visibility: visible;
     }
   }
 }
