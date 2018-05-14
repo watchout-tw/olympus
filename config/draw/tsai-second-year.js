@@ -22,6 +22,41 @@ export default {
   ],
   graphs: [
     {
+      id: 'annual-death',
+      title: '死亡率',
+      sheetID: '',
+      speechTarget: {
+        id: 178,
+        type: 'musou_line_chart_response'
+      },
+      axes: {
+        x: {
+          divider: 1,
+          unit: 'year',
+          label: '年'
+        },
+        y: {
+          divider: 10000,
+          unit: 'person',
+          label: '萬人',
+          min: 0,
+          max: 900000,
+          ticks: [0, 450000, 900000],
+          formatString: 'd'
+        }
+      },
+      sequence: {
+        label: {
+          formatString: '.1f'
+        }
+      },
+      text: {
+        title: '死亡率',
+        before: '',
+        after: ''
+      }
+    },
+    {
       id: 'annual-birth',
       title: '出生率',
       sheetID: '',
@@ -58,41 +93,6 @@ export default {
       ],
       text: {
         title: '出生率',
-        before: '',
-        after: ''
-      }
-    },
-    {
-      id: 'annual-death',
-      title: '死亡率',
-      sheetID: '',
-      speechTarget: {
-        id: 178,
-        type: 'musou_line_chart_response'
-      },
-      axes: {
-        x: {
-          divider: 1,
-          unit: 'year',
-          label: '年'
-        },
-        y: {
-          divider: 10000,
-          unit: 'person',
-          label: '萬人',
-          min: 0,
-          max: 900000,
-          ticks: [0, 450000, 900000],
-          formatString: 'd'
-        }
-      },
-      sequence: {
-        label: {
-          formatString: '.1f'
-        }
-      },
-      text: {
-        title: '死亡率',
         before: '',
         after: ''
       }
@@ -238,6 +238,41 @@ export default {
       }
     },
     {
+      id: 'customer-price-index',
+      title: '消費者物價指數',
+      sheetID: '',
+      speechTarget: {
+        id: 175,
+        type: 'musou_line_chart_response'
+      },
+      axes: {
+        x: {
+          divider: 1,
+          unit: 'year',
+          label: '年'
+        },
+        y: {
+          divider: 1,
+          unit: '',
+          label: '',
+          min: 80,
+          max: 110,
+          ticks: [80, 95, 110],
+          formatString: 'd'
+        }
+      },
+      sequence: {
+        label: {
+          formatString: '.1f'
+        }
+      },
+      text: {
+        title: '消費者物價指數',
+        before: '',
+        after: ''
+      }
+    },
+    {
       id: 'annual-income',
       title: '年均所得',
       sheetID: '', // run get.py and get sheetID from data/graphs.json
@@ -274,41 +309,6 @@ export default {
       ],
       text: {
         title: '年均所得',
-        before: '',
-        after: ''
-      }
-    },
-    {
-      id: 'customer-price-index',
-      title: '消費者物價指數',
-      sheetID: '',
-      speechTarget: {
-        id: 175,
-        type: 'musou_line_chart_response'
-      },
-      axes: {
-        x: {
-          divider: 1,
-          unit: 'year',
-          label: '年'
-        },
-        y: {
-          divider: 1,
-          unit: '',
-          label: '',
-          min: 80,
-          max: 110,
-          ticks: [80, 95, 110],
-          formatString: 'd'
-        }
-      },
-      sequence: {
-        label: {
-          formatString: '.1f'
-        }
-      },
-      text: {
-        title: '消費者物價指數',
         before: '',
         after: ''
       }
@@ -419,6 +419,41 @@ export default {
       }
     },
     {
+      id: 'nuclear-power',
+      title: '核能',
+      sheetID: '',
+      speechTarget: {
+        id: 175,
+        type: 'musou_line_chart_response'
+      },
+      axes: {
+        x: {
+          divider: 1,
+          unit: 'year',
+          label: '年'
+        },
+        y: {
+          divider: 1,
+          unit: '',
+          label: '',
+          min: 0,
+          max: 420,
+          ticks: [0, 105, 210, 315, 420],
+          formatString: 'd'
+        }
+      },
+      sequence: {
+        label: {
+          formatString: '.1f'
+        }
+      },
+      text: {
+        title: '核能',
+        before: '',
+        after: ''
+      }
+    },
+    {
       id: 'power-generate',
       title: '再生能源',
       sheetID: '',
@@ -455,41 +490,6 @@ export default {
       ],
       text: {
         title: '再生能源',
-        before: '',
-        after: ''
-      }
-    },
-    {
-      id: 'nuclear-power',
-      title: '核能',
-      sheetID: '',
-      speechTarget: {
-        id: 175,
-        type: 'musou_line_chart_response'
-      },
-      axes: {
-        x: {
-          divider: 1,
-          unit: 'year',
-          label: '年'
-        },
-        y: {
-          divider: 1,
-          unit: '',
-          label: '',
-          min: 0,
-          max: 420,
-          ticks: [0, 105, 210, 315, 420],
-          formatString: 'd'
-        }
-      },
-      sequence: {
-        label: {
-          formatString: '.1f'
-        }
-      },
-      text: {
-        title: '核能',
         before: '',
         after: ''
       }
