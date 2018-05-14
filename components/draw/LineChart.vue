@@ -46,7 +46,7 @@ const presidents = {
 }
 const UNDONE_SCORE = -1
 const SUBMIT_MESSAGES = {
-  [STATES.FAILED]: '要畫完ㄛ',
+  [STATES.FAILED]: '你沒畫完',
   [STATES.SUCCESS]: '已記錄'
 }
 
