@@ -10,6 +10,7 @@
     </div>
   </div>
   <div class="charts tcl-container">
+    <re-captcha></re-captcha>
     <div class="tcl-panel with-top-bottom-margin with-double-top-margin chart-container" v-for="config in project.graphs" :key="config.id">
       <line-chart :config="config"></line-chart>
     </div>
@@ -28,12 +29,14 @@
 
 <script>
 import { knowsMarkdown } from 'watchout-common-functions/interfaces'
+import ReCaptcha from '~/components/common/ReCaptcha'
 import LineChart from './draw/LineChart'
 
 export default {
   mixins: [knowsMarkdown],
   props: ['module', 'project'],
   components: {
+    ReCaptcha,
     LineChart
   }
 }
