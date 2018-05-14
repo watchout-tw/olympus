@@ -10,9 +10,9 @@
     </div>
   </div>
   <div class="charts tcl-container">
-    <re-captcha :verified.sync="reCaptcha.verified" :token.sync="reCaptcha.token"></re-captcha>
+    <re-captcha :verified.sync="verified" :token.sync="token"></re-captcha>
     <div class="tcl-panel with-top-bottom-margin with-double-top-margin chart-container" v-for="config in project.graphs" :key="config.id">
-      <line-chart :config="config"></line-chart>
+      <line-chart :config="config" :onSubmitCallback="createSpeech" :verified="verified"></line-chart>
     </div>
     <div class="tcl-panel"></div>
   </div>
@@ -29,6 +29,7 @@
 
 <script>
 import { knowsMarkdown, knowsAuth } from 'watchout-common-functions/interfaces'
+import * as coralreef from 'watchout-common-functions/lib/coralreef'
 import ReCaptcha from '~/components/common/ReCaptcha'
 import LineChart from './draw/LineChart'
 
@@ -37,15 +38,21 @@ export default {
   props: ['module', 'project'],
   data() {
     return {
-      reCaptcha: {
-        verified: true,
-        token: null
-      }
+      verified: false,
+      token: null
     }
   },
   mounted() {
-    const loggedIn = !!this.getTokenCookie()
-    this.reCaptcha.verified = loggedIn
+    const token = this.getTokenCookie()
+    this.token = token
+
+    const loggedIn = !!token
+    this.verified = loggedIn
+  },
+  methods: {
+    createSpeech(data) {
+      coralreef.createLineChartSpeech(data, this.token)
+    }
   },
   components: {
     ReCaptcha,

@@ -26,8 +26,7 @@
 </template>
 
 <script>
-import { knowsAuth, knowsMarkdown } from 'watchout-common-functions/interfaces'
-import * as coralreef from 'watchout-common-functions/lib/coralreef'
+import { knowsMarkdown } from 'watchout-common-functions/interfaces'
 import SubmitButton from 'watchout-common-functions/components/button/Submit'
 import * as STATES from 'watchout-common-functions/lib/states'
 import * as d3 from 'd3'
@@ -51,8 +50,8 @@ const SUBMIT_MESSAGES = {
 }
 
 export default {
-  mixins: [knowsAuth, knowsMarkdown],
-  props: ['config'],
+  mixins: [knowsMarkdown],
+  props: ['config', 'onSubmitCallback', 'verified'],
   data() {
     return {
       el: {},
@@ -133,15 +132,16 @@ export default {
         this.submit.message = SUBMIT_MESSAGES[FAILED]
       } else {
         this.submit.state = LOADING
+        if(!this.verified) window.grecaptcha.execute()
 
         this.rows.orig.forEach(function(row) {
           row.show = true
         })
         this.drawOrig()
 
-        this.createSpeech()
         this.submit.state = SUCCESS
         this.submit.message = SUBMIT_MESSAGES[SUCCESS]
+        this.onSubmitCallback(this.genSpeechData())
       }
     },
     submitted() {
@@ -149,7 +149,7 @@ export default {
         this.submit.done = true
       }
     },
-    createSpeech() {
+    genSpeechData() {
       const keys = ['x', 'y', 'label']
       var points = this.rows.user.filter(u => !u.fix)
       points = points.map(function(point) {
@@ -159,14 +159,11 @@ export default {
         }, {})
       })
       const { speechTarget } = this.config
-      const data = {
-        speakerID: this.personaID,
-        // speakerClasses: //  TODO
+      return {
         classes: [speechTarget.type],
         targetID: speechTarget.id,
         data: {points}
       }
-      coralreef.createLineChartSpeech(data, this.getTokenCookie)
     },
     drawComp(i, title) {
       this.drawPath(this.el.comp[i], this.rows.comp[i], title)
