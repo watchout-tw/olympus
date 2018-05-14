@@ -160,13 +160,11 @@ export default {
       })
       const { speechTarget } = this.config
       const data = {
-        speakerID: this.personaID,
-        // speakerClasses: //  TODO
         classes: [speechTarget.type],
         targetID: speechTarget.id,
         data: {points}
       }
-      coralreef.createLineChartSpeech(data, this.getTokenCookie)
+      coralreef.createLineChartSpeech(data, this.getTokenCookie())
     },
     drawComp(i, title) {
       this.drawPath(this.el.comp[i], this.rows.comp[i], title)
