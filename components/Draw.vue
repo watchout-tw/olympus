@@ -10,7 +10,7 @@
     </div>
   </div>
   <div class="charts tcl-container">
-    <re-captcha></re-captcha>
+    <re-captcha :verified.sync="reCaptcha.verified" :token.sync="reCaptcha.token"></re-captcha>
     <div class="tcl-panel with-top-bottom-margin with-double-top-margin chart-container" v-for="config in project.graphs" :key="config.id">
       <line-chart :config="config"></line-chart>
     </div>
@@ -28,13 +28,25 @@
 
 
 <script>
-import { knowsMarkdown } from 'watchout-common-functions/interfaces'
+import { knowsMarkdown, knowsAuth } from 'watchout-common-functions/interfaces'
 import ReCaptcha from '~/components/common/ReCaptcha'
 import LineChart from './draw/LineChart'
 
 export default {
-  mixins: [knowsMarkdown],
+  mixins: [knowsMarkdown, knowsAuth],
   props: ['module', 'project'],
+  data() {
+    return {
+      reCaptcha: {
+        verified: true,
+        token: null
+      }
+    }
+  },
+  mounted() {
+    const loggedIn = !!this.getTokenCookie()
+    this.reCaptcha.verified = loggedIn
+  },
   components: {
     ReCaptcha,
     LineChart

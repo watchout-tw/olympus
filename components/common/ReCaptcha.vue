@@ -10,6 +10,7 @@ import config from '../../config/config'
 
 const SIZE = 'invisible'
 export default {
+  props: ['verified', 'token', 'callback'],
   mounted() {
     this.initReCaptcha()
   },
@@ -21,13 +22,17 @@ export default {
           window.grecaptcha.render('recaptcha', {
             sitekey: config.reCaptchaSiteKey,
             size: SIZE,
-            callback: self.callback //  TODO
+            callback: self.verifiedCallback
           })
-          window.grecaptcha.execute()
         } else {
           self.initReCaptcha()
         }
       }, 100)
+    },
+    verifiedCallback(token) {
+      this.$emit('update:token', token)
+      this.$emit('update:verified', true)
+      if(typeof this.callback === 'function') this.callback()
     }
   }
 }
