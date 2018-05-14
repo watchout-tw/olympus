@@ -41,7 +41,7 @@ export default {
           label: '萬人',
           min: 0,
           max: 500000,
-          ticks: [0, 300000, 500000],
+          ticks: [0, 250000, 500000],
           formatString: 'd'
         }
       },
@@ -82,7 +82,7 @@ export default {
           label: '萬人',
           min: 0,
           max: 900000,
-          ticks: [0, 500000, 900000],
+          ticks: [0, 450000, 900000],
           formatString: 'd'
         }
       },
@@ -117,7 +117,7 @@ export default {
           label: '百萬人',
           min: 0,
           max: 12000000,
-          ticks: [0, 5000000, 10000000, 12000000],
+          ticks: [0, 4000000, 8000000, 12000000],
           formatString: 'd'
         }
       },
@@ -147,12 +147,12 @@ export default {
           label: '年'
         },
         y: {
-          divider: 10000,
-          unit: 'person',
-          label: '萬人',
+          divider: 1000,
+          unit: '千點',
+          label: '',
           min: 0,
           max: 12000,
-          ticks: [0, 60000, 12000],
+          ticks: [0, 4000, 8000, 12000],
           formatString: 'd'
         }
       },
@@ -222,7 +222,7 @@ export default {
           label: '%',
           min: -5,
           max: 10,
-          ticks: [0, 5, 10],
+          ticks: [-5, 0, 5, 10],
           formatString: 'd'
         }
       },
@@ -252,12 +252,12 @@ export default {
           label: '月'
         },
         y: {
-          divider: 10000,
-          unit: 'NTD',
-          label: '萬元',
-          min: 40000,
-          max: 50000,
-          ticks: [40000, 50000],
+          divider: 1,
+          unit: '',
+          label: '',
+          min: 80,
+          max: 110,
+          ticks: [80, 95, 110],
           formatString: 'd'
         }
       },
@@ -269,7 +269,7 @@ export default {
       compare: [
         {
           id: 'customer-price-index',
-          label: '中國旅客每月來台人數'
+          label: '消費者物價指數'
         }
       ],
       text: {
@@ -298,7 +298,7 @@ export default {
           label: '',
           min: 80,
           max: 110,
-          ticks: [80, 110],
+          ticks: [80, 95, 110],
           formatString: 'd'
         }
       },
@@ -333,7 +333,7 @@ export default {
           label: '小時',
           min: 160,
           max: 200,
-          ticks: [160, 200],
+          ticks: [160, 180, 200],
           formatString: 'd'
         }
       },
@@ -366,9 +366,9 @@ export default {
           divider: 1,
           unit: '',
           label: '',
-          min: 10,
+          min: 0,
           max: 45,
-          ticks: [10, 20, 45],
+          ticks: [0, 22.5, 45],
           formatString: 'd'
         }
       },
@@ -401,9 +401,9 @@ export default {
           divider: 1,
           unit: '',
           label: '',
-          min: 10,
+          min: 0,
           max: 55,
-          ticks: [10, 30, 55],
+          ticks: [0, 27.5, 55],
           formatString: 'd'
         }
       },
@@ -437,8 +437,8 @@ export default {
           unit: '',
           label: '',
           min: 0,
-          max: 120,
-          ticks: [0, 60, 120],
+          max: 420,
+          ticks: [0, 105, 210, 315, 420],
           formatString: 'd'
         }
       },
@@ -477,9 +477,9 @@ export default {
           divider: 1,
           unit: '',
           label: '',
-          min: 200,
+          min: 0,
           max: 420,
-          ticks: [200, 310, 420],
+          ticks: [0, 105, 210, 315, 420],
           formatString: 'd'
         }
       },
