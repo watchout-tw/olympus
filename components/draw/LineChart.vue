@@ -1,5 +1,5 @@
 <template>
-<div class="line-chart" :id="config.id">
+<div class="line-chart" :id="config.id" :class="submit.done ? ['done'] : []">
   <div class="before tcl-left-right-margin">
     <h3 class="title">{{ config.text.title }}</h3>
     <div class="paragraphs no-margin" v-html="markdown(config.text.before)"></div>
@@ -11,16 +11,16 @@
       <div class="hand"></div>
     </div>
   </div>
+  <div class="actions form-field-align-center">
+    <submit-button :classes="['musou']" :label="'畫好了啦'" :state.sync="submit.state" :message.sync="submit.message" :once="true" @click.native="onSubmit" @reset="submitted"></submit-button>
+  </div>
   <div class="after tcl-left-right-margin">
-    <template v-if="submit.done">
-      <div class="score">
-        <div>畫的有</div>
-        <div class="number">{{ score }}</div>
-        <div>分像呢</div>
-      </div>
-      <div class="paragraphs no-margin" v-html="markdown(config.text.after)"></div>
-    </template>
-    <submit-button v-else :classes="['musou']" :label="'畫好了啦'" :state.sync="submit.state" :message.sync="submit.message" @click.native="onSubmit" @reset="submitted"></submit-button>
+    <div class="score">
+      <div>畫的有</div>
+      <div class="number">{{ score }}</div>
+      <div>分像呢</div>
+    </div>
+    <div class="paragraphs no-margin" v-html="markdown(config.text.after)"></div>
   </div>
 </div>
 </template>
@@ -126,19 +126,18 @@ export default {
   methods: {
     onSubmit() {
       const { SUCCESS, DEFAULT, FAILED, LOADING } = STATES
-      if(this.submit.state !== DEFAULT) return
-
+      if(this.submit.state !== DEFAULT) {
+        return
+      }
       if(this.score === UNDONE_SCORE) {
         this.submit.state = FAILED
         this.submit.message = SUBMIT_MESSAGES[FAILED]
       } else {
         this.submit.state = LOADING
-
         this.rows.orig.forEach(function(row) {
           row.show = true
         })
         this.drawOrig()
-
         this.createSpeech()
         this.submit.state = SUCCESS
         this.submit.message = SUBMIT_MESSAGES[SUCCESS]
@@ -571,9 +570,12 @@ export default {
       }
     }
   }
+  > .actions {
+    margin: 0.5rem 0;
+  }
   > .after {
-    position: relative;
-
+    visibility: hidden;
+    margin-bottom: 2rem;
     > .score {
       text-align: center;
       font-size: 0.875rem;
@@ -590,12 +592,10 @@ export default {
     > .text {
       margin-top: 1rem;
     }
-    > .submit-button {
-      min-width: 6rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: inline-block;
-      color: white;
+  }
+  &.done {
+    > .after {
+      visibility: visible;
     }
   }
 }
