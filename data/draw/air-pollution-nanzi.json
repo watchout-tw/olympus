@@ -1,0 +1,170 @@
+[
+    {
+        "x": "2012Q2",
+        "y": "30",
+        "label": "ma-2",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "2012Q3",
+        "y": "29.33333333",
+        "label": "ma-2",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "2012Q4",
+        "y": "49.33333333",
+        "label": "ma-2",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "2013Q1",
+        "y": "50.33333333",
+        "label": "ma-2",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "2013Q2",
+        "y": "32.33333333",
+        "label": "ma-2",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "2013Q3",
+        "y": "26.66666667",
+        "label": "ma-2",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "2013Q4",
+        "y": "53",
+        "label": "ma-2",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "2014Q1",
+        "y": "44.33333333",
+        "label": "ma-2",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "2014Q2",
+        "y": "20.66666667",
+        "label": "ma-2",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "2014Q3",
+        "y": "12.66666667",
+        "label": "ma-2",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "2014Q4",
+        "y": "47.33333333",
+        "label": "ma-2",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "2015Q1",
+        "y": "41",
+        "label": "ma-2",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "2015Q2",
+        "y": "12",
+        "label": "ma-2",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "2015Q3",
+        "y": "10.33333333",
+        "label": "ma-2",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "2015Q4",
+        "y": "28.33333333",
+        "label": "ma-2",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "2016Q1",
+        "y": "35",
+        "label": "ma-2",
+        "show": true,
+        "fix": true
+    },
+    {
+        "x": "2016Q2",
+        "y": "18.33333333",
+        "label": "tsai-1",
+        "show": false,
+        "fix": false
+    },
+    {
+        "x": "2016Q3",
+        "y": "16.33333333",
+        "label": "tsai-1",
+        "show": false,
+        "fix": false
+    },
+    {
+        "x": "2016Q4",
+        "y": "33",
+        "label": "tsai-1",
+        "show": false,
+        "fix": false
+    },
+    {
+        "x": "2017Q1",
+        "y": "44.66666667",
+        "label": "tsai-1",
+        "show": false,
+        "fix": false
+    },
+    {
+        "x": "2017Q2",
+        "y": "21",
+        "label": "tsai-1",
+        "show": false,
+        "fix": false
+    },
+    {
+        "x": "2017Q3",
+        "y": "16",
+        "label": "tsai-1",
+        "show": false,
+        "fix": false
+    },
+    {
+        "x": "2017Q4",
+        "y": "36",
+        "label": "tsai-1",
+        "show": false,
+        "fix": false
+    },
+    {
+        "x": "2018Q1",
+        "y": "39.33333333",
+        "label": "tsai-1",
+        "show": false,
+        "fix": false
+    }
+]

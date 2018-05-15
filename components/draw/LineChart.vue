@@ -5,10 +5,14 @@
     <div class="paragraphs no-margin" v-html="markdown(config.text.before)"></div>
   </div>
   <div class="chart">
-    <div v-show="!drawn" class="loading"></div>
-    <div v-show="drawn" class="you-draw">
+    <div v-show="initialized" class="you-draw">
       <div class="line"></div>
       <div class="hand"></div>
+    </div>
+    <div v-if="!initialized" class="loading">
+      <div class="content">
+        <div class="spinner"></div>
+      </div>
     </div>
   </div>
   <div class="actions form-field-align-center">
@@ -26,13 +30,13 @@
 </template>
 
 <script>
-import { knowsAuth, knowsMarkdown } from 'watchout-common-functions/interfaces'
-import * as coralreef from 'watchout-common-functions/lib/coralreef'
+import { knowsMarkdown } from 'watchout-common-functions/interfaces'
 import SubmitButton from 'watchout-common-functions/components/button/Submit'
 import * as STATES from 'watchout-common-functions/lib/states'
 import * as d3 from 'd3'
 
 const colors = {
+  'hui-1': 'rgba(0, 0, 255, 0.35)',
   'bian-1': 'rgba(0, 255, 0, 0.25)',
   'bian-2': 'rgba(0, 255, 0, 0.35)',
   'ma-1': 'rgba(0, 0, 255, 0.25)',
@@ -40,6 +44,7 @@ const colors = {
   'tsai-1': 'rgba(0, 255, 0, 0.25)'
 }
 const presidents = {
+  'hui': '李登輝',
   'bian': '陳水扁',
   'ma': '馬英九',
   'tsai': '蔡英文'
@@ -51,8 +56,8 @@ const SUBMIT_MESSAGES = {
 }
 
 export default {
-  mixins: [knowsAuth, knowsMarkdown],
-  props: ['config'],
+  mixins: [knowsMarkdown],
+  props: ['config', 'onSubmitCallback', 'verified'],
   data() {
     return {
       el: {},
@@ -76,7 +81,7 @@ export default {
         message: null,
         done: false
       },
-      drawn: false
+      initialized: false
     }
   },
   computed: {
@@ -121,7 +126,7 @@ export default {
   mounted() {
     this.init()
     this.draw()
-    this.drawn = true
+    this.initialized = true
   },
   methods: {
     onSubmit() {
@@ -134,13 +139,17 @@ export default {
         this.submit.message = SUBMIT_MESSAGES[FAILED]
       } else {
         this.submit.state = LOADING
+
+        if(!this.verified) window.grecaptcha.execute()
+
         this.rows.orig.forEach(function(row) {
           row.show = true
         })
         this.drawOrig()
-        this.createSpeech()
+
         this.submit.state = SUCCESS
         this.submit.message = SUBMIT_MESSAGES[SUCCESS]
+        this.onSubmitCallback(this.genSpeechData())
       }
     },
     submitted() {
@@ -148,7 +157,7 @@ export default {
         this.submit.done = true
       }
     },
-    createSpeech() {
+    genSpeechData() {
       const keys = ['x', 'y', 'label']
       var points = this.rows.user.filter(u => !u.fix)
       points = points.map(function(point) {
@@ -158,12 +167,11 @@ export default {
         }, {})
       })
       const { speechTarget } = this.config
-      const data = {
-        classes: [speechTarget.type],
+      return {
         targetID: speechTarget.id,
-        data: {points}
+        classes: [speechTarget.speechType],
+        data: { points }
       }
-      coralreef.createLineChartSpeech(data, this.getTokenCookie())
     },
     drawComp(i, title) {
       this.drawPath(this.el.comp[i], this.rows.comp[i], title)
@@ -283,25 +291,31 @@ export default {
           var text = tick.append('g')
             .attr('transform', 'translate(' + [-util.axes.x.scale.step() / 2, size.h - size.p - size.r * 8].join(',') + ')')
 
-          // omit year when repeat
-          if(d.indexOf('/') > -1) {
-            var [y, m] = d.split('/')
+          // draw labels
+          let delim = null
+          if(d.indexOf('/') > -1) { // y/m
+            delim = '/'
+          } else if(d.indexOf('Q') > -1) { // y/q
+            delim = 'Q'
+          }
+          if(delim) {
+            var [a, b] = d.split(delim).map(i => parseInt(i))
             var target = this.previousSibling
-            while(!!target && d3.select(target).datum().indexOf('/') < 0) {
+            while(!!target && d3.select(target).datum().indexOf(delim) < 0) {
               target = target.previousSibling
             }
-            if(!(!!target && d3.select(target).datum().indexOf(y) > -1)) {
+            if(!(!!target && d3.select(target).datum().indexOf(a) > -1)) {
               text.append('text')
-                .attr('dy', 2 * size.rem)
-                .text(y)
+                .attr('dy', 1.875 * size.rem)
+                .text(a)
             }
-            d = m
+            d = b
           }
           if(d % 2 === (nodes.length % 2 === 0 ? 0 : 1)) {
             return
           }
           text.append('text')
-            .text(d + (!this.nextSibling ? config.axes.x.label : ''))
+            .text((config.axes.x.labelBefore ? config.axes.x.labelBefore : '') + d + (!this.nextSibling && config.axes.x.label ? config.axes.x.label : ''))
             .attr('dy', 1 * size.rem)
         })
       }
@@ -350,7 +364,7 @@ export default {
         .attr('height', this.util.axes.y.scale(this.config.axes.y.min) - this.util.axes.y.scale(this.config.axes.y.max))
         .attr('fill', function(d) { return colors[d.label] })
 
-      var lastPresident = 'hui'
+      var lastPresident = 'chiang'
       this.rows.user.forEach(function(row, i, rows) {
         var [president] = row.label.split('-')
         if(president !== lastPresident) {
@@ -425,7 +439,7 @@ export default {
       var viewport = window.innerWidth
       var zoom = viewport > this.size.w ? 1 : viewport / this.size.w
       this.el.container.select('.you-draw')
-        .style('top', this.util.axes.y.scale(lastOrig.y) * zoom - 54 + 'px')
+        .style('top', this.util.axes.y.scale(lastOrig.y) * zoom - 60 + 'px')
         .style('left', this.util.axes.x.scale(lastOrig.x) * zoom + 'px')
         .style('transform', 'scale(' + zoom + ')')
         .style('transform-origin', 'center left')
@@ -451,7 +465,6 @@ export default {
   > .chart {
     position: relative;
     width: 100%;
-    min-height: 6rem;
     margin: 0 auto;
     @keyframes grow {
       0% { width: 0; }
@@ -461,7 +474,7 @@ export default {
       0% { transform: none; }
       100% { transform: translate(52px, -30px); }
     }
-    $animation-time: 1s;
+    $animation-time: 1.5s;
     $animation-iteration-count: infinite;
 
     > .you-draw {
@@ -492,11 +505,17 @@ export default {
     }
 
     > .loading {
-      @include spinner($color: $color-musou);
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translateY(-50%);
+      position: relative;
+      width: 100%;
+      @include rect(1);
+      > .content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        > .spinner {
+          @include spinner($color: $color-musou-light);
+        }
+      }
     }
 
     > svg {
