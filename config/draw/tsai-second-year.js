@@ -162,7 +162,7 @@ export default {
       }
     },
     {
-      id: 'customer-price-index',
+      id: 'consumer-price-index',
       title: '消費者物價指數',
       sheetID: '',
       speechTarget: {
@@ -358,7 +358,7 @@ export default {
       }
     },
     {
-      id: 'power-generate',
+      id: 'renewable-energy',
       title: '再生能源',
       sheetID: '',
       speechTarget: {
