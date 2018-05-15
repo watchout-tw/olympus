@@ -120,10 +120,13 @@ export default {
       }
     })
     if(compare) {
+      const compAttrs = {show: true, fix: true}
       this.rows.comp = compare.map(compareThis =>
-        require('~/data/draw/' + compareThis.id + '.json').map(row =>
-          Object.assign({}, row, {show: true, fix: true}) // have to use fresh empty object
-        )
+        require('~/data/draw/' + compareThis.id + '.json').map(row => {
+          const dataEmpty = row.fix && !row.show
+          // have to use fresh empty object
+          return dataEmpty ? row : Object.assign({}, row, compAttrs)
+        })
       )
     }
   },
@@ -201,7 +204,8 @@ export default {
       }
     },
     drawComp(i, title) {
-      this.drawPath(this.el.comp[i], this.rows.comp[i], title)
+      const { valLabel } = this.config.compare[i]
+      this.drawPath(this.el.comp[i], this.rows.comp[i], title, valLabel)
     },
     drawUser() {
       this.drawPath(this.el.user, this.rows.user)
@@ -209,7 +213,7 @@ export default {
     drawOrig() {
       this.drawPath(this.el.orig, this.rows.orig)
     },
-    drawPath(el, points, title) {
+    drawPath(el, points, title, drawLabels = true) {
       // https://github.com/d3/d3-selection/blob/master/README.md#selection_data
       // General Update Pattern
       // select → data → exit → remove → enter → append → merge
@@ -248,17 +252,19 @@ export default {
         .classed('hide', function(d) { return !d.show })
 
       // draw labels
-      var endpoints = segments.reduce(function(acc, cur) {
-        return acc.concat([cur[0], cur[cur.length - 1]])
-      }, [])
-      var labels = el.selectAll('text.data').data(endpoints, function(d) { return d.x })
-      labels.exit().remove()
-      labels.enter().append('text').merge(labels)
-        .text(function(d) { return self.util.sequence.label.format(d.y) })
-        .attr('x', function(d) { return self.util.axes.x.scale(d.x) })
-        .attr('y', function(d) { return self.util.axes.y.scale(d.y) - self.size.r * 2 })
-        .attr('class', 'data')
-        .classed('hide', function(d) { return !d.show })
+      if(drawLabels) {
+        var endpoints = segments.reduce(function(acc, cur) {
+          return acc.concat([cur[0], cur[cur.length - 1]])
+        }, [])
+        var labels = el.selectAll('text.data').data(endpoints, function(d) { return d.x })
+        labels.exit().remove()
+        labels.enter().append('text').merge(labels)
+          .text(function(d) { return self.util.sequence.label.format(d.y) })
+          .attr('x', function(d) { return self.util.axes.x.scale(d.x) })
+          .attr('y', function(d) { return self.util.axes.y.scale(d.y) - self.size.r * 2 })
+          .attr('class', 'data')
+          .classed('hide', function(d) { return !d.show })
+      }
 
       if(title) {
         var anchor = 2

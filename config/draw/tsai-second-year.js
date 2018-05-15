@@ -3,7 +3,7 @@ export default {
   module: 'draw',
   title: '蔡總統的第二年',
   description: '蔡英文政府已執政滿兩週年，跟過去幾年相比，到底表現好不好呢？沃草透過比較從扁政府、馬政府到蔡政府第一、二年的各項數據，請你先自己畫出心中的感受，再來看看跟真實數據的差多少？',
-  image: 'modules/draw.png',
+  image: 'draw/tsai-second-year.png',
   date: '2017-05-17 22:00:00',
   breaking: false,
   authorship: [
@@ -22,192 +22,11 @@ export default {
   ],
   graphs: [
     {
-      id: 'annual-death',
-      title: '死亡率',
-      sheetID: '',
-      speechTarget: {
-        id: 178,
-        speechType: 'musou_line_chart_response'
-      },
-      axes: {
-        x: {
-          divider: 1,
-          unit: 'year',
-          label: '年'
-        },
-        y: {
-          divider: 10000,
-          unit: 'person',
-          label: '萬人',
-          min: 0,
-          max: 500000,
-          ticks: [0, 250000, 500000],
-          formatString: 'd'
-        }
-      },
-      sequence: {
-        label: {
-          formatString: '.1f'
-        }
-      },
-      text: {
-        title: '死亡率',
-        before: '',
-        after: ''
-      }
-    },
-    {
-      id: 'annual-birth',
-      title: '出生率',
-      sheetID: '',
-      speechTarget: {
-        id: 178,
-        speechType: 'musou_line_chart_response'
-      },
-      axes: {
-        x: {
-          divider: 1,
-          unit: 'year',
-          label: '年'
-        },
-        y: {
-          divider: 10000,
-          unit: 'person',
-          label: '萬人',
-          min: 0,
-          max: 500000,
-          ticks: [0, 250000, 500000],
-          formatString: 'd'
-        }
-      },
-      sequence: {
-        label: {
-          formatString: '.1f'
-        }
-      },
-      compare: [
-        {
-          id: 'annual-death',
-          label: '死亡率'
-        }
-      ],
-      text: {
-        title: '出生率',
-        before: '',
-        after: ''
-      }
-    },
-    {
-      id: 'annual-visitors',
-      title: '每年來台旅客人數',
-      sheetID: '',
-      speechTarget: {
-        id: 176,
-        speechType: 'musou_line_chart_response'
-      },
-      axes: {
-        x: {
-          divider: 1,
-          unit: 'year',
-          label: '年'
-        },
-        y: {
-          divider: 1000000,
-          unit: 'person',
-          label: '百萬人',
-          min: 0,
-          max: 12000000,
-          ticks: [0, 4000000, 8000000, 12000000],
-          formatString: 'd'
-        }
-      },
-      sequence: {
-        label: {
-          formatString: '.1f'
-        }
-      },
-      text: {
-        title: '來台旅客有多少',
-        before: '政黨輪替後，被視為推展觀光績效的來台旅客人數常被拿出來檢驗，到底蔡英文政府執政的第一年，不分國籍的旅客來台旅客是增加還是減少呢？',
-        after: '蔡政府執政第一年，來台旅客**持續增加**中。\n\n根據交通部觀光局[統計數據](http://admin.taiwan.net.tw/statistics/year.aspx?no=134)，民進黨扁政府2007年卸任前來台旅客為371萬人。國民黨馬政府執政後，來台旅客人數持續攀高，至2015年達1,043萬人。2016年民進黨蔡政府執政後，來台旅客人數則持續上升至1,069萬人。'
-      }
-    },
-    {
-      id: 'annual-stock',
-      title: 'STOCK',
-      sheetID: '',
-      speechTarget: {
-        id: 178,
-        speechType: 'musou_line_chart_response'
-      },
-      axes: {
-        x: {
-          divider: 1,
-          unit: 'year',
-          label: '年'
-        },
-        y: {
-          divider: 1000,
-          unit: '千點',
-          label: '千點',
-          min: 0,
-          max: 12000,
-          ticks: [0, 4000, 8000, 12000],
-          formatString: 'd'
-        }
-      },
-      sequence: {
-        label: {
-          formatString: '.1f'
-        }
-      },
-      text: {
-        title: 'stock',
-        before: '',
-        after: ''
-      }
-    },
-    {
-      id: 'unemployment',
-      title: '每年失業率',
-      sheetID: '',
-      speechTarget: {
-        id: 175,
-        speechType: 'musou_line_chart_response'
-      },
-      axes: {
-        x: {
-          divider: 1,
-          unit: 'year',
-          label: '年'
-        },
-        y: {
-          divider: 1,
-          unit: '%',
-          label: '%',
-          min: 0,
-          max: 10,
-          ticks: [0, 5, 10],
-          formatString: 'd'
-        }
-      },
-      sequence: {
-        label: {
-          formatString: '.1f'
-        }
-      },
-      text: {
-        title: '失業率',
-        before: '從馬英九到蔡英文政府，你覺得每年的失業率長怎樣呢？',
-        after: '在2008年世界金融危機後失業率**大幅升高**，之後**穩定下降**。\n\n根據行政院主計處[統計資料](https://www.stat.gov.tw/point.asp?index=3)，國民黨馬政府2008年5月上任時，國內失業率為3.87%。2009年8月時曾一度攀升到6.08％，達到失業率歷史高峰。2016年5月蔡英文上任時，失業率則為3.84％， 就任一年後，目前最新一季的平均失業率是3.80%。'
-      }
-    },
-    {
       id: 'economy-growth-rate',
       title: '經濟成長率',
       sheetID: '',
       speechTarget: {
-        id: 175,
+        id: 489,
         speechType: 'musou_line_chart_response'
       },
       axes: {
@@ -238,11 +57,116 @@ export default {
       }
     },
     {
-      id: 'customer-price-index',
+      id: 'taiwan-stock-exchange-weighted-index',
+      title: '加權股價指數',
+      sheetID: '',
+      speechTarget: {
+        id: 490,
+        speechType: 'musou_line_chart_response'
+      },
+      axes: {
+        x: {
+          divider: 1,
+          unit: 'year',
+          label: '年'
+        },
+        y: {
+          divider: 1000,
+          unit: '千點',
+          label: '千點',
+          min: 0,
+          max: 12000,
+          ticks: [0, 4000, 8000, 12000],
+          formatString: 'd'
+        }
+      },
+      sequence: {
+        label: {
+          formatString: '.1f'
+        }
+      },
+      text: {
+        title: '加權股價指數',
+        before: '',
+        after: ''
+      }
+    },
+    {
+      id: 'unemployment',
+      title: '每年失業率',
+      sheetID: '',
+      speechTarget: {
+        id: 491,
+        speechType: 'musou_line_chart_response'
+      },
+      axes: {
+        x: {
+          divider: 1,
+          unit: 'year',
+          label: '年'
+        },
+        y: {
+          divider: 1,
+          unit: '%',
+          label: '%',
+          min: 0,
+          max: 10,
+          ticks: [0, 5, 10],
+          formatString: 'd'
+        }
+      },
+      sequence: {
+        label: {
+          formatString: '.1f'
+        }
+      },
+      text: {
+        title: '失業率',
+        before: '從馬英九到蔡英文政府，你覺得每年的失業率長怎樣呢？',
+        after: '在2008年世界金融危機後失業率**大幅升高**，之後**穩定下降**。\n\n根據行政院主計處[統計資料](https://www.stat.gov.tw/point.asp?index=3)，國民黨馬政府2008年5月上任時，國內失業率為3.87%。2009年8月時曾一度攀升到6.08％，達到失業率歷史高峰。2016年5月蔡英文上任時，失業率則為3.84％， 就任一年後，目前最新一季的平均失業率是3.80%。'
+      }
+    },
+    {
+      id: 'working-hours',
+      title: '工時',
+      sheetID: '',
+      speechTarget: {
+        id: 492,
+        speechType: 'musou_line_chart_response'
+      },
+      axes: {
+        x: {
+          divider: 1,
+          unit: 'year',
+          label: '年'
+        },
+        y: {
+          divider: 1,
+          unit: 'hr',
+          label: '小時',
+          min: 160,
+          max: 200,
+          ticks: [160, 170, 180, 190, 200],
+          formatString: 'd'
+        }
+      },
+      sequence: {
+        label: {
+          formatString: '.1f'
+        }
+      },
+      text: {
+        title: '工時',
+        before: '',
+        after: ''
+      }
+    },
+    {
+      id: 'consumer-price-index',
       title: '消費者物價指數',
       sheetID: '',
       speechTarget: {
-        id: 175,
+        id: 493,
         speechType: 'musou_line_chart_response'
       },
       axes: {
@@ -277,7 +201,7 @@ export default {
       title: '年均所得',
       sheetID: '', // run get.py and get sheetID from data/graphs.json
       speechTarget: {
-        id: 178,
+        id: 494,
         speechType: 'musou_line_chart_response'
       },
       axes: {
@@ -287,12 +211,12 @@ export default {
           label: '月'
         },
         y: {
-          divider: 1,
-          unit: '',
-          label: '',
-          min: 60,
-          max: 120,
-          ticks: [60, 80, 100, 120],
+          divider: 1000,
+          unit: 'NTD',
+          label: '千元',
+          min: 36000,
+          max: 54000,
+          ticks: [36000, 45000, 54000],
           formatString: 'd'
         }
       },
@@ -303,8 +227,9 @@ export default {
       },
       compare: [
         {
-          id: 'customer-price-index',
-          label: '消費者物價指數'
+          id: 'income-based-cpi',
+          label: '消費者物價指數',
+          valLabel: false
         }
       ],
       text: {
@@ -314,11 +239,11 @@ export default {
       }
     },
     {
-      id: 'working-hours',
-      title: '工時',
+      id: 'annual-birth',
+      title: '出生率',
       sheetID: '',
       speechTarget: {
-        id: 175,
+        id: 495,
         speechType: 'musou_line_chart_response'
       },
       axes: {
@@ -328,12 +253,12 @@ export default {
           label: '年'
         },
         y: {
-          divider: 1,
-          unit: 'hr',
-          label: '小時',
-          min: 160,
-          max: 200,
-          ticks: [160, 170, 180, 190, 200],
+          divider: 10000,
+          unit: 'person',
+          label: '萬人',
+          min: 0,
+          max: 500000,
+          ticks: [0, 250000, 500000],
           formatString: 'd'
         }
       },
@@ -342,33 +267,40 @@ export default {
           formatString: '.1f'
         }
       },
+      compare: [
+        {
+          id: 'annual-death',
+          label: '死亡率',
+          valLabel: true
+        }
+      ],
       text: {
-        title: '工時',
+        title: '出生率',
         before: '',
         after: ''
       }
     },
     {
-      id: 'air-pollution-shalu',
-      title: '空氣指數【沙鹿】',
+      id: 'annual-visitors',
+      title: '每年來台旅客人數',
       sheetID: '',
       speechTarget: {
-        id: 175,
+        id: 496,
         speechType: 'musou_line_chart_response'
       },
       axes: {
         x: {
           divider: 1,
-          unit: 'quarter',
-          labelBefore: 'Q'
+          unit: 'year',
+          label: '年'
         },
         y: {
-          divider: 1,
-          unit: '',
-          label: '',
+          divider: 1000000,
+          unit: 'person',
+          label: '百萬人',
           min: 0,
-          max: 75,
-          ticks: [0, 25, 50, 75],
+          max: 12000000,
+          ticks: [0, 4000000, 8000000, 12000000],
           formatString: 'd'
         }
       },
@@ -377,10 +309,17 @@ export default {
           formatString: '.1f'
         }
       },
+      compare: [
+        {
+          id: 'annual-visitors-china',
+          label: '中國每年來台旅客人數',
+          valLabel: true
+        }
+      ],
       text: {
-        title: '空氣指數【沙鹿】',
-        before: '',
-        after: ''
+        title: '來台旅客有多少',
+        before: '政黨輪替後，被視為推展觀光績效的來台旅客人數常被拿出來檢驗，到底蔡英文政府執政的第一年，不分國籍的旅客來台旅客是增加還是減少呢？',
+        after: '蔡政府執政第一年，來台旅客**持續增加**中。\n\n根據交通部觀光局[統計數據](http://admin.taiwan.net.tw/statistics/year.aspx?no=134)，民進黨扁政府2007年卸任前來台旅客為371萬人。國民黨馬政府執政後，來台旅客人數持續攀高，至2015年達1,043萬人。2016年民進黨蔡政府執政後，來台旅客人數則持續上升至1,069萬人。'
       }
     },
     {
@@ -388,7 +327,7 @@ export default {
       title: '空氣指數【楠梓】',
       sheetID: '',
       speechTarget: {
-        id: 175,
+        id: 497,
         speechType: 'musou_line_chart_response'
       },
       axes: {
@@ -419,46 +358,11 @@ export default {
       }
     },
     {
-      id: 'nuclear-power',
-      title: '核能',
-      sheetID: '',
-      speechTarget: {
-        id: 175,
-        speechType: 'musou_line_chart_response'
-      },
-      axes: {
-        x: {
-          divider: 1,
-          unit: 'year',
-          label: '年'
-        },
-        y: {
-          divider: 1,
-          unit: '億度',
-          label: '億度',
-          min: 0,
-          max: 500,
-          ticks: [0, 100, 200, 300, 400, 500],
-          formatString: 'd'
-        }
-      },
-      sequence: {
-        label: {
-          formatString: '.1f'
-        }
-      },
-      text: {
-        title: '核能',
-        before: '',
-        after: ''
-      }
-    },
-    {
-      id: 'power-generate',
+      id: 'renewable-energy',
       title: '再生能源',
       sheetID: '',
       speechTarget: {
-        id: 175,
+        id: 498,
         speechType: 'musou_line_chart_response'
       },
       axes: {
@@ -468,9 +372,9 @@ export default {
           label: '年'
         },
         y: {
-          divider: 1,
-          unit: '億度',
-          label: '億度',
+          divider: 10,
+          unit: '十億度',
+          label: '十億度',
           min: 0,
           max: 500,
           ticks: [0, 100, 200, 300, 400, 500],
@@ -485,7 +389,8 @@ export default {
       compare: [
         {
           id: 'nuclear-power',
-          label: '核能'
+          label: '核能',
+          valLabel: true
         }
       ],
       text: {
