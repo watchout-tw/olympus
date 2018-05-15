@@ -18,7 +18,8 @@ export default {
     initReCaptcha() {
       const self = this
       setTimeout(function() {
-        if(window.grecaptcha) {
+        // the `render` function has a delay...
+        if(window.grecaptcha && typeof window.grecaptcha.render === 'function') {
           window.grecaptcha.render('recaptcha', {
             sitekey: config.reCaptchaSiteKey,
             size: SIZE,

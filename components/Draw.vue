@@ -10,7 +10,7 @@
     </div>
   </div>
   <div class="charts tcl-container">
-    <re-captcha :verified.sync="verified" :token.sync="token" :callback="createSpeech"></re-captcha>
+    <re-captcha v-if="useReCAPTCHA" :verified.sync="verified" :token.sync="token" :callback="createSpeech"></re-captcha>
     <div class="tcl-panel with-top-bottom-margin with-double-top-margin chart-container" v-for="config in project.graphs" :key="config.id">
       <line-chart :speechData.sync="speechData" :config="config" :verified="verified" @submitCallback="createSpeech"></line-chart>
     </div>
@@ -38,7 +38,7 @@ export default {
   props: ['module', 'project'],
   data() {
     return {
-      useReCAPTCHA: true,
+      useReCAPTCHA: false,
       verified: false,
       token: null,
       speechData: {}
