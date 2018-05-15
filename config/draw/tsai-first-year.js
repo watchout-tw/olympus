@@ -158,7 +158,8 @@ export default {
       compare: [
         {
           id: 'monthly-visitors-china',
-          label: '中國旅客每月來台人數'
+          label: '中國旅客每月來台人數',
+          valLabel: true
         }
       ],
       text: {
@@ -236,7 +237,8 @@ export default {
       compare: [
         {
           id: 'annual-revenue',
-          label: '中央政府歲入'
+          label: '中央政府歲入',
+          valLabel: true
         }
       ],
       text: {
