@@ -27,7 +27,7 @@ export default {
       sheetID: '541577362',
       speechTarget: {
         id: 482,
-        type: 'musou_line_chart_response'
+        speechType: 'musou_line_chart_response'
       },
       axes: {
         x: {
@@ -62,7 +62,7 @@ export default {
       sheetID: '1810543594',
       speechTarget: {
         id: 483,
-        type: 'musou_line_chart_response'
+        speechType: 'musou_line_chart_response'
       },
       axes: {
         x: {
@@ -97,7 +97,7 @@ export default {
       sheetID: '918177893', // run get.py and get sheetID from data/graphs.json
       speechTarget: {
         id: 484,
-        type: 'musou_line_chart_response'
+        speechType: 'musou_line_chart_response'
       },
       axes: {
         x: {
@@ -132,7 +132,7 @@ export default {
       sheetID: '918177893', // run get.py and get sheetID from data/graphs.json
       speechTarget: {
         id: 485,
-        type: 'musou_line_chart_response'
+        speechType: 'musou_line_chart_response'
       },
       axes: {
         x: {
@@ -174,7 +174,7 @@ export default {
       sheetID: '1456792974',
       speechTarget: {
         id: 486,
-        type: 'musou_line_chart_response'
+        speechType: 'musou_line_chart_response'
       },
       axes: {
         x: {
@@ -210,7 +210,7 @@ export default {
       sheetID: '1456792974',
       speechTarget: {
         id: 487,
-        type: 'musou_line_chart_response'
+        speechType: 'musou_line_chart_response'
       },
       axes: {
         x: {
@@ -253,7 +253,7 @@ export default {
       sheetID: '92876274',
       speechTarget: {
         id: 488,
-        type: 'musou_line_chart_response'
+        speechType: 'musou_line_chart_response'
       },
       axes: {
         x: {
