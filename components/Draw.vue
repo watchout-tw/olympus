@@ -40,7 +40,7 @@ export default {
       useReCAPTCHA: false,
       verified: false,
       token: null,
-      submittingChartID: ''
+      submittingChartID: null
     }
   },
   mounted() {

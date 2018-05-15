@@ -16,7 +16,7 @@
     </div>
   </div>
   <div class="actions form-field-align-center">
-    <submit-button :classes="['musou']" :label="'畫好了啦'" :state.sync="submit.state" :message.sync="submit.message" :once="true" @click.native="onSubmit" @reset="submitted"></submit-button>
+    <submit-button :classes="['musou']" :label="'畫好了啦'" :state.sync="submit.state" :message.sync="submit.message" :once="true" @click.native="onSubmit" @reset="hasSubmitted"></submit-button>
   </div>
   <div class="after tcl-left-right-margin">
     <div class="score">
@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { knowsMarkdown } from 'watchout-common-functions/interfaces'
+import { knowsError, knowsMarkdown } from 'watchout-common-functions/interfaces'
 import SubmitButton from 'watchout-common-functions/components/button/Submit'
 import * as coralreef from 'watchout-common-functions/lib/coralreef'
 import * as STATES from 'watchout-common-functions/lib/states'
@@ -52,15 +52,13 @@ const presidents = {
 }
 const UNDONE_SCORE = -1
 const SUBMIT_MESSAGES = {
-  [STATES.FAILED]: {
-    UNDONE: '你沒畫完',
-    UNCONNECTED: '記錄失敗'
-  },
+  [STATES.INCOMPLETE]: '你沒畫完',
+  [STATES.FAILED]: '紀錄失敗',
   [STATES.SUCCESS]: '已記錄'
 }
 
 export default {
-  mixins: [knowsMarkdown],
+  mixins: [knowsError, knowsMarkdown],
   props: ['config', 'verified', 'useReCAPTCHA', 'submittingChartID', 'token'],
   data() {
     return {
@@ -125,6 +123,7 @@ export default {
         require('~/data/draw/' + compareThis.id + '.json').map(row => {
           const dataEmpty = row.fix && !row.show
           // have to use fresh empty object
+          // <chihao> Has to be fresh!
           return dataEmpty ? row : Object.assign({}, row, compAttrs)
         })
       )
@@ -140,39 +139,41 @@ export default {
       if(newVerified === oldVerified || !newVerified) return
 
       if(this.useReCAPTCHA && this.submittingChartID === this.config.id) {
-        this.showAnswer()
+        this.finalize()
       }
     }
   },
   methods: {
     onSubmit() {
-      const { DEFAULT, FAILED, LOADING } = STATES
-      if(this.submit.state !== DEFAULT) return
+      if(this.submit.state !== STATES.DEFAULT) {
+        return
+      }
 
       if(this.score === UNDONE_SCORE) {
-        this.submit.state = FAILED
-        this.submit.message = SUBMIT_MESSAGES[FAILED].UNDONE
+        this.submit.state = STATES.INCOMPLETE
+        this.submit.message = SUBMIT_MESSAGES[STATES.INCOMPLETE]
       } else {
-        this.submit.state = LOADING
-
+        this.submit.state = STATES.LOADING
         this.$emit('update:submittingChartID', this.config.id)
 
-        if(!this.verified) window.grecaptcha.execute()
-        else this.showAnswer()
+        if(!this.verified) {
+          window.grecaptcha.execute()
+        } else {
+          this.finalize()
+        }
       }
     },
-    showAnswer() {
+    finalize() {
+      // record speech
       const speechData = this.genSpeechData()
       const { token, useReCAPTCHA } = this
       coralreef.createSpeech(speechData, token, useReCAPTCHA).then(() => {
-        const { SUCCESS } = STATES
-        this.submit.state = SUCCESS
-        this.submit.message = SUBMIT_MESSAGES[SUCCESS]
+        this.submit.state = STATES.SUCCESS
+        this.submit.message = SUBMIT_MESSAGES[STATES.SUCCESS]
       }).catch((error) => {
-        console.error(error)
-        const { FAILED } = STATES
-        this.submit.state = FAILED
-        this.submit.message = SUBMIT_MESSAGES[FAILED].UNCONNECTED
+        this.submit.state = STATES.FAILED
+        this.submit.message = SUBMIT_MESSAGES[STATES.FAILED]
+        this.handleError(error)
       })
 
       // draw original
@@ -180,9 +181,11 @@ export default {
         row.show = true
       })
       this.drawOrig()
-      if(this.useReCAPTCHA) this.$emit('update:verified', false)
+      if(this.useReCAPTCHA) {
+        this.$emit('update:verified', false)
+      }
     },
-    submitted() {
+    hasSubmitted() {
       if(this.submit.state === STATES.SUCCESS) {
         this.submit.done = true
       }
@@ -328,7 +331,7 @@ export default {
           let delim = null
           if(d.indexOf('/') > -1) { // y/m
             delim = '/'
-          } else if(d.indexOf('Q') > -1) { // y/q
+          } else if(d.indexOf('Q') > -1) { // yQq
             delim = 'Q'
           }
           if(delim) {
