@@ -7,8 +7,10 @@ import projThreePrinciples from '~/config/qz/3-principles'
 import projCongressMidtermMockExam from '~/config/qz/congress-midterm-mock-exam'
 import projAnotherFuture from '~/config/journey/another-future'
 import projLaborStandardAct from '~/config/swipe/labor-standard-act'
+import projTsaiSecondYear from '~/config/draw/tsai-second-year'
 
 export const projects = [
+  projTsaiSecondYear,
   projLaborStandardAct,
   projAnotherFuture,
   projCongressMidtermMockExam,

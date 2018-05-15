@@ -66,14 +66,7 @@ export default {
 
 .draw {
   > .conclusion {
-    &:before {
-      content: '';
-      display: block;
-      width: 2rem;
-      height: 2px;
-      background-color: $color-generic-grey;
-      margin: 2rem auto;
-    }
+    margin-top: 4rem;
   }
 }
 </style>

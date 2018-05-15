@@ -120,7 +120,14 @@
     },
     {
         "x": "2017",
-        "y": "3.8",
+        "y": "3.76",
+        "label": "tsai-1",
+        "show": false,
+        "fix": false
+    },
+    {
+        "x": "2018",
+        "y": "3.67",
         "label": "tsai-1",
         "show": false,
         "fix": false

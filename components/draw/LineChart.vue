@@ -1,26 +1,30 @@
 <template>
-<div class="line-chart" :id="config.id">
+<div class="line-chart" :id="config.id" :class="submit.done ? ['done'] : []">
   <div class="before tcl-left-right-margin">
     <h3 class="title">{{ config.text.title }}</h3>
     <div class="paragraphs no-margin" v-html="markdown(config.text.before)"></div>
   </div>
   <div class="chart">
-    <div v-show="!drawn" class="loading"></div>
-    <div v-show="drawn" class="you-draw">
+    <div v-show="initialized" class="you-draw">
       <div class="line"></div>
       <div class="hand"></div>
     </div>
+    <div v-if="!initialized" class="loading">
+      <div class="content">
+        <div class="spinner"></div>
+      </div>
+    </div>
+  </div>
+  <div class="actions form-field-align-center">
+    <submit-button :classes="['musou']" :label="'畫好了啦'" :state.sync="submit.state" :message.sync="submit.message" :once="true" @click.native="onSubmit" @reset="submitted"></submit-button>
   </div>
   <div class="after tcl-left-right-margin">
-    <template v-if="submit.done">
-      <div class="score">
-        <div>畫的有</div>
-        <div class="number">{{ score }}</div>
-        <div>分像呢</div>
-      </div>
-      <div class="paragraphs no-margin" v-html="markdown(config.text.after)"></div>
-    </template>
-    <submit-button v-else :classes="['musou']" :label="'畫好了啦'" :state.sync="submit.state" :message.sync="submit.message" @click.native="onSubmit" @reset="submitted"></submit-button>
+    <div class="score">
+      <div>畫的有</div>
+      <div class="number">{{ score }}</div>
+      <div>分像呢</div>
+    </div>
+    <div class="paragraphs no-margin" v-html="markdown(config.text.after)"></div>
   </div>
 </div>
 </template>
@@ -32,6 +36,7 @@ import * as STATES from 'watchout-common-functions/lib/states'
 import * as d3 from 'd3'
 
 const colors = {
+  'hui-1': 'rgba(0, 0, 255, 0.35)',
   'bian-1': 'rgba(0, 255, 0, 0.25)',
   'bian-2': 'rgba(0, 255, 0, 0.35)',
   'ma-1': 'rgba(0, 0, 255, 0.25)',
@@ -39,13 +44,14 @@ const colors = {
   'tsai-1': 'rgba(0, 255, 0, 0.25)'
 }
 const presidents = {
+  'hui': '李登輝',
   'bian': '陳水扁',
   'ma': '馬英九',
   'tsai': '蔡英文'
 }
 const UNDONE_SCORE = -1
 const SUBMIT_MESSAGES = {
-  [STATES.FAILED]: '要畫完ㄛ',
+  [STATES.FAILED]: '你沒畫完',
   [STATES.SUCCESS]: '已記錄'
 }
 
@@ -75,7 +81,7 @@ export default {
         message: null,
         done: false
       },
-      drawn: false
+      initialized: false
     }
   },
   computed: {
@@ -120,18 +126,20 @@ export default {
   mounted() {
     this.init()
     this.draw()
-    this.drawn = true
+    this.initialized = true
   },
   methods: {
     onSubmit() {
       const { SUCCESS, DEFAULT, FAILED, LOADING } = STATES
-      if(this.submit.state !== DEFAULT) return
-
+      if(this.submit.state !== DEFAULT) {
+        return
+      }
       if(this.score === UNDONE_SCORE) {
         this.submit.state = FAILED
         this.submit.message = SUBMIT_MESSAGES[FAILED]
       } else {
         this.submit.state = LOADING
+
         if(!this.verified) window.grecaptcha.execute()
 
         this.rows.orig.forEach(function(row) {
@@ -160,9 +168,9 @@ export default {
       })
       const { speechTarget } = this.config
       return {
-        classes: [speechTarget.type],
         targetID: speechTarget.id,
-        data: {points}
+        classes: [speechTarget.speechType],
+        data: { points }
       }
     },
     drawComp(i, title) {
@@ -283,25 +291,31 @@ export default {
           var text = tick.append('g')
             .attr('transform', 'translate(' + [-util.axes.x.scale.step() / 2, size.h - size.p - size.r * 8].join(',') + ')')
 
-          // omit year when repeat
-          if(d.indexOf('/') > -1) {
-            var [y, m] = d.split('/')
+          // draw labels
+          let delim = null
+          if(d.indexOf('/') > -1) { // y/m
+            delim = '/'
+          } else if(d.indexOf('Q') > -1) { // y/q
+            delim = 'Q'
+          }
+          if(delim) {
+            var [a, b] = d.split(delim).map(i => parseInt(i))
             var target = this.previousSibling
-            while(!!target && d3.select(target).datum().indexOf('/') < 0) {
+            while(!!target && d3.select(target).datum().indexOf(delim) < 0) {
               target = target.previousSibling
             }
-            if(!(!!target && d3.select(target).datum().indexOf(y) > -1)) {
+            if(!(!!target && d3.select(target).datum().indexOf(a) > -1)) {
               text.append('text')
-                .attr('dy', 2 * size.rem)
-                .text(y)
+                .attr('dy', 1.875 * size.rem)
+                .text(a)
             }
-            d = m
+            d = b
           }
           if(d % 2 === (nodes.length % 2 === 0 ? 0 : 1)) {
             return
           }
           text.append('text')
-            .text(d + (!this.nextSibling ? config.axes.x.label : ''))
+            .text((config.axes.x.labelBefore ? config.axes.x.labelBefore : '') + d + (!this.nextSibling && config.axes.x.label ? config.axes.x.label : ''))
             .attr('dy', 1 * size.rem)
         })
       }
@@ -350,7 +364,7 @@ export default {
         .attr('height', this.util.axes.y.scale(this.config.axes.y.min) - this.util.axes.y.scale(this.config.axes.y.max))
         .attr('fill', function(d) { return colors[d.label] })
 
-      var lastPresident = 'hui'
+      var lastPresident = 'chiang'
       this.rows.user.forEach(function(row, i, rows) {
         var [president] = row.label.split('-')
         if(president !== lastPresident) {
@@ -425,7 +439,7 @@ export default {
       var viewport = window.innerWidth
       var zoom = viewport > this.size.w ? 1 : viewport / this.size.w
       this.el.container.select('.you-draw')
-        .style('top', this.util.axes.y.scale(lastOrig.y) * zoom - 54 + 'px')
+        .style('top', this.util.axes.y.scale(lastOrig.y) * zoom - 60 + 'px')
         .style('left', this.util.axes.x.scale(lastOrig.x) * zoom + 'px')
         .style('transform', 'scale(' + zoom + ')')
         .style('transform-origin', 'center left')
@@ -451,7 +465,6 @@ export default {
   > .chart {
     position: relative;
     width: 100%;
-    min-height: 6rem;
     margin: 0 auto;
     @keyframes grow {
       0% { width: 0; }
@@ -461,7 +474,7 @@ export default {
       0% { transform: none; }
       100% { transform: translate(52px, -30px); }
     }
-    $animation-time: 1s;
+    $animation-time: 1.5s;
     $animation-iteration-count: infinite;
 
     > .you-draw {
@@ -492,11 +505,17 @@ export default {
     }
 
     > .loading {
-      @include spinner($color: $color-musou);
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translateY(-50%);
+      position: relative;
+      width: 100%;
+      @include rect(1);
+      > .content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        > .spinner {
+          @include spinner($color: $color-musou-light);
+        }
+      }
     }
 
     > svg {
@@ -570,9 +589,12 @@ export default {
       }
     }
   }
+  > .actions {
+    margin: 0.5rem 0;
+  }
   > .after {
-    position: relative;
-
+    visibility: hidden;
+    margin-bottom: 2rem;
     > .score {
       text-align: center;
       font-size: 0.875rem;
@@ -589,12 +611,10 @@ export default {
     > .text {
       margin-top: 1rem;
     }
-    > .submit-button {
-      min-width: 6rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: inline-block;
-      color: white;
+  }
+  &.done {
+    > .after {
+      visibility: visible;
     }
   }
 }
