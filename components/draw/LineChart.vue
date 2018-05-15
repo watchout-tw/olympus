@@ -120,8 +120,9 @@ export default {
       const compAttrs = {show: true, fix: true}
       this.rows.comp = compare.map(compareThis =>
         require('~/data/draw/' + compareThis.id + '.json').map(row => {
+          const dataEmpty = row.fix && !row.show
           // have to use fresh empty object
-          return row.empty ? row : Object.assign({}, row, compAttrs)
+          return dataEmpty ? row : Object.assign({}, row, compAttrs)
         })
       )
     }
