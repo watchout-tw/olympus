@@ -117,10 +117,12 @@ export default {
       }
     })
     if(compare) {
+      const compAttrs = {show: true, fix: true}
       this.rows.comp = compare.map(compareThis =>
-        require('~/data/draw/' + compareThis.id + '.json').map(row =>
-          Object.assign({}, row, {show: true, fix: true}) // have to use fresh empty object
-        )
+        require('~/data/draw/' + compareThis.id + '.json').map(row => {
+          // have to use fresh empty object
+          return row.empty ? row : Object.assign({}, row, compAttrs)
+        })
       )
     }
   },
