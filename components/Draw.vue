@@ -30,7 +30,7 @@
 <script>
 import { knowsMarkdown, knowsAuth } from 'watchout-common-functions/interfaces'
 import * as coralreef from 'watchout-common-functions/lib/coralreef'
-import ReCaptcha from '~/components/common/ReCaptcha'
+import ReCaptcha from 'watchout-common-functions/components/ReCAPTCHA'
 import LineChart from './draw/LineChart'
 
 export default {
