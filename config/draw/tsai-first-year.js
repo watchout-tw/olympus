@@ -20,7 +20,7 @@ export default {
       people: ['游知澔']
     }
   ],
-  graphs: [
+  charts: [
     {
       id: 'unemployment',
       title: '每年失業率',

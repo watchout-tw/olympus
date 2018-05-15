@@ -20,7 +20,7 @@ export default {
       people: ['陳昭廷', '游知澔']
     }
   ],
-  graphs: [
+  charts: [
     {
       id: 'economy-growth-rate',
       title: '經濟成長率',
