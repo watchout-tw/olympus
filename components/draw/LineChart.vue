@@ -131,10 +131,9 @@ export default {
   },
   watch: {
     verified(newVerified, oldVerified) {
-      if(newVerified === oldVerified) return
+      if(newVerified === oldVerified || !newVerified) return
 
-      const verifiedByReCaptcha = this.useReCAPTCHA && newVerified
-      if(verifiedByReCaptcha && this.submittingChartID === this.config.id) {
+      if(this.useReCAPTCHA && this.submittingChartID === this.config.id) {
         this.showAnswer()
       }
     }
@@ -169,6 +168,7 @@ export default {
       const { SUCCESS } = STATES
       this.submit.state = SUCCESS
       this.submit.message = SUBMIT_MESSAGES[SUCCESS]
+      if(this.useReCAPTCHA) this.$emit('update:verified', false)
     },
     submitted() {
       if(this.submit.state === STATES.SUCCESS) {
