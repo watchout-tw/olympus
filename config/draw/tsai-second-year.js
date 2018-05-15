@@ -57,8 +57,8 @@ export default {
       }
     },
     {
-      id: 'annual-stock',
-      title: 'STOCK',
+      id: 'taiwan-stock-exchange-weighted-index',
+      title: '加權股價指數',
       sheetID: '',
       speechTarget: {
         id: 490,
@@ -86,7 +86,7 @@ export default {
         }
       },
       text: {
-        title: 'stock',
+        title: '加權股價指數',
         before: '',
         after: ''
       }
@@ -211,9 +211,9 @@ export default {
           label: '月'
         },
         y: {
-          divider: 1,
+          divider: 1000,
           unit: 'NTD',
-          label: '元',
+          label: '千元',
           min: 36000,
           max: 54000,
           ticks: [36000, 45000, 54000],
@@ -372,9 +372,9 @@ export default {
           label: '年'
         },
         y: {
-          divider: 1,
-          unit: '億度',
-          label: '億度',
+          divider: 10,
+          unit: '十億度',
+          label: '十億度',
           min: 0,
           max: 500,
           ticks: [0, 100, 200, 300, 400, 500],
