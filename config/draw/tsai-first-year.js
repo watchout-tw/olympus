@@ -26,7 +26,7 @@ export default {
       title: '每年失業率',
       sheetID: '541577362',
       speechTarget: {
-        id: 175,
+        id: 482,
         type: 'musou_line_chart_response'
       },
       axes: {
@@ -61,7 +61,7 @@ export default {
       title: '每年來台旅客人數',
       sheetID: '1810543594',
       speechTarget: {
-        id: 176,
+        id: 483,
         type: 'musou_line_chart_response'
       },
       axes: {
@@ -96,7 +96,7 @@ export default {
       title: '中國旅客每月來台人數',
       sheetID: '918177893', // run get.py and get sheetID from data/graphs.json
       speechTarget: {
-        id: 177,
+        id: 484,
         type: 'musou_line_chart_response'
       },
       axes: {
@@ -131,7 +131,7 @@ export default {
       title: '世界旅客每月來台人數',
       sheetID: '918177893', // run get.py and get sheetID from data/graphs.json
       speechTarget: {
-        id: 178,
+        id: 485,
         type: 'musou_line_chart_response'
       },
       axes: {
@@ -173,7 +173,7 @@ export default {
       title: '中央政府歲入',
       sheetID: '1456792974',
       speechTarget: {
-        id: 179,
+        id: 486,
         type: 'musou_line_chart_response'
       },
       axes: {
@@ -209,7 +209,7 @@ export default {
       title: '中央政府歲出',
       sheetID: '1456792974',
       speechTarget: {
-        id: 180,
+        id: 487,
         type: 'musou_line_chart_response'
       },
       axes: {
@@ -252,7 +252,7 @@ export default {
       title: '中央政府一年以上公共債務未償餘額',
       sheetID: '92876274',
       speechTarget: {
-        id: 181,
+        id: 488,
         type: 'musou_line_chart_response'
       },
       axes: {

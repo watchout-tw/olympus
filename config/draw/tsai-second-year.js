@@ -26,7 +26,7 @@ export default {
       title: '經濟成長率',
       sheetID: '',
       speechTarget: {
-        id: 175,
+        id: 489,
         speechType: 'musou_line_chart_response'
       },
       axes: {
@@ -61,7 +61,7 @@ export default {
       title: 'STOCK',
       sheetID: '',
       speechTarget: {
-        id: 178,
+        id: 490,
         speechType: 'musou_line_chart_response'
       },
       axes: {
@@ -96,7 +96,7 @@ export default {
       title: '每年失業率',
       sheetID: '',
       speechTarget: {
-        id: 175,
+        id: 491,
         speechType: 'musou_line_chart_response'
       },
       axes: {
@@ -131,7 +131,7 @@ export default {
       title: '工時',
       sheetID: '',
       speechTarget: {
-        id: 175,
+        id: 492,
         speechType: 'musou_line_chart_response'
       },
       axes: {
@@ -166,7 +166,7 @@ export default {
       title: '消費者物價指數',
       sheetID: '',
       speechTarget: {
-        id: 175,
+        id: 493,
         speechType: 'musou_line_chart_response'
       },
       axes: {
@@ -201,7 +201,7 @@ export default {
       title: '年均所得',
       sheetID: '', // run get.py and get sheetID from data/graphs.json
       speechTarget: {
-        id: 178,
+        id: 494,
         speechType: 'musou_line_chart_response'
       },
       axes: {
@@ -243,7 +243,7 @@ export default {
       title: '出生率',
       sheetID: '',
       speechTarget: {
-        id: 178,
+        id: 495,
         speechType: 'musou_line_chart_response'
       },
       axes: {
@@ -285,7 +285,7 @@ export default {
       title: '每年來台旅客人數',
       sheetID: '',
       speechTarget: {
-        id: 176,
+        id: 496,
         speechType: 'musou_line_chart_response'
       },
       axes: {
@@ -327,7 +327,7 @@ export default {
       title: '空氣指數【楠梓】',
       sheetID: '',
       speechTarget: {
-        id: 175,
+        id: 497,
         speechType: 'musou_line_chart_response'
       },
       axes: {
@@ -362,7 +362,7 @@ export default {
       title: '再生能源',
       sheetID: '',
       speechTarget: {
-        id: 175,
+        id: 498,
         speechType: 'musou_line_chart_response'
       },
       axes: {
