@@ -32,6 +32,7 @@
 <script>
 import { knowsMarkdown } from 'watchout-common-functions/interfaces'
 import SubmitButton from 'watchout-common-functions/components/button/Submit'
+import * as coralreef from 'watchout-common-functions/lib/coralreef'
 import * as STATES from 'watchout-common-functions/lib/states'
 import * as d3 from 'd3'
 
@@ -57,7 +58,7 @@ const SUBMIT_MESSAGES = {
 
 export default {
   mixins: [knowsMarkdown],
-  props: ['config', 'verified', 'speechData', 'submitCallback'],
+  props: ['config', 'verified', 'useReCAPTCHA', 'submittingChartID', 'token'],
   data() {
     return {
       el: {},
@@ -128,9 +129,19 @@ export default {
     this.draw()
     this.initialized = true
   },
+  watch: {
+    verified(newVerified, oldVerified) {
+      if(newVerified === oldVerified) return
+
+      const verifiedByReCaptcha = this.useReCAPTCHA && newVerified
+      if(verifiedByReCaptcha && this.submittingChartID === this.config.id) {
+        this.showAnswer()
+      }
+    }
+  },
   methods: {
     onSubmit() {
-      const { SUCCESS, DEFAULT, FAILED, LOADING } = STATES
+      const { DEFAULT, FAILED, LOADING } = STATES
       if(this.submit.state !== DEFAULT) return
 
       if(this.score === UNDONE_SCORE) {
@@ -139,18 +150,25 @@ export default {
       } else {
         this.submit.state = LOADING
 
-        this.rows.orig.forEach(function(row) {
-          row.show = true
-        })
-        this.drawOrig()
-
-        this.submit.state = SUCCESS
-        this.submit.message = SUBMIT_MESSAGES[SUCCESS]
-        this.$emit('update:speechData', this.genSpeechData())
+        this.$emit('update:submittingChartID', this.config.id)
 
         if(!this.verified) window.grecaptcha.execute()
-        else this.$emit('submitCallback')
+        else this.showAnswer()
       }
+    },
+    showAnswer() {
+      const speechData = this.genSpeechData()
+      const { token, useReCAPTCHA } = this
+      coralreef.createSpeech(speechData, token, useReCAPTCHA)
+
+      this.rows.orig.forEach(function(row) {
+        row.show = true
+      })
+      this.drawOrig()
+
+      const { SUCCESS } = STATES
+      this.submit.state = SUCCESS
+      this.submit.message = SUBMIT_MESSAGES[SUCCESS]
     },
     submitted() {
       if(this.submit.state === STATES.SUCCESS) {
