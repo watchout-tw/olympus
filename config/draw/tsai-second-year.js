@@ -212,11 +212,11 @@ export default {
         },
         y: {
           divider: 1,
-          unit: '',
-          label: '',
-          min: 60,
-          max: 120,
-          ticks: [60, 80, 100, 120],
+          unit: 'NTD',
+          label: '元',
+          min: 36000,
+          max: 54000,
+          ticks: [36000, 45000, 54000],
           formatString: 'd'
         }
       },
@@ -227,7 +227,7 @@ export default {
       },
       compare: [
         {
-          id: 'customer-price-index',
+          id: 'income-based-cpi',
           label: '消費者物價指數',
           valLabel: false
         }
