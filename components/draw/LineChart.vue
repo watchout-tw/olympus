@@ -52,7 +52,10 @@ const presidents = {
 }
 const UNDONE_SCORE = -1
 const SUBMIT_MESSAGES = {
-  [STATES.FAILED]: '你沒畫完',
+  [STATES.FAILED]: {
+    UNDONE: '你沒畫完',
+    UNCONNECTED: '記錄失敗'
+  },
   [STATES.SUCCESS]: '已記錄'
 }
 
@@ -145,7 +148,7 @@ export default {
 
       if(this.score === UNDONE_SCORE) {
         this.submit.state = FAILED
-        this.submit.message = SUBMIT_MESSAGES[FAILED]
+        this.submit.message = SUBMIT_MESSAGES[FAILED].UNDONE
       } else {
         this.submit.state = LOADING
 
@@ -158,16 +161,22 @@ export default {
     showAnswer() {
       const speechData = this.genSpeechData()
       const { token, useReCAPTCHA } = this
-      coralreef.createSpeech(speechData, token, useReCAPTCHA)
+      coralreef.createSpeech(speechData, token, useReCAPTCHA).then(() => {
+        const { SUCCESS } = STATES
+        this.submit.state = SUCCESS
+        this.submit.message = SUBMIT_MESSAGES[SUCCESS]
+      }).catch((error) => {
+        console.error(error)
+        const { FAILED } = STATES
+        this.submit.state = FAILED
+        this.submit.message = SUBMIT_MESSAGES[FAILED].UNCONNECTED
+      })
 
+      // draw original
       this.rows.orig.forEach(function(row) {
         row.show = true
       })
       this.drawOrig()
-
-      const { SUCCESS } = STATES
-      this.submit.state = SUCCESS
-      this.submit.message = SUBMIT_MESSAGES[SUCCESS]
       if(this.useReCAPTCHA) this.$emit('update:verified', false)
     },
     submitted() {
