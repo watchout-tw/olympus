@@ -22,11 +22,11 @@ export default {
   ],
   graphs: [
     {
-      id: 'annual-death',
-      title: '死亡率',
+      id: 'economy-growth-rate',
+      title: '經濟成長率',
       sheetID: '',
       speechTarget: {
-        id: 178,
+        id: 175,
         speechType: 'musou_line_chart_response'
       },
       axes: {
@@ -36,130 +36,12 @@ export default {
           label: '年'
         },
         y: {
-          divider: 10000,
-          unit: 'person',
-          label: '萬人',
-          min: 0,
-          max: 500000,
-          ticks: [0, 250000, 500000],
-          formatString: 'd'
-        }
-      },
-      sequence: {
-        label: {
-          formatString: '.1f'
-        }
-      },
-      text: {
-        title: '死亡率',
-        before: '',
-        after: ''
-      }
-    },
-    {
-      id: 'annual-birth',
-      title: '出生率',
-      sheetID: '',
-      speechTarget: {
-        id: 178,
-        speechType: 'musou_line_chart_response'
-      },
-      axes: {
-        x: {
           divider: 1,
-          unit: 'year',
-          label: '年'
-        },
-        y: {
-          divider: 10000,
-          unit: 'person',
-          label: '萬人',
-          min: 0,
-          max: 500000,
-          ticks: [0, 250000, 500000],
-          formatString: 'd'
-        }
-      },
-      sequence: {
-        label: {
-          formatString: '.1f'
-        }
-      },
-      compare: [
-        {
-          id: 'annual-death',
-          label: '死亡率',
-          valLabel: true
-        }
-      ],
-      text: {
-        title: '出生率',
-        before: '',
-        after: ''
-      }
-    },
-    {
-      id: 'annual-visitors',
-      title: '每年來台旅客人數',
-      sheetID: '',
-      speechTarget: {
-        id: 176,
-        speechType: 'musou_line_chart_response'
-      },
-      axes: {
-        x: {
-          divider: 1,
-          unit: 'year',
-          label: '年'
-        },
-        y: {
-          divider: 1000000,
-          unit: 'person',
-          label: '百萬人',
-          min: 0,
-          max: 12000000,
-          ticks: [0, 4000000, 8000000, 12000000],
-          formatString: 'd'
-        }
-      },
-      sequence: {
-        label: {
-          formatString: '.1f'
-        }
-      },
-      compare: [
-        {
-          id: 'annual-visitors-china',
-          label: '中國每年來台旅客人數'
-        }
-      ],
-      text: {
-        title: '來台旅客有多少',
-        before: '政黨輪替後，被視為推展觀光績效的來台旅客人數常被拿出來檢驗，到底蔡英文政府執政的第一年，不分國籍的旅客來台旅客是增加還是減少呢？',
-        after: '蔡政府執政第一年，來台旅客**持續增加**中。\n\n根據交通部觀光局[統計數據](http://admin.taiwan.net.tw/statistics/year.aspx?no=134)，民進黨扁政府2007年卸任前來台旅客為371萬人。國民黨馬政府執政後，來台旅客人數持續攀高，至2015年達1,043萬人。2016年民進黨蔡政府執政後，來台旅客人數則持續上升至1,069萬人。'
-      }
-    },
-    {
-      id: 'annual-visitors-china',
-      title: '中國每年來台旅客人數',
-      sheetID: '',
-      speechTarget: {
-        id: 176,
-        speechType: 'musou_line_chart_response'
-      },
-      axes: {
-        x: {
-          divider: 1,
-          unit: 'year',
-          label: '年'
-        },
-        y: {
-          divider: 100000,
-          unit: 'person',
-          label: '萬人',
-          min: 0,
-          max: 4200000,
-          ticks: [0, 1400000, 2800000, 4200000],
+          unit: '%',
+          label: '%',
+          min: -5,
+          max: 15,
+          ticks: [-5, 0, 5, 10, 15],
           formatString: 'd'
         }
       },
@@ -169,7 +51,7 @@ export default {
         }
       },
       text: {
-        title: '中國每年來台旅客人數',
+        title: '經濟成長率',
         before: '',
         after: ''
       }
@@ -245,8 +127,8 @@ export default {
       }
     },
     {
-      id: 'economy-growth-rate',
-      title: '經濟成長率',
+      id: 'working-hours',
+      title: '工時',
       sheetID: '',
       speechTarget: {
         id: 175,
@@ -260,11 +142,11 @@ export default {
         },
         y: {
           divider: 1,
-          unit: '%',
-          label: '%',
-          min: -5,
-          max: 15,
-          ticks: [-5, 0, 5, 10, 15],
+          unit: 'hr',
+          label: '小時',
+          min: 160,
+          max: 200,
+          ticks: [160, 170, 180, 190, 200],
           formatString: 'd'
         }
       },
@@ -274,7 +156,7 @@ export default {
         }
       },
       text: {
-        title: '經濟成長率',
+        title: '工時',
         before: '',
         after: ''
       }
@@ -357,11 +239,11 @@ export default {
       }
     },
     {
-      id: 'working-hours',
-      title: '工時',
+      id: 'annual-birth',
+      title: '出生率',
       sheetID: '',
       speechTarget: {
-        id: 175,
+        id: 178,
         speechType: 'musou_line_chart_response'
       },
       axes: {
@@ -371,12 +253,12 @@ export default {
           label: '年'
         },
         y: {
-          divider: 1,
-          unit: 'hr',
-          label: '小時',
-          min: 160,
-          max: 200,
-          ticks: [160, 170, 180, 190, 200],
+          divider: 10000,
+          unit: 'person',
+          label: '萬人',
+          min: 0,
+          max: 500000,
+          ticks: [0, 250000, 500000],
           formatString: 'd'
         }
       },
@@ -385,33 +267,40 @@ export default {
           formatString: '.1f'
         }
       },
+      compare: [
+        {
+          id: 'annual-death',
+          label: '死亡率',
+          valLabel: true
+        }
+      ],
       text: {
-        title: '工時',
+        title: '出生率',
         before: '',
         after: ''
       }
     },
     {
-      id: 'air-pollution-shalu',
-      title: '空氣指數【沙鹿】',
+      id: 'annual-visitors',
+      title: '每年來台旅客人數',
       sheetID: '',
       speechTarget: {
-        id: 175,
+        id: 176,
         speechType: 'musou_line_chart_response'
       },
       axes: {
         x: {
           divider: 1,
-          unit: 'quarter',
-          labelBefore: 'Q'
+          unit: 'year',
+          label: '年'
         },
         y: {
-          divider: 1,
-          unit: '',
-          label: '',
+          divider: 1000000,
+          unit: 'person',
+          label: '百萬人',
           min: 0,
-          max: 75,
-          ticks: [0, 25, 50, 75],
+          max: 12000000,
+          ticks: [0, 4000000, 8000000, 12000000],
           formatString: 'd'
         }
       },
@@ -420,10 +309,17 @@ export default {
           formatString: '.1f'
         }
       },
+      compare: [
+        {
+          id: 'annual-visitors-china',
+          label: '中國每年來台旅客人數',
+          valLabel: true
+        }
+      ],
       text: {
-        title: '空氣指數【沙鹿】',
-        before: '',
-        after: ''
+        title: '來台旅客有多少',
+        before: '政黨輪替後，被視為推展觀光績效的來台旅客人數常被拿出來檢驗，到底蔡英文政府執政的第一年，不分國籍的旅客來台旅客是增加還是減少呢？',
+        after: '蔡政府執政第一年，來台旅客**持續增加**中。\n\n根據交通部觀光局[統計數據](http://admin.taiwan.net.tw/statistics/year.aspx?no=134)，民進黨扁政府2007年卸任前來台旅客為371萬人。國民黨馬政府執政後，來台旅客人數持續攀高，至2015年達1,043萬人。2016年民進黨蔡政府執政後，來台旅客人數則持續上升至1,069萬人。'
       }
     },
     {
@@ -457,41 +353,6 @@ export default {
       },
       text: {
         title: '空氣指數【楠梓】',
-        before: '',
-        after: ''
-      }
-    },
-    {
-      id: 'nuclear-power',
-      title: '核能',
-      sheetID: '',
-      speechTarget: {
-        id: 175,
-        speechType: 'musou_line_chart_response'
-      },
-      axes: {
-        x: {
-          divider: 1,
-          unit: 'year',
-          label: '年'
-        },
-        y: {
-          divider: 1,
-          unit: '億度',
-          label: '億度',
-          min: 0,
-          max: 500,
-          ticks: [0, 100, 200, 300, 400, 500],
-          formatString: 'd'
-        }
-      },
-      sequence: {
-        label: {
-          formatString: '.1f'
-        }
-      },
-      text: {
-        title: '核能',
         before: '',
         after: ''
       }
