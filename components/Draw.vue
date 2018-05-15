@@ -38,6 +38,7 @@ export default {
   props: ['module', 'project'],
   data() {
     return {
+      useReCAPTCHA: true,
       verified: false,
       token: null,
       speechData: {}
@@ -49,11 +50,12 @@ export default {
 
     const loggedIn = !!token
     this.verified = loggedIn
+    this.useReCAPTCHA = !loggedIn
   },
   methods: {
     createSpeech() {
-      const { speechData, token } = this
-      coralreef.createLineChartSpeech(speechData, token)
+      const { speechData, token, useReCAPTCHA } = this
+      coralreef.createSpeech(speechData, token, useReCAPTCHA)
     }
   },
   components: {
