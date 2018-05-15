@@ -118,7 +118,7 @@ export default {
       }
     })
     if(compare) {
-      const compAttrs = {show: true, fix: true}
+      const compAttrs = { show: true, fix: true }
       this.rows.comp = compare.map(compareThis =>
         require('~/data/draw/' + compareThis.id + '.json').map(row => {
           const dataEmpty = row.fix && !row.show
@@ -136,7 +136,9 @@ export default {
   },
   watch: {
     verified(newVerified, oldVerified) {
-      if(newVerified === oldVerified || !newVerified) return
+      if(newVerified === oldVerified || !newVerified) {
+        return
+      }
 
       if(this.useReCAPTCHA && this.submittingChartID === this.config.id) {
         this.finalize()
@@ -166,8 +168,7 @@ export default {
     finalize() {
       // record speech
       const speechData = this.genSpeechData()
-      const { token, useReCAPTCHA } = this
-      coralreef.createSpeech(speechData, token, useReCAPTCHA).then(() => {
+      coralreef.createSpeech(speechData, this.token, this.useReCAPTCHA).then(() => {
         this.submit.state = STATES.SUCCESS
         this.submit.message = SUBMIT_MESSAGES[STATES.SUCCESS]
       }).catch((error) => {
