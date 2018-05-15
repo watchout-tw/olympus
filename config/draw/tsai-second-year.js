@@ -88,7 +88,8 @@ export default {
       compare: [
         {
           id: 'annual-death',
-          label: '死亡率'
+          label: '死亡率',
+          valLabel: true
         }
       ],
       text: {
@@ -304,7 +305,8 @@ export default {
       compare: [
         {
           id: 'customer-price-index',
-          label: '消費者物價指數'
+          label: '消費者物價指數',
+          valLabel: false
         }
       ],
       text: {
@@ -485,7 +487,8 @@ export default {
       compare: [
         {
           id: 'nuclear-power',
-          label: '核能'
+          label: '核能',
+          valLabel: true
         }
       ],
       text: {
