@@ -22,11 +22,11 @@ export default {
   ],
   graphs: [
     {
-      id: 'annual-death',
-      title: '死亡率',
+      id: 'economy-growth-rate',
+      title: '經濟成長率',
       sheetID: '',
       speechTarget: {
-        id: 178,
+        id: 489,
         speechType: 'musou_line_chart_response'
       },
       axes: {
@@ -36,12 +36,12 @@ export default {
           label: '年'
         },
         y: {
-          divider: 10000,
-          unit: 'person',
-          label: '萬人',
-          min: 0,
-          max: 500000,
-          ticks: [0, 250000, 500000],
+          divider: 1,
+          unit: '%',
+          label: '%',
+          min: -5,
+          max: 15,
+          ticks: [-5, 0, 5, 10, 15],
           formatString: 'd'
         }
       },
@@ -51,7 +51,189 @@ export default {
         }
       },
       text: {
-        title: '死亡率',
+        title: '經濟成長率',
+        before: '',
+        after: ''
+      }
+    },
+    {
+      id: 'annual-stock',
+      title: 'STOCK',
+      sheetID: '',
+      speechTarget: {
+        id: 490,
+        speechType: 'musou_line_chart_response'
+      },
+      axes: {
+        x: {
+          divider: 1,
+          unit: 'year',
+          label: '年'
+        },
+        y: {
+          divider: 1000,
+          unit: '千點',
+          label: '千點',
+          min: 0,
+          max: 12000,
+          ticks: [0, 4000, 8000, 12000],
+          formatString: 'd'
+        }
+      },
+      sequence: {
+        label: {
+          formatString: '.1f'
+        }
+      },
+      text: {
+        title: 'stock',
+        before: '',
+        after: ''
+      }
+    },
+    {
+      id: 'unemployment',
+      title: '每年失業率',
+      sheetID: '',
+      speechTarget: {
+        id: 491,
+        speechType: 'musou_line_chart_response'
+      },
+      axes: {
+        x: {
+          divider: 1,
+          unit: 'year',
+          label: '年'
+        },
+        y: {
+          divider: 1,
+          unit: '%',
+          label: '%',
+          min: 0,
+          max: 10,
+          ticks: [0, 5, 10],
+          formatString: 'd'
+        }
+      },
+      sequence: {
+        label: {
+          formatString: '.1f'
+        }
+      },
+      text: {
+        title: '失業率',
+        before: '從馬英九到蔡英文政府，你覺得每年的失業率長怎樣呢？',
+        after: '在2008年世界金融危機後失業率**大幅升高**，之後**穩定下降**。\n\n根據行政院主計處[統計資料](https://www.stat.gov.tw/point.asp?index=3)，國民黨馬政府2008年5月上任時，國內失業率為3.87%。2009年8月時曾一度攀升到6.08％，達到失業率歷史高峰。2016年5月蔡英文上任時，失業率則為3.84％， 就任一年後，目前最新一季的平均失業率是3.80%。'
+      }
+    },
+    {
+      id: 'working-hours',
+      title: '工時',
+      sheetID: '',
+      speechTarget: {
+        id: 492,
+        speechType: 'musou_line_chart_response'
+      },
+      axes: {
+        x: {
+          divider: 1,
+          unit: 'year',
+          label: '年'
+        },
+        y: {
+          divider: 1,
+          unit: 'hr',
+          label: '小時',
+          min: 160,
+          max: 200,
+          ticks: [160, 170, 180, 190, 200],
+          formatString: 'd'
+        }
+      },
+      sequence: {
+        label: {
+          formatString: '.1f'
+        }
+      },
+      text: {
+        title: '工時',
+        before: '',
+        after: ''
+      }
+    },
+    {
+      id: 'consumer-price-index',
+      title: '消費者物價指數',
+      sheetID: '',
+      speechTarget: {
+        id: 493,
+        speechType: 'musou_line_chart_response'
+      },
+      axes: {
+        x: {
+          divider: 1,
+          unit: 'year',
+          label: '年'
+        },
+        y: {
+          divider: 1,
+          unit: '',
+          label: '',
+          min: 60,
+          max: 120,
+          ticks: [60, 80, 100, 120],
+          formatString: 'd'
+        }
+      },
+      sequence: {
+        label: {
+          formatString: '.1f'
+        }
+      },
+      text: {
+        title: '消費者物價指數',
+        before: '',
+        after: ''
+      }
+    },
+    {
+      id: 'annual-income',
+      title: '年均所得',
+      sheetID: '', // run get.py and get sheetID from data/graphs.json
+      speechTarget: {
+        id: 494,
+        speechType: 'musou_line_chart_response'
+      },
+      axes: {
+        x: {
+          divider: 1,
+          unit: 'month',
+          label: '月'
+        },
+        y: {
+          divider: 1,
+          unit: 'NTD',
+          label: '元',
+          min: 36000,
+          max: 54000,
+          ticks: [36000, 45000, 54000],
+          formatString: 'd'
+        }
+      },
+      sequence: {
+        label: {
+          formatString: '.1f'
+        }
+      },
+      compare: [
+        {
+          id: 'income-based-cpi',
+          label: '消費者物價指數',
+          valLabel: false
+        }
+      ],
+      text: {
+        title: '年均所得',
         before: '',
         after: ''
       }
@@ -61,7 +243,7 @@ export default {
       title: '出生率',
       sheetID: '',
       speechTarget: {
-        id: 178,
+        id: 495,
         speechType: 'musou_line_chart_response'
       },
       axes: {
@@ -103,7 +285,7 @@ export default {
       title: '每年來台旅客人數',
       sheetID: '',
       speechTarget: {
-        id: 176,
+        id: 496,
         speechType: 'musou_line_chart_response'
       },
       axes: {
@@ -130,7 +312,8 @@ export default {
       compare: [
         {
           id: 'annual-visitors-china',
-          label: '中國每年來台旅客人數'
+          label: '中國每年來台旅客人數',
+          valLabel: true
         }
       ],
       text: {
@@ -140,298 +323,11 @@ export default {
       }
     },
     {
-      id: 'annual-visitors-china',
-      title: '中國每年來台旅客人數',
-      sheetID: '',
-      speechTarget: {
-        id: 176,
-        speechType: 'musou_line_chart_response'
-      },
-      axes: {
-        x: {
-          divider: 1,
-          unit: 'year',
-          label: '年'
-        },
-        y: {
-          divider: 100000,
-          unit: 'person',
-          label: '萬人',
-          min: 0,
-          max: 4200000,
-          ticks: [0, 1400000, 2800000, 4200000],
-          formatString: 'd'
-        }
-      },
-      sequence: {
-        label: {
-          formatString: '.1f'
-        }
-      },
-      text: {
-        title: '中國每年來台旅客人數',
-        before: '',
-        after: ''
-      }
-    },
-    {
-      id: 'annual-stock',
-      title: 'STOCK',
-      sheetID: '',
-      speechTarget: {
-        id: 178,
-        speechType: 'musou_line_chart_response'
-      },
-      axes: {
-        x: {
-          divider: 1,
-          unit: 'year',
-          label: '年'
-        },
-        y: {
-          divider: 1000,
-          unit: '千點',
-          label: '千點',
-          min: 0,
-          max: 12000,
-          ticks: [0, 4000, 8000, 12000],
-          formatString: 'd'
-        }
-      },
-      sequence: {
-        label: {
-          formatString: '.1f'
-        }
-      },
-      text: {
-        title: 'stock',
-        before: '',
-        after: ''
-      }
-    },
-    {
-      id: 'unemployment',
-      title: '每年失業率',
-      sheetID: '',
-      speechTarget: {
-        id: 175,
-        speechType: 'musou_line_chart_response'
-      },
-      axes: {
-        x: {
-          divider: 1,
-          unit: 'year',
-          label: '年'
-        },
-        y: {
-          divider: 1,
-          unit: '%',
-          label: '%',
-          min: 0,
-          max: 10,
-          ticks: [0, 5, 10],
-          formatString: 'd'
-        }
-      },
-      sequence: {
-        label: {
-          formatString: '.1f'
-        }
-      },
-      text: {
-        title: '失業率',
-        before: '從馬英九到蔡英文政府，你覺得每年的失業率長怎樣呢？',
-        after: '在2008年世界金融危機後失業率**大幅升高**，之後**穩定下降**。\n\n根據行政院主計處[統計資料](https://www.stat.gov.tw/point.asp?index=3)，國民黨馬政府2008年5月上任時，國內失業率為3.87%。2009年8月時曾一度攀升到6.08％，達到失業率歷史高峰。2016年5月蔡英文上任時，失業率則為3.84％， 就任一年後，目前最新一季的平均失業率是3.80%。'
-      }
-    },
-    {
-      id: 'economy-growth-rate',
-      title: '經濟成長率',
-      sheetID: '',
-      speechTarget: {
-        id: 175,
-        speechType: 'musou_line_chart_response'
-      },
-      axes: {
-        x: {
-          divider: 1,
-          unit: 'year',
-          label: '年'
-        },
-        y: {
-          divider: 1,
-          unit: '%',
-          label: '%',
-          min: -5,
-          max: 15,
-          ticks: [-5, 0, 5, 10, 15],
-          formatString: 'd'
-        }
-      },
-      sequence: {
-        label: {
-          formatString: '.1f'
-        }
-      },
-      text: {
-        title: '經濟成長率',
-        before: '',
-        after: ''
-      }
-    },
-    {
-      id: 'customer-price-index',
-      title: '消費者物價指數',
-      sheetID: '',
-      speechTarget: {
-        id: 175,
-        speechType: 'musou_line_chart_response'
-      },
-      axes: {
-        x: {
-          divider: 1,
-          unit: 'year',
-          label: '年'
-        },
-        y: {
-          divider: 1,
-          unit: '',
-          label: '',
-          min: 60,
-          max: 120,
-          ticks: [60, 80, 100, 120],
-          formatString: 'd'
-        }
-      },
-      sequence: {
-        label: {
-          formatString: '.1f'
-        }
-      },
-      text: {
-        title: '消費者物價指數',
-        before: '',
-        after: ''
-      }
-    },
-    {
-      id: 'annual-income',
-      title: '年均所得',
-      sheetID: '', // run get.py and get sheetID from data/graphs.json
-      speechTarget: {
-        id: 178,
-        speechType: 'musou_line_chart_response'
-      },
-      axes: {
-        x: {
-          divider: 1,
-          unit: 'month',
-          label: '月'
-        },
-        y: {
-          divider: 1,
-          unit: '',
-          label: '',
-          min: 60,
-          max: 120,
-          ticks: [60, 80, 100, 120],
-          formatString: 'd'
-        }
-      },
-      sequence: {
-        label: {
-          formatString: '.1f'
-        }
-      },
-      compare: [
-        {
-          id: 'customer-price-index',
-          label: '消費者物價指數',
-          valLabel: false
-        }
-      ],
-      text: {
-        title: '年均所得',
-        before: '',
-        after: ''
-      }
-    },
-    {
-      id: 'working-hours',
-      title: '工時',
-      sheetID: '',
-      speechTarget: {
-        id: 175,
-        speechType: 'musou_line_chart_response'
-      },
-      axes: {
-        x: {
-          divider: 1,
-          unit: 'year',
-          label: '年'
-        },
-        y: {
-          divider: 1,
-          unit: 'hr',
-          label: '小時',
-          min: 160,
-          max: 200,
-          ticks: [160, 170, 180, 190, 200],
-          formatString: 'd'
-        }
-      },
-      sequence: {
-        label: {
-          formatString: '.1f'
-        }
-      },
-      text: {
-        title: '工時',
-        before: '',
-        after: ''
-      }
-    },
-    {
-      id: 'air-pollution-shalu',
-      title: '空氣指數【沙鹿】',
-      sheetID: '',
-      speechTarget: {
-        id: 175,
-        speechType: 'musou_line_chart_response'
-      },
-      axes: {
-        x: {
-          divider: 1,
-          unit: 'quarter',
-          labelBefore: 'Q'
-        },
-        y: {
-          divider: 1,
-          unit: '',
-          label: '',
-          min: 0,
-          max: 75,
-          ticks: [0, 25, 50, 75],
-          formatString: 'd'
-        }
-      },
-      sequence: {
-        label: {
-          formatString: '.1f'
-        }
-      },
-      text: {
-        title: '空氣指數【沙鹿】',
-        before: '',
-        after: ''
-      }
-    },
-    {
       id: 'air-pollution-nanzi',
       title: '空氣指數【楠梓】',
       sheetID: '',
       speechTarget: {
-        id: 175,
+        id: 497,
         speechType: 'musou_line_chart_response'
       },
       axes: {
@@ -462,46 +358,11 @@ export default {
       }
     },
     {
-      id: 'nuclear-power',
-      title: '核能',
-      sheetID: '',
-      speechTarget: {
-        id: 175,
-        speechType: 'musou_line_chart_response'
-      },
-      axes: {
-        x: {
-          divider: 1,
-          unit: 'year',
-          label: '年'
-        },
-        y: {
-          divider: 1,
-          unit: '億度',
-          label: '億度',
-          min: 0,
-          max: 500,
-          ticks: [0, 100, 200, 300, 400, 500],
-          formatString: 'd'
-        }
-      },
-      sequence: {
-        label: {
-          formatString: '.1f'
-        }
-      },
-      text: {
-        title: '核能',
-        before: '',
-        after: ''
-      }
-    },
-    {
-      id: 'power-generate',
+      id: 'renewable-energy',
       title: '再生能源',
       sheetID: '',
       speechTarget: {
-        id: 175,
+        id: 498,
         speechType: 'musou_line_chart_response'
       },
       axes: {
