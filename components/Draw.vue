@@ -10,9 +10,9 @@
     </div>
   </div>
   <div class="charts tcl-container">
-    <re-captcha :verified.sync="verified" :token.sync="token"></re-captcha>
+    <re-captcha :verified.sync="verified" :token.sync="token" :callback="createSpeech"></re-captcha>
     <div class="tcl-panel with-top-bottom-margin with-double-top-margin chart-container" v-for="config in project.graphs" :key="config.id">
-      <line-chart :config="config" :onSubmitCallback="createSpeech" :verified="verified"></line-chart>
+      <line-chart :speechData.sync="speechData" :config="config" :verified="verified" @submitCallback="createSpeech"></line-chart>
     </div>
     <div class="tcl-panel"></div>
   </div>
@@ -39,7 +39,8 @@ export default {
   data() {
     return {
       verified: false,
-      token: null
+      token: null,
+      speechData: {}
     }
   },
   mounted() {
@@ -50,8 +51,9 @@ export default {
     this.verified = loggedIn
   },
   methods: {
-    createSpeech(data) {
-      coralreef.createLineChartSpeech(data, this.token)
+    createSpeech() {
+      const { speechData, token } = this
+      coralreef.createLineChartSpeech(speechData, token)
     }
   },
   components: {

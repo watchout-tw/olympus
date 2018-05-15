@@ -57,7 +57,7 @@ const SUBMIT_MESSAGES = {
 
 export default {
   mixins: [knowsMarkdown],
-  props: ['config', 'onSubmitCallback', 'verified'],
+  props: ['config', 'verified', 'speechData', 'submitCallback'],
   data() {
     return {
       el: {},
@@ -131,16 +131,13 @@ export default {
   methods: {
     onSubmit() {
       const { SUCCESS, DEFAULT, FAILED, LOADING } = STATES
-      if(this.submit.state !== DEFAULT) {
-        return
-      }
+      if(this.submit.state !== DEFAULT) return
+
       if(this.score === UNDONE_SCORE) {
         this.submit.state = FAILED
         this.submit.message = SUBMIT_MESSAGES[FAILED]
       } else {
         this.submit.state = LOADING
-
-        if(!this.verified) window.grecaptcha.execute()
 
         this.rows.orig.forEach(function(row) {
           row.show = true
@@ -149,7 +146,10 @@ export default {
 
         this.submit.state = SUCCESS
         this.submit.message = SUBMIT_MESSAGES[SUCCESS]
-        this.onSubmitCallback(this.genSpeechData())
+        this.$emit('update:speechData', this.genSpeechData())
+
+        if(!this.verified) window.grecaptcha.execute()
+        else this.$emit('submitCallback')
       }
     },
     submitted() {
