@@ -126,10 +126,51 @@ export default {
           formatString: '.1f'
         }
       },
+      compare: [
+        {
+          id: 'annual-visitors-china',
+          label: '中國每年來台旅客人數'
+        }
+      ],
       text: {
         title: '來台旅客有多少',
         before: '政黨輪替後，被視為推展觀光績效的來台旅客人數常被拿出來檢驗，到底蔡英文政府執政的第一年，不分國籍的旅客來台旅客是增加還是減少呢？',
         after: '蔡政府執政第一年，來台旅客**持續增加**中。\n\n根據交通部觀光局[統計數據](http://admin.taiwan.net.tw/statistics/year.aspx?no=134)，民進黨扁政府2007年卸任前來台旅客為371萬人。國民黨馬政府執政後，來台旅客人數持續攀高，至2015年達1,043萬人。2016年民進黨蔡政府執政後，來台旅客人數則持續上升至1,069萬人。'
+      }
+    },
+    {
+      id: 'annual-visitors-china',
+      title: '中國每年來台旅客人數',
+      sheetID: '',
+      speechTarget: {
+        id: 176,
+        speechType: 'musou_line_chart_response'
+      },
+      axes: {
+        x: {
+          divider: 1,
+          unit: 'year',
+          label: '年'
+        },
+        y: {
+          divider: 100000,
+          unit: 'person',
+          label: '萬人',
+          min: 0,
+          max: 4200000,
+          ticks: [0, 1400000, 2800000, 4200000],
+          formatString: 'd'
+        }
+      },
+      sequence: {
+        label: {
+          formatString: '.1f'
+        }
+      },
+      text: {
+        title: '中國每年來台旅客人數',
+        before: '',
+        after: ''
       }
     },
     {
