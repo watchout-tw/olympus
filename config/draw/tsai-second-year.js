@@ -240,7 +240,7 @@ export default {
     },
     {
       id: 'annual-birth',
-      title: '出生率',
+      title: '出生人口數',
       sheetID: '',
       speechTarget: {
         id: 495,
@@ -257,8 +257,8 @@ export default {
           unit: 'person',
           label: '萬人',
           min: 0,
-          max: 500000,
-          ticks: [0, 250000, 500000],
+          max: 400000,
+          ticks: [0, 200000, 400000],
           formatString: 'd'
         }
       },
@@ -270,14 +270,14 @@ export default {
       compare: [
         {
           id: 'annual-death',
-          label: '死亡率',
+          label: '死亡人口數',
           valLabel: true
         }
       ],
       text: {
-        title: '出生率',
-        before: '',
-        after: ''
+        title: '出生人口數',
+        before: '自己畫畫看，你覺得最近每年有多少新生兒出生呢？',
+        after: '近十年僅有四年有超過20萬新生兒，2017年則**僅有193844人出生**，**為近十年第三低**。\n\n2008年首次自然出生人數低於20萬人後，近十年僅有四年有超過20萬新生兒，其中2012年為龍年，有229481位新生兒。2017年，自然死亡人口數已緩步提升至17萬人，而出生人口仍僅有193844人，台灣人口已逐漸邁向死亡數大於出生數的死亡交叉。'
       }
     },
     {
