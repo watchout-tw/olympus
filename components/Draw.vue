@@ -11,9 +11,9 @@
     <div class="tcl-panel"></div>
   </div>
   <no-ssr><div v-if="!isCitizen" class="disclaimer tcl-container font-size-smaller secondary-text">
-    <div class="recaptcha tcl-panel">
+    <div class="recaptcha tcl-panel tcl-left-right-margin">
       <img :src="require('watchout-common-assets/images/attributions/recaptcha.svg')" />
-      <span><a class="a-text" @click.prevent="addModal({ id: 'auth', joinOrLogin: 'login' })">按這裡登入</a>，你就不用接受reCAPTCHA的挑戰。</span>
+      <span><a class="a-text" @click.prevent="addModal({ id: 'auth', joinOrLogin: 'login' })">按這裡登入</a>，不然你就可能面臨reCAPTCHA的挑戰。</span>
     </div>
     <div class="tcl-panel"></div>
   </div></no-ssr>
