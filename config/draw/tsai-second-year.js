@@ -198,7 +198,7 @@ export default {
     },
     {
       id: 'annual-income',
-      title: '年均所得',
+      title: '月均總薪資',
       sheetID: '', // run get.py and get sheetID from data/graphs.json
       speechTarget: {
         id: 494,
@@ -233,9 +233,9 @@ export default {
         }
       ],
       text: {
-        title: '年均所得',
-        before: '',
-        after: ''
+        title: '月均總薪資',
+        before: '自己畫畫看，你覺得這幾年勞工薪資的成長狀況如何呢？',
+        after: '蔡政府執政第二年的**月均總薪資為49989元**，較前一年**增加2.46%**。\n\n除2008年金融海嘯後連兩年勞工每月平均總薪資呈現負成長，歷年皆緩步成長。馬政府2008年初執政時為44367元，2015年則成長至48490元，每年約成長1.15%。蔡英文執政時，月均總薪資則由2016年的48790元成長為2017年的49989元，增加2.46%。'
       }
     },
     {
