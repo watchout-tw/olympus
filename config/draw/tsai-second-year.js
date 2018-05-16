@@ -179,9 +179,9 @@ export default {
           divider: 1,
           unit: '',
           label: '',
-          min: 60,
+          min: 70,
           max: 120,
-          ticks: [60, 80, 100, 120],
+          ticks: [70, 95, 120],
           formatString: 'd'
         }
       },
@@ -207,8 +207,8 @@ export default {
       axes: {
         x: {
           divider: 1,
-          unit: 'month',
-          label: '月'
+          unit: 'year',
+          label: '年'
         },
         y: {
           divider: 1000,
