@@ -20,7 +20,7 @@
   <re-captcha v-if="useReCAPTCHA" :verified.sync="verified" :token.sync="token"></re-captcha>
   <div class="charts tcl-container">
     <div class="tcl-panel with-top-bottom-margin with-double-top-margin chart-container" v-for="chartConfig in project.charts" :key="chartConfig.id">
-      <line-chart :submittingChartID.sync="submittingChartID" :verified.sync="verified" :config="chartConfig" :useReCAPTCHA="useReCAPTCHA" :token="token"></line-chart>
+      <line-chart :submittingChartID.sync="submittingChartID" :verified="verified" :config="chartConfig" :useReCAPTCHA="useReCAPTCHA" :token="token"></line-chart>
     </div>
     <div class="tcl-panel"></div>
   </div>

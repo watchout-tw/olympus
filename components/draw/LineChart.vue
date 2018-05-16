@@ -182,9 +182,6 @@ export default {
         row.show = true
       })
       this.drawOrig()
-      if(this.useReCAPTCHA) {
-        this.$emit('update:verified', false)
-      }
     },
     hasSubmitted() {
       if(this.submit.state === STATES.SUCCESS) {
