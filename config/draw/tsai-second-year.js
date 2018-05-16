@@ -339,7 +339,7 @@ export default {
         y: {
           divider: 1,
           unit: '',
-          label: '',
+          label: 'μg/m3',
           min: 0,
           max: 75,
           ticks: [0, 25, 50, 75],
