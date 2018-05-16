@@ -171,17 +171,16 @@ export default {
       coralreef.createSpeech(speechData, this.token, this.useReCAPTCHA).then(() => {
         this.submit.state = STATES.SUCCESS
         this.submit.message = SUBMIT_MESSAGES[STATES.SUCCESS]
+        // draw original
+        this.rows.orig.forEach(function(row) {
+          row.show = true
+        })
+        this.drawOrig()
       }).catch((error) => {
         this.submit.state = STATES.FAILED
         this.submit.message = SUBMIT_MESSAGES[STATES.FAILED]
         this.handleError(error)
       })
-
-      // draw original
-      this.rows.orig.forEach(function(row) {
-        row.show = true
-      })
-      this.drawOrig()
     },
     hasSubmitted() {
       if(this.submit.state === STATES.SUCCESS) {
