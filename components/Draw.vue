@@ -1,7 +1,7 @@
 <template>
 <div class="draw">
   <div class="opening tcl-container">
-    <div class="tcl-panel with-top-bottom-margin with-double-top-margin tcl-left-right-margin">
+    <div class="content tcl-panel with-top-bottom-margin with-double-top-margin tcl-left-right-margin">
       <hgroup>
         <h2>{{ module.title }}</h2>
         <h1>{{ project.title }}</h1>
@@ -10,11 +10,14 @@
     </div>
     <div class="tcl-panel"></div>
   </div>
-  <no-ssr><div v-if="!isCitizen" class="disclaimer tcl-container font-size-smaller secondary-text">
-    <div class="recaptcha tcl-panel tcl-left-right-margin">
-      <img :src="require('watchout-common-assets/images/attributions/recaptcha.svg')" />
-      <span><a class="a-text" @click.prevent="addModal({ id: 'auth', joinOrLogin: 'login' })">按這裡登入</a>，不然你就可能面臨reCAPTCHA的挑戰。</span>
-    </div>
+  <no-ssr><div class="disclaimer tcl-container font-size-smaller secondary-text">
+    <ul class="tcl-panel tcl-left-right-margin">
+      <li class="recaptcha" v-if="!isCitizen">
+        <img :src="require('watchout-common-assets/images/attributions/recaptcha.svg')" />
+        <span><a class="a-text" @click.prevent="addModal({ id: 'auth', joinOrLogin: 'login' })">按這裡登入</a>，不然你可能會面臨reCAPTCHA的挑戰。</span>
+      </li>
+      <li class="data-collection">除了數據，我們也關心公民的感受。你在《畫畫看》所畫的每條線，都將成為《沃草》後續作品的原始資料。</li>
+    </ul>
     <div class="tcl-panel"></div>
   </div></no-ssr>
   <re-captcha v-if="useReCAPTCHA" :verified.sync="verified" :token.sync="token"></re-captcha>
@@ -78,12 +81,23 @@ export default {
 
 .draw {
   > .disclaimer {
-    > .recaptcha {
-      display: flex;
-      align-items: center;
-      > img {
-        width: 60px;
-        flex-grow: 0;
+    > ul {
+      > li {
+        margin: 0.5rem 0;
+        &:first-child {
+          margin-top: 0;
+        }
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+      > .recaptcha {
+        display: flex;
+        align-items: center;
+        > img {
+          width: 60px;
+          flex-grow: 0;
+        }
       }
     }
   }
