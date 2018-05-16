@@ -616,11 +616,6 @@ export default {
           }
         }
       }
-      .axis-y {
-        @include bp-sm-down {
-          display: none;
-        }
-      }
     }
   }
   > .actions {
