@@ -155,7 +155,9 @@ export default {
         this.submit.state = STATES.INCOMPLETE
         this.submit.message = SUBMIT_MESSAGES[STATES.INCOMPLETE]
       } else {
-        this.bindDrawEvents(null)
+        this.el.root.on('click', null)
+        this.el.root.on('mousedown.drag', null)
+
         this.submit.state = STATES.LOADING
         this.$emit('update:submittingChartID', this.config.id)
 
@@ -459,7 +461,8 @@ export default {
       }
 
       // execute callback on click/touch/drag
-      this.bindDrawEvents(redraw)
+      this.el.root.on('click', redraw)
+      this.el.root.call(d3.drag().on('drag', redraw))
 
       // draw original sequence
       this.drawOrig()
@@ -476,10 +479,6 @@ export default {
         .style('left', this.util.axes.x.scale(lastOrig.x) * zoom + 'px')
         .style('transform', 'scale(' + zoom + ')')
         .style('transform-origin', 'center left')
-    },
-    bindDrawEvents(func) {
-      this.el.root.on('click', func)
-      this.el.root.call(d3.drag().on('drag', func))
     }
   },
   components: {
