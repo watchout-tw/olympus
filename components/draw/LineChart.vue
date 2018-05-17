@@ -155,8 +155,8 @@ export default {
         this.submit.state = STATES.INCOMPLETE
         this.submit.message = SUBMIT_MESSAGES[STATES.INCOMPLETE]
       } else {
-        this.el.root.on('click', null)
-        this.el.root.on('mousedown.drag', null)
+        // prevent user from changing the answer
+        this.el.container.style('z-index', -1)
 
         this.submit.state = STATES.LOADING
         this.$emit('update:submittingChartID', this.config.id)
