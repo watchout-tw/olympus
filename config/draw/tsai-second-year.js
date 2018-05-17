@@ -404,5 +404,13 @@ export default {
   conclusion: {
     title: '結論：人民的感受才是成績單',
     description: '蔡英文政府執政的表現跟你想像有落差嗎？各項公開數據的結果跟你所感受的差距很大嗎？\n\n蔡英文本屆任期已經過半，不管施政數據是否漂亮，人民的感受才是她的期中考成績單。今年你的《畫畫看》得了幾分呢？這個分數才是代表大家對真實生活體驗的感受，沃草將蒐集統整這些感受，作為後續作品的原始資料，讓讀者也能看到「政府數據」和「人民感受」的差異有多少。\n\n沃草將持續以各種不同形式降低理解複雜議題的門檻，如果你喜歡沃草的內容，請別忘了[支持我們](https://watchout.tw/?support)！'
-  }
+  },
+  references: [
+    '[內政部統計查詢網](http://statis.moi.gov.tw/micst/stmain.jsp?sys=100)',
+    '[中華民國統計資訊網](https://www.stat.gov.tw/mp.asp?mp=4)',
+    '[中華民國交通部觀光局](http://admin.taiwan.net.tw/public/public.aspx?no=315)',
+    '[台灣證券交易所](http://www.tse.com.tw/zh/statistics/statisticsList?type=07&subType=240)',
+    '[行政院環境保護署環境資源資料庫](https://erdb.epa.gov.tw/)',
+    '[台電系統歷年發電量](https://www.taipower.com.tw/tc/chart/a01_電力供需資訊_電源開發規劃_歷年發電量及結構.html)'
+  ]
 }
