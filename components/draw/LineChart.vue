@@ -155,9 +155,6 @@ export default {
         this.submit.state = STATES.INCOMPLETE
         this.submit.message = SUBMIT_MESSAGES[STATES.INCOMPLETE]
       } else {
-        // prevent user from changing the answer
-        this.el.container.style('z-index', -1)
-
         this.submit.state = STATES.LOADING
         this.$emit('update:submittingChartID', this.config.id)
 
@@ -644,6 +641,9 @@ export default {
     }
   }
   &.done {
+    > .chart {
+      z-index: -1; // sink chart behind container to prevent further interaction
+    }
     > .after {
       visibility: visible;
     }
