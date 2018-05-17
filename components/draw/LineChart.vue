@@ -110,8 +110,9 @@ export default {
   },
   created() {
     const { id, compare } = this.config
-    this.rows.orig = require('~/data/draw/' + id + '.json')
-    this.rows.user = JSON.parse(JSON.stringify(this.rows.orig))
+    const points = require('~/data/draw/' + id + '.json')
+    this.rows.orig = JSON.parse(JSON.stringify(points)) // deep clone
+    this.rows.user = JSON.parse(JSON.stringify(points))
     this.rows.user.forEach((row, index, rows) => {
       if(row.fix && !(index + 1 < rows.length && !rows[index + 1].fix)) {
         row.show = false
