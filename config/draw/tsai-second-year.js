@@ -58,7 +58,7 @@ export default {
     },
     {
       id: 'taiwan-stock-exchange-weighted-index',
-      title: '加權股價指數',
+      title: '加權股價指數年平均',
       sheetID: '',
       speechTarget: {
         id: 490,
@@ -86,7 +86,7 @@ export default {
         }
       },
       text: {
-        title: '加權股價指數',
+        title: '加權股價指數年平均',
         before: '自己畫畫看，你覺得這幾年股票市場的表現如何呢？',
         after: '2009年金融海嘯衝擊後，股市逐漸回升，並於2017年達到加權股價指數**年平均破萬**記錄。\n\n2009年馬政府執政時遇上全球金融海嘯，上市股票加權指數年平均跌至6459點，之後緩步提升。而2017年則達到年平均10208點的歷史紀錄，並持續突破台股破萬點最長天數紀錄。'
       }
