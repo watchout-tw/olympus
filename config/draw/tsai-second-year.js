@@ -23,6 +23,7 @@ export default {
   charts: [
     {
       id: 'economy-growth-rate',
+      index: 7,
       title: '經濟成長率',
       sheetID: '',
       speechTarget: {
@@ -58,6 +59,7 @@ export default {
     },
     {
       id: 'taiwan-stock-exchange-weighted-index',
+      index: 8,
       title: '加權股價指數年平均',
       sheetID: '',
       speechTarget: {
@@ -93,6 +95,7 @@ export default {
     },
     {
       id: 'unemployment',
+      index: 1,
       title: '每年失業率',
       sheetID: '',
       speechTarget: {
@@ -128,6 +131,7 @@ export default {
     },
     {
       id: 'working-hours',
+      index: 2,
       title: '每月總工時',
       sheetID: '',
       speechTarget: {
@@ -163,6 +167,7 @@ export default {
     },
     {
       id: 'consumer-price-index',
+      index: 3,
       title: '消費者物價指數',
       sheetID: '',
       speechTarget: {
@@ -198,6 +203,7 @@ export default {
     },
     {
       id: 'annual-income',
+      index: 4,
       title: '月均總薪資',
       sheetID: '', // run get.py and get sheetID from data/graphs.json
       speechTarget: {
@@ -240,6 +246,7 @@ export default {
     },
     {
       id: 'annual-birth',
+      index: 5,
       title: '出生人口數',
       sheetID: '',
       speechTarget: {
@@ -282,6 +289,7 @@ export default {
     },
     {
       id: 'annual-visitors',
+      index: 6,
       title: '來台旅客人數',
       sheetID: '',
       speechTarget: {
@@ -324,6 +332,7 @@ export default {
     },
     {
       id: 'air-pollution-nanzi',
+      index: 9,
       title: '高雄楠梓空氣PM2.5數值',
       sheetID: '',
       speechTarget: {
@@ -359,6 +368,7 @@ export default {
     },
     {
       id: 'renewable-energy',
+      index: 10,
       title: '再生能源發電量',
       sheetID: '',
       speechTarget: {

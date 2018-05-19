@@ -22,7 +22,7 @@
   </div></no-ssr>
   <re-captcha v-if="useReCAPTCHA" :verified.sync="verified" :token.sync="token"></re-captcha>
   <div class="charts tcl-container">
-    <div class="tcl-panel with-top-bottom-margin with-double-top-margin chart-container" v-for="chartConfig in project.charts" :key="chartConfig.id">
+    <div class="tcl-panel with-top-bottom-margin with-double-top-margin chart-container" v-for="chartConfig in charts" :key="chartConfig.id">
       <line-chart :submittingChartID.sync="submittingChartID" :verified="verified" :config="chartConfig" :useReCAPTCHA="useReCAPTCHA" :token="token"></line-chart>
     </div>
     <div class="tcl-panel"></div>
@@ -52,6 +52,16 @@ export default {
       verified: false,
       token: null,
       submittingChartID: null
+    }
+  },
+  computed: {
+    charts() {
+      let charts = this.project.charts
+      let hasIndex = charts.filter(chart => chart.hasOwnProperty('index')).length === charts.length // index must be present in all charts
+      if(hasIndex) {
+        charts.sort((a, b) => a.index - b.index)
+      }
+      return charts
     }
   },
   mounted() {
