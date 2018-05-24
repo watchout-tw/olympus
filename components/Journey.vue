@@ -8,12 +8,7 @@
             <div class="content" id="journey-main-visual-canvas" :style="mainVisualContentStyles"></div>
           </template>
         </div>
-        <div class="visual-tags" v-if="activeScene.visualTags" :style="visualTagContainerStyles">
-          <div v-for="tag of activeScene.visualTags" class="visual-tag" :style="Object.assign(getPositions('visualTags', tag), getVisibility(tag))" @click="visualTagClick(tag)" :key="getVisualTagKey(tag)">
-            <div class="region" :style="Object.assign(getDimensions('visualTags', tag), getStyles('visualTags', tag))"></div>
-            <div class="content" :style="" v-if="tag.content">{{ tag.content }}</div>
-          </div>
-        </div>
+        <visual-tags :sequence="sequence" :activeScene="activeScene" :canvas.sync="canvas" :actual="actual" :mainVisual="mainVisual"></visual-tags>
         <div class="subtitle d-flex justify-content-center">
           <subtitling-machine :lines="activeScene.subtitle" :config="subtitling.config" :status.sync="subtitling.status" :key="activeScene.id" />
         </div>
@@ -48,11 +43,12 @@
 
 <script>
 import { knowsMarkdown, knowsDOM, knowsAudio } from 'watchout-common-functions/interfaces'
-import parseColor from 'parse-color'
+import VisualTags from './journey/another-future/VisualTags'
+import getStyles from '~/interfaces/journey/getStyles'
 import SubtitlingMachine from './journey/SubtitlingMachine'
 
 export default {
-  mixins: [knowsMarkdown, knowsDOM, knowsAudio],
+  mixins: [knowsMarkdown, knowsDOM, knowsAudio, getStyles],
   props: ['project'],
   data() {
     var state = {
@@ -165,25 +161,8 @@ export default {
         transform: `scale(${this.canvas.transform.scale})`
       })
     },
-    visualTagContainerStyles() {
-      return this.mainVisual ? {
-        width: this.mainVisual.width * this.zoom + 'px',
-        height: this.mainVisual.height * this.zoom + 'px',
-        top: this.offset.top + 'px',
-        left: this.offset.left + 'px'
-      } : {}
-    },
     textContainerStyles() {
       return this.getStyles('textContainer')
-    },
-    zoom() {
-      return this.mainVisual ? this.actual.width / this.mainVisual.width : 1
-    },
-    offset() {
-      return {
-        top: (this.canvas.height - this.actual.height) / 2.0,
-        left: (this.canvas.width - this.actual.width) / 2.0
-      }
     },
     nextScene() {
       var index = -1
@@ -223,67 +202,6 @@ export default {
     canvasIsLarger() {
       return this.canvas.width >= this.mainVisual.width && this.canvas.height >= this.mainVisual.height
     },
-    getPositions(name, data) {
-      return {
-        top: data.y * 100.0 / this.mainVisual.height + '%',
-        left: data.x * 100.0 / this.mainVisual.width + '%'
-      }
-    },
-    getDimensions(name, data) {
-      var styles = {}
-      styles.width = data.width * this.zoom + 'px'
-      styles.height = data.height * this.zoom + 'px'
-      return styles
-    },
-    getVisibility(data) {
-      var styles = {}
-      if(data.hasOwnProperty('visible') && data.visible === false) {
-        styles.opacity = 0
-        styles.visibility = 'hidden'
-      }
-      return styles
-    },
-    getStyles(name, data = undefined) {
-      var styles = {}
-      const global = this.sequence.default ? this.sequence.default.styles ? this.sequence.default.styles[name] : undefined : undefined
-      const scene = this.activeScene.default ? this.activeScene.default.styles ? this.activeScene.default.styles[name] : undefined : undefined
-      const local = data ? data.styles : undefined
-      const attributes = ['text', 'border', 'background']
-      for(let attribute of attributes) {
-        styles[attribute] = (local && local[attribute]) || (scene && scene[attribute]) || (global && global[attribute]) || undefined
-      }
-
-      if(styles.text && typeof styles.text === 'object') {
-        if(styles.text.align) {
-          styles.textAlign = styles.text.align
-        }
-        if(styles.text.size) {
-          styles.fontSize = styles.text.size
-        }
-        if(styles.text.color) {
-          styles.color = styles.text.color
-        }
-        if(styles.text.leading) {
-          styles.lineHeight = styles.text.leading
-        }
-      }
-      if(styles.border && typeof styles.border === 'object') {
-        if(styles.border.width) {
-          styles.borderWidth = styles.border.width
-        }
-        if(styles.border.color) {
-          styles.borderColor = styles.border.color
-        }
-      }
-      if(styles.background && typeof styles.background === 'object') {
-        var color = parseColor(styles.background.color)
-        if(styles.background.opacity) {
-          color = parseColor('rgba(' + color.rgb.slice().concat(styles.background.opacity).join(',') + ')')
-        }
-        styles.backgroundColor = 'rgba(' + color.rgba.join(',') + ')'
-      }
-      return styles
-    },
     setSceneDimensions() {
       const el = document.getElementById('journey-main-visual-canvas')
       if(el) {
@@ -314,18 +232,6 @@ export default {
         this.canvas.width = this.canvas.height = 0
         this.actual.width = this.actual.height = 0
       }
-    },
-    visualTagClick(tag) {
-      if(tag.click === 'getCloser') {
-        this.canvas.transformOrigin.x = (tag.x + tag.width / 2) * 100.0 / this.mainVisual.width
-        this.canvas.transformOrigin.y = (tag.y + tag.height / 2) * 100.0 / this.mainVisual.height
-        this.canvas.transform.scale = this.canvas.transform.scale === 1 ? 2 : 1
-      } else if(tag.click === 'revealUnder') {
-        tag.visible = false
-      }
-    },
-    getVisualTagKey(tag) {
-      return `${tag.x}-${tag.y}-${tag.width}-${tag.height}`
     },
     changeScene(action, target) {
       var nextSceneIndex = this.activeSceneIndex
@@ -367,7 +273,8 @@ export default {
     this.setSceneDimensions()
   },
   components: {
-    SubtitlingMachine
+    SubtitlingMachine,
+    VisualTags
   }
 }
 </script>
