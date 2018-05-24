@@ -122,7 +122,7 @@ export default {
   },
   call_for_action: {
     title: '你看到的外媒報導沒出現嗎？',
-    description: '由於人力、時間和語言能力的限制，我們目前只能蒐集到<span val="data-tally-total"></span>篇相關報導，你有看到其他的嗎？你可以[來這裡](https://goo.gl/forms/edndn3zHgZ1lHzUK2)填寫你所看到的新聞資料，沃草會在確認內容後更新網頁內容，並且將你列為貢獻者之一。\n\n在沃草，我們持續以各種方式，**努力降低理解複雜議題的門檻**。像《<span val="data-title"></span>》這樣的資訊新聞需要許多人力整理資料、設計、製作，如果你喜歡沃草的內容，請別忘了[支持我們](https://watchout.tw/#support)！'
+    description: '由於人力、時間和語言能力的限制，我們目前只能蒐集到<span val="data-tally-total"></span>篇相關報導，你有看到其他的嗎？你可以[來這裡](https://goo.gl/forms/edndn3zHgZ1lHzUK2)填寫你所看到的新聞資料，沃草會在確認內容後更新網頁內容，並且將你列為貢獻者之一。\n\n在沃草，我們持續以各種方式，**努力降低理解複雜議題的門檻**。像《<span val="data-title"></span>》這樣的資訊新聞需要許多人力整理資料、設計、製作，如果你喜歡沃草的內容，請別忘了[支持我們](https://watchout.tw/?support)！'
   },
   debug: false
 }

@@ -1,17 +1,24 @@
 <template>
-<div class="line-chart" :id="config.id">
+<div class="line-chart" :id="config.id" :class="submit.done ? ['done'] : []">
   <div class="before tcl-left-right-margin">
     <h3 class="title">{{ config.text.title }}</h3>
     <div class="paragraphs no-margin" v-html="markdown(config.text.before)"></div>
   </div>
   <div class="chart">
-    <div class="you-draw">
+    <div v-show="initialized" class="you-draw">
       <div class="line"></div>
       <div class="hand"></div>
     </div>
+    <div v-if="!initialized" class="loading">
+      <div class="content">
+        <div class="spinner"></div>
+      </div>
+    </div>
+  </div>
+  <div class="actions form-field-align-center">
+    <submit-button :classes="['musou']" :label="'畫好了啦'" :state.sync="submit.state" :message.sync="submit.message" :once="true" @click.native="onSubmit" @reset="hasSubmitted"></submit-button>
   </div>
   <div class="after tcl-left-right-margin">
-    <button class="input button submit musou">畫好了啦</button>
     <div class="score">
       <div>畫的有</div>
       <div class="number">{{ score }}</div>
@@ -23,11 +30,14 @@
 </template>
 
 <script>
-import { knowsMarkdown } from 'watchout-common-functions/interfaces'
+import { knowsError, knowsMarkdown } from 'watchout-common-functions/interfaces'
+import SubmitButton from 'watchout-common-functions/components/button/Submit'
+import * as coralreef from 'watchout-common-functions/lib/coralreef'
+import * as STATES from 'watchout-common-functions/lib/states'
 import * as d3 from 'd3'
-import * as core from '../../lib/core'
 
 const colors = {
+  'hui-1': 'rgba(0, 0, 255, 0.35)',
   'bian-1': 'rgba(0, 255, 0, 0.25)',
   'bian-2': 'rgba(0, 255, 0, 0.35)',
   'ma-1': 'rgba(0, 0, 255, 0.25)',
@@ -35,14 +45,21 @@ const colors = {
   'tsai-1': 'rgba(0, 255, 0, 0.25)'
 }
 const presidents = {
+  'hui': '李登輝',
   'bian': '陳水扁',
   'ma': '馬英九',
   'tsai': '蔡英文'
 }
+const UNDONE_SCORE = -1
+const SUBMIT_MESSAGES = {
+  [STATES.INCOMPLETE]: '你沒畫完',
+  [STATES.FAILED]: '紀錄失敗',
+  [STATES.SUCCESS]: '已記錄'
+}
 
 export default {
-  mixins: [knowsMarkdown],
-  props: ['config'],
+  mixins: [knowsError, knowsMarkdown],
+  props: ['config', 'verified', 'useReCAPTCHA', 'submittingChartID', 'token'],
   data() {
     return {
       el: {},
@@ -60,70 +77,144 @@ export default {
         sequence: {
           label: {}
         }
-      }
+      },
+      submit: {
+        state: STATES.DEFAULT,
+        message: null,
+        done: false
+      },
+      initialized: false
     }
   },
   computed: {
-    score: function() {
-      if(!(this.rows && this.rows.user)) {
-        return 87
-      }
-
-      var self = this
+    score() {
       var s = 0.2
       var y = s * (this.config.axes.y.max - this.config.axes.y.min)
       var n = 0
+      var answered = 0
       var d = 0
       var sum = 0
-      this.rows.user.forEach(function(row, i) {
+      this.rows.user.forEach((row, i) => {
         if(!row.fix) {
           n = n + 1
           if(row.show) {
-            d = Math.abs(row.y - self.rows.orig[i].y)
+            answered = answered + 1
+            d = Math.abs(row.y - this.rows.orig[i].y)
             sum = sum + (1 - (d > y ? y : d) / y) * 100
           }
         }
       })
-      return n === 0 ? 0 : Math.round(sum / n)
+      // have to finish all the points
+      return n === answered ? Math.round(sum / n) : UNDONE_SCORE
     }
   },
   created() {
     const { id, compare } = this.config
-    this.rows.orig = require('~/data/draw/' + id + '.json')
-    this.rows.user = JSON.parse(JSON.stringify(this.rows.orig))
+    const points = require('~/data/draw/' + id + '.json')
+    this.rows.orig = JSON.parse(JSON.stringify(points)) // deep clone
+    this.rows.user = JSON.parse(JSON.stringify(points))
     this.rows.user.forEach((row, index, rows) => {
       if(row.fix && !(index + 1 < rows.length && !rows[index + 1].fix)) {
         row.show = false
       }
     })
     if(compare) {
+      const compAttrs = { show: true, fix: true }
       this.rows.comp = compare.map(compareThis =>
-        require('~/data/draw/' + compareThis.id + '.json').map(row =>
-          Object.assign({}, row, {show: true, fix: true}) // have to use fresh empty object
-        )
+        require('~/data/draw/' + compareThis.id + '.json').map(row => {
+          const dataEmpty = row.fix && !row.show
+          // have to use fresh empty object
+          // <chihao> Has to be fresh!
+          return dataEmpty ? row : Object.assign({}, row, compAttrs)
+        })
       )
     }
   },
   mounted() {
     this.init()
     this.draw()
+    this.initialized = true
+  },
+  watch: {
+    verified(newVerified, oldVerified) {
+      if(newVerified === oldVerified || !newVerified) {
+        return
+      }
+
+      if(this.useReCAPTCHA && this.submittingChartID === this.config.id) {
+        this.finalize()
+      }
+    }
   },
   methods: {
-    createSpeech: function() {
+    onSubmit() {
+      if(this.submit.state !== STATES.DEFAULT) {
+        return
+      }
+
+      if(this.score === UNDONE_SCORE) {
+        this.submit.state = STATES.INCOMPLETE
+        this.submit.message = SUBMIT_MESSAGES[STATES.INCOMPLETE]
+      } else {
+        this.submit.state = STATES.LOADING
+        this.$emit('update:submittingChartID', this.config.id)
+
+        if(!this.verified) {
+          window.grecaptcha.execute()
+        } else {
+          this.finalize()
+        }
+      }
+    },
+    finalize() {
+      // record speech
+      const speechData = this.genSpeechData()
+      coralreef.createSpeech(speechData, this.token, this.useReCAPTCHA).then(() => {
+        this.submit.state = STATES.SUCCESS
+        this.submit.message = SUBMIT_MESSAGES[STATES.SUCCESS]
+        // draw original
+        this.rows.orig.forEach(function(row) {
+          row.show = true
+        })
+        this.drawOrig()
+      }).catch((error) => {
+        this.submit.state = STATES.FAILED
+        this.submit.message = SUBMIT_MESSAGES[STATES.FAILED]
+        this.handleError(error)
+      })
+    },
+    hasSubmitted() {
+      if(this.submit.state === STATES.SUCCESS) {
+        this.submit.done = true
+      }
+    },
+    genSpeechData() {
+      const keys = ['x', 'y', 'label']
+      var points = this.rows.user.filter(u => !u.fix)
+      points = points.map(function(point) {
+        return keys.reduce(function(r, key) {
+          r[key] = point[key]
+          return r
+        }, {})
+      })
       const { speechTarget } = this.config
-      const data = this.rows.user.filter(u => !u.fix)
-      core.createLineChartSpeech(speechTarget, data)
+      return {
+        targetID: speechTarget.id,
+        classes: [speechTarget.speechType],
+        data: { points }
+      }
     },
-    drawComp: function(i, title) {
-      this.drawPath(this.el.comp[i], this.rows.comp[i], title)
+    drawComp(i, title) {
+      const { valLabel } = this.config.compare[i]
+      this.drawPath(this.el.comp[i], this.rows.comp[i], title, valLabel)
     },
-    drawUser: function() {
+    drawUser() {
       this.drawPath(this.el.user, this.rows.user)
     },
-    drawOrig: function() {
+    drawOrig() {
       this.drawPath(this.el.orig, this.rows.orig)
     },
-    drawPath: function(el, points, title) {
+    drawPath(el, points, title, drawLabels = true) {
       // https://github.com/d3/d3-selection/blob/master/README.md#selection_data
       // General Update Pattern
       // select → data → exit → remove → enter → append → merge
@@ -162,17 +253,19 @@ export default {
         .classed('hide', function(d) { return !d.show })
 
       // draw labels
-      var endpoints = segments.reduce(function(acc, cur) {
-        return acc.concat([cur[0], cur[cur.length - 1]])
-      }, [])
-      var labels = el.selectAll('text.data').data(endpoints, function(d) { return d.x })
-      labels.exit().remove()
-      labels.enter().append('text').merge(labels)
-        .text(function(d) { return self.util.sequence.label.format(d.y) })
-        .attr('x', function(d) { return self.util.axes.x.scale(d.x) })
-        .attr('y', function(d) { return self.util.axes.y.scale(d.y) - self.size.r * 2 })
-        .attr('class', 'data')
-        .classed('hide', function(d) { return !d.show })
+      if(drawLabels) {
+        var endpoints = segments.reduce(function(acc, cur) {
+          return acc.concat([cur[0], cur[cur.length - 1]])
+        }, [])
+        var labels = el.selectAll('text.data').data(endpoints, function(d) { return d.x })
+        labels.exit().remove()
+        labels.enter().append('text').merge(labels)
+          .text(function(d) { return self.util.sequence.label.format(d.y) })
+          .attr('x', function(d) { return self.util.axes.x.scale(d.x) })
+          .attr('y', function(d) { return self.util.axes.y.scale(d.y) - self.size.r * 2 })
+          .attr('class', 'data')
+          .classed('hide', function(d) { return !d.show })
+      }
 
       if(title) {
         var anchor = 2
@@ -185,7 +278,7 @@ export default {
           .text(title)
       }
     },
-    init: function() {
+    init() {
       var size = this.size
       var util = this.util
       var config = this.config
@@ -232,25 +325,31 @@ export default {
           var text = tick.append('g')
             .attr('transform', 'translate(' + [-util.axes.x.scale.step() / 2, size.h - size.p - size.r * 8].join(',') + ')')
 
-          // omit year when repeat
-          if(d.indexOf('/') > -1) {
-            var [y, m] = d.split('/')
+          // draw labels
+          let delim = null
+          if(d.indexOf('/') > -1) { // y/m
+            delim = '/'
+          } else if(d.indexOf('Q') > -1) { // yQq
+            delim = 'Q'
+          }
+          if(delim) {
+            var [a, b] = d.split(delim).map(i => parseInt(i))
             var target = this.previousSibling
-            while(!!target && d3.select(target).datum().indexOf('/') < 0) {
+            while(!!target && d3.select(target).datum().indexOf(delim) < 0) {
               target = target.previousSibling
             }
-            if(!(!!target && d3.select(target).datum().indexOf(y) > -1)) {
+            if(!(!!target && d3.select(target).datum().indexOf(a) > -1)) {
               text.append('text')
-                .attr('dy', 2 * size.rem)
-                .text(y)
+                .attr('dy', 1.875 * size.rem)
+                .text(a)
             }
-            d = m
+            d = b
           }
           if(d % 2 === (nodes.length % 2 === 0 ? 0 : 1)) {
             return
           }
           text.append('text')
-            .text(d + (!this.nextSibling ? config.axes.x.label : ''))
+            .text((config.axes.x.labelBefore ? config.axes.x.labelBefore : '') + d + (!this.nextSibling && config.axes.x.label ? config.axes.x.label : ''))
             .attr('dy', 1 * size.rem)
         })
       }
@@ -277,7 +376,7 @@ export default {
           .text(config.axes.y.label)
       }
     },
-    draw: function() {
+    draw() {
       var self = this
 
       this.el.root = this.el.container.append('svg')
@@ -299,7 +398,7 @@ export default {
         .attr('height', this.util.axes.y.scale(this.config.axes.y.min) - this.util.axes.y.scale(this.config.axes.y.max))
         .attr('fill', function(d) { return colors[d.label] })
 
-      var lastPresident = 'hui'
+      var lastPresident = 'chiang'
       this.rows.user.forEach(function(row, i, rows) {
         var [president] = row.label.split('-')
         if(president !== lastPresident) {
@@ -337,29 +436,6 @@ export default {
       this.el.user = this.el.root.append('g').attr('class', 'sequence user')
       this.el.orig = this.el.root.append('g').attr('class', 'sequence orig')
 
-      // add button to finish and show comparison
-      this.el.button = d3.select(this.$el).select('.after > .submit')
-        .on('click', function() {
-          if (self.rows.user.find(target => !target.show && !target.fix)) {
-            // TODO show noticing `you have to complete the chart`
-            return
-          }
-
-          self.createSpeech()
-
-          // remove animation
-          self.el.container.select('.you-draw').remove()
-
-          self.rows.orig.forEach(function(row) {
-            row.show = true
-          })
-          self.drawOrig()
-          self.el.root.on('click', null)
-          self.el.root.on('mousedown.drag', null)
-
-          d3.select(self.$el).select('.after').classed('reveal', true)
-        })
-
       // make callback to redraw at user input
       function redraw() {
         // remove animation
@@ -389,7 +465,7 @@ export default {
       // draw original sequence
       this.drawOrig()
 
-      // setup animation
+      // setup `you-draw` animation
       var lastOrig = this.rows.orig.filter((row, i) => {
         return row.fix && i + 1 < this.rows.orig.length && !this.rows.orig[i + 1].fix
       }).pop()
@@ -397,11 +473,14 @@ export default {
       var viewport = window.innerWidth
       var zoom = viewport > this.size.w ? 1 : viewport / this.size.w
       this.el.container.select('.you-draw')
-        .style('top', this.util.axes.y.scale(lastOrig.y) * zoom - 54 + 'px')
+        .style('top', this.util.axes.y.scale(lastOrig.y) * zoom - 60 + 'px')
         .style('left', this.util.axes.x.scale(lastOrig.x) * zoom + 'px')
         .style('transform', 'scale(' + zoom + ')')
         .style('transform-origin', 'center left')
     }
+  },
+  components: {
+    SubmitButton
   }
 }
 </script>
@@ -429,7 +508,7 @@ export default {
       0% { transform: none; }
       100% { transform: translate(52px, -30px); }
     }
-    $animation-time: 1s;
+    $animation-time: 1.5s;
     $animation-iteration-count: infinite;
 
     > .you-draw {
@@ -456,6 +535,20 @@ export default {
         height: 60px;
         background-image: url('/static/draw/hand.svg');
         animation: move $animation-time $animation-iteration-count;
+      }
+    }
+
+    > .loading {
+      position: relative;
+      width: 100%;
+      @include rect(1);
+      > .content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        > .spinner {
+          @include spinner($color: $color-musou-light);
+        }
       }
     }
 
@@ -523,27 +616,14 @@ export default {
           }
         }
       }
-      .axis-y {
-        @include bp-sm-down {
-          display: none;
-        }
-      }
     }
   }
+  > .actions {
+    margin: 0.5rem 0;
+  }
   > .after {
-    position: relative;
-    > *:not(.submit) {
-      visibility: hidden;
-    }
-    &.reveal {
-      > .submit {
-        display: none;
-      }
-      > *:not(.submit) {
-        visibility: visible;
-      }
-    }
-
+    visibility: hidden;
+    margin-bottom: 2rem;
     > .score {
       text-align: center;
       font-size: 0.875rem;
@@ -560,13 +640,13 @@ export default {
     > .text {
       margin-top: 1rem;
     }
-    > .submit {
-      position: absolute;
-      top: 0.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: block;
-      color: white;
+  }
+  &.done {
+    > .chart {
+      z-index: -1; // sink chart behind container to prevent further interaction
+    }
+    > .after {
+      visibility: visible;
     }
   }
 }

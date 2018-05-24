@@ -20,14 +20,14 @@ export default {
       people: ['游知澔']
     }
   ],
-  graphs: [
+  charts: [
     {
       id: 'unemployment',
       title: '每年失業率',
       sheetID: '541577362',
       speechTarget: {
-        id: 175,
-        type: 'musou_line_chart_response'
+        id: 482,
+        speechType: 'musou_line_chart_response'
       },
       axes: {
         x: {
@@ -61,8 +61,8 @@ export default {
       title: '每年來台旅客人數',
       sheetID: '1810543594',
       speechTarget: {
-        id: 176,
-        type: 'musou_line_chart_response'
+        id: 483,
+        speechType: 'musou_line_chart_response'
       },
       axes: {
         x: {
@@ -86,9 +86,9 @@ export default {
         }
       },
       text: {
-        title: '來臺旅客有多少',
-        before: '政黨輪替後，被視為推展觀光績效的來臺旅客人數常被拿出來檢驗，到底蔡英文政府執政的第一年，不分國籍的旅客來臺旅客是增加還是減少呢？',
-        after: '蔡政府執政第一年，來臺旅客**持續增加**中。\n\n根據交通部觀光局[統計數據](http://admin.taiwan.net.tw/statistics/year.aspx?no=134)，民進黨扁政府2007年卸任前來臺旅客為371萬人。國民黨馬政府執政後，來臺旅客人數持續攀高，至2015年達1,043萬人。2016年民進黨蔡政府執政後，來臺旅客人數則持續上升至1,069萬人。'
+        title: '來台旅客有多少',
+        before: '政黨輪替後，被視為推展觀光績效的來台旅客人數常被拿出來檢驗，到底蔡英文政府執政的第一年，不分國籍的旅客來台旅客是增加還是減少呢？',
+        after: '蔡政府執政第一年，來台旅客**持續增加**中。\n\n根據交通部觀光局[統計數據](http://admin.taiwan.net.tw/statistics/year.aspx?no=134)，民進黨扁政府2007年卸任前來台旅客為371萬人。國民黨馬政府執政後，來台旅客人數持續攀高，至2015年達1,043萬人。2016年民進黨蔡政府執政後，來台旅客人數則持續上升至1,069萬人。'
       }
     },
     {
@@ -96,8 +96,8 @@ export default {
       title: '中國旅客每月來台人數',
       sheetID: '918177893', // run get.py and get sheetID from data/graphs.json
       speechTarget: {
-        id: 177,
-        type: 'musou_line_chart_response'
+        id: 484,
+        speechType: 'musou_line_chart_response'
       },
       axes: {
         x: {
@@ -122,8 +122,8 @@ export default {
       },
       text: {
         title: '中國旅客有多少',
-        before: '國民黨馬政府執政時，中國旅客來臺人數連年攀高，在民進黨蔡政府執政這一年，你認為會怎麼變化呢？',
-        after: '蔡英文執政後，中國旅客人數**逐月下降**。\n\n根據交通部觀光局[統計數據](http://admin.taiwan.net.tw/statistics/year.aspx?no=134)，2015年4月，每月來臺旅客中有超過35萬人為中國人，約佔全體來臺旅客4成。至2016年2月總統馬英九卸任前夕，中國旅客更是單月突破四十萬人，比例高達44%成為近年高峰。\n\n2016年5月政黨輪替後，中國旅客人數逐月下降，於2016年6月起低於30萬人。至今年3月，來臺中國旅客人數降至20萬人，佔總體來臺旅客22%。'
+        before: '國民黨馬政府執政時，中國旅客來台人數連年攀高，在民進黨蔡政府執政這一年，你認為會怎麼變化呢？',
+        after: '蔡英文執政後，中國旅客人數**逐月下降**。\n\n根據交通部觀光局[統計數據](http://admin.taiwan.net.tw/statistics/year.aspx?no=134)，2015年4月，每月來台旅客中有超過35萬人為中國人，約佔全體來台旅客4成。至2016年2月總統馬英九卸任前夕，中國旅客更是單月突破四十萬人，比例高達44%成為近年高峰。\n\n2016年5月政黨輪替後，中國旅客人數逐月下降，於2016年6月起低於30萬人。至今年3月，來台中國旅客人數降至20萬人，佔總體來台旅客22%。'
       }
     },
     {
@@ -131,8 +131,8 @@ export default {
       title: '世界旅客每月來台人數',
       sheetID: '918177893', // run get.py and get sheetID from data/graphs.json
       speechTarget: {
-        id: 178,
-        type: 'musou_line_chart_response'
+        id: 485,
+        speechType: 'musou_line_chart_response'
       },
       axes: {
         x: {
@@ -158,13 +158,14 @@ export default {
       compare: [
         {
           id: 'monthly-visitors-china',
-          label: '中國旅客每月來台人數'
+          label: '中國旅客每月來台人數',
+          valLabel: true
         }
       ],
       text: {
         title: '中國以外國際旅客有多少',
-        before: '民進黨蔡政府執政一年來，中國旅客以外的國際旅客來臺人數，你認為是增加還是減少呢？',
-        after: '一年來，中國以外國際旅客**增加35.5%**。\n\n交通部觀光局[統計](http://admin.taiwan.net.tw/statistics/year.aspx?no=134)，2016年4月政黨輪替前，除中國外其他國家來臺旅客與前一年同期相近，約為53萬人，佔總體旅客人數約58%。\n\n政黨輪替後，其他國家旅客不斷攀升，至2016年底更一度突破80萬人，到今年3月份則為72萬人，佔總體旅客78%。'
+        before: '民進黨蔡政府執政一年來，中國旅客以外的國際旅客來台人數，你認為是增加還是減少呢？',
+        after: '一年來，中國以外國際旅客**增加35.5%**。\n\n交通部觀光局[統計](http://admin.taiwan.net.tw/statistics/year.aspx?no=134)，2016年4月政黨輪替前，除中國外其他國家來台旅客與前一年同期相近，約為53萬人，佔總體旅客人數約58%。\n\n政黨輪替後，其他國家旅客不斷攀升，至2016年底更一度突破80萬人，到今年3月份則為72萬人，佔總體旅客78%。'
       }
     },
     {
@@ -172,8 +173,8 @@ export default {
       title: '中央政府歲入',
       sheetID: '1456792974',
       speechTarget: {
-        id: 179,
-        type: 'musou_line_chart_response'
+        id: 486,
+        speechType: 'musou_line_chart_response'
       },
       axes: {
         x: {
@@ -208,8 +209,8 @@ export default {
       title: '中央政府歲出',
       sheetID: '1456792974',
       speechTarget: {
-        id: 180,
-        type: 'musou_line_chart_response'
+        id: 487,
+        speechType: 'musou_line_chart_response'
       },
       axes: {
         x: {
@@ -236,7 +237,8 @@ export default {
       compare: [
         {
           id: 'annual-revenue',
-          label: '中央政府歲入'
+          label: '中央政府歲入',
+          valLabel: true
         }
       ],
       text: {
@@ -250,8 +252,8 @@ export default {
       title: '中央政府一年以上公共債務未償餘額',
       sheetID: '92876274',
       speechTarget: {
-        id: 181,
-        type: 'musou_line_chart_response'
+        id: 488,
+        speechType: 'musou_line_chart_response'
       },
       axes: {
         x: {
@@ -284,6 +286,6 @@ export default {
   beforeConclusion: '畫完了，然後呢？',
   conclusion: {
     title: '結論：關心政治、持續監督',
-    description: '這次你得了幾分呢？蔡總統第一年的表現和你想的一樣嗎？\n\n真實的數據，是否讓你感到意外？逐年攀升的國債是否令你吃驚呢？事實上，現在立法院正在審查前瞻基礎建設特別條例，未來八年很可能會再舉債八千八百多億，國債也會繼續攀升，或許明年再看到這些圖表的時候，你會更為驚訝。\n\n在沃草，我們持續以各種方式報導國會，**努力降低理解複雜議題的門檻**。像《蔡總統的第一年》這樣的資訊新聞需要許多人力整理資料、設計、製作，如果你喜歡沃草的內容，請別忘了[支持我們](https://watchout.tw/#support)！'
+    description: '這次你得了幾分呢？蔡總統第一年的表現和你想的一樣嗎？\n\n真實的數據，是否讓你感到意外？逐年攀升的國債是否令你吃驚呢？事實上，現在立法院正在審查前瞻基礎建設特別條例，未來八年很可能會再舉債八千八百多億，國債也會繼續攀升，或許明年再看到這些圖表的時候，你會更為驚訝。\n\n在沃草，我們持續以各種方式報導國會，**努力降低理解複雜議題的門檻**。像《蔡總統的第一年》這樣的資訊新聞需要許多人力整理資料、設計、製作，如果你喜歡沃草的內容，請別忘了[支持我們](https://watchout.tw/?support)！'
   }
 }
