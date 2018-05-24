@@ -46,6 +46,9 @@ export default {
     this.stop()
   },
   methods: {
+    isLatin(string) {
+      return /[A-Za-z0-9`~$%^&*\-=+\\|/!;:,.?]/.test(string)
+    },
     tokenize(sentence, addSpaceBack = true) {
       var segments = pangu.spacing(sentence.toUpperCase()).split(' ')
       if(addSpaceBack) {
