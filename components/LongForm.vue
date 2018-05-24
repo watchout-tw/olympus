@@ -1,6 +1,6 @@
 <template>
 <div class="long-form" :style="project.chart.styles">
-  <a :href="plotDBLink" target="_blank" class="a-block plotdb-credit font-size-smaller text-align-center">
+  <a :href="plotDBLink" target="_blank" class="a-block plotdb-credit font-size-small text-align-center">
     <span>This project is made possible by </span>
     <img class="plotdb-logo inline" :src="plotDBLogo" width="163px" style="margin: 0 0.25rem;"/>
   </a>

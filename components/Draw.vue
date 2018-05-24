@@ -10,7 +10,7 @@
     </div>
     <div class="tcl-panel"></div>
   </div>
-  <no-ssr><div class="disclaimer tcl-container font-size-smaller secondary-text">
+  <no-ssr><div class="disclaimer tcl-container font-size-small secondary-text">
     <ul class="tcl-panel tcl-left-right-margin">
       <li class="recaptcha" v-if="!isCitizen">
         <img :src="require('watchout-common-assets/images/attributions/recaptcha.svg')" />

@@ -30,7 +30,7 @@
     </div>
     <div class="references" v-if="project.references && project.references.length > 0">
       <div class="section-title with-underline small"><span>參考資料</span></div>
-      <ul class="items font-size-smaller">
+      <ul class="items font-size-small">
         <li class="item paragraphs no-margin a-text-parent" v-for="item of project.references" v-html="markdown(item)"></li>
       </ul>
     </div>
