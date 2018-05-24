@@ -135,17 +135,6 @@ export default {
         transform: `scale(${this.canvas.transform.scale})`
       })
     },
-    nextScene() {
-      var index = -1
-      if(this.activeScene.classes.includes('fork')) {
-        // FIXME: TBD
-      } else {
-        index = this.activeScene.hasOwnProperty('next')
-          ? this.getSceneIndexFromID(this.activeScene.next)
-          : (this.activeSceneIndex + this.scenes.length + 1) % this.scenes.length
-      }
-      return index > 0 && index < this.scenes.length ? this.scenes[index] : undefined
-    },
     backgroundAudioLibrary() {
       // find all background audio occurences at scenes
       var backgroundAudioAtScene = this.scenes
