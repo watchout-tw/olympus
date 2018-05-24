@@ -3,17 +3,13 @@
   <div class="sequence">
     <div class="scene" :class="activeSceneClasses">
       <div class="main-visual-container" :style="mainVisualContainerStyles">
-        <div class="main-visual" v-if="mainVisual" :class="mainVisual.type">
-          <template v-if="mainVisual.type === 'image'">
-            <div class="content" id="journey-main-visual-canvas" :style="mainVisualContentStyles"></div>
-          </template>
-        </div>
+        <main-visual :canvas="canvas" :mainVisual="mainVisual"></main-visual>
         <visual-tags :sequence="sequence" :activeScene="activeScene" :canvas.sync="canvas" :actual="actual" :mainVisual="mainVisual"></visual-tags>
         <div class="subtitle d-flex justify-content-center">
           <subtitling-machine :lines="activeScene.subtitle" :config="subtitling.config" :status.sync="subtitling.status" :key="activeScene.id" />
         </div>
       </div>
-      <div class="text-container" :style="textContainerStyles">
+      <div class="text-container" :style="getStyles('textContainer')">
         <div class="text">
           <div class="date" v-if="activeScene.date"><span>{{ activeSceneDateString }}</span><span v-if="sequence.default.toggles.showCountdown" class="countdown">{{ activeSceneCountDown }}</span></div>
           <h3 v-if="activeScene.beforeTitle" class="before-title font-size-body body-style"><span>{{ activeScene.beforeTitle }}</span></h3>
@@ -43,12 +39,14 @@
 
 <script>
 import { knowsMarkdown, knowsDOM, knowsAudio } from 'watchout-common-functions/interfaces'
+import MainVisual from './journey/another-future/MainVisual'
 import VisualTags from './journey/another-future/VisualTags'
-import getStyles from '~/interfaces/journey/getStyles'
 import SubtitlingMachine from './journey/SubtitlingMachine'
+import getStyles from '~/interfaces/journey/getStyles'
+import canvasIsLarger from '~/interfaces/journey/canvasIsLarger'
 
 export default {
-  mixins: [knowsMarkdown, knowsDOM, knowsAudio, getStyles],
+  mixins: [knowsMarkdown, knowsDOM, knowsAudio, getStyles, canvasIsLarger],
   props: ['project'],
   data() {
     var state = {
@@ -68,7 +66,6 @@ export default {
         width: 0,
         height: 0
       },
-      croppingMethod: 'cover',
       subtitling: {
         status: 'inactive',
         config: {
@@ -132,37 +129,11 @@ export default {
     mainVisual() {
       return this.activeScene.hasOwnProperty('mainVisual') ? this.activeScene.mainVisual : undefined
     },
-    mainVisualContentStyles() {
-      var styles = {}
-      if(this.mainVisual && this.mainVisual.type === 'image') {
-        if(this.mainVisual.magnify === false) {
-          if(this.canvasIsLarger()) {
-            // actual size
-            this.croppingMethod = 'none'
-            styles.backgroundSize = this.mainVisual.width + 'px'
-          } else {
-            // contain
-            this.croppingMethod = styles.backgroundSize = 'contain'
-          }
-        } else {
-          // cover
-          this.croppingMethod = styles.backgroundSize = 'cover'
-        }
-        if(this.mainVisual.blur) {
-          styles.filter = 'blur(4px)'
-        }
-        styles.backgroundImage = 'url(' + require('@/static/' + this.mainVisual.url) + ')'
-      }
-      return styles
-    },
     mainVisualContainerStyles() {
       return Object.assign(this.getStyles('mainVisualContainer'), {
         transformOrigin: `${this.canvas.transformOrigin.x}% ${this.canvas.transformOrigin.y}%`,
         transform: `scale(${this.canvas.transform.scale})`
       })
-    },
-    textContainerStyles() {
-      return this.getStyles('textContainer')
     },
     nextScene() {
       var index = -1
@@ -198,9 +169,6 @@ export default {
     },
     getSceneIndexFromID(id) {
       return this.sceneIDs.indexOf(id)
-    },
-    canvasIsLarger() {
-      return this.canvas.width >= this.mainVisual.width && this.canvas.height >= this.mainVisual.height
     },
     setSceneDimensions() {
       const el = document.getElementById('journey-main-visual-canvas')
@@ -273,8 +241,9 @@ export default {
     this.setSceneDimensions()
   },
   components: {
-    SubtitlingMachine,
-    VisualTags
+    MainVisual,
+    VisualTags,
+    SubtitlingMachine
   }
 }
 </script>
@@ -359,36 +328,6 @@ export default {
           }
         }
 
-        > .main-visual {
-          @include full-coverage;
-          &.image > .content {
-            @include full-coverage;
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-          }
-        }
-        > .visual-tags {
-          position: absolute;
-          > .visual-tag {
-            position: absolute;
-            transition: visibility 0s linear 500ms, opacity 500ms;
-            > .region {
-              border-style: solid;
-              cursor: pointer;
-            }
-            > .content {
-              display: inline-block;
-              max-width: 8rem;
-              border-radius: 2px;
-              font-size: 0.875rem;
-              margin: 0.25rem 0;
-              padding: 0.25rem 0.5rem;
-              background: rgba(white, 0.5);
-              color: black;
-            }
-          }
-        }
         > .subtitle {
           position: absolute;
           top: 50%;
