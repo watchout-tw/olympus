@@ -1,6 +1,6 @@
 <template>
-<div class="visual-tags" v-if="activeScene.visualTags" :style="visualTagContainerStyles">
-  <div v-for="tag of activeScene.visualTags" class="visual-tag" :style="visualTagStyle(tag)" @click="visualTagClick(tag)" :key="getVisualTagKey(tag)">
+<div class="visual-tags" v-if="tags" :style="visualTagContainerStyles">
+  <div v-for="tag of tags" class="visual-tag" :style="visualTagStyle(tag)" @click="visualTagClick(tag)" :key="getVisualTagKey(tag)">
     <div class="region" :style="Object.assign(getDimensions(tag), getStyles('visualTags', tag))"></div>
     <div class="content" :style="" v-if="tag.content">{{ tag.content }}</div>
   </div>
@@ -8,11 +8,9 @@
 </template>
 
 <script>
-import getStyles from '~/interfaces/journey/getStyles'
 
 export default {
-  mixins: [getStyles],
-  props: ['mainVisual', 'actual', 'canvas', 'activeScene', 'sequence'],
+  props: ['mainVisual', 'actual', 'canvas', 'tags', 'getStyles'],
   computed: {
     visualTagContainerStyles() {
       return this.mainVisual ? {
@@ -35,9 +33,15 @@ export default {
   methods: {
     visualTagClick(tag) {
       if(tag.click === 'getCloser') {
-        this.canvas.transformOrigin.x = (tag.x + tag.width / 2) * 100.0 / this.mainVisual.width
-        this.canvas.transformOrigin.y = (tag.y + tag.height / 2) * 100.0 / this.mainVisual.height
-        this.canvas.transform.scale = this.canvas.transform.scale === 1 ? 2 : 1
+        const transformOrigin = {
+          x: (tag.x + tag.width / 2) * 100.0 / this.mainVisual.width,
+          y: (tag.y + tag.height / 2) * 100.0 / this.mainVisual.height
+        }
+        const transform = {
+          scale: this.canvas.transform.scale === 1 ? 2 : 1
+        }
+        const newCanvas = {...this.canvas, transformOrigin, transform}
+        this.$emit('update:canvas', newCanvas)
       } else if(tag.click === 'revealUnder') {
         tag.visible = false
       }

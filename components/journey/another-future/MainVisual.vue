@@ -7,11 +7,8 @@
 </template>
 
 <script>
-import canvasIsLarger from '~/interfaces/journey/canvasIsLarger'
-
 export default {
-  mixins: [canvasIsLarger],
-  props: ['canvas', 'mainVisual'],
+  props: ['mainVisual', 'canvasIsLarger'],
   data() {
     return {
       croppingMethod: 'cover'
