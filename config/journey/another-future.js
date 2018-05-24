@@ -80,12 +80,12 @@ export default {
       {
         id: 'japanese-surrender-broadcast',
         type: 'audio',
-        url: 'https://watchout.tw/musou-aux/modern-history-of-taiwan/Imperial_Rescript_on_the_Termination_of_the_War-excerpt.mp3?l=20s' // Use external URL
+        url: 'https://archive.watchout.tw/musou-aux/modern-history-of-taiwan/Imperial_Rescript_on_the_Termination_of_the_War-excerpt.mp3?l=20s' // Use external URL
       },
       {
         id: 'martial-law-declaration-broadcast',
         type: 'audio',
-        url: 'https://watchout.tw/musou-aux/modern-history-of-taiwan/martial-law-declaration-broadcast-chen-yi-excerpt.mp3'
+        url: 'https://archive.watchout.tw/musou-aux/modern-history-of-taiwan/martial-law-declaration-broadcast-chen-yi-excerpt.mp3'
       }
     ],
     scenes: [
