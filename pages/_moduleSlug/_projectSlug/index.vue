@@ -10,6 +10,9 @@
     <template v-else-if="project.module === 'draw'">
       <draw :module="module" :project="project" />
     </template>
+    <template v-else-if="project.module === 'journey'">
+      <journey :module="module" :project="project" />
+    </template>
     <template v-else>
       <div class="not-available" style="margin: 1rem;">技術升級中，需要多一點點時間。</div>
     </template>
@@ -45,6 +48,7 @@ import { knowsMarkdown, knowsWatchout } from 'watchout-common-functions/interfac
 import Swipe from '~/components/Swipe'
 import Draw from '~/components/Draw'
 import LongForm from '~/components/LongForm'
+import Journey from '~/components/Journey'
 
 export default {
   mixins: [knowsMarkdown, knowsWatchout],
@@ -75,7 +79,8 @@ export default {
   components: {
     Swipe,
     Draw,
-    LongForm
+    LongForm,
+    Journey
   }
 }
 </script>
