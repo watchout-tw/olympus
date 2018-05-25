@@ -1,0 +1,15 @@
+@mixin subtitle-ish($reduceTopPadding: false) {
+  $backgroundColor: black;
+  $textColor: white;
+  $x: 0.5rem;
+  $y: 0.25rem;
+  $yTop: $y * -1;
+  @if $reduceTopPadding == true {
+    $yTop: 0
+  }
+  padding: 0 $x;
+  box-shadow: 0 $yTop 0 0 $backgroundColor, 0 $y 0 0 $backgroundColor;
+  box-decoration-break: clone;
+  background-color: $backgroundColor;
+  color: $textColor;
+}

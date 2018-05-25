@@ -25,6 +25,8 @@
     "d3": "^5.1.0",
     "lodash.debounce": "^4.0.8",
     "nuxt": "^1.0.0",
+    "pangu": "^3.3.0",
+    "parse-color": "^1.0.0",
     "query-string": "^4.3.4",
     "swing": "^3.1.1"
   },
