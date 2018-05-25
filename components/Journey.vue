@@ -37,9 +37,9 @@
 
 <script>
 import { knowsMarkdown, knowsDOM, knowsAudio } from 'watchout-common-functions/interfaces'
-import AudioLibrary from './journey/another-future/AudioLibrary'
-import MainVisual from './journey/another-future/MainVisual'
-import VisualTags from './journey/another-future/VisualTags'
+import AudioLibrary from './journey/AudioLibrary'
+import MainVisual from './journey/MainVisual'
+import VisualTags from './journey/VisualTags'
 import SubtitlingMachine from './journey/SubtitlingMachine'
 import parseColor from 'parse-color'
 
