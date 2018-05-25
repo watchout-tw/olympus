@@ -31,14 +31,13 @@
       </template>
     </div>
   </div>
-  <div class="background-audio-library">
-    <audio v-for="audio of backgroundAudioLibrary" :id="'background-audio-player-' + audio.media.id" :src="audio.media.url"></audio>
-  </div>
+  <audio-library :audios="audios" :playingID="backgroundAudio.playingID" :stopped.sync="audioStopped"></audio-library>
 </article>
 </template>
 
 <script>
 import { knowsMarkdown, knowsDOM, knowsAudio } from 'watchout-common-functions/interfaces'
+import AudioLibrary from './journey/another-future/AudioLibrary'
 import MainVisual from './journey/another-future/MainVisual'
 import VisualTags from './journey/another-future/VisualTags'
 import SubtitlingMachine from './journey/SubtitlingMachine'
@@ -81,8 +80,10 @@ export default {
         }
       },
       backgroundAudio: {
-        playing: false
-      }
+        playingID: false,
+        next: {action: '', target: ''}
+      },
+      audioStopped: false
     }
     return Object.assign(this.project, state)
   },
@@ -91,6 +92,12 @@ export default {
       // reset transformOrigin & transform at change of scene
       this.canvas.transformOrigin.x = this.canvas.transformOrigin.y = 50
       this.canvas.transform.scale = 1
+    },
+    audioStopped(nextVal) {
+      if(nextVal === true) {
+        this.changeScene(this.backgroundAudio.next.action, this.backgroundAudio.next.target)
+        this.audioStopped = false
+      }
     }
   },
   updated() {
@@ -134,24 +141,9 @@ export default {
         transform: `scale(${this.canvas.transform.scale})`
       })
     },
-    backgroundAudioLibrary() {
-      // find all background audio occurences at scenes
-      var backgroundAudioAtScene = this.scenes
-        .filter(scene => scene.hasOwnProperty('backgroundAudio'))
-        .map(scene => ({
-          mediaID: scene.backgroundAudio.id,
-          sceneID: scene.id
-        }))
-
-      const getMediaFromID = (id) => {
-        return Object.assign({}, this.sequence.media.find(media => media.id === id))
-      }
-      // return list of unique media entries and their occurences at scenes
-      return [...new Set(backgroundAudioAtScene.map(item => item.mediaID))]
-        .map(mediaID => ({
-          media: getMediaFromID(mediaID),
-          scenes: backgroundAudioAtScene.filter(item => item.mediaID === mediaID).map(item => item.sceneID)
-        }))
+    audios() {
+      const { media } = this.sequence
+      return media ? media.filter(m => m.type === 'audio') : []
     },
     canvasIsLarger() {
       return this.canvas.width >= this.mainVisual.width && this.canvas.height >= this.mainVisual.height
@@ -233,7 +225,7 @@ export default {
         this.actual.width = this.actual.height = 0
       }
     },
-    changeScene(action, target) {
+    getNextSceneIndex(action, target) {
       var nextSceneIndex = this.activeSceneIndex
       if(action === 'next') {
         nextSceneIndex = this.activeScene.hasOwnProperty('next') ? this.getSceneIndexFromID(this.activeScene.next) : (this.activeSceneIndex + this.scenes.length + 1) % this.scenes.length
@@ -242,27 +234,23 @@ export default {
       } else if(action === 'goto') {
         nextSceneIndex = this.getSceneIndexFromID(target)
       }
+      return nextSceneIndex
+    },
+    changeScene(action, target) {
+      if (this.backgroundAudio.playingID) {
+        this.backgroundAudio.next = {action, target}
+        this.backgroundAudio.playingID = undefined
+        return
+      }
 
+      const nextSceneIndex = this.getNextSceneIndex(action, target)
       // fade out AND/OR play background audio
       // audio.play() *MUST* be involked within a click/touch event handler
       const nextScene = this.scenes[nextSceneIndex]
-      const audioInLibrary = this.backgroundAudioLibrary.find(audio => audio.scenes.includes(nextScene.id))
-      const nextBackgroundAudio = audioInLibrary ? document.getElementById('background-audio-player-' + audioInLibrary.media.id) : null
+      const nextAudioID = nextScene.backgroundAudio && nextScene.backgroundAudio.id
 
-      if(this.backgroundAudio.playing) {
-        this.fadeOutAudio(this.backgroundAudio.playing, () => {
-          this.activeSceneIndex = nextSceneIndex
-          if(nextBackgroundAudio) {
-            this.playAudio(nextBackgroundAudio)
-            this.backgroundAudio.playing = nextBackgroundAudio
-          }
-        })
-        return // do not change scene until fade is complete
-      } else {
-        if(nextBackgroundAudio) {
-          this.playAudio(nextBackgroundAudio)
-          this.backgroundAudio.playing = nextBackgroundAudio
-        }
+      if(nextAudioID) {
+        this.backgroundAudio.playingID = nextAudioID
       }
       // change scene
       this.activeSceneIndex = nextSceneIndex
@@ -273,6 +261,7 @@ export default {
     this.setSceneDimensions()
   },
   components: {
+    AudioLibrary,
     MainVisual,
     VisualTags,
     SubtitlingMachine
