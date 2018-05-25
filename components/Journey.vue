@@ -143,18 +143,21 @@ export default {
           sceneID: scene.id
         }))
 
+      const getMediaFromID = (id) => {
+        return Object.assign({}, this.sequence.media.find(media => media.id === id))
+      }
       // return list of unique media entries and their occurences at scenes
       return [...new Set(backgroundAudioAtScene.map(item => item.mediaID))]
         .map(mediaID => ({
-          media: this.getMediaFromID(mediaID),
+          media: getMediaFromID(mediaID),
           scenes: backgroundAudioAtScene.filter(item => item.mediaID === mediaID).map(item => item.sceneID)
         }))
+    },
+    canvasIsLarger() {
+      return this.canvas.width >= this.mainVisual.width && this.canvas.height >= this.mainVisual.height
     }
   },
   methods: {
-    canvasIsLarger() {
-      return this.canvas.width >= this.mainVisual.width && this.canvas.height >= this.mainVisual.height
-    },
     getStyles(name, data = undefined) {
       var styles = {}
       const global = this.sequence.default ? this.sequence.default.styles ? this.sequence.default.styles[name] : undefined : undefined
@@ -196,9 +199,6 @@ export default {
       }
       return styles
     },
-    getMediaFromID(id) {
-      return Object.assign({}, this.sequence.media.find(media => media.id === id))
-    },
     getSceneIndexFromID(id) {
       return this.sceneIDs.indexOf(id)
     },
@@ -213,7 +213,7 @@ export default {
           const canvasRatio = this.canvas.width / this.canvas.height
 
           if(this.mainVisual.magnify === false) {
-            if(this.canvasIsLarger()) {
+            if(this.canvasIsLarger) {
               // actual size
               this.actual.width = this.mainVisual.width
               this.actual.height = this.mainVisual.height
