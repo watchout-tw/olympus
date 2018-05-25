@@ -239,7 +239,7 @@ export default {
     changeScene(action, target) {
       if (this.backgroundAudio.playingID) {
         this.backgroundAudio.next = {action, target}
-        this.backgroundAudio.playingID = undefined
+        this.backgroundAudio.playingID = undefined // trigger audio to stop
         return
       }
 
