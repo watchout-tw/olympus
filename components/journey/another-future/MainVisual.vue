@@ -19,7 +19,7 @@ export default {
       var styles = {}
       if(this.mainVisual && this.mainVisual.type === 'image') {
         if(this.mainVisual.magnify === false) {
-          if(this.canvasIsLarger) {
+          if(this.canvasIsLarger()) {
             // actual size
             this.croppingMethod = 'none'
             styles.backgroundSize = this.mainVisual.width + 'px'

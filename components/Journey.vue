@@ -144,12 +144,12 @@ export default {
     audios() {
       const { media } = this.sequence
       return media ? media.filter(m => m.type === 'audio') : []
-    },
-    canvasIsLarger() {
-      return this.canvas.width >= this.mainVisual.width && this.canvas.height >= this.mainVisual.height
     }
   },
   methods: {
+    canvasIsLarger() {
+      return this.canvas.width >= this.mainVisual.width && this.canvas.height >= this.mainVisual.height
+    },
     getStyles(name, data = undefined) {
       var styles = {}
       const global = this.sequence.default ? this.sequence.default.styles ? this.sequence.default.styles[name] : undefined : undefined
@@ -205,7 +205,7 @@ export default {
           const canvasRatio = this.canvas.width / this.canvas.height
 
           if(this.mainVisual.magnify === false) {
-            if(this.canvasIsLarger) {
+            if(this.canvasIsLarger()) {
               // actual size
               this.actual.width = this.mainVisual.width
               this.actual.height = this.mainVisual.height
