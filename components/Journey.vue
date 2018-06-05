@@ -32,7 +32,7 @@
     </div>
   </div>
   <div class="audio-library" v-if="audios.length > 0">
-    <audio v-for="audio of audios" :id="'background-audio-' + audio.id" :src="audio.url"></audio>
+    <audio :key="'audio-' + audio.id" v-for="audio of audios" :id="'background-audio-' + audio.id" :src="audio.url"></audio>
   </div>
 </article>
 </template>
