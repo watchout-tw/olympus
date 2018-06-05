@@ -82,7 +82,7 @@ export default {
       },
       backgroundAudio: null
     }
-    return Object.assign(this.project, state)
+    return Object.assign({}, this.project, state)
   },
   watch: {
     activeSceneIndex() {
