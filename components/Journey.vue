@@ -31,13 +31,14 @@
       </template>
     </div>
   </div>
-  <audio-library :audios="audios" :playingID="backgroundAudio.playingID" :stopped.sync="audioStopped"></audio-library>
+  <div class="audio-library" v-if="audios.length > 0">
+    <audio :key="'audio-' + audio.id" v-for="audio of audios" :id="'background-audio-' + audio.id" :src="audio.url"></audio>
+  </div>
 </article>
 </template>
 
 <script>
 import { knowsMarkdown, knowsDOM, knowsAudio } from 'watchout-common-functions/interfaces'
-import AudioLibrary from './journey/AudioLibrary'
 import MainVisual from './journey/MainVisual'
 import VisualTags from './journey/VisualTags'
 import SubtitlingMachine from './journey/SubtitlingMachine'
@@ -79,25 +80,15 @@ export default {
           }
         }
       },
-      backgroundAudio: {
-        playingID: false,
-        next: {action: '', target: ''}
-      },
-      audioStopped: false
+      backgroundAudio: null
     }
-    return Object.assign(this.project, state)
+    return Object.assign({}, this.project, state)
   },
   watch: {
     activeSceneIndex() {
       // reset transformOrigin & transform at change of scene
       this.canvas.transformOrigin.x = this.canvas.transformOrigin.y = 50
       this.canvas.transform.scale = 1
-    },
-    audioStopped(nextVal) {
-      if(nextVal === true) {
-        this.changeScene(this.backgroundAudio.next.action, this.backgroundAudio.next.target)
-        this.audioStopped = false
-      }
     }
   },
   updated() {
@@ -237,20 +228,28 @@ export default {
       return nextSceneIndex
     },
     changeScene(action, target) {
-      if (this.backgroundAudio.playingID) {
-        this.backgroundAudio.next = {action, target}
-        this.backgroundAudio.playingID = undefined // trigger audio to stop
-        return
-      }
-
       const nextSceneIndex = this.getNextSceneIndex(action, target)
       // fade out AND/OR play background audio
       // audio.play() *MUST* be involked within a click/touch event handler
       const nextScene = this.scenes[nextSceneIndex]
       const nextAudioID = nextScene.backgroundAudio && nextScene.backgroundAudio.id
+      const nextAudio = nextAudioID ? document.getElementById('background-audio-' + nextAudioID) : null
 
-      if(nextAudioID) {
-        this.backgroundAudio.playingID = nextAudioID
+      if(this.backgroundAudio) {
+        this.fadeOutAudio(this.backgroundAudio, () => {
+          this.activeSceneIndex = nextSceneIndex
+          if(nextAudio) {
+            this.playAudio(nextAudio)
+            this.backgroundAudio = nextAudio
+          } else {
+            this.backgroundAudio = null
+          }
+        })
+        return // do not change scene until fade is complete
+      }
+      if (nextAudio) {
+        this.playAudio(nextAudio)
+        this.backgroundAudio = nextAudio
       }
       // change scene
       this.activeSceneIndex = nextSceneIndex
@@ -261,7 +260,6 @@ export default {
     this.setSceneDimensions()
   },
   components: {
-    AudioLibrary,
     MainVisual,
     VisualTags,
     SubtitlingMachine
