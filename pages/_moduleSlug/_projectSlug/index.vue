@@ -52,6 +52,11 @@ import Journey from '~/components/Journey'
 
 export default {
   mixins: [knowsMarkdown, knowsWatchout],
+  validate({ params }) {
+    const module = modules.find(module => module.id === params.moduleSlug)
+    const project = projects.find(project => project.id === params.projectSlug)
+    return !!module && !!project
+  },
   async asyncData({ params }) {
     let project = projects.find(project => project.id === params.projectSlug)
     let module = modules.find(module => module.id === params.moduleSlug)

@@ -22,6 +22,9 @@ import ProjectSignature from '~/components/ProjectSignature'
 
 export default {
   mixins: [knowsWatchout],
+  validate({ params }) {
+    return !!modules.find(module => module.id === params.moduleSlug)
+  },
   async asyncData({ params }) {
     let projectsOfModule = projects.filter(project => project.module === params.moduleSlug)
     let module = modules.find(module => module.id === params.moduleSlug)
