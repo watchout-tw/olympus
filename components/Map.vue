@@ -69,7 +69,25 @@ export default {
       return interaction.selection > -1 ? interaction.options[interaction.selection].name : '　　'
     }
   },
+  data() {
+    return {
+      raw: []
+    }
+  },
   mounted() {
+    this.raw = require('~/data/map/' + this.project.dataSource)
+
+    // update text inside markdown
+    const data = {
+      'data-tally-total': this.raw.length,
+      'data-title': this.project.title
+    }
+    for(let key in data) {
+      let es = document.getElementsByClassName(key)
+      for(let e of es) {
+        e.innerText = data[key]
+      }
+    }
   },
   methods: {
     interactionSelectOption(event, selectionIndex) {
