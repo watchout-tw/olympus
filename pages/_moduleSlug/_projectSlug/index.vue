@@ -13,6 +13,9 @@
     <template v-else-if="project.module === 'journey'">
       <journey :module="module" :project="project" />
     </template>
+    <template v-else-if="project.module === 'map'">
+      <map-module :module="module" :project="project" />
+    </template>
     <template v-else>
       <div class="not-available" style="margin: 1rem;">技術升級中，需要多一點點時間。</div>
     </template>
@@ -49,6 +52,7 @@ import Swipe from '~/components/Swipe'
 import Draw from '~/components/Draw'
 import LongForm from '~/components/LongForm'
 import Journey from '~/components/Journey'
+import Map from '~/components/Map'
 
 export default {
   mixins: [knowsMarkdown, knowsWatchout],
@@ -85,7 +89,8 @@ export default {
     Swipe,
     Draw,
     LongForm,
-    Journey
+    Journey,
+    MapModule: Map // map is a defined tag in HTML
   }
 }
 </script>
