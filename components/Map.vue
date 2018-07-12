@@ -22,7 +22,7 @@
         <div class="description" v-html="markdown(project.graphs.tally.description)"></div>
       </div>
       <div class="atlas atlas-tally d-flex flex-wrap justify-content-around">
-        <!-- <count v-for="(count, id) of project.tally" :raw="raw" :count="count" :debug="debug" :key="id"></count> -->
+        <count v-for="(count, id) of project.tally" :raw="raw" :count="count" :key="'tally-count'+id"></count>
       </div>
     </div>
     <div class="answer graph" :class="project.interaction.done ? 'visible' : 'hidden'">
@@ -59,6 +59,7 @@
 
 <script>
 import knowsMarkdown from 'watchout-common-functions/interfaces/knowsMarkdown'
+import Count from '~/components/map/Count'
 
 export default {
   mixins: [knowsMarkdown],
@@ -101,6 +102,9 @@ export default {
         this.project.interaction.done = true
       }
     }
+  },
+  components: {
+    Count
   }
 }
 </script>
