@@ -15,11 +15,12 @@
         <button class="musou" @click="interactionSubmit">{{ project.question.go }}</button>
       </div>
     </div>
-    <div class="explanation textgroup" :class="project.interaction.done ? 'visible' : 'hidden'" v-html="markdown(project.question.conclusion)"></div>
+    <div class="reminder" :class="answered ? 'd-none' : 'd-block'">{{ project.reminder.description }}</div>
   </section>
-  <section class="answers">
-    <div class="reminder" :class="project.interaction.done ? 'd-none' : 'd-block'">{{ project.reminder.description }}</div>
-    <div class="answer graph" :class="project.interaction.done ? 'visible' : 'hidden'">
+
+  <section :class="['answers', answered ? 'visible' : 'hidden']">
+    <div class="explanation textgroup" v-html="markdown(project.question.conclusion)"></div>
+    <div class="answer graph">
       <div class="textgroup">
         <div class="title"><h2>{{ project.graphs.tally.title }}</h2></div>
         <div class="description" v-html="markdown(project.graphs.tally.description)"></div>
@@ -28,7 +29,7 @@
         <count v-for="(count, id) of project.tally" :raw="raw" :count="count" :key="'tally-count'+id"></count>
       </div>
     </div>
-    <div class="answer graph" :class="project.interaction.done ? 'visible' : 'hidden'">
+    <div class="answer graph">
       <div class="textgroup">
         <div class="title"><h2>{{ project.graphs.regions.title }}</h2></div>
         <div class="description" v-html="markdown(project.graphs.regions.description)"></div>
@@ -37,20 +38,21 @@
         <region v-for="(region, id) of project.regions" :raw="raw" :region="region" :debug="project.debug" :key="id"></region>
       </div>
     </div>
-    <div class="answer graph" :class="project.interaction.done ? 'visible' : 'hidden'">
+    <div class="answer graph">
       <div class="textgroup">
         <div class="title"><h2>{{ project.graphs.world.title }}</h2></div>
         <div class="description" v-html="markdown(project.graphs.world.description)"></div>
       </div>
       <world :raw="raw" :debug="project.debug"></world>
     </div>
-    <div class="answer conclusion" :class="project.interaction.done ? 'visible' : 'hidden'">
+    <div class="answer conclusion">
       <div class="textgroup">
         <div class="title"><h2>{{ project.conclusion.title }}</h2></div>
         <div class="description" v-html="markdown(project.conclusion.description)"></div>
       </div>
     </div>
   </section>
+
   <section class="call">
     <div class="textgroup">
       <div class="title"><h2>{{ project.call_for_action.title }}</h2></div>
@@ -77,7 +79,8 @@ export default {
   },
   data() {
     return {
-      raw: []
+      raw: [],
+      answered: false
     }
   },
   mounted() {
@@ -97,14 +100,14 @@ export default {
   },
   methods: {
     interactionSelectOption(event, selectionIndex) {
-      if(!this.project.interaction.done) {
+      if(!this.answered) {
         this.project.interaction.selection = selectionIndex
       }
     },
     interactionSubmit(event) {
       const { interaction } = this.project
-      if(!interaction.done && interaction.selection > -1) {
-        this.project.interaction.done = true
+      if(!this.answered && interaction.selection > -1) {
+        this.answered = true
       }
     }
   },
@@ -190,12 +193,6 @@ export default {
         }
       }
     }
-    > .explanation {
-      padding: 1rem;
-      background: rgba(black, 0.12);
-    }
-  }
-  > .answers {
     > .reminder {
       box-sizing: content-box;
       // @include sticky; TODO
@@ -207,6 +204,12 @@ export default {
       border-radius: 2px;
       background: white;
       z-index: $z-below-nav;
+    }
+  }
+  > .answers {
+    > .explanation {
+      padding: 1rem;
+      background: rgba(black, 0.12);
     }
     > .answer {
       width: auto;
