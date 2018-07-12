@@ -39,7 +39,7 @@
         <div class="title"><h2>{{ project.graphs.world.title }}</h2></div>
         <div class="description" v-html="markdown(project.graphs.world.description)"></div>
       </div>
-      <!-- <world :raw="raw" :debug="project.debug"></world> -->
+      <world :raw="raw" :debug="project.debug"></world>
     </div>
     <div class="answer conclusion" :class="project.interaction.done ? 'visible' : 'hidden'">
       <div class="textgroup">
@@ -61,6 +61,7 @@
 import knowsMarkdown from 'watchout-common-functions/interfaces/knowsMarkdown'
 import Count from '~/components/map/Count'
 import Region from '~/components/map/Region'
+import World from '~/components/map/World'
 
 export default {
   mixins: [knowsMarkdown],
@@ -106,7 +107,8 @@ export default {
   },
   components: {
     Count,
-    Region
+    Region,
+    World
   }
 }
 </script>
