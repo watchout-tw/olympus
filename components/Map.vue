@@ -31,7 +31,7 @@
         <div class="description" v-html="markdown(project.graphs.regions.description)"></div>
       </div>
       <div class="atlas atlas-regions d-flex flex-wrap">
-        <!-- <region v-for="(region, id) of project.regions" :raw="raw" :region="region" :debug="debug" :key="id"></region> -->
+        <region v-for="(region, id) of project.regions" :raw="raw" :region="region" :debug="project.debug" :key="id"></region>
       </div>
     </div>
     <div class="answer graph" :class="project.interaction.done ? 'visible' : 'hidden'">
@@ -39,7 +39,7 @@
         <div class="title"><h2>{{ project.graphs.world.title }}</h2></div>
         <div class="description" v-html="markdown(project.graphs.world.description)"></div>
       </div>
-      <!-- <world :raw="raw" :debug="debug"></world> -->
+      <!-- <world :raw="raw" :debug="project.debug"></world> -->
     </div>
     <div class="answer conclusion" :class="project.interaction.done ? 'visible' : 'hidden'">
       <div class="textgroup">
@@ -60,6 +60,7 @@
 <script>
 import knowsMarkdown from 'watchout-common-functions/interfaces/knowsMarkdown'
 import Count from '~/components/map/Count'
+import Region from '~/components/map/Region'
 
 export default {
   mixins: [knowsMarkdown],
@@ -104,7 +105,8 @@ export default {
     }
   },
   components: {
-    Count
+    Count,
+    Region
   }
 }
 </script>
