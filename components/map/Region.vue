@@ -1,5 +1,5 @@
 <template>
-<div class="atlas-regions-region">
+<div class="atlas-with-draw atlas-regions-region">
   <div class="name">{{ region.translation }}</div>
   <div class="score">
     <span class="value">{{ score }}</span>

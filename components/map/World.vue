@@ -1,5 +1,5 @@
 <template>
-<div class="atlas atlas-world">
+<div class="atlas atlas-with-draw atlas-world">
   <div class="draw"></div>
   <figcaption>
     <a class="a-text" href="https://s-media-cache-ak0.pinimg.com/originals/a4/dc/b3/a4dcb30b0ba3b5e26cc5b6788b98c625.jpg" target="_blank">Image Source</a>
