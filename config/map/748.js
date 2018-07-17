@@ -32,30 +32,22 @@ export default {
     country: {
       id: 'country',
       name: 'country',
-      condition: function(str) {
-        return /country/.test(str)
-      }
+      pattern: 'country'
     },
     state: {
       id: 'state',
       name: 'state',
-      condition: function(str) {
-        return /state/.test(str)
-      }
+      pattern: 'state'
     },
     nation: {
       id: 'nation',
       name: 'nation',
-      condition: function(str) {
-        return /nation/.test(str)
-      }
+      pattern: 'nation'
     },
     place: {
       id: 'place',
       name: 'place或其他',
-      condition: function(str) {
-        return /place|island|territor(y|ies)|democrac(y|ies)|government/.test(str)
-      }
+      pattern: 'place|island|territor(y|ies)|democrac(y|ies)|government'
     }
   },
   regions: {

@@ -17,11 +17,17 @@ export default {
       return this.raw.length
     },
     rows() {
-      return []
-      // TODO return this.raw.filter(row => this.count.condition(row.what + row.what_in_english))
+      const { pattern } = this.count
+      return this.raw.filter(row => this.condition(pattern, row.what + row.what_in_english))
     },
     score() {
       return Math.round(this.rows.length / this.total * 100)
+    }
+  },
+  methods: {
+    condition(pattern, str) {
+      const regex = new RegExp(pattern)
+      return regex.test(str)
     }
   }
 }
