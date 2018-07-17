@@ -197,7 +197,6 @@ article.map {
     }
     > .reminder {
       box-sizing: content-box;
-      // @include sticky; TODO
       top: 50%;
       width: 12rem;
       margin: 0 auto;
