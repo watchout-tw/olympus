@@ -25,7 +25,7 @@
         <div class="title"><h2>{{ project.graphs.tally.title }}</h2></div>
         <div class="description" v-html="markdown(project.graphs.tally.description)"></div>
       </div>
-      <div class="atlas atlas-tally d-flex">
+      <div class="atlas d-flex flex-wrap justify-content-around">
         <count v-for="(count, id) of project.tally" :raw="raw" :count="count" :key="'tally-count'+id"></count>
       </div>
     </div>
@@ -34,7 +34,7 @@
         <div class="title"><h2>{{ project.graphs.regions.title }}</h2></div>
         <div class="description" v-html="markdown(project.graphs.regions.description)"></div>
       </div>
-      <div class="atlas atlas-regions d-flex flex-wrap">
+      <div class="atlas d-flex flex-wrap">
         <region v-for="(region, id) of project.regions" :raw="raw" :region="region" :debug="project.debug" :key="id"></region>
       </div>
     </div>
