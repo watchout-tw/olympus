@@ -9,6 +9,11 @@
 
 <script>
 import * as d3 from 'd3'
+import { centerCenter, makeLabel, saveSize } from '~/util/d3Exten'
+
+d3.selection.prototype.centerCenter = centerCenter
+d3.selection.prototype.makeLabel = makeLabel
+d3.selection.prototype.saveSize = saveSize
 
 function areIntersecting(a, b) {
   return (
@@ -40,86 +45,6 @@ function bfs(v, adjacency, visited) {
     }
   }
   return currentGroup
-}
-d3.selection.prototype.centerCenter = function() {
-  this.each(function(d) {
-    var box = this.getBBox()
-    var top = d.y - box.height / 2
-    var left = d.x - box.width / 2
-    d3.select(this)
-      .attr('transform', 'translate(' + [left, top].join(',') + ')')
-  })
-  return this
-}
-d3.selection.prototype.makeLabel = function(options) {
-  this.each(function(d) {
-    var root = d3.select(this)
-      .classed('yes', /country|state|nation/.test(d.what + d.what_in_english))
-    var el = root.append('a') // where all the content actually go
-      .attr('xlink:href', d.link)
-      .attr('target', '_blank')
-
-    var rem = parseInt(root.style('font-size'))
-
-    var offset = {
-      x: options.padding.x,
-      y: options.padding.y + 1 / options.lineHeight - 0.1 // put first line of text right below anchor point
-    }
-
-    var terms = d.what.split(/,\s*/).reverse()
-    terms.forEach(function(term, i) {
-      // text wrap: https://bl.ocks.org/mbostock/7555321
-      var text = el.append('text')
-        .attr('x', offset.x * rem)
-        .attr('y', offset.y * options.lineHeight * rem)
-      var words = term.split(/\s+/)
-      var lineCount = 1
-      var line = []
-      var tspan = text.append('tspan')
-        .attr('x', offset.x * rem)
-        .attr('dy', 0)
-      while(words.length > 0) {
-        var word = words.shift()
-        line.push(word)
-        tspan.text(line.join(' '))
-        if(tspan.node().getComputedTextLength() > options.maxWidth * rem) {
-          line.pop()
-          tspan.text(line.join(' '))
-          line = [word]
-          tspan = text.append('tspan')
-            .attr('x', offset.x * rem)
-            .attr('dy', options.lineHeight * rem)
-            .text(word)
-          lineCount++
-        }
-      }
-      offset.y += lineCount
-      if(i < terms.length - 1) {
-        el.append('text')
-          .attr('class', 'and')
-          .attr('x', offset.x * rem)
-          .attr('dy', offset.y * options.lineHeight * rem)
-          .text('還有')
-      }
-      offset.y += 1
-    })
-
-    var box = el.node().getBBox() // getBoundingClientRect() perhaps?
-    el.insert('rect', ':first-child')
-      .attr('x', 0)
-      .attr('y', 0)
-      .attr('width', box.width + options.padding.x * rem * 2)
-      .attr('height', box.height + options.padding.y * rem * 2)
-  })
-  return this
-}
-d3.selection.prototype.saveSize = function() {
-  this.each(function(d) {
-    var box = this.getBBox()
-    d.width = box.width
-    d.height = box.height
-  })
-  return this
 }
 
 export default {
