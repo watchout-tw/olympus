@@ -18,7 +18,7 @@
     <div class="reminder" :class="answered ? 'd-none' : 'd-block'">{{ project.reminder.description }}</div>
   </section>
 
-  <section :class="['answers', answered ? 'visible' : 'hidden']">
+  <section :class="['answers', answered ? '' : 'hidden']">
     <div class="explanation textgroup" v-html="markdown(project.question.conclusion)"></div>
     <div class="answer graph">
       <div class="textgroup">
@@ -43,7 +43,9 @@
         <div class="title"><h2>{{ project.graphs.world.title }}</h2></div>
         <div class="description" v-html="markdown(project.graphs.world.description)"></div>
       </div>
-      <world :raw="raw" :debug="project.debug"></world>
+      <div class="atlas">
+        <world :raw="raw" :debug="project.debug"></world>
+      </div>
     </div>
     <div class="answer conclusion">
       <div class="textgroup">
@@ -122,7 +124,7 @@ export default {
 <style lang="scss">
 @import '~watchout-common-assets/styles/resources';
 
-.map {
+article.map {
   > section {
     box-sizing: content-box;
     width: auto;
@@ -207,6 +209,9 @@ export default {
     }
   }
   > .answers {
+    &.hidden {
+      visibility: hidden;
+    }
     > .explanation {
       padding: 1rem;
       background: rgba(black, 0.12);
@@ -215,100 +220,79 @@ export default {
       width: auto;
       margin-top: 4rem;
       margin-bottom: 4rem;
-    }
-  }
-}
 
+      .atlas {
+        max-width: 60rem;
+        margin: 0 auto;
+        .atlas-with-draw {
+          .draw {
+            $transitionDuration: 0.25s;
+            width: 100%;
+            > svg {
+              width: 100%;
+            }
+            circle.center {
+              fill: none;
+              stroke: none;
+            }
+            g.quote {
+              rect {
+                fill: $color-musou;
+                stroke: none;
+                opacity: 0.25;
+                transition: opacity $transitionDuration;
+              }
+              text {
+                fill: black;
+                opacity: 0.75;
+                transition: opacity $transitionDuration;
+                &.media {
+                  font-size: 0.65rem;
+                  font-weight: bold;
+                }
+                &.and {
+                  opacity: 0.5;
+                  font-size: 0.75rem;
+                  font-weight: bold;
+                }
+              }
+            }
+            g.quote:hover {
+              rect {
+                opacity: 0.85;
+              }
+              text {
+                opacity: 1;
+                &.and {
+                  opacity: 0.5;
+                }
+              }
+            }
+            g.quote.yes {
+              rect {
+                fill: $color-watchout;
+              }
+            }
+          }
 
-.hidden {
-  visibility: hidden;
-}
-
-.atlas {
-  max-width: 60rem;
-  margin: 0 auto;
-  > .draw {
-    width: 100%;
-    > svg {
-      width: 100%;
-    }
-  }
-}
-
-.atlas-with-draw {
-  .draw {
-    $transitionDuration: 0.25s;
-    circle.center {
-      fill: none;
-      stroke: none;
-    }
-    g.quote {
-      rect {
-        fill: $color-musou;
-        stroke: none;
-        opacity: 0.25;
-        transition: opacity $transitionDuration;
-      }
-      text {
-        fill: black;
-        opacity: 0.75;
-        transition: opacity $transitionDuration;
-        &.media {
-          font-size: 0.65rem;
-          font-weight: bold;
+          .draw.debug {
+            circle.center {
+              fill: $color-musou;
+              stroke: none;
+            }
+            g.quote {
+              rect {
+                fill: none;
+                stroke: $color-musou;
+              }
+              text {
+                opacity: 0.25;
+              }
+            }
+          }
         }
-        &.and {
-          opacity: 0.5;
-          font-size: 0.75rem;
-          font-weight: bold;
-        }
-      }
-    }
-    g.quote:hover {
-      rect {
-        opacity: 0.85;
-      }
-      text {
-        opacity: 1;
-        &.and {
-          opacity: 0.5;
-        }
-      }
-    }
-    g.quote.yes {
-      rect {
-        fill: $color-watchout;
       }
     }
   }
-
-  .draw.debug {
-    circle.center {
-      fill: $color-musou;
-      stroke: none;
-    }
-    g.quote {
-      rect {
-        fill: none;
-        stroke: $color-musou;
-      }
-      text {
-        opacity: 0.25;
-      }
-    }
-  }
-}
-
-span.country,
-span.place {
-  display: inline-block;
-  margin: 1px;
-  padding: 1px;
-}
-span.country {
-  background: rgba($color-watchout, 0.25);
-}
-span.place {
-  background: rgba($color-musou, 0.25);
 }
 </style>
