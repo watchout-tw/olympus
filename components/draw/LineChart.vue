@@ -16,7 +16,7 @@
     </div>
   </div>
   <div class="actions form-field-align-center">
-    <submit-button :classes="['musou']" :label="'畫好了啦'" :state.sync="submit.state" :message.sync="submit.message" :once="true" @click.native="onSubmit" @reset="hasSubmitted"></submit-button>
+    <submit-button :classes="['musou']" :label="'畫好了啦'" :state.sync="submit.state" :message.sync="submit.message" :once="true" @click.native="onSubmit" @success="onSubmitSuccess"></submit-button>
   </div>
   <div class="after tcl-left-right-margin">
     <div class="score">
@@ -183,10 +183,8 @@ export default {
         this.handleError(error)
       })
     },
-    hasSubmitted() {
-      if(this.submit.state === STATES.SUCCESS) {
-        this.submit.done = true
-      }
+    onSubmitSuccess() {
+      this.submit.done = true
     },
     genSpeechData() {
       const keys = ['x', 'y', 'label']
