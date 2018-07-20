@@ -62,8 +62,8 @@
 
 <script>
 import knowsMarkdown from 'watchout-common-functions/interfaces/knowsMarkdown'
-import Count from '~/components/map/Count'
-import Region from '~/components/map/Region'
+import Counts from '~/components/map/Counts'
+import Regions from '~/components/map/Regions'
 import World from '~/components/map/World'
 
 export default {
@@ -110,8 +110,8 @@ export default {
     }
   },
   components: {
-    Count,
-    Region,
+    Counts,
+    Regions,
     World
   }
 }
