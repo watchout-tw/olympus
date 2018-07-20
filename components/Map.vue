@@ -20,29 +20,7 @@
 
   <section :class="['answers', answered ? '' : 'hidden']">
     <div class="explanation textgroup" v-html="markdown(project.question.conclusion)"></div>
-    <div class="answer graph">
-      <div class="textgroup">
-        <div class="title"><h2>{{ project.graphs.tally.title }}</h2></div>
-        <div class="description" v-html="markdown(project.graphs.tally.description)"></div>
-      </div>
-      <counts :tally="project.tally" :raw="raw"></counts>
-    </div>
-    <div class="answer graph">
-      <div class="textgroup">
-        <div class="title"><h2>{{ project.graphs.regions.title }}</h2></div>
-        <div class="description" v-html="markdown(project.graphs.regions.description)"></div>
-      </div>
-      <regions :regions="project.regions" :raw="raw" :debug="project.debug"></regions>
-    </div>
-    <div class="answer graph">
-      <div class="textgroup">
-        <div class="title"><h2>{{ project.graphs.world.title }}</h2></div>
-        <div class="description" v-html="markdown(project.graphs.world.description)"></div>
-      </div>
-      <div class="atlas">
-        <world :raw="raw" :debug="project.debug"></world>
-      </div>
-    </div>
+    <answer v-for="aType in answerTypes" :key="'answer'+aType" :answerType="aType" :project="project" :raw="raw"></answer>
     <div class="answer conclusion">
       <div class="textgroup">
         <div class="title"><h2>{{ project.conclusion.title }}</h2></div>
@@ -62,23 +40,24 @@
 
 <script>
 import knowsMarkdown from 'watchout-common-functions/interfaces/knowsMarkdown'
-import Counts from '~/components/map/Counts'
-import Regions from '~/components/map/Regions'
-import World from '~/components/map/World'
+import Answer from '~/components/map/Answer'
 
 export default {
   mixins: [knowsMarkdown],
   props: ['project', 'module'],
-  computed: {
-    interactionSelectedOption() {
-      const { interaction } = this.project
-      return interaction.selection > -1 ? interaction.options[interaction.selection].name : '　　'
-    }
-  },
   data() {
     return {
       raw: [],
       answered: false
+    }
+  },
+  computed: {
+    interactionSelectedOption() {
+      const { interaction } = this.project
+      return interaction.selection > -1 ? interaction.options[interaction.selection].name : '　　'
+    },
+    answerTypes() {
+      return Object.keys(this.project.graphs)
     }
   },
   mounted() {
@@ -110,9 +89,7 @@ export default {
     }
   },
   components: {
-    Counts,
-    Regions,
-    World
+    Answer
   }
 }
 </script>
