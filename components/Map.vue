@@ -9,7 +9,7 @@
         <em class="blank" v-html="interactionSelectedOption"></em>
       </p>
       <div class="interaction" :class="project.interaction.type">
-        <ul class="d-flex">
+        <ul class="d-flex flex-wrap">
           <li v-for="(option, index) in project.interaction.options" :id="'interaction-option-' + option.name" :key="option.name" @click="interactionSelectOption($event, index)" :class="{'d-flex': true, 'flex-row': true, selected: project.interaction.selection == index}"><div class="index">{{ project.circledDigits[index + 1] }}</div><div class="value">{{ option.name }}</div></li>
         </ul>
         <button class="musou" @click="interactionSubmit">{{ project.question.go }}</button>
