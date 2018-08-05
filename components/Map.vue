@@ -1,7 +1,7 @@
 <template>
 <article class="map">
   <section class="question">
-    <div class="introduction textgroup" v-html="markdown(project.question.introduction)"></div>
+    <div class="introduction paragraphs" v-html="markdown(project.question.introduction)"></div>
     <div class="content">
       <blockquote>Taiwan will be the first <em class="blank" v-html="interactionSelectedOption"></em> in Asia to legalize same-sex marriage.</blockquote>
       <p>
@@ -17,29 +17,27 @@
     </div>
     <div class="reminder" :class="answered ? 'd-none' : 'd-block'">{{ project.reminder.description }}</div>
   </section>
-
   <section :class="['answers', answered ? '' : 'hidden']">
-    <div class="explanation textgroup" v-html="markdown(project.question.conclusion)"></div>
+    <div class="explanation paragraphs" v-html="markdown(project.question.conclusion)"></div>
     <answer v-for="aType in answerTypes" :key="'answer'+aType" :answerType="aType" :project="project" :raw="raw"></answer>
     <div class="answer conclusion">
-      <div class="textgroup">
+      <div class="text">
         <div class="title"><h2>{{ project.conclusion.title }}</h2></div>
-        <div class="description" v-html="markdown(project.conclusion.description)"></div>
+        <div class="description paragraphs" v-html="markdown(project.conclusion.description)"></div>
       </div>
     </div>
   </section>
-
   <section class="call">
-    <div class="textgroup">
+    <div class="text">
       <div class="title"><h2>{{ project.call_for_action.title }}</h2></div>
-      <div class="description" v-html="markdown(project.call_for_action.description)"></div>
+      <div class="description paragraphs" v-html="markdown(project.call_for_action.description)"></div>
     </div>
   </section>
 </article>
 </template>
 
 <script>
-import knowsMarkdown from 'watchout-common-functions/interfaces/knowsMarkdown'
+import { knowsMarkdown } from 'watchout-common-functions/interfaces'
 import Answer from '~/components/map/Answer'
 
 export default {
@@ -190,8 +188,8 @@ article.map {
     }
     > .answer {
       width: auto;
-      margin-top: 4rem;
-      margin-bottom: 4rem;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
 
       .atlas {
         max-width: 60rem;

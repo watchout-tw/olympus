@@ -102,7 +102,7 @@ export default {
   > .main {
   }
   > header {
-    margin: 1rem;
+    margin: 2rem 1rem;
     > hgroup {
       > h1 {
         margin: 0.25rem 0;

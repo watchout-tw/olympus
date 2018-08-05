@@ -1,8 +1,8 @@
 <template>
 <div class="answer graph">
-  <div class="textgroup">
+  <div class="text">
     <div class="title"><h2>{{ project.graphs[answerType].title }}</h2></div>
-    <div class="description" v-html="markdown(project.graphs[answerType].description)"></div>
+    <div class="description paragraphs" v-html="markdown(project.graphs[answerType].description)"></div>
   </div>
   <component :is="childComponent.component" v-bind="childComponent.props"></component>
 </div>
@@ -25,18 +25,18 @@ export default {
       switch(answerType) {
         case 'tally':
           component = 'Counts'
-          props = {tally: project.tally, raw}
+          props = { tally: project.tally, raw }
           break
         case 'regions':
           component = 'Regions'
-          props = {regions: project.regions, raw, debug: project.debug}
+          props = { regions: project.regions, raw, debug: project.debug }
           break
         case 'world':
           component = 'World'
-          props = {raw, debug: project.debug}
+          props = { raw, debug: project.debug }
           break
       }
-      return {component, props}
+      return { component, props }
     }
   },
   components: {
