@@ -12,7 +12,7 @@
         <ul class="d-flex flex-wrap">
           <li v-for="(option, index) in project.interaction.options" :id="'interaction-option-' + option.name" :key="option.name" @click="interactionSelectOption($event, index)" :class="{'d-flex': true, 'flex-row': true, selected: project.interaction.selection == index}"><div class="index">{{ project.circledDigits[index + 1] }}</div><div class="value">{{ option.name }}</div></li>
         </ul>
-        <button class="musou" @click="interactionSubmit">{{ project.question.go }}</button>
+        <button class="input button large musou" @click="interactionSubmit">{{ project.question.go }}</button>
       </div>
     </div>
     <div class="reminder" :class="answered ? 'd-none' : 'd-block'">{{ project.reminder.description }}</div>
@@ -152,16 +152,6 @@ article.map {
                 color: $color-musou;
               }
             }
-          }
-        }
-        > button {
-          font-size: 1.5rem;
-          padding: 0.5rem 1rem;
-          background: rgba($color-musou, 0.65);
-          cursor: pointer;
-          &:hover, &:active {
-            background: rgba($color-musou, 0.85);
-            @include shadow;
           }
         }
       }
