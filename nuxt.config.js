@@ -6,9 +6,6 @@ function getProjectLogo(projectID) {
   return 'https://raw.githubusercontent.com/watchout-tw/watchout-common-assets/master/images/logo/' + projectID + '/large.png'
 }
 module.exports = {
-  env: {
-    baseURL: process.env.BASE_URL || `http://dev.localhost:${process.env.npm_package_config_nuxt_port}`
-  },
   head: {
     title: '→沃草←國會無雙↑媒體實驗',
     meta: [
