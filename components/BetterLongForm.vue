@@ -11,12 +11,12 @@
       <h2>{{ scene.title }}</h2>
       <div class="options form-field-many-inputs">
         <div class="option input button wrap" :class="{ immutable: scene.lock, selected: option === scene.selectedOption, correct: hasCorrectAnswer && option.isCorrect }" v-for="option in scene.options" :key="option.title" @click="onClick(scene, option)">
-          <div class="details font-weight-bold" v-if="scene.selectedOption">
+          <div class="details font-weight-bold" v-if="scene.selectedOption && option.details">
             <span v-if="option.details.time" class="latin-within-han first">{{ option.details.time.year }}</span>
             <span v-if="option.details.person">{{ option.details.person.name }}</span>
           </div>
           <h3 class="small font-weight-normal margin-top-bottom-4">{{ option.title }}</h3>
-          <div class="details font-size-tiny secondary-text" v-if="scene.selectedOption">
+          <div class="details font-size-tiny secondary-text" v-if="scene.selectedOption && option.details">
             <span class="time latin-within-han first" v-if="option.details.time">{{ [option.details.time.year, option.details.time.month, option.details.time.date].filter(val => !!val).join('/') }}</span>
             <span v-if="option.details.person.title">{{ option.details.person.title }}</span>
             <span v-if="option.details.person">{{ option.details.person.name }}</span>
