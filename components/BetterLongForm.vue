@@ -65,7 +65,7 @@ export default {
   methods: {
     formatDetails(details) {
       let time = details.time ? [details.time.year, details.time.month, details.time.date].filter(val => !!val).join('/') : ''
-      return time + (details.platform ? details.platform : '') + (details.title ? details.title : '') + details.person + (details.scenario ? details.scenario : '') + '的' + details.type
+      return time + (details.platform ? details.platform + '：' : '') + (details.title ? details.title : '') + details.person + (details.scenario ? details.scenario : '') + '的' + details.type
     },
     accumulateScore(option, plusMinus, prompt = false) {
       if(option.afterClick && option.afterClick.hasOwnProperty('score')) {
