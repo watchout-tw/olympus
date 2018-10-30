@@ -47,6 +47,9 @@ module.exports = {
   },
   modules: [
     ['@nuxtjs/google-tag-manager', { id: 'GTM-TF76PLV' }]
+  ],
+  serverMiddleware: [
+    '~/servermiddleware/301.js'
   ]
   // NOTE: Add Markdown loader <https://github.com/nuxt/nuxt.js/issues/1072>
 }

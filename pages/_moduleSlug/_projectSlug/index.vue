@@ -4,7 +4,10 @@
     <template v-if="project.module === 'swipe'">
       <swipe :module="module" :project="project" />
     </template>
-    <template v-else-if="['role-play', 'qz'].includes(project.module)">
+    <template v-else-if="project.module === 'quiz'">
+      <better-long-form :module="module" :project="project" />
+    </template>
+    <template v-else-if="project.module === 'role-play'">
       <long-form :module="module" :project="project" />
     </template>
     <template v-else-if="project.module === 'draw'">
@@ -51,6 +54,7 @@ import { knowsMarkdown, knowsWatchout } from 'watchout-common-functions/interfac
 import Swipe from '~/components/Swipe'
 import Draw from '~/components/Draw'
 import LongForm from '~/components/LongForm'
+import BetterLongForm from '~/components/BetterLongForm'
 import Journey from '~/components/Journey'
 import Map from '~/components/Map'
 
@@ -89,6 +93,7 @@ export default {
     Swipe,
     Draw,
     LongForm,
+    BetterLongForm,
     Journey,
     MapModule: Map // map is a defined tag in HTML
   }
