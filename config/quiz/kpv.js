@@ -22,7 +22,9 @@ export default {
               time: {
                 year: 2014
               },
-              person: '馮光遠',
+              person: {
+                name: '馮光遠'
+              },
               platform: '沃草《市長給問嗎》'
             }
           },
@@ -33,7 +35,9 @@ export default {
               time: {
                 year: 2014
               },
-              person: '柯文哲',
+              person: {
+                name: '柯文哲'
+              },
               platform: '沃草《市長給問嗎》'
             },
             isCorrect: true,
@@ -50,7 +54,9 @@ export default {
                 month: 12,
                 date: 27
               },
-              person: '柯文哲',
+              person: {
+                name: '柯文哲'
+              },
               platform: '《ETtoday》記者黃瀞瑩專訪'
             }
           },
@@ -63,7 +69,9 @@ export default {
                 month: 10,
                 date: 9
               },
-              person: '柯文哲',
+              person: {
+                name: '柯文哲'
+              },
               platform: '《風傳媒》報導'
             }
           }
@@ -82,7 +90,9 @@ export default {
                 month: 10,
                 date: 23
               },
-              person: '柯文哲',
+              person: {
+                name: '柯文哲'
+              },
               platform: '《蘋果》報導'
             }
           },
@@ -93,7 +103,9 @@ export default {
               time: {
                 year: 2014
               },
-              person: '丁守中',
+              person: {
+                name: '丁守中'
+              },
               platform: '沃草《市長給問嗎》'
             }
           },
@@ -104,7 +116,9 @@ export default {
               time: {
                 year: 2014
               },
-              person: '柯文哲',
+              person: {
+                name: '柯文哲'
+              },
               platform: '沃草《市長給問嗎》'
             },
             isCorrect: true,
@@ -119,7 +133,9 @@ export default {
               time: {
                 year: 2014
               },
-              person: '馮光遠',
+              person: {
+                name: '馮光遠'
+              },
               platform: '沃草《市長給問嗎》'
             }
           }
@@ -136,7 +152,9 @@ export default {
               time: {
                 year: 2014
               },
-              person: '柯文哲',
+              person: {
+                name: '柯文哲'
+              },
               platform: '沃草《市長給問嗎》'
             },
             isCorrect: true,
@@ -147,13 +165,16 @@ export default {
           {
             title: '九二共識是兩岸關係和平發展的基礎，我對這個立場表示了解和尊重。',
             details: {
-              type: '面對中國媒體採訪發言',
+              type: '發言',
               time: {
                 year: 2015,
                 month: 8,
                 date: 3
               },
-              person: '柯文哲',
+              person: {
+                name: '柯文哲'
+              },
+              scenario: '面對中國媒體採訪',
               platform: '《中央社》報導'
             }
           },
@@ -166,8 +187,10 @@ export default {
                 month: 12,
                 date: 12
               },
-              title: '時任台大醫院醫師',
-              person: '柯文哲',
+              person: {
+                name: '柯文哲',
+                title: '時任台大醫院醫師'
+              },
               platform: '《民視》報導'
             }
           },
@@ -181,8 +204,10 @@ export default {
                 date: 22
               },
               platform: '《獨立媒體》影音',
-              title: '當選台北市長的',
-              person: '柯文哲',
+              person: {
+                name: '柯文哲',
+                title: '當選台北市長的'
+              },
               scenario: '關於雙城論壇'
             }
           }
@@ -201,7 +226,9 @@ export default {
                 month: 8,
                 date: 12
               },
-              person: '柯文哲',
+              person: {
+                name: '柯文哲'
+              },
               platform: '《蘋果日報》報導'
             }
           },
@@ -214,7 +241,9 @@ export default {
                 month: 1,
                 date: 11
               },
-              person: '柯文哲',
+              person: {
+                name: '柯文哲'
+              },
               platform: '《風傳媒》報導'
             }
           },
@@ -225,7 +254,9 @@ export default {
               time: {
                 year: 2014
               },
-              person: '柯文哲',
+              person: {
+                name: '柯文哲'
+              },
               platform: '沃草《市長給問嗎》'
             },
             isCorrect: true,
@@ -240,7 +271,9 @@ export default {
               time: {
                 year: 2014
               },
-              person: '馮光遠',
+              person: {
+                name: '馮光遠'
+              },
               platform: '沃草《市長給問嗎》'
             }
           }
@@ -257,7 +290,9 @@ export default {
               time: {
                 year: 2014
               },
-              person: '柯文哲',
+              person: {
+                name: '柯文哲'
+              },
               platform: '沃草《市長給問嗎》'
             },
             isCorrect: true,
@@ -274,7 +309,9 @@ export default {
                 month: 2,
                 date: 28
               },
-              person: '柯文哲',
+              person: {
+                name: '柯文哲'
+              },
               platform: '《風傳媒》報導'
             }
           },
@@ -287,7 +324,9 @@ export default {
                 month: 3,
                 date: 27
               },
-              person: '柯文哲',
+              person: {
+                name: '柯文哲'
+              },
               platform: '《中央社》報導'
             }
           },
@@ -300,7 +339,9 @@ export default {
                 month: 10,
                 date: 27
               },
-              person: '柯文哲',
+              person: {
+                name: '柯文哲'
+              },
               platform: '《自由時報》報導'
             }
           }
@@ -319,7 +360,9 @@ export default {
                 month: 8,
                 date: 23
               },
-              person: '柯文哲',
+              person: {
+                name: '柯文哲'
+              },
               platform: '《臉書》'
             }
           },
@@ -330,7 +373,9 @@ export default {
               time: {
                 year: 2014
               },
-              person: '連勝文',
+              person: {
+                name: '連勝文'
+              },
               platform: '沃草《市長給問嗎》'
             }
           },
@@ -341,7 +386,9 @@ export default {
               time: {
                 year: 2014
               },
-              person: '馮光遠',
+              person: {
+                name: '馮光遠'
+              },
               platform: '沃草《市長給問嗎》'
             }
           },
@@ -352,7 +399,9 @@ export default {
               time: {
                 year: 2014
               },
-              person: '柯文哲',
+              person: {
+                name: '柯文哲'
+              },
               platform: '沃草《市長給問嗎》'
             },
             isCorrect: true,

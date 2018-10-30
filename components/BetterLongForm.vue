@@ -8,11 +8,20 @@
   </div>
   <div class="scenes tcl-container">
     <div class="scene tcl-panel full-width tcl-left-right-margin with-top-bottom-margin" :class="{ 'has-correct-answer': hasCorrectAnswer, locked: scene.lock }" v-for="scene in scenes" :key="scene.title" v-if="scene.show">
-      <div>{{ scene.title }}</div>
+      <h2>{{ scene.title }}</h2>
       <div class="options form-field-many-inputs">
         <div class="option input button wrap" :class="{ immutable: scene.lock, selected: option === scene.selectedOption, correct: hasCorrectAnswer && option.isCorrect }" v-for="option in scene.options" :key="option.title" @click="onClick(scene, option)">
-          <div class="title">{{ option.title }}</div>
-          <div class="details" v-if="scene.selectedOption" v-html="formatDetails(option.details)"></div>
+          <div class="details font-weight-bold" v-if="scene.selectedOption">
+            <span v-if="option.details.time" class="latin-within-han first">{{ option.details.time.year }}</span>
+            <span v-if="option.details.person">{{ option.details.person.name }}</span>
+          </div>
+          <h3 class="small font-weight-normal margin-top-bottom-4">{{ option.title }}</h3>
+          <div class="details font-size-tiny secondary-text" v-if="scene.selectedOption">
+            <span class="time latin-within-han first" v-if="option.details.time">{{ [option.details.time.year, option.details.time.month, option.details.time.date].filter(val => !!val).join('/') }}</span>
+            <span v-if="option.details.person.title">{{ option.details.person.title }}</span>
+            <span v-if="option.details.person">{{ option.details.person.name }}</span>
+            <span class="platform">在{{ option.details.platform }}<template v-if="option.details.scenario">{{ option.details.scenario }}</template><template v-if="option.details.type">的{{ option.details.type }}</template></span>
+          </div>
         </div>
       </div>
     </div>
