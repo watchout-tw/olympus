@@ -10,7 +10,10 @@
     <div class="scene tcl-panel full-width tcl-left-right-margin with-top-bottom-margin" :class="{ 'has-correct-answer': hasCorrectAnswer, locked: scene.lock }" v-for="scene in scenes" :key="scene.title" v-if="scene.show">
       <div>{{ scene.title }}</div>
       <div class="options form-field-many-inputs">
-        <div class="option input button wrap" :class="{ immutable: scene.lock, selected: option === scene.selectedOption, correct: hasCorrectAnswer && option.isCorrect }" v-for="option in scene.options" :key="option.title" @click="onClick(scene, option)">{{ option.title }}</div>
+        <div class="option input button wrap" :class="{ immutable: scene.lock, selected: option === scene.selectedOption, correct: hasCorrectAnswer && option.isCorrect }" v-for="option in scene.options" :key="option.title" @click="onClick(scene, option)">
+          <div class="title">{{ option.title }}</div>
+          <div class="details" v-if="scene.selectedOption" v-html="formatDetails(option.details)"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -60,6 +63,10 @@ export default {
     }
   },
   methods: {
+    formatDetails(details) {
+      let time = details.time ? [details.time.year, details.time.month, details.time.date].filter(val => !!val).join('/') : ''
+      return time + (details.platform ? details.platform : '') + (details.title ? details.title : '') + details.person + (details.scenario ? details.scenario : '') + '的' + details.type
+    },
     accumulateScore(option, plusMinus, prompt = false) {
       if(option.afterClick && option.afterClick.hasOwnProperty('score')) {
         let offset = option.afterClick.score * plusMinus
