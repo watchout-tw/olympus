@@ -1,11 +1,13 @@
 <template>
 <div class="long-form">
   <div class="opening tcl-container">
-    <div class="tcl-panel full-width tcl-left-right-margin with-top-bottom-margin with-double-top-margin">
+    <div class="tcl-panel tcl-left-right-margin with-top-bottom-margin with-double-top-margin">
       <h1 class="medium">{{ project.title }}</h1>
-      <div class="paragraphs default-width" v-html="markdown(project.description)"></div>
+      <div class="paragraphs" v-html="markdown(project.description)"></div>
     </div>
+    <div class="tcl-panel"></div>
   </div>
+  <re-captcha :token.sync="crToken" :tokenSource.sync="crTokenSource" />
   <div class="scenes tcl-container">
     <div class="scene tcl-panel full-width tcl-left-right-margin with-top-bottom-margin with-quad-top-margin" :class="{ 'has-correct-answer': hasCorrectAnswer, locked: scene.lock }" v-for="scene in scenes" :key="scene.title" v-if="scene.show">
       <h2>{{ scene.title }}</h2>
@@ -27,7 +29,7 @@
     </div>
   </div>
   <div class="result tcl-container">
-    <div class="tcl-panel full-width tcl-left-right-margin with-top-bottom-margin with-quad-top-margin" v-if="completed">
+    <div class="tcl-panel tcl-left-right-margin with-top-bottom-margin with-quad-top-margin" v-if="completed">
       <template v-if="doAfterClick('accumulateScore')">
         <div class="section-title small with-underline text-align-center"><span>測驗結果</span></div>
         <div class="text-align-center font-size-4x">{{ accumulatedScore }}</div>
@@ -37,7 +39,7 @@
         <div>{{ accumulatedDetails }}</div>
       </template>
     </div>
-    <div class="tcl-panel full-width with-top-bottom-margin with-quad-top-margin with-quad-bottom-margin" v-else>
+    <div class="tcl-panel with-top-bottom-margin with-quad-top-margin with-quad-bottom-margin" v-else>
       <div class="font-size-small text-align-center secondary-text">測驗尚未結束，同志仍須努力。</div>
     </div>
   </div>
@@ -51,22 +53,13 @@
 </template>
 
 <script>
-import { knowsMarkdown } from 'watchout-common-functions/interfaces'
-
-function resolve(obj, path) {
-  path = path.split('.')
-  var current = obj
-  while(path.length) {
-    if(typeof current !== 'object') {
-      return undefined
-    }
-    current = current[path.shift()]
-  }
-  return current
-}
+import { knowsAuth, knowsCoralReef, knowsError, knowsMarkdown, knowsReCaptcha } from 'watchout-common-functions/interfaces'
+import ReCaptcha from 'watchout-common-functions/components/ReCaptcha'
+import * as coralreef from 'watchout-common-functions/lib/coralreef'
+import { resolve } from '~/util/util'
 
 export default {
-  mixins: [knowsMarkdown],
+  mixins: [knowsAuth, knowsCoralReef, knowsError, knowsMarkdown, knowsReCaptcha],
   props: ['project', 'module'],
   data() {
     let scenes = this.project.sequence.scenes.map(scene => {
@@ -136,6 +129,28 @@ export default {
     onClick(scene, option) {
       if(!scene.lock) {
         // accumulate
+        if(this.doAfterClick('coralreef')) {
+          console.log('coralreef', scene.speechTarget.id)
+          this.optionToSubmit = option
+          if(!this.crToken) {
+            window.grecaptcha.execute()
+            return
+          }
+
+          let speechData = {
+            targetID: scene.speechTarget.id,
+            classes: [scene.speechTarget.speechType],
+            data: {
+              selectedOption: option
+            }
+          }
+          coralreef.createSpeech(speechData, this.crToken, this.crTokenSource).then(() => {
+            // TODO: success
+          }).catch((error) => {
+            // TODO: extra error handling
+            this.handleError(error)
+          })
+        }
         let offset = 0
         if(this.doAfterClick('accumulateScore')) {
           if(scene.selectedOption) {
@@ -191,6 +206,9 @@ export default {
         }
       }
     }
+  },
+  components: {
+    ReCaptcha
   }
 }
 </script>

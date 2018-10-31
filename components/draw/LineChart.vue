@@ -59,7 +59,7 @@ const SUBMIT_MESSAGES = {
 
 export default {
   mixins: [knowsError, knowsMarkdown],
-  props: ['config', 'verified', 'useReCAPTCHA', 'submittingChartID', 'token'],
+  props: ['submittingChartID', 'config', 'token', 'tokenSource'],
   data() {
     return {
       el: {},
@@ -135,17 +135,6 @@ export default {
     this.draw()
     this.initialized = true
   },
-  watch: {
-    verified(newVerified, oldVerified) {
-      if(newVerified === oldVerified || !newVerified) {
-        return
-      }
-
-      if(this.useReCAPTCHA && this.submittingChartID === this.config.id) {
-        this.finalize()
-      }
-    }
-  },
   methods: {
     onSubmit() {
       if(this.submit.state !== STATES.DEFAULT) {
@@ -159,7 +148,7 @@ export default {
         this.submit.state = STATES.LOADING
         this.$emit('update:submittingChartID', this.config.id)
 
-        if(!this.verified) {
+        if(!this.token) {
           window.grecaptcha.execute()
         } else {
           this.finalize()
@@ -169,7 +158,7 @@ export default {
     finalize() {
       // record speech
       const speechData = this.genSpeechData()
-      coralreef.createSpeech(speechData, this.token, this.useReCAPTCHA).then(() => {
+      coralreef.createSpeech(speechData, this.token, this.tokenSource).then(() => {
         this.submit.state = STATES.SUCCESS
         this.submit.message = SUBMIT_MESSAGES[STATES.SUCCESS]
         // draw original

@@ -5,11 +5,15 @@ export default {
   image: 'quiz/kpv.png',
   date: '2018-11-08 20:00:00',
   breaking: true,
-  description: '台北市長柯文哲的發言經常引起關注，不只為他帶來高人氣，甚至形成了「柯粉」、「柯黑」，在網路上爭論不休。\n\n2014年參選時，柯文哲加入沃草《台北市長給問嗎》網站，回答公民的提問。四年過去了，你還記得哪些是柯文哲當時說過的話嗎？快來測測你的記憶力，看看你有多了解2014當選前的柯文哲？',
+  description: '台北市長柯文哲的發言經常引起關注，不只為他帶來高人氣，甚至形成了「柯粉」、「柯黑」，在網路上爭論不休。\n\n2014年參選時，柯文哲加入沃草《市長給問嗎》，在網站上回答公民的提問。四年過去了，你還記得哪些是柯文哲當時說過的話嗎？快來測測你的記憶力，看看你有多了解2014當選前的柯文哲？',
   sequence: {
     navigation: 'sequential',
     hasCorrectAnswer: true,
     afterClickActions: [
+      // accumulateScore is not used
+      {
+        name: 'coralreef'
+      },
       {
         name: 'accumulateDetails',
         keys: [
@@ -109,7 +113,11 @@ export default {
               platform: '《風傳媒》報導'
             }
           }
-        ]
+        ],
+        speechTarget: {
+          id: 10001,
+          speechType: 'musou_long_form_scene_response'
+        }
       },
       {
         id: 2,
@@ -171,7 +179,11 @@ export default {
               platform: '沃草《市長給問嗎》'
             }
           }
-        ]
+        ],
+        speechTarget: {
+          id: 10002,
+          speechType: 'musou_long_form_scene_response'
+        }
       },
       {
         id: 3,
@@ -241,7 +253,11 @@ export default {
               scenario: '關於雙城論壇'
             }
           }
-        ]
+        ],
+        speechTarget: {
+          id: 10003,
+          speechType: 'musou_long_form_scene_response'
+        }
       },
       {
         id: 4,
@@ -305,7 +321,11 @@ export default {
               platform: '沃草《市長給問嗎》'
             }
           }
-        ]
+        ],
+        speechTarget: {
+          id: 10004,
+          speechType: 'musou_long_form_scene_response'
+        }
       },
       {
         id: 5,
@@ -371,7 +391,11 @@ export default {
               platform: '《自由時報》報導'
             }
           }
-        ]
+        ],
+        speechTarget: {
+          id: 10005,
+          speechType: 'musou_long_form_scene_response'
+        }
       },
       {
         id: 6,
@@ -433,7 +457,11 @@ export default {
             isCorrect: true,
             score: 1
           }
-        ]
+        ],
+        speechTarget: {
+          id: 10006,
+          speechType: 'musou_long_form_scene_response'
+        }
       }
     ]
   },
@@ -448,7 +476,7 @@ export default {
     }
   ],
   references: [
-    '2014年沃草《市長給問嗎》各候選人的回答',
+    '[2014年沃草《市長給問嗎》各候選人的回答](https://ask.watchout.tw/games/2014-taipei)',
     '[2014/12/27《ETtoday》記者黃瀞瑩專訪台北市長柯文哲](https://www.ettoday.net/news/20141227/444198.htm)',
     '[2018/10/9《風傳媒》報導](https://www.storm.mg/article/533275)',
     '[2015/10/23《蘋果》報導](https://tw.news.appledaily.com/life/realtime/20151023/717425)',
