@@ -235,6 +235,7 @@ $color-correct: rgba($color-watchout, 0.65);
     display: flex;
     justify-content: center;
     align-items: center;
+    background: $color-modal-overlay-white;
     > .prompt {
       padding: 2rem;
       background-color: $color-watchout;
