@@ -38,7 +38,10 @@
     </div>
   </div>
   <div class="prompt-overlay" v-if="showPrompt">
-    <div class="prompt">{{ promptContent }}</div>
+    <div class="prompt">
+      <div class="primary text-align-center">{{ promptContent.primary }}</div>
+      <div class="secondary">{{ promptContent.secondary }}</div>
+    </div>
   </div>
 </div>
 </template>
@@ -76,7 +79,10 @@ export default {
       accumulatedScore: 0,
       accumulatedDetails: [],
       showPrompt: false,
-      promptContent: null
+      promptContent: {
+        primary: null,
+        secondary: null
+      }
     }
   },
   computed: {
@@ -94,22 +100,22 @@ export default {
     doAfterClick(actionName) {
       return this.project.sequence.afterClickActions.filter(action => action.name === actionName).length > 0
     },
-    accumulateScore(option, plusMinus, prompt = false) {
+    accumulateScore(option, plusMinus) {
+      let offset = 0
       if(option.hasOwnProperty('score')) {
-        let offset = option.score * plusMinus
+        offset = option.score * plusMinus
         this.accumulatedScore = this.accumulatedScore + offset
-        if(prompt) {
-          this.promptContent = offset >= 0 ? ('+' + offset) : offset
-          this.showPrompt = true
-          setTimeout(() => { this.showPrompt = false }, 1500)
-        }
       }
+      return offset
+    },
+    getAfterClickAction(actionName) {
+      return this.project.sequence.afterClickActions.find(action => action.name === actionName)
     },
     getOptionDetailString(option) {
-      let keys = this.project.sequence.afterClickActions.find(action => action.name === 'accumulateDetails').keys
+      let keys = this.getAfterClickAction('accumulateDetails').keys
       return keys.map(key => resolve(option.details, key)).join('-')
     },
-    accumulateDetails(option, plusMinus, prompt = false) {
+    accumulateDetails(option, plusMinus) {
       let detailString = this.getOptionDetailString(option)
       if(plusMinus > 0) {
         this.accumulatedDetails.push(detailString)
@@ -122,11 +128,13 @@ export default {
     },
     onClick(scene, option) {
       if(!scene.lock) {
+        // accumulate
+        let offset = 0
         if(this.doAfterClick('accumulateScore')) {
           if(scene.selectedOption) {
             this.accumulateScore(scene.selectedOption, -1)
           }
-          this.accumulateScore(option, +1, true)
+          offset = this.accumulateScore(option, +1)
         }
         if(this.doAfterClick('accumulateDetails')) {
           if(scene.selectedOption) {
@@ -134,10 +142,39 @@ export default {
           }
           this.accumulateDetails(option, +1)
         }
+
+        // set selected option
+        scene.selectedOption = option
+
+        // prepare for prompt
+        if(this.doAfterClick('compareDetails')) {
+          let action = this.getAfterClickAction('compareDetails')
+          let match = Object.keys(action.keyValues).map(key => {
+            let baseVal = action.keyValues[key]
+            let val = resolve(option.details, key)
+            return baseVal === val
+          })
+          let scenario = action.matchScenarios.find(matchScenario => {
+            let result = match.map((matchVal, matchIndex) => {
+              let matchBaseVal = matchScenario.match[matchIndex]
+              return [undefined, null, matchVal].includes(matchBaseVal)
+            }).reduce((a, v) => a && v)
+            return result
+          })
+          this.promptContent.secondary = scenario.message
+        }
+
+        // prompt
+        this.promptContent.primary = offset >= 0 ? ('+' + offset) : offset
+        this.showPrompt = true
+        setTimeout(() => { this.showPrompt = false }, 1500)
+
+        // set flags
         if(!this.canChangeAnswer) {
           scene.lock = true
         }
-        scene.selectedOption = option
+
+        // show next scene
         if(this.project.sequence.navigation === 'sequential') {
           let index = this.scenes.indexOf(scene)
           if(index > -1 && index + 1 < this.scenes.length) {

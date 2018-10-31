@@ -19,6 +19,27 @@ export default {
           'time.year',
           'person.name'
         ]
+      },
+      {
+        name: 'compareDetails',
+        keyValues: {
+          'time.year': 2014,
+          'person.name': '柯文哲'
+        },
+        matchScenarios: [
+          {
+            match: [undefined, false],
+            message: '這才不是柯文哲。'
+          },
+          {
+            match: [false, true],
+            message: '這是柯文哲，但是不是2014年的柯文哲。'
+          },
+          {
+            match: [true, true],
+            message: '這真的是2014年的柯文哲耶，你怎麼這麼厲害？'
+          }
+        ]
       }
     ],
     canChangeAnswer: false,
