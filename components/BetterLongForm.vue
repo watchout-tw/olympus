@@ -28,19 +28,23 @@
   </div>
   <div class="result tcl-container">
     <div class="tcl-panel full-width tcl-left-right-margin with-top-bottom-margin with-quad-top-margin" v-if="completed">
-      <div class="section-title small with-underline text-align-center"><span>測驗結果</span></div>
-      <div class="text-align-center font-size-4x">{{ accumulatedScore }}</div>
-      <div class="section-title small with-underline text-align-center"><span>成份分析</span></div>
-      <div>{{ accumulatedDetails }}</div>
+      <template v-if="doAfterClick('accumulateScore')">
+        <div class="section-title small with-underline text-align-center"><span>測驗結果</span></div>
+        <div class="text-align-center font-size-4x">{{ accumulatedScore }}</div>
+      </template>
+      <template v-if="doAfterClick('accumulateDetails')">
+        <div class="section-title small with-underline text-align-center"><span>成份分析</span></div>
+        <div>{{ accumulatedDetails }}</div>
+      </template>
     </div>
     <div class="tcl-panel full-width with-top-bottom-margin with-quad-top-margin with-quad-bottom-margin" v-else>
       <div class="font-size-small text-align-center secondary-text">測驗尚未結束，同志仍須努力。</div>
     </div>
   </div>
-  <div class="prompt-overlay" v-if="showPrompt">
-    <div class="prompt">
-      <div class="primary text-align-center">{{ promptContent.primary }}</div>
-      <div class="secondary">{{ promptContent.secondary }}</div>
+  <div class="prompt-overlay" v-if="prompt.show">
+    <div class="prompt" :class="prompt.classes">
+      <div class="score text-align-center" v-if="doAfterClick('accumulateScore')">{{ prompt.content.score }}</div>
+      <div class="message">{{ prompt.content.message }}</div>
     </div>
   </div>
 </div>
@@ -78,10 +82,13 @@ export default {
       scenes,
       accumulatedScore: 0,
       accumulatedDetails: [],
-      showPrompt: false,
-      promptContent: {
-        primary: null,
-        secondary: null
+      prompt: {
+        show: false,
+        classes: [],
+        content: {
+          score: null,
+          message: null
+        }
       }
     }
   },
@@ -161,13 +168,14 @@ export default {
             }).reduce((a, v) => a && v)
             return result
           })
-          this.promptContent.secondary = scenario.message
+          this.prompt.classes = scenario.classes
+          this.prompt.content.message = scenario.message
         }
 
         // prompt
-        this.promptContent.primary = offset >= 0 ? ('+' + offset) : offset
-        this.showPrompt = true
-        setTimeout(() => { this.showPrompt = false }, 1500)
+        this.prompt.content.score = offset >= 0 ? ('+' + offset) : offset
+        this.prompt.show = true
+        setTimeout(() => { this.prompt.show = false }, 1500)
 
         // set flags
         if(!this.canChangeAnswer) {
@@ -238,7 +246,13 @@ $color-correct: rgba($color-watchout, 0.65);
     background: $color-modal-overlay-white;
     > .prompt {
       padding: 2rem;
-      background-color: $color-watchout;
+      background-color: $color-very-light-grey;
+      &.correct {
+        background-color: $color-correct;
+      }
+      &.incorrect {
+        background-color: $color-incorrect;
+      }
     }
   }
 }
