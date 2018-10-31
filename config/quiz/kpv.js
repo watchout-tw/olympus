@@ -5,7 +5,7 @@ export default {
   image: 'quiz/kpv.png',
   date: '2018-11-08 20:00:00',
   breaking: true,
-  description: '台北市長柯文哲在2014年參選時，加入沃草《台北市長給問嗎》網站，回答公民的提問。柯文哲的發言經常引起關注，不只帶來高人氣，甚至形成了「柯粉」、「柯黑」在網路上爭論的現象。四年過去了，你還記得哪些是柯文哲在2014年《市長給問嗎》網站上說過的話嗎？快來測測你的記憶力，看看你有多了解柯文哲！',
+  description: '台北市長柯文哲在2014年參選時，加入沃草《市長給問嗎》回答公民的提問。柯文哲的發言經常引起關注，不只帶來高人氣，甚至形成了「柯粉」、「柯黑」在網路上爭論的現象。四年過去了，你還記得哪些是柯文哲在2014年《市長給問嗎》說過的話嗎？快來測測你的記憶力，看看你有多了解柯文哲！',
   sequence: {
     navigation: 'sequential',
     hasCorrectAnswer: true,
@@ -55,7 +55,8 @@ export default {
                 date: 27
               },
               person: {
-                name: '柯文哲'
+                name: '柯文哲',
+                title: '當選台北市長的'
               },
               platform: '《ETtoday》記者黃瀞瑩專訪'
             }
@@ -424,7 +425,7 @@ export default {
     }
   ],
   references: [
-    '2014年沃草《台北市長給問嗎》各候選人的回應',
+    '2014年沃草《市長給問嗎》各候選人的回應',
     '[2014/12/27《ETtoday》記者黃瀞瑩專訪柯文哲](https://www.ettoday.net/news/20141227/444198.htm)',
     '[2018/10/9《風傳媒》報導](https://www.storm.mg/article/533275)',
     '[2015/10/23《蘋果》報導](https://tw.news.appledaily.com/life/realtime/20151023/717425)',

@@ -1,22 +1,22 @@
 <template>
 <div class="long-form">
-  <div class="description tcl-container">
-    <div class="tcl-panel full-width tcl-left-right-margin with-top-bottom-margin">
+  <div class="opening tcl-container">
+    <div class="tcl-panel full-width tcl-left-right-margin with-top-bottom-margin with-double-top-margin">
       <h1 class="medium">{{ project.title }}</h1>
       <div class="paragraphs default-width" v-html="markdown(project.description)"></div>
     </div>
   </div>
   <div class="scenes tcl-container">
-    <div class="scene tcl-panel full-width tcl-left-right-margin with-top-bottom-margin" :class="{ 'has-correct-answer': hasCorrectAnswer, locked: scene.lock }" v-for="scene in scenes" :key="scene.title" v-if="scene.show">
+    <div class="scene tcl-panel full-width tcl-left-right-margin with-top-bottom-margin with-quad-top-margin" :class="{ 'has-correct-answer': hasCorrectAnswer, locked: scene.lock }" v-for="scene in scenes" :key="scene.title" v-if="scene.show">
       <h2>{{ scene.title }}</h2>
       <div class="options form-field-many-inputs">
         <div class="option input button wrap" :class="{ immutable: scene.lock, selected: option === scene.selectedOption, correct: hasCorrectAnswer && option.isCorrect }" v-for="option in scene.options" :key="option.title" @click="onClick(scene, option)">
-          <div class="details font-weight-bold" v-if="scene.selectedOption && option.details">
+          <div class="details margin-bottom-4 font-weight-bold" v-if="scene.selectedOption && option.details">
             <span v-if="option.details.time" class="latin-within-han first">{{ option.details.time.year }}</span>
             <span v-if="option.details.person">{{ option.details.person.name }}</span>
           </div>
-          <h3 class="small font-weight-normal margin-top-bottom-4">{{ option.title }}</h3>
-          <div class="details font-size-tiny secondary-text" v-if="scene.selectedOption && option.details">
+          <h3 class="small font-weight-normal">{{ option.title }}</h3>
+          <div class="details margin-top-4 font-size-tiny secondary-text" v-if="scene.selectedOption && option.details">
             <span class="time latin-within-han first" v-if="option.details.time">{{ [option.details.time.year, option.details.time.month, option.details.time.date].filter(val => !!val).join('/') }}</span>
             <span v-if="option.details.person.title">{{ option.details.person.title }}</span>
             <span v-if="option.details.person">{{ option.details.person.name }}</span>
@@ -26,9 +26,10 @@
       </div>
     </div>
   </div>
-  <div class="result tcl-container" v-if="completed">
-    <div class="tcl-panel">
-      <div class="text-align-center total-score">{{ totalScore }}</div>
+  <div class="result tcl-container" v-if="true || completed">
+    <div class="tcl-panel full-width tcl-left-right-margin with-top-bottom-margin with-quad-top-margin">
+      <div class="section-title small with-underline text-align-center"><span>測驗結果</span></div>
+      <div class="text-align-center font-size-4x">{{ totalScore }}</div>
     </div>
   </div>
   <div class="prompt-overlay" v-if="showPrompt">
@@ -111,6 +112,10 @@ export default {
 
 <style lang="scss">
 @import '~watchout-common-assets/styles/resources';
+
+.font-size-4x {
+  font-size: 4rem;
+}
 
 $color-incorrect: rgba($color-musou, 0.65);
 $color-correct: rgba($color-watchout, 0.65);
