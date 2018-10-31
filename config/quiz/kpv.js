@@ -1,43 +1,45 @@
 export default {
   id: 'kpv',
   module: 'quiz',
-  title: '柯p價值',
+  title: '柯p值小測驗：你有多了解柯文哲？',
   image: 'quiz/kpv.png',
   date: '2018-11-08 20:00:00',
   breaking: true,
-  description: '台北市長柯文哲的發言經常引起關注，不只為他帶來高人氣，甚至形成了「柯粉」、「柯黑」，在網路上爭論不休。\n\n2014年參選時，柯文哲加入沃草《台北市長給問嗎》網站，回答公民的提問。四年過去了，你還記得哪些是柯文哲當時說過的話嗎？快來測測你的記憶力，看看你有多了解柯文哲！',
+  description: '台北市長柯文哲的發言經常引起關注，不只為他帶來高人氣，甚至形成了「柯粉」、「柯黑」，在網路上爭論不休。\n\n2014年參選時，柯文哲加入沃草《台北市長給問嗎》網站，回答公民的提問。四年過去了，你還記得哪些是柯文哲當時說過的話嗎？快來測測你的記憶力，看看你有多了解2014當選前的柯文哲？',
   sequence: {
     navigation: 'sequential',
     hasCorrectAnswer: true,
     afterClickActions: [
       {
-        name: 'accumulateScore'
-      },
-      {
         name: 'accumulateDetails',
         keys: [
           'time.year',
-          'person.name'
+          'person.name',
+          'platform'
         ]
       },
       {
         name: 'compareDetails',
         keyValues: {
           'time.year': 2014,
-          'person.name': '柯文哲'
+          'person.name': '柯文哲',
+          'platform': '沃草《市長給問嗎》'
         },
         matchScenarios: [
           {
-            match: [undefined, false],
+            match: [true, true, true],
+            classes: ['correct'],
+            message: '這真的是2014當選前的柯文哲耶，你怎麼這麼厲害？'
+          },
+          {
+            match: [undefined, true, undefined],
+            classes: ['incorrect'],
+            message: '這是柯文哲，但是不是2014當選前的柯文哲。'
+          },
+          {
+            match: [undefined, false, undefined],
+            classes: ['incorrect'],
             message: '這才不是柯文哲。'
-          },
-          {
-            match: [false, true],
-            message: '這是柯文哲，但是不是2014年的柯文哲。'
-          },
-          {
-            match: [true, true],
-            message: '這真的是2014年的柯文哲耶，你怎麼這麼厲害？'
           }
         ]
       }
@@ -46,7 +48,7 @@ export default {
     scenes: [
       {
         id: 1,
-        title: '對於同志婚姻及同志遊行的看法？',
+        title: '對於同志婚姻及同志遊行，柯文哲的看法？',
         options: [
           {
             title: '我不但會公開支持同志婚姻，更要有計畫地遊說立法機關、舉行公開演講與辯論。',
@@ -111,7 +113,7 @@ export default {
       },
       {
         id: 2,
-        title: '既得利益者不願意被打房，青年又無力負擔高房價，如何解決？',
+        title: '既得利益者不願意被打房，青年又無力負擔高房價，柯文哲如何解決？',
         options: [
           {
             title: '不會打房，因為營建業還是台灣重要的產業，亂打房會影響台灣經濟，台灣會完蛋。',
@@ -173,7 +175,7 @@ export default {
       },
       {
         id: 3,
-        title: '對於中國方面的施壓，你會如何處理？',
+        title: '對於中國方面的施壓，柯文哲如何處理？',
         options: [
           {
             title: '我們不能無視他的存在，或逢中必反，但也不能完全任其擺佈，決定我們未來的發展走向。',
@@ -243,7 +245,7 @@ export default {
       },
       {
         id: 4,
-        title: '對於世大運選手村的看法？',
+        title: '對於世大運選手村，柯文哲的說法？',
         options: [
           {
             title: '剛剛選手村、選手餐廳走一遭，我們比光州好太多了，目前沒看到甚麼需要改進的地方。',
@@ -307,7 +309,7 @@ export default {
       },
       {
         id: 5,
-        title: '對轉型正義的看法？',
+        title: '對於轉型正義，柯文哲的立場？',
         options: [
           {
             title: '非選柯文哲不可的理由：實踐社會公義、落實轉型正義、建立公義社會。',
@@ -373,7 +375,7 @@ export default {
       },
       {
         id: 6,
-        title: '回答2014沃草《市長給問嗎》中提問「為什麼要投票給你」的理由？',
+        title: '2014沃草《市長給問嗎》網友提問「為什麼要投票給你」，柯文哲的回答？',
         options: [
           {
             title: '堅持進步價值：民主自由、多元開放、法治人權、關懷弱勢、永續經營。',
