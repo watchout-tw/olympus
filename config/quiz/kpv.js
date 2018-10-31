@@ -34,7 +34,7 @@ export default {
           {
             match: [undefined, true, undefined],
             classes: ['incorrect'],
-            message: '這是柯文哲，但是不是2014當選前的柯文哲。'
+            message: '這是柯文哲，但不是2014當選前的柯文哲。'
           },
           {
             match: [undefined, false, undefined],
