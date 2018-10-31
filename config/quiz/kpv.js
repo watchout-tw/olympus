@@ -9,6 +9,18 @@ export default {
   sequence: {
     navigation: 'sequential',
     hasCorrectAnswer: true,
+    afterClickActions: [
+      {
+        name: 'accumulateScore'
+      },
+      {
+        name: 'accumulateDetails',
+        keys: [
+          'time.year',
+          'person.name'
+        ]
+      }
+    ],
     canChangeAnswer: false,
     scenes: [
       {
@@ -41,9 +53,7 @@ export default {
               platform: '沃草《市長給問嗎》'
             },
             isCorrect: true,
-            afterClick: {
-              score: 1
-            }
+            score: 1
           },
           {
             title: '同性戀我會尊重你，但並不表示我要去promotion（宣傳）；參加遊行的意願不高。',
@@ -56,7 +66,7 @@ export default {
               },
               person: {
                 name: '柯文哲',
-                title: '當選台北市長的'
+                title: '台北市長'
               },
               platform: '《ETtoday》記者黃瀞瑩專訪'
             }
@@ -123,9 +133,7 @@ export default {
               platform: '沃草《市長給問嗎》'
             },
             isCorrect: true,
-            afterClick: {
-              score: 1
-            }
+            score: 1
           },
           {
             title: '單純增建「社會住宅」、「青年住宅」等，無法徹底解決居住問題，也要考量整體社區的發展。',
@@ -159,9 +167,7 @@ export default {
               platform: '沃草《市長給問嗎》'
             },
             isCorrect: true,
-            afterClick: {
-              score: 1
-            }
+            score: 1
           },
           {
             title: '九二共識是兩岸關係和平發展的基礎，我對這個立場表示了解和尊重。',
@@ -261,9 +267,7 @@ export default {
               platform: '沃草《市長給問嗎》'
             },
             isCorrect: true,
-            afterClick: {
-              score: 1
-            }
+            score: 1
           },
           {
             title: '應該可以透過空間空屋活化的方式來獲得足夠的選手村場所。',
@@ -297,9 +301,7 @@ export default {
               platform: '沃草《市長給問嗎》'
             },
             isCorrect: true,
-            afterClick: {
-              score: 1
-            }
+            score: 1
           },
           {
             title: '228只有受者者、沒有加害者，無法撫平傷痛。',
@@ -350,7 +352,7 @@ export default {
       },
       {
         id: 6,
-        title: '回答《2014市長給問嗎》中提問「為什麼要投票給你」的理由？',
+        title: '回答2014沃草《市長給問嗎》中提問「為什麼要投票給你」的理由？',
         options: [
           {
             title: '堅持進步價值：民主自由、多元開放、法治人權、關懷弱勢、永續經營。',
@@ -406,9 +408,7 @@ export default {
               platform: '沃草《市長給問嗎》'
             },
             isCorrect: true,
-            afterClick: {
-              score: 1
-            }
+            score: 1
           }
         ]
       }
@@ -425,8 +425,8 @@ export default {
     }
   ],
   references: [
-    '2014年沃草《市長給問嗎》各候選人的回應',
-    '[2014/12/27《ETtoday》記者黃瀞瑩專訪柯文哲](https://www.ettoday.net/news/20141227/444198.htm)',
+    '2014年沃草《市長給問嗎》各候選人的回答',
+    '[2014/12/27《ETtoday》記者黃瀞瑩專訪台北市長柯文哲](https://www.ettoday.net/news/20141227/444198.htm)',
     '[2018/10/9《風傳媒》報導](https://www.storm.mg/article/533275)',
     '[2015/10/23《蘋果》報導](https://tw.news.appledaily.com/life/realtime/20151023/717425)',
     '[2015/8/3《中央社》報導](https://www.cna.com.tw/news/firstnews/201508030349.aspx)',

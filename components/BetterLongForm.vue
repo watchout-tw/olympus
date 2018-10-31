@@ -26,10 +26,15 @@
       </div>
     </div>
   </div>
-  <div class="result tcl-container" v-if="true || completed">
-    <div class="tcl-panel full-width tcl-left-right-margin with-top-bottom-margin with-quad-top-margin">
+  <div class="result tcl-container">
+    <div class="tcl-panel full-width tcl-left-right-margin with-top-bottom-margin with-quad-top-margin" v-if="completed">
       <div class="section-title small with-underline text-align-center"><span>測驗結果</span></div>
-      <div class="text-align-center font-size-4x">{{ totalScore }}</div>
+      <div class="text-align-center font-size-4x">{{ accumulatedScore }}</div>
+      <div class="section-title small with-underline text-align-center"><span>成份分析</span></div>
+      <div>{{ accumulatedDetails }}</div>
+    </div>
+    <div class="tcl-panel full-width with-top-bottom-margin with-quad-top-margin with-quad-bottom-margin" v-else>
+      <div class="font-size-small text-align-center secondary-text">測驗尚未結束，同志仍須努力。</div>
     </div>
   </div>
   <div class="prompt-overlay" v-if="showPrompt">
@@ -40,6 +45,18 @@
 
 <script>
 import { knowsMarkdown } from 'watchout-common-functions/interfaces'
+
+function resolve(obj, path) {
+  path = path.split('.')
+  var current = obj
+  while(path.length) {
+    if(typeof current !== 'object') {
+      return undefined
+    }
+    current = current[path.shift()]
+  }
+  return current
+}
 
 export default {
   mixins: [knowsMarkdown],
@@ -56,7 +73,8 @@ export default {
     scenes[0].show = true
     return {
       scenes,
-      totalScore: 0,
+      accumulatedScore: 0,
+      accumulatedDetails: [],
       showPrompt: false,
       promptContent: null
     }
@@ -73,14 +91,13 @@ export default {
     }
   },
   methods: {
-    formatDetails(details) {
-      let time = details.time ? [details.time.year, details.time.month, details.time.date].filter(val => !!val).join('/') : ''
-      return time + (details.platform ? details.platform + '：' : '') + (details.title ? details.title : '') + details.person + (details.scenario ? details.scenario : '') + '的' + details.type
+    doAfterClick(actionName) {
+      return this.project.sequence.afterClickActions.filter(action => action.name === actionName).length > 0
     },
     accumulateScore(option, plusMinus, prompt = false) {
-      if(option.afterClick && option.afterClick.hasOwnProperty('score')) {
-        let offset = option.afterClick.score * plusMinus
-        this.totalScore = this.totalScore + offset
+      if(option.hasOwnProperty('score')) {
+        let offset = option.score * plusMinus
+        this.accumulatedScore = this.accumulatedScore + offset
         if(prompt) {
           this.promptContent = offset >= 0 ? ('+' + offset) : offset
           this.showPrompt = true
@@ -88,12 +105,35 @@ export default {
         }
       }
     },
+    getOptionDetailString(option) {
+      let keys = this.project.sequence.afterClickActions.find(action => action.name === 'accumulateDetails').keys
+      return keys.map(key => resolve(option.details, key)).join('-')
+    },
+    accumulateDetails(option, plusMinus, prompt = false) {
+      let detailString = this.getOptionDetailString(option)
+      if(plusMinus > 0) {
+        this.accumulatedDetails.push(detailString)
+      } else {
+        let index = this.accumulatedDetails.indexOf(detailString)
+        if(index > -1) {
+          this.accumulatedDetails.splice(index, 1)
+        }
+      }
+    },
     onClick(scene, option) {
       if(!scene.lock) {
-        if(scene.selectedOption) {
-          this.accumulateScore(scene.selectedOption, -1)
+        if(this.doAfterClick('accumulateScore')) {
+          if(scene.selectedOption) {
+            this.accumulateScore(scene.selectedOption, -1)
+          }
+          this.accumulateScore(option, +1, true)
         }
-        this.accumulateScore(option, +1, true)
+        if(this.doAfterClick('accumulateDetails')) {
+          if(scene.selectedOption) {
+            this.accumulateDetails(scene.selectedOption, -1)
+          }
+          this.accumulateDetails(option, +1)
+        }
         if(!this.canChangeAnswer) {
           scene.lock = true
         }
