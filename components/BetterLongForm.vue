@@ -130,7 +130,6 @@ export default {
       if(!scene.lock) {
         // accumulate
         if(this.doAfterClick('coralreef')) {
-          console.log('coralreef', scene.speechTarget.id)
           this.optionToSubmit = option
           if(!this.crToken) {
             window.grecaptcha.execute()
