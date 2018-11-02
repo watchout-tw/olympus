@@ -28,25 +28,41 @@
       </div>
     </div>
   </div>
-  <div class="result tcl-container">
-    <div class="tcl-panel tcl-left-right-margin with-top-bottom-margin with-quad-top-margin" v-if="completed">
-      <template v-if="doAfterClick('accumulateScore')">
-        <div class="section-title small with-underline text-align-center"><span>測驗結果</span></div>
+  <div class="result-container tcl-container">
+    <div class="result tcl-panel full-width tcl-left-right-margin with-top-bottom-margin with-quad-top-margin" v-if="completed">
+      <template v-if="doShowResult('showScore')">
+        <div class="section-title small with-underline text-align-center"><span>總分</span></div>
         <div class="text-align-center font-size-4x">{{ accumulatedScore }}</div>
       </template>
-      <template v-if="doAfterClick('accumulateDetails')">
+      <template v-if="doShowResult('showGroups') && actionShowGroups.show">
         <div class="section-title small with-underline text-align-center"><span>成份分析</span></div>
-        <div>{{ accumulatedDetails }}</div>
+        <div class="margin-top-bottom-8 text-align-center">{{ actionShowGroups.message }}</div>
+        <div class="text-align-center" v-if="actionShowGroups.showGroupMessage">{{ result.message }}</div>
+        <div class="segments d-flex margin-top-bottom-8" v-if="actionShowGroups.chartType === 'segments'">
+          <div class="segment padding-8" v-for="(group, index) of result.groups" :style="{ width: (group.count / result.totalCount) * 100 + '%', backgroundColor: group.color }" v-if="group.count > 0" >
+            <div>{{ group.name }}</div>
+            <div>{{ Math.round(group.count / result.totalCount * 100) + '%' }}</div>
+          </div>
+        </div>
+      </template>
+      <template v-if="doShowResult('showOccurences') && actionShowOccur.show">
+        <div class="section-title small with-underline text-align-center"><span>成份分析</span></div>
+        <div class="segments d-flex margin-top-bottom-8" v-if="actionShowOccur.chartType === 'segments'">
+          <div class="segment padding-8" v-for="(occurence, index) of result.occurences" :style="{ width: (occurence.count / result.totalCount) * 100 + '%', backgroundColor: actionShowOccur.segment.colors[index % actionShowOccur.segment.colors.length] }">
+            <div v-for="key in actionShowOccur.segment.keys">{{ occurence.details[key] }}</div>
+            <div>{{ Math.round(occurence.count / result.totalCount * 100) + '%' }}</div>
+          </div>
+        </div>
       </template>
     </div>
     <div class="tcl-panel with-top-bottom-margin with-quad-top-margin with-quad-bottom-margin" v-else>
-      <div class="font-size-small text-align-center secondary-text">測驗尚未結束，同志仍須努力。</div>
+      <div class="font-size-small text-align-center secondary-text">測驗尚未結束，同志仍須繼續努力作答。</div>
     </div>
   </div>
-  <div class="prompt-overlay" v-if="prompt.show">
+  <div class="prompt-overlay" v-if="prompt.show && doAfterClick('showPrompt')">
     <div class="prompt" :class="prompt.classes">
-      <div class="score text-align-center" v-if="doAfterClick('accumulateScore')">{{ prompt.content.score }}</div>
-      <div class="message">{{ prompt.content.message }}</div>
+      <div class="score text-align-center" v-if="actionShowPrompt.keys.includes('score')">{{ prompt.content.score }}</div>
+      <div class="message" v-if="actionShowPrompt.keys.includes('message')">{{ prompt.content.message }}</div>
     </div>
   </div>
 </div>
@@ -57,6 +73,16 @@ import { knowsAuth, knowsCoralReef, knowsError, knowsMarkdown, knowsReCaptcha } 
 import ReCaptcha from 'watchout-common-functions/components/ReCaptcha'
 import * as coralreef from 'watchout-common-functions/lib/coralreef'
 import { resolve } from '~/util/util'
+
+const devMode = false
+const overlayDuration = devMode ? 500 : 1500
+
+function pad0(val) {
+  return val < 10 ? ('0' + val) : val
+}
+function getDateString(timeObj) {
+  return [timeObj.year, pad0(timeObj.month), pad0(timeObj.date)].filter(val => !!val).join('-')
+}
 
 export default {
   mixins: [knowsAuth, knowsCoralReef, knowsError, knowsMarkdown, knowsReCaptcha],
@@ -71,6 +97,9 @@ export default {
       return Object.assign({}, scene, flags)
     })
     scenes[0].show = true
+
+    let showPromptAction = this.project.sequence.afterClickActions.find(action => action.name === 'showPrompt')
+    let promptContent = showPromptAction ? Object.assign({}, ...showPromptAction.keys.map(key => ({ [key]: null }))) : {}
     return {
       scenes,
       accumulatedScore: 0,
@@ -78,10 +107,7 @@ export default {
       prompt: {
         show: false,
         classes: [],
-        content: {
-          score: null,
-          message: null
-        }
+        content: promptContent
       }
     }
   },
@@ -93,12 +119,93 @@ export default {
       return this.project.sequence.canChangeAnswer
     },
     completed() {
-      return this.scenes.filter(scene => !scene.selectedOption).length === 0
+      return devMode ? true : this.scenes.filter(scene => !scene.selectedOption).length === 0
+    },
+    result() {
+      let action
+      let detailObjects = this.accumulatedDetails.map(detailString => JSON.parse(detailString))
+      let result = {
+        totalCount: detailObjects.length
+      }
+
+      if(this.doShowResult('sort')) {
+        action = this.getShowResultAction('sort')
+        if(action.key === 'time') {
+          detailObjects.sort((a, b) => new Date(getDateString(a.time)) - new Date(getDateString(b.time)))
+        }
+      }
+      if(this.doShowResult('showGroups')) {
+        let action = this.getShowResultAction('showGroups')
+        let groups = action.groups.map(group => Object.assign({ count: 0 }, group))
+        detailObjects.forEach(detailObject => {
+          let base = action.base
+          let keys = Object.keys(base)
+          let match = keys.map(key => detailObject[key] === base[key])
+
+          let groupIndex = -1
+          for(let i = 0; i < groups.length; i++) {
+            let group = action.groups[i]
+            let groupMatch = group.match.map((baseVal, index) => [undefined, null].includes(baseVal) ? true : baseVal === match[index]).reduce((a, v) => a && v)
+            if(groupMatch) {
+              groupIndex = i
+              break
+            }
+          }
+          if(groupIndex > -1) {
+            groups[groupIndex].count += 1
+          }
+        })
+        let maxCount = 0
+        let message = null
+        groups.forEach((group, index) => {
+          if(group.count >= maxCount) {
+            maxCount = group.count
+            message = group.message
+          }
+        })
+
+        result.groups = groups
+        result.message = message
+      }
+      if(this.doShowResult('showOccurences')) {
+        action = this.getShowResultAction('showOccurences')
+        let detailStrings = detailObjects.map(obj => {
+          let filteredObj = Object.assign({}, ...action.segment.keys.map(key => ({ [key]: obj[key] })))
+          return JSON.stringify(filteredObj)
+        })
+        let keys = [...new Set(detailStrings)]
+        let occurences = keys.map(key => {
+          return {
+            details: JSON.parse(key),
+            count: detailStrings.filter(detailString => detailString === key).length
+          }
+        })
+        result.occurences = occurences
+      }
+      return result
+    },
+    actionShowPrompt() {
+      return this.doAfterClick('showPrompt') ? this.getAfterClickAction('showPrompt') : undefined
+    },
+    actionShowGroups() {
+      return this.doShowResult('showGroups') ? this.getShowResultAction('showGroups') : undefined
+    },
+    actionShowOccur() {
+      return this.doShowResult('showOccurences') ? this.getShowResultAction('showOccurences') : undefined
     }
   },
   methods: {
     doAfterClick(actionName) {
       return this.project.sequence.afterClickActions.filter(action => action.name === actionName).length > 0
+    },
+    getAfterClickAction(actionName) {
+      return this.project.sequence.afterClickActions.find(action => action.name === actionName)
+    },
+    doShowResult(actionName) {
+      return this.project.showResultActions.filter(action => action.name === actionName).length > 0
+    },
+    getShowResultAction(actionName) {
+      return this.project.showResultActions.find(action => action.name === actionName)
     },
     accumulateScore(option, plusMinus) {
       let offset = 0
@@ -108,19 +215,20 @@ export default {
       }
       return offset
     },
-    getAfterClickAction(actionName) {
-      return this.project.sequence.afterClickActions.find(action => action.name === actionName)
-    },
-    getOptionDetailString(option) {
+    getOptionDetailObject(option) {
       let keys = this.getAfterClickAction('accumulateDetails').keys
-      return keys.map(key => resolve(option.details, key)).join('-')
+      return Object.assign({}, ...keys.map(key => {
+        return {
+          [key]: resolve(option.details, key)
+        }
+      }))
     },
     accumulateDetails(option, plusMinus) {
-      let detailString = this.getOptionDetailString(option)
+      let detailObj = this.getOptionDetailObject(option)
       if(plusMinus > 0) {
-        this.accumulatedDetails.push(detailString)
+        this.accumulatedDetails.push(JSON.stringify(detailObj))
       } else {
-        let index = this.accumulatedDetails.indexOf(detailString)
+        let index = this.accumulatedDetails.indexOf(JSON.stringify(detailObj))
         if(index > -1) {
           this.accumulatedDetails.splice(index, 1)
         }
@@ -170,8 +278,8 @@ export default {
         // prepare for prompt
         if(this.doAfterClick('compareDetails')) {
           let action = this.getAfterClickAction('compareDetails')
-          let match = Object.keys(action.keyValues).map(key => {
-            let baseVal = action.keyValues[key]
+          let match = Object.keys(action.base).map(key => {
+            let baseVal = action.base[key]
             let val = resolve(option.details, key)
             return baseVal === val
           })
@@ -189,7 +297,7 @@ export default {
         // prompt
         this.prompt.content.score = offset >= 0 ? ('+' + offset) : offset
         this.prompt.show = true
-        setTimeout(() => { this.prompt.show = false }, 1500)
+        setTimeout(() => { this.prompt.show = false }, overlayDuration)
 
         // set flags
         if(!this.canChangeAnswer) {
