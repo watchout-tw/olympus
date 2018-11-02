@@ -98,7 +98,7 @@ export default {
     })
     scenes[0].show = true
 
-    let showPromptAction = this.project.sequence.afterClickActions.find(action => action.name === 'showPrompt')
+    let showPromptAction = this.project.sequence.afterClickActions ? this.project.sequence.afterClickActions.find(action => action.name === 'showPrompt') : null
     let promptContent = showPromptAction ? Object.assign({}, ...showPromptAction.keys.map(key => ({ [key]: null }))) : {}
     return {
       scenes,
@@ -208,16 +208,16 @@ export default {
   },
   methods: {
     doAfterClick(actionName) {
-      return this.project.sequence.afterClickActions.filter(action => action.name === actionName).length > 0
+      return this.project.sequence.afterClickActions ? this.project.sequence.afterClickActions.filter(action => action.name === actionName).length > 0 : false
     },
     getAfterClickAction(actionName) {
-      return this.project.sequence.afterClickActions.find(action => action.name === actionName)
+      return this.project.sequence.afterClickActions ? this.project.sequence.afterClickActions.find(action => action.name === actionName) : null
     },
     doShowResult(actionName) {
-      return this.project.showResultActions.filter(action => action.name === actionName).length > 0
+      return this.project.showResultActions ? this.project.showResultActions.filter(action => action.name === actionName).length > 0 : false
     },
     getShowResultAction(actionName) {
-      return this.project.showResultActions.find(action => action.name === actionName)
+      return this.project.showResultActions ? this.project.showResultActions.find(action => action.name === actionName) : null
     },
     accumulateScore(option, plusMinus) {
       let offset = 0
