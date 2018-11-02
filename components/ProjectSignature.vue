@@ -16,7 +16,8 @@ export default {
       return { name: 'moduleSlug-projectSlug', params: { moduleSlug: this.module.id, projectSlug: this.project.id } }
     },
     image() {
-      return require('~/static/' + this.project.image)
+      let image = typeof this.project.image === 'string' ? this.project.image : this.project.image.default
+      return require('~/static/' + image)
     }
   }
 }

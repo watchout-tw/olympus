@@ -75,7 +75,6 @@ export default {
     }
   },
   head() {
-    console.log(this.$route)
     let pageTitle = info.L_SINGLE_BRACKET + this.project.title + info.R_SINGLE_BRACKET + info.SITE_TITLE
     let pageDescription = this.project.description
     let image = typeof this.project.image === 'string' ? this.project.image : this.project.image.default
