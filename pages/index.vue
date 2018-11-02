@@ -6,7 +6,7 @@
     </div>
   </div>
   <div class="tcl-container">
-    <div class="tcl-panel with-top-bottom-margin" v-for="project of projects" :key="project.id">
+    <div class="tcl-panel with-top-bottom-margin" v-for="project of projects" v-if="project.status !== 'unlisted'" :key="project.id">
       <project-signature :module="getModule(project.module)" :project="project" />
     </div>
     <div class="tcl-panel"></div>
