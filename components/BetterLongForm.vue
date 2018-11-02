@@ -29,34 +29,47 @@
     </div>
   </div>
   <div class="result-container tcl-container">
-    <div class="result tcl-panel full-width tcl-left-right-margin with-top-bottom-margin with-quad-top-margin" v-if="completed">
-      <template v-if="doShowResult('showScore')">
-        <div class="section-title small with-underline text-align-center"><span>總分</span></div>
-        <div class="text-align-center font-size-4x">{{ accumulatedScore }}</div>
-      </template>
-      <template v-if="doShowResult('showGroups') && actionShowGroups.show">
-        <div class="section-title small with-underline text-align-center"><span>成份分析</span></div>
-        <div class="margin-top-bottom-8 text-align-center">{{ actionShowGroups.message }}</div>
-        <div class="text-align-center" v-if="actionShowGroups.showGroupMessage">{{ result.message }}</div>
-        <div class="segments d-flex margin-top-bottom-8" v-if="actionShowGroups.chartType === 'segments'">
-          <div class="segment padding-8" v-for="(group, index) of result.groups" :style="{ width: (group.count / result.totalCount) * 100 + '%', backgroundColor: group.color }" v-if="group.count > 0" >
-            <div>{{ group.name }}</div>
-            <div>{{ Math.round(group.count / result.totalCount * 100) + '%' }}</div>
+    <div class="tcl-panel full-width with-top-bottom-margin with-quad-top-margin" v-if="completed">
+      <div class="result margin-top-bottom-double">
+        <template v-if="doShowResult('showScore')">
+          <div class="section-title small with-underline text-align-center"><span>總分</span></div>
+          <div class="text-align-center font-size-4x">{{ accumulatedScore }}</div>
+        </template>
+        <template v-if="doShowResult('showGroups') && actionShowGroups.show">
+          <div class="section-title small with-underline text-align-center"><span>成份分析</span></div>
+          <div class="margin-top-bottom-8 text-align-center">{{ actionShowGroups.message }}</div>
+          <div class="text-align-center" v-if="actionShowGroups.showGroupMessage">{{ result.message }}</div>
+          <div class="segments d-flex margin-top-bottom-8" v-if="actionShowGroups.chartType === 'segments'">
+            <div class="segment padding-8" v-for="(group, index) of result.groups" :style="{ width: (group.count / result.totalCount) * 100 + '%', backgroundColor: group.color }" v-if="group.count > 0" >
+              <div>{{ group.name }}</div>
+              <div>{{ Math.round(group.count / result.totalCount * 100) + '%' }}</div>
+            </div>
           </div>
-        </div>
-      </template>
-      <template v-if="doShowResult('showOccurences') && actionShowOccur.show">
-        <div class="section-title small with-underline text-align-center"><span>成份分析</span></div>
-        <div class="segments d-flex margin-top-bottom-8" v-if="actionShowOccur.chartType === 'segments'">
-          <div class="segment padding-8" v-for="(occurence, index) of result.occurences" :style="{ width: (occurence.count / result.totalCount) * 100 + '%', backgroundColor: actionShowOccur.segment.colors[index % actionShowOccur.segment.colors.length] }">
-            <div v-for="key in actionShowOccur.segment.keys">{{ occurence.details[key] }}</div>
-            <div>{{ Math.round(occurence.count / result.totalCount * 100) + '%' }}</div>
+        </template>
+        <template v-if="doShowResult('showOccurences') && actionShowOccur.show">
+          <div class="section-title small with-underline text-align-center"><span>成份分析</span></div>
+          <div class="segments d-flex margin-top-bottom-8" v-if="actionShowOccur.chartType === 'segments'">
+            <div class="segment padding-8" v-for="(occurence, index) of result.occurences" :style="{ width: (occurence.count / result.totalCount) * 100 + '%', backgroundColor: actionShowOccur.segment.colors[index % actionShowOccur.segment.colors.length] }">
+              <div v-for="key in actionShowOccur.segment.keys">{{ occurence.details[key] }}</div>
+              <div>{{ Math.round(occurence.count / result.totalCount * 100) + '%' }}</div>
+            </div>
           </div>
-        </div>
-      </template>
+        </template>
+      </div>
     </div>
     <div class="tcl-panel with-top-bottom-margin with-quad-top-margin with-quad-bottom-margin" v-else>
       <div class="font-size-small text-align-center secondary-text">測驗尚未結束，同志仍須繼續努力作答。</div>
+    </div>
+  </div>
+  <div class="share-container tcl-container" v-if="completed && project.share">
+    <div class="tcl-panel">
+      <div class="share text-align-center">
+        <div class="section-title small with-underline text-align-center"><span>分享</span></div>
+        <div class="margin-top-bottom-8" v-if="project.share.message">{{ project.share.message }}</div>
+        <div class="margin-top-bottom-8">
+          <share-to-platforms :url="shareURL" />
+        </div>
+      </div>
     </div>
   </div>
   <div class="prompt-overlay" v-if="prompt.show && doAfterClick('showPrompt')">
@@ -69,8 +82,9 @@
 </template>
 
 <script>
-import { knowsAuth, knowsCoralReef, knowsError, knowsMarkdown, knowsReCaptcha } from 'watchout-common-functions/interfaces'
+import { knowsAuth, knowsCoralReef, knowsError, knowsMarkdown, knowsReCaptcha, knowsWatchout } from 'watchout-common-functions/interfaces'
 import ReCaptcha from 'watchout-common-functions/components/ReCaptcha'
+import ShareToPlatforms from 'watchout-common-functions/components/ShareToPlatforms'
 import * as coralreef from 'watchout-common-functions/lib/coralreef'
 import { resolve } from '~/util/util'
 
@@ -85,7 +99,7 @@ function getDateString(timeObj) {
 }
 
 export default {
-  mixins: [knowsAuth, knowsCoralReef, knowsError, knowsMarkdown, knowsReCaptcha],
+  mixins: [knowsAuth, knowsCoralReef, knowsError, knowsMarkdown, knowsReCaptcha, knowsWatchout],
   props: ['project', 'module'],
   data() {
     let scenes = this.project.sequence.scenes.map(scene => {
@@ -192,17 +206,20 @@ export default {
     },
     actionShowOccur() {
       return this.doShowResult('showOccurences') ? this.getShowResultAction('showOccurences') : undefined
+    },
+    shareURL() {
+      return this.getBaseURL('musou') + this.$route.fullPath
     }
   },
   watch: {
     completed() {
-      if(this.completed) {
-        let action
-        if(this.doAtCompletion('updateQuery')) {
-          action = this.getAtCompletionAction('updateQuery')
-          let key = action.key
-          let source = resolve(this, action.value.source)
-          let value
+      let action
+      if(this.doAtCompletion('updateQuery')) {
+        action = this.getAtCompletionAction('updateQuery')
+        let source = resolve(this, action.value.source)
+        let key = action.key
+        let value
+        if(this.completed) {
           if(action.value.method === 'each') {
             value = source.map(item => resolve(item, action.value.key)).join(action.value.joinChar)
           }
@@ -210,11 +227,22 @@ export default {
             path: this.$route.path,
             query: { [key]: value }
           })
+        } else {
+          this.clearQuery()
         }
       }
     }
   },
+  mounted() {
+    this.clearQuery()
+  },
   methods: {
+    clearQuery() {
+      this.$router.push({
+        path: this.$route.path,
+        query: null
+      })
+    },
     doAfterClick(actionName) {
       return this.project.sequence.afterClickActions ? this.project.sequence.afterClickActions.filter(action => action.name === actionName).length > 0 : false
     },
@@ -341,7 +369,8 @@ export default {
     }
   },
   components: {
-    ReCaptcha
+    ReCaptcha,
+    ShareToPlatforms
   }
 }
 </script>
