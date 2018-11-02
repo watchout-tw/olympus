@@ -582,6 +582,18 @@ export default {
       show: false
     }
   ],
+  atCompletionActions: [
+    {
+      name: 'updateQuery',
+      key: 'gc',
+      value: {
+        method: 'each',
+        source: 'result.groups',
+        key: 'count',
+        joinChar: '-'
+      }
+    }
+  ],
   authorship: [
     {
       job: '編輯',

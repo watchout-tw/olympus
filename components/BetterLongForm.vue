@@ -197,12 +197,20 @@ export default {
   watch: {
     completed() {
       if(this.completed) {
-        this.$router.push(
-          {
-            path: this.$route.path,
-            query: { gc: this.result.groups.map(group => group.count).join('-') }
+        let action
+        if(this.doAtCompletion('updateQuery')) {
+          action = this.getAtCompletionAction('updateQuery')
+          let key = action.key
+          let source = resolve(this, action.value.source)
+          let value
+          if(action.value.method === 'each') {
+            value = source.map(item => resolve(item, action.value.key)).join(action.value.joinChar)
           }
-        )
+          this.$router.push({
+            path: this.$route.path,
+            query: { [key]: value }
+          })
+        }
       }
     }
   },
@@ -218,6 +226,12 @@ export default {
     },
     getShowResultAction(actionName) {
       return this.project.showResultActions ? this.project.showResultActions.find(action => action.name === actionName) : null
+    },
+    doAtCompletion(actionName) {
+      return this.project.atCompletionActions ? this.project.atCompletionActions.filter(action => action.name === actionName).length > 0 : false
+    },
+    getAtCompletionAction(actionName) {
+      return this.project.atCompletionActions ? this.project.atCompletionActions.find(action => action.name === actionName) : null
     },
     accumulateScore(option, plusMinus) {
       let offset = 0
