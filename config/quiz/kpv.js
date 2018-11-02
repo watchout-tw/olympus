@@ -555,7 +555,7 @@ export default {
         }
       ],
       show: true,
-      showMessage: false
+      showGroupMessage: false
     },
     {
       name: 'showOccurences',
