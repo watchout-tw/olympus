@@ -205,7 +205,7 @@ export default {
             title: '原住民'
           },
           {
-            title: '原住民'
+            title: '日本人'
           }
         ]
       },
