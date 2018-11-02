@@ -194,6 +194,18 @@ export default {
       return this.doShowResult('showOccurences') ? this.getShowResultAction('showOccurences') : undefined
     }
   },
+  watch: {
+    completed() {
+      if(this.completed) {
+        this.$router.push(
+          {
+            path: this.$route.path,
+            query: { gc: this.result.groups.map(group => group.count).join('-') }
+          }
+        )
+      }
+    }
+  },
   methods: {
     doAfterClick(actionName) {
       return this.project.sequence.afterClickActions.filter(action => action.name === actionName).length > 0

@@ -75,9 +75,32 @@ export default {
     }
   },
   head() {
+    console.log(this.$route)
     let pageTitle = info.L_SINGLE_BRACKET + this.project.title + info.R_SINGLE_BRACKET + info.SITE_TITLE
     let pageDescription = this.project.description
-    let pageCover = require('~/static/' + this.project.image)
+    let image = typeof this.project.image === 'string' ? this.project.image : this.project.image.default
+    if(typeof this.project.image === 'object') {
+      let path = this.project.image.pathTemplate
+      let spots = path.match(/{[0-9]+}/g)
+      let pathIsValid = spots.length === this.project.image.replacements.length
+      for(let i = 0; pathIsValid && i < this.project.image.replacements.length; i++) {
+        let replacementIsSuccessful = false
+        let replacement = this.project.image.replacements[i]
+        let needle = `{${i + 1}}`
+        if(path.indexOf(needle) > -1) { // {n} exists in path
+          let val = this.$route.query[replacement.key]
+          if(val && val.match(replacement.regexp)) {
+            path = path.replace(needle, val)
+            replacementIsSuccessful = true
+          }
+        }
+        pathIsValid = pathIsValid && replacementIsSuccessful
+      }
+      if(pathIsValid) {
+        image = path
+      }
+    }
+    let pageCover = require('~/static/' + image)
 
     return {
       title: pageTitle,
