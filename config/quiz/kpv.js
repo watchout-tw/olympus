@@ -594,6 +594,9 @@ export default {
       }
     }
   ],
+  share: {
+    message: '分享你的獨一無二的柯文哲'
+  },
   authorship: [
     {
       job: '編輯',
