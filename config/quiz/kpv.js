@@ -10,41 +10,51 @@ export default {
     navigation: 'sequential',
     hasCorrectAnswer: true,
     afterClickActions: [
-      // accumulateScore is not used
       {
         name: 'coralreef'
       },
       {
+        name: 'accumulateScore'
+      },
+      {
         name: 'accumulateDetails',
         keys: [
+          'time',
           'time.year',
-          'person.name',
-          'platform'
+          'person.title',
+          'person.name'
         ]
       },
       {
         name: 'compareDetails',
-        keyValues: {
+        base: {
+          'time': null,
           'time.year': 2014,
-          'person.name': '柯文哲',
-          'platform': '沃草《市長給問嗎》'
+          'person.title': '候選人',
+          'person.name': '柯文哲'
         },
         matchScenarios: [
           {
-            match: [true, true, true],
+            match: [false, true, true, true],
             classes: ['correct'],
             message: '這真的是2014當選前的柯文哲耶，你怎麼這麼厲害？'
           },
           {
-            match: [undefined, true, undefined],
+            match: [false, undefined, undefined, true],
             classes: ['incorrect'],
             message: '這是柯文哲，但不是2014當選前的柯文哲。'
           },
           {
-            match: [undefined, false, undefined],
+            match: [false, undefined, undefined, false],
             classes: ['incorrect'],
             message: '這才不是柯文哲。'
           }
+        ]
+      },
+      {
+        name: 'showPrompt',
+        keys: [
+          'message'
         ]
       }
     ],
@@ -59,10 +69,13 @@ export default {
             details: {
               type: '回答',
               time: {
-                year: 2014
+                year: 2014,
+                month: 3,
+                date: 4
               },
               person: {
-                name: '馮光遠'
+                name: '馮光遠',
+                title: '候選人'
               },
               platform: '沃草《市長給問嗎》'
             }
@@ -72,10 +85,13 @@ export default {
             details: {
               type: '回答',
               time: {
-                year: 2014
+                year: 2014,
+                month: 7,
+                date: 18
               },
               person: {
-                name: '柯文哲'
+                name: '柯文哲',
+                title: '候選人'
               },
               platform: '沃草《市長給問嗎》'
             },
@@ -108,7 +124,8 @@ export default {
                 date: 9
               },
               person: {
-                name: '柯文哲'
+                name: '柯文哲',
+                title: '台北市長'
               },
               platform: '《風傳媒》報導'
             }
@@ -133,7 +150,8 @@ export default {
                 date: 23
               },
               person: {
-                name: '柯文哲'
+                name: '柯文哲',
+                title: '台北市長'
               },
               platform: '《蘋果》報導'
             }
@@ -143,10 +161,13 @@ export default {
             details: {
               type: '回答',
               time: {
-                year: 2014
+                year: 2014,
+                month: 4,
+                date: 1
               },
               person: {
-                name: '丁守中'
+                name: '丁守中',
+                title: '候選人'
               },
               platform: '沃草《市長給問嗎》'
             }
@@ -156,10 +177,13 @@ export default {
             details: {
               type: '回答',
               time: {
-                year: 2014
+                year: 2014,
+                month: 7,
+                date: 28
               },
               person: {
-                name: '柯文哲'
+                name: '柯文哲',
+                title: '候選人'
               },
               platform: '沃草《市長給問嗎》'
             },
@@ -171,10 +195,13 @@ export default {
             details: {
               type: '回答',
               time: {
-                year: 2014
+                year: 2014,
+                month: 4,
+                date: 26
               },
               person: {
-                name: '馮光遠'
+                name: '馮光遠',
+                title: '候選人'
               },
               platform: '沃草《市長給問嗎》'
             }
@@ -194,10 +221,13 @@ export default {
             details: {
               type: '回答',
               time: {
-                year: 2014
+                year: 2014,
+                month: 8,
+                date: 7
               },
               person: {
-                name: '柯文哲'
+                name: '柯文哲',
+                title: '候選人'
               },
               platform: '沃草《市長給問嗎》'
             },
@@ -214,7 +244,8 @@ export default {
                 date: 3
               },
               person: {
-                name: '柯文哲'
+                name: '柯文哲',
+                title: '台北市長'
               },
               scenario: '面對中國媒體採訪',
               platform: '《中央社》報導'
@@ -273,7 +304,8 @@ export default {
                 date: 12
               },
               person: {
-                name: '柯文哲'
+                name: '柯文哲',
+                title: '台北市長'
               },
               platform: '《蘋果日報》報導'
             }
@@ -288,7 +320,8 @@ export default {
                 date: 11
               },
               person: {
-                name: '柯文哲'
+                name: '柯文哲',
+                title: '台北市長'
               },
               platform: '《風傳媒》報導'
             }
@@ -298,10 +331,13 @@ export default {
             details: {
               type: '回答',
               time: {
-                year: 2014
+                year: 2014,
+                month: 7,
+                date: 28
               },
               person: {
-                name: '柯文哲'
+                name: '柯文哲',
+                title: '候選人'
               },
               platform: '沃草《市長給問嗎》'
             },
@@ -313,10 +349,13 @@ export default {
             details: {
               type: '回答',
               time: {
-                year: 2014
+                year: 2014,
+                month: 4,
+                date: 26
               },
               person: {
-                name: '馮光遠'
+                name: '馮光遠',
+                title: '候選人'
               },
               platform: '沃草《市長給問嗎》'
             }
@@ -336,10 +375,13 @@ export default {
             details: {
               type: '回答',
               time: {
-                year: 2014
+                year: 2014,
+                month: 10,
+                date: 7
               },
               person: {
-                name: '柯文哲'
+                name: '柯文哲',
+                title: '候選人'
               },
               platform: '沃草《市長給問嗎》'
             },
@@ -356,7 +398,8 @@ export default {
                 date: 28
               },
               person: {
-                name: '柯文哲'
+                name: '柯文哲',
+                title: '台北市長'
               },
               platform: '《風傳媒》報導'
             }
@@ -371,7 +414,8 @@ export default {
                 date: 27
               },
               person: {
-                name: '柯文哲'
+                name: '柯文哲',
+                title: '台北市長'
               },
               platform: '《中央社》報導'
             }
@@ -386,7 +430,8 @@ export default {
                 date: 27
               },
               person: {
-                name: '柯文哲'
+                name: '柯文哲',
+                title: '台北市長'
               },
               platform: '《自由時報》報導'
             }
@@ -411,7 +456,8 @@ export default {
                 date: 23
               },
               person: {
-                name: '柯文哲'
+                name: '柯文哲',
+                title: '台北市長'
               },
               platform: '《臉書》'
             }
@@ -421,10 +467,13 @@ export default {
             details: {
               type: '回答',
               time: {
-                year: 2014
+                year: 2014,
+                month: 10,
+                date: 28
               },
               person: {
-                name: '連勝文'
+                name: '連勝文',
+                title: '候選人'
               },
               platform: '沃草《市長給問嗎》'
             }
@@ -434,10 +483,13 @@ export default {
             details: {
               type: '回答',
               time: {
-                year: 2014
+                year: 2014,
+                month: 4,
+                date: 22
               },
               person: {
-                name: '馮光遠'
+                name: '馮光遠',
+                title: '候選人'
               },
               platform: '沃草《市長給問嗎》'
             }
@@ -447,10 +499,13 @@ export default {
             details: {
               type: '回答',
               time: {
-                year: 2014
+                year: 2014,
+                month: 10,
+                date: 7
               },
               person: {
-                name: '柯文哲'
+                name: '柯文哲',
+                title: '候選人'
               },
               platform: '沃草《市長給問嗎》'
             },
@@ -465,6 +520,57 @@ export default {
       }
     ]
   },
+  showResultActions: [
+    {
+      name: 'sort',
+      key: 'time'
+    },
+    {
+      name: 'showGroups',
+      chartType: 'segments',
+      base: {
+        'time': null,
+        'time.year': 2014,
+        'person.title': '候選人',
+        'person.name': '柯文哲'
+      },
+      groups: [
+        {
+          name: '選前柯文哲',
+          color: '#50E3C2',
+          match: [false, true, true, true],
+          message: '你的柯文哲是2014當選前的柯文哲。'
+        },
+        {
+          name: '選後柯市長',
+          color: '#FF5368',
+          match: [false, undefined, undefined, true],
+          message: '你的柯文哲是2014當選後的柯市長。'
+        },
+        {
+          name: '不是柯文哲',
+          color: '#9B9B9B',
+          match: [false, undefined, undefined, false],
+          message: '你的柯文哲不是柯文哲。'
+        }
+      ],
+      show: true,
+      showMessage: false
+    },
+    {
+      name: 'showOccurences',
+      chartType: 'segments',
+      segment: {
+        colors: ['#FF5368', '#FFB55D', '#F8E71C', '#B7F661', '#50E3C2', '#4DEBDF'],
+        keys: [
+          'time.year',
+          'person.title',
+          'person.name'
+        ]
+      },
+      show: false
+    }
+  ],
   authorship: [
     {
       job: '編輯',
