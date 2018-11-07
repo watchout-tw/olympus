@@ -1,5 +1,4 @@
 export default {
-  status: 'unlisted',
   id: 'kpv',
   module: 'quiz',
   title: '柯p值小測驗：你有多了解柯文哲？',
