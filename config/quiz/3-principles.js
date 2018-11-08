@@ -10,6 +10,11 @@ export default {
     navigation: 'sequential',
     hasCorrectAnswer: true,
     canChangeAnswer: false,
+    afterClickActions: [
+      {
+        name: 'accumulateScore'
+      }
+    ],
     scenes: [
       {
         id: 1,
@@ -27,9 +32,7 @@ export default {
           {
             title: '主張依軍政、訓政、憲改三個時期來推行建設',
             isCorrect: true,
-            afterClick: {
-              score: 10
-            }
+            score: 10
           }
         ],
         references: []
@@ -50,9 +53,7 @@ export default {
           {
             title: '國家圖發展和種族圖生存的寶貝',
             isCorrect: true,
-            afterClick: {
-              score: 10
-            }
+            score: 10
           }
         ],
         references: []
@@ -67,9 +68,7 @@ export default {
           {
             title: '救國主義',
             isCorrect: true,
-            afterClick: {
-              score: 10
-            }
+            score: 10
           },
           {
             title: '建國主義'
@@ -96,9 +95,7 @@ export default {
           {
             title: '潮流造就而來',
             isCorrect: true,
-            afterClick: {
-              score: 10
-            }
+            score: 10
           }
         ],
         references: []
@@ -113,9 +110,7 @@ export default {
           {
             title: '保和養',
             isCorrect: true,
-            afterClick: {
-              score: 10
-            }
+            score: 10
           },
           {
             title: '管和教'
@@ -139,9 +134,7 @@ export default {
           {
             title: '以考試限制候選人資格',
             isCorrect: true,
-            afterClick: {
-              score: 10
-            }
+            score: 10
           },
           {
             title: '對選舉人和候選人不應有任何限制'
@@ -162,9 +155,7 @@ export default {
           {
             title: '立法機關兼監察權',
             isCorrect: true,
-            afterClick: {
-              score: 10
-            }
+            score: 10
           },
           {
             title: '國會擁有倒閣權'
@@ -182,9 +173,7 @@ export default {
           {
             title: '秦漢',
             isCorrect: true,
-            afterClick: {
-              score: 10
-            }
+            score: 10
           },
           {
             title: '魏晉'
@@ -202,9 +191,7 @@ export default {
           {
             title: '分立而相成',
             isCorrect: true,
-            afterClick: {
-              score: 10
-            }
+            score: 10
           },
           {
             title: '分立而牽制'
@@ -231,9 +218,7 @@ export default {
           {
             title: '放蕩不羈',
             isCorrect: true,
-            afterClick: {
-              score: 10
-            }
+            score: 10
           },
           {
             title: '放浪形骸'
@@ -241,23 +226,22 @@ export default {
         ],
         references: []
       }
-    ],
-    results: [
-      {
-        score: '>=80',
-        text: '恭喜你！你成功通過黨國體制篩選，可以當公務員囉！'
-      },
-      {
-        score: '60-79',
-        text: '你是不是沒用過國立編譯館課本？'
-      },
-      {
-        score: '<60',
-        text: '你已經成為去中國化教材的受害者。'
-      }
-    ],
-    closing: '覺得《三民主義》考題很荒謬嗎？這可是《中華民國憲法》明定的立國精神喔！1949年以來，只有熟讀《三民主義》的台灣人，才能得到較好的升學機會或是考上公職，成為「人生勝利組」，這就是數十年來中華民國國家機器篩選「人才」的方法。直到1994年考試院逐步廢除《三民主義》列入國家考試；大學入學考試則是2008年，才不用再考《三民主義》。'
+    ]
   },
+  results: [
+    {
+      score: 80,
+      text: '恭喜你成功通過黨國體制篩選，可以當公務員囉！'
+    },
+    {
+      score: 60,
+      text: '你是不是沒用過國立編譯館課本？'
+    },
+    {
+      text: '你已經成為去中國化教材的受害者。'
+    }
+  ],
+  closing: '覺得《三民主義》考題很荒謬嗎？這可是《中華民國憲法》明定的立國精神喔！1949年以來，只有熟讀《三民主義》的台灣人，才能得到較好的升學機會或是考上公職，成為「人生勝利組」，這就是數十年來中華民國國家機器篩選「人才」的方法。直到1994年考試院逐步廢除《三民主義》列入國家考試；大學入學考試則是2008年，才不用再考《三民主義》。',
   authorship: [
     {
       job: '編輯',

@@ -18,6 +18,7 @@ export default {
   sequence: {
     navigation: 'sequential',
     hasCorrectAnswer: true,
+    canChangeAnswer: false,
     afterClickActions: [
       {
         name: 'coralreef'
@@ -67,7 +68,6 @@ export default {
         ]
       }
     ],
-    canChangeAnswer: false,
     scenes: [
       {
         id: 1,

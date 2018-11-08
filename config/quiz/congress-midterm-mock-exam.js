@@ -10,6 +10,11 @@ export default {
     navigation: 'sequential',
     hasCorrectAnswer: true,
     canChangeAnswer: false,
+    afterClickActions: [
+      {
+        name: 'accumulateScore'
+      }
+    ],
     scenes: [
       {
         id: 1,
@@ -27,9 +32,7 @@ export default {
           {
             title: '8',
             isCorrect: true,
-            afterClick: {
-              score: 10
-            }
+            score: 10
           }
         ],
         references: [
@@ -52,9 +55,7 @@ export default {
           {
             title: '90',
             isCorrect: true,
-            afterClick: {
-              score: 10
-            }
+            score: 10
           }
         ],
         references: [
@@ -68,9 +69,7 @@ export default {
           {
             title: '每會期',
             isCorrect: true,
-            afterClick: {
-              score: 10
-            }
+            score: 10
           },
           {
             title: '每兩會期'
@@ -102,9 +101,7 @@ export default {
           {
             title: '任用議事人員',
             isCorrect: true,
-            afterClick: {
-              score: 10
-            }
+            score: 10
           }
         ],
         references: [
@@ -121,9 +118,7 @@ export default {
           {
             title: '無法質詢',
             isCorrect: true,
-            afterClick: {
-              score: 10
-            }
+            score: 10
           },
           {
             title: '沒有投票權'
@@ -149,9 +144,7 @@ export default {
           {
             title: '吳伯雄、吳志揚',
             isCorrect: true,
-            afterClick: {
-              score: 10
-            }
+            score: 10
           },
           {
             title: '章孝嚴、蔣萬安'
@@ -174,9 +167,7 @@ export default {
           {
             title: '250萬',
             isCorrect: true,
-            afterClick: {
-              score: 10
-            }
+            score: 10
           },
           {
             title: '600萬'
@@ -196,9 +187,7 @@ export default {
           {
             title: '42萬，14人',
             isCorrect: true,
-            afterClick: {
-              score: 10
-            }
+            score: 10
           },
           {
             title: '117萬，20人'
@@ -218,9 +207,7 @@ export default {
           {
             title: '內政委員會',
             isCorrect: true,
-            afterClick: {
-              score: 10
-            }
+            score: 10
           },
           {
             title: '外交及國防委員會'
@@ -249,9 +236,7 @@ export default {
           {
             title: '靜坐抗議',
             isCorrect: true,
-            afterClick: {
-              score: 10
-            }
+            score: 10
           },
           {
             title: '提議將法案退回程序委員會'
@@ -261,35 +246,34 @@ export default {
           'https://www.facebook.com/watchout.tw/photos/a.670939036397646.1073741895.240170506141170/837380473086834'
         ]
       }
-    ],
-    results: [
-      {
-        score: 100,
-        text: '恭喜你考100分，真的是好棒棒！'
-      },
-      {
-        score: 90,
-        text: '90分不錯喔～繼續加油？'
-      },
-      {
-        score: 80,
-        text: '喔喔喔喔是80分呀？'
-      },
-      {
-        score: 70,
-        text: '70分嗎？還有進步空間唷。'
-      },
-      {
-        score: 60,
-        text: 'UCCU！這樣60分可以嗎？'
-      },
-      {
-        score: '<50',
-        text: '不及格呀⋯沒關係，勝敗乃兵家常事啦。'
-      }
-    ],
-    closing: '不管你得了幾分，都請記得國會大小事其實會影響著我們各種日常，立法的每一道程序和立委們做的每一項決定，都可能會改變你生活！每天三分鐘，鎖定沃草動態，掌握立法院最新消息，一起成為監督國會小尖兵吧！'
+    ]
   },
+  results: [
+    {
+      score: 100,
+      text: '恭喜你考100分，真的是好棒棒！'
+    },
+    {
+      score: 90,
+      text: '90分，不錯喔，繼續加油？'
+    },
+    {
+      score: 80,
+      text: '喔喔喔喔，是80分。'
+    },
+    {
+      score: 70,
+      text: '70分？還有進步空間。'
+    },
+    {
+      score: 60,
+      text: 'Uccu，60分，可以嗎？'
+    },
+    {
+      text: '不及格，沒關係，勝敗乃兵家常事啦。'
+    }
+  ],
+  closing: '不管你得了幾分，都請記得國會大小事其實會影響著我們各種日常，立法的每一道程序和立委們做的每一項決定，都可能會改變你生活！每天三分鐘，鎖定沃草動態，掌握立法院最新消息，一起成為監督國會小尖兵吧！',
   authorship: [
     {
       job: '編輯',

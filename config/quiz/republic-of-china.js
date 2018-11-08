@@ -10,6 +10,11 @@ export default {
     navigation: 'sequential',
     hasCorrectAnswer: true,
     canChangeAnswer: false,
+    afterClickActions: [
+      {
+        name: 'accumulateScore'
+      }
+    ],
     scenes: [
       {
         id: 1,
@@ -24,9 +29,7 @@ export default {
           {
             title: '固有疆域',
             isCorrect: true,
-            afterClick: {
-              score: 10
-            }
+            score: 10
           },
           {
             title: '普天之下，莫非王土'
@@ -43,9 +46,7 @@ export default {
           {
             title: '中華民國自由地區全體國民',
             isCorrect: true,
-            afterClick: {
-              score: 10
-            }
+            score: 10
           },
           {
             title: '國大代表'
@@ -71,9 +72,7 @@ export default {
           {
             title: '具有中華民國國籍且居住在臺灣地區的人，才是國民',
             isCorrect: true,
-            afterClick: {
-              score: 10
-            }
+            score: 10
           }
         ]
       },
@@ -93,9 +92,7 @@ export default {
           {
             title: '臺灣地區以外之中華民國領土',
             isCorrect: true,
-            afterClick: {
-              score: 10
-            }
+            score: 10
           }
         ]
       },
@@ -115,9 +112,7 @@ export default {
           {
             title: '以上皆是',
             isCorrect: true,
-            afterClick: {
-              score: 10
-            }
+            score: 10
           }
         ]
       },
@@ -137,9 +132,7 @@ export default {
           {
             title: '以上皆是',
             isCorrect: true,
-            afterClick: {
-              score: 10
-            }
+            score: 10
           }
         ]
       },
@@ -156,9 +149,7 @@ export default {
           {
             title: '創立中華民國之孫先生',
             isCorrect: true,
-            afterClick: {
-              score: 10
-            }
+            score: 10
           },
           {
             title: '中山樵'
@@ -172,9 +163,7 @@ export default {
           {
             title: '北平碧雲寺',
             isCorrect: true,
-            afterClick: {
-              score: 10
-            }
+            score: 10
           },
           {
             title: '廣東香山縣'
@@ -197,9 +186,7 @@ export default {
           {
             title: '中國人',
             isCorrect: true,
-            afterClick: {
-              score: 10
-            }
+            score: 10
           },
           {
             title: '原住民'
@@ -222,9 +209,7 @@ export default {
           {
             title: '西藏、西康、蒙古、青海',
             isCorrect: true,
-            afterClick: {
-              score: 10
-            }
+            score: 10
           },
           {
             title: '黑龍江省、吉林省、遼寧省'
@@ -233,6 +218,20 @@ export default {
       }
     ]
   },
+  results: [
+    {
+      score: 100,
+      text: '你真是堂堂正正的中華民國人呢！'
+    },
+    {
+      score: 60,
+      text: '你是不是常常覺得中華民國、中國、台灣，傻傻分不清楚呢？'
+    },
+    {
+      text: '沒關係，現實往往比小說更奇幻，錯的不是你，是這個瘋狂世界。'
+    }
+  ],
+  closing: '想看標準答案嗎？可以到[全國法規資料庫](http://law.moj.gov.tw/)搜尋看看上面那些法規的原文是什麼。覺得「中華民國」從憲法開始就很荒謬嗎？可以到你選區的立法委員臉書頁面上，告訴他們你的想法。或許明年今日，臺灣就不用替「中華民國」過生日囉。',
   authorship: [
     {
       job: '編輯',
