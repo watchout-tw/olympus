@@ -141,7 +141,7 @@ export default {
           }
         ],
         speechTarget: {
-          id: 10001,
+          id: 1798,
           speechType: 'musou_long_form_scene_response'
         }
       },
@@ -217,7 +217,7 @@ export default {
           }
         ],
         speechTarget: {
-          id: 10002,
+          id: 1799,
           speechType: 'musou_long_form_scene_response'
         }
       },
@@ -295,7 +295,7 @@ export default {
           }
         ],
         speechTarget: {
-          id: 10003,
+          id: 1800,
           speechType: 'musou_long_form_scene_response'
         }
       },
@@ -371,7 +371,7 @@ export default {
           }
         ],
         speechTarget: {
-          id: 10004,
+          id: 1801,
           speechType: 'musou_long_form_scene_response'
         }
       },
@@ -447,7 +447,7 @@ export default {
           }
         ],
         speechTarget: {
-          id: 10005,
+          id: 1802,
           speechType: 'musou_long_form_scene_response'
         }
       },
@@ -523,7 +523,7 @@ export default {
           }
         ],
         speechTarget: {
-          id: 10006,
+          id: 1803,
           speechType: 'musou_long_form_scene_response'
         }
       }
