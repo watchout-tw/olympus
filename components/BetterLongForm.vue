@@ -55,6 +55,11 @@
             </div>
           </div>
         </template>
+        <template v-if="showSimpleResult">
+          <div class="section-title small with-underline text-align-center"><span>總分</span></div>
+          <div class="text-align-center font-size-4x">{{ accumulatedScore }}</div>
+          <div class="text-align-center">{{ simpleResult }}</div>
+        </template>
       </div>
     </div>
     <div class="tcl-panel tcl-left-right-margin with-top-bottom-margin with-double-top-margin" v-if="completed">
@@ -138,6 +143,21 @@ export default {
     },
     completed() {
       return devMode ? true : this.scenes.filter(scene => !scene.selectedOption).length === 0
+    },
+    showSimpleResult() {
+      return this.project.results && Array.isArray(this.project.results)
+    },
+    simpleResult() {
+      let results = this.project.results
+      let text = results[results.length - 1].text
+      for(let i = 0; i < results.length; i++) {
+        let result = results[i]
+        if(result.hasOwnProperty('score') && this.accumulatedScore >= result.score) {
+          text = result.text
+          break
+        }
+      }
+      return text
     },
     result() {
       let action
@@ -384,6 +404,7 @@ export default {
 
 .font-size-4x {
   font-size: 4rem;
+  letter-spacing: -0.125rem;
 }
 
 $color-incorrect: rgba($color-musou, 0.65);
