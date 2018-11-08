@@ -98,7 +98,6 @@ import * as coralreef from 'watchout-common-functions/lib/coralreef'
 import { resolve } from '~/util/util'
 
 const devMode = false
-const overlayDuration = devMode ? 500 : 1500
 
 function pad0(val) {
   return val < 10 ? ('0' + val) : val
@@ -128,6 +127,7 @@ export default {
       accumulatedScore: 0,
       accumulatedDetails: [],
       prompt: {
+        duration: devMode ? 500 : 1500,
         show: false,
         classes: [],
         content: promptContent
@@ -374,8 +374,7 @@ export default {
 
         // prompt
         this.prompt.content.score = offset >= 0 ? ('+' + offset) : offset
-        this.prompt.show = true
-        setTimeout(() => { this.prompt.show = false }, overlayDuration)
+        this.showPrompt()
 
         // set flags
         if(!this.canChangeAnswer) {
@@ -390,6 +389,10 @@ export default {
           }
         }
       }
+    },
+    showPrompt() {
+      this.prompt.show = true
+      setTimeout(() => { this.prompt.show = false }, this.prompt.duration)
     }
   },
   components: {
