@@ -57,7 +57,11 @@
         </template>
       </div>
     </div>
-    <div class="tcl-panel with-top-bottom-margin with-quad-top-margin with-quad-bottom-margin" v-else>
+    <div class="tcl-panel tcl-left-right-margin with-top-bottom-margin with-double-top-margin" v-if="completed">
+      <div class="closing a-text-parent" v-html="markdown(project.closing)"></div>
+    </div>
+    <div class="tcl-panel" v-if="completed"></div>
+    <div class="tcl-panel with-top-bottom-margin with-quad-top-margin with-quad-bottom-margin" v-if="!completed">
       <div class="font-size-small text-align-center secondary-text">測驗尚未結束，同志仍須繼續努力作答。</div>
     </div>
   </div>
