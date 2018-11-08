@@ -8,7 +8,7 @@
     <div class="tcl-panel"></div>
   </div>
   <re-captcha :token.sync="crToken" :tokenSource.sync="crTokenSource" />
-  <div class="scenes tcl-container" v-if="isAuthenticated">
+  <div class="scenes tcl-container" v-if="isHuman">
     <div class="scene tcl-panel full-width tcl-left-right-margin with-top-bottom-margin with-quad-top-margin" :class="{ 'has-correct-answer': hasCorrectAnswer, locked: scene.lock }" v-for="scene in scenes" :key="scene.title" v-if="scene.show">
       <h2>{{ scene.title }}</h2>
       <div class="options form-field-many-inputs">
@@ -33,7 +33,7 @@
       機器人防治檢查中，請稍候。
     </div>
   </div>
-  <div class="result-container tcl-container" v-if="isAuthenticated">
+  <div class="result-container tcl-container" v-if="isHuman">
     <div class="tcl-panel full-width with-top-bottom-margin with-quad-top-margin" v-if="completed">
       <div class="result margin-top-bottom-double">
         <template v-if="doShowResult('showScore')">
@@ -140,7 +140,7 @@ export default {
     }
   },
   computed: {
-    isAuthenticated() {
+    isHuman() {
       return this.crToken !== undefined && this.crToken !== null
     },
     hasCorrectAnswer() {
