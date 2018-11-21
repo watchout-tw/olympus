@@ -1,9 +1,8 @@
 <template>
-<div class="page read">
-  <article>This is an article to read.</article>
+<div class="page read single">
+  {{ id }}
 </div>
 </template>
-
 <script>
 export default {
   computed: {
