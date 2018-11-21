@@ -1,36 +1,30 @@
 <template>
 <div class="page read index">
-  {{ docs }}
+  <div class="docs">
+    <div class="doc bg-musou-light margin-top-bottom-8" v-for="doc of docs">
+      <div>{{ doc.id }}</div>
+      <div>{{ doc.data }}</div>
+    </div>
+  </div>
 </div>
 </template>
 
 <script>
-import firebaseConfig from 'watchout-common-functions/config/firebase.config'
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-
-if(firebase.apps.length < 1) {
-  firebase.initializeApp(firebaseConfig.projects.bunko)
-}
-
-let db = firebase.firestore()
-db.settings(firebaseConfig.db)
+import firestore from 'watchout-common-functions/lib/firestore'
 
 export default {
   async asyncData() {
-    let snapshot = await db.collection('docs').get()
-    let docs = []
-    if(snapshot) {
-      snapshot.forEach(doc => {
-        docs.push({
-          id: doc.id,
-          data: doc.data()
-        })
-      })
-    }
+    let docs = await firestore.bunko.getDocs()
     return {
       docs
     }
   }
 }
 </script>
+
+<style lang="scss">
+@import '~watchout-common-assets/styles/resources';
+
+.page.read.index {
+}
+</style>
