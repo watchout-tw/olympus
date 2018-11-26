@@ -38,26 +38,37 @@ export default {
         }
       })
     }
-    var markerHeight = 8
-    let markerRadius = 4
-    let linearOffset = 4
-    var popupOffsets = {
-      'top': [0, 0],
-      'top-left': [0, 0],
-      'top-right': [0, 0],
-      'bottom': [0, -markerHeight],
-      'bottom-left': [linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
-      'bottom-right': [-linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
-      'left': [markerRadius, (markerHeight - markerRadius) * -1],
-      'right': [-markerRadius, (markerHeight - markerRadius) * -1]
-    }
-    geojson.features.forEach(feature => {
-      let el = document.createElement('div')
-      el.classList.add('marker', 'doc')
-      let popup = new mapbox.Popup({ offset: popupOffsets }).setHTML(feature.properties.title)
-      new mapbox.Marker(el)
-        .setLngLat(feature.geometry.coordinates)
-        .setPopup(popup)
+    // https://www.mapbox.com/mapbox-gl-js/example/add-image/
+    // https://www.mapbox.com/mapbox-gl-js/example/popup-on-click/
+    this.map.loadImage('https://raw.githubusercontent.com/watchout-tw/watchout-common-assets/e631b3500c79507c9dcc481bcdd066f007aad902/images/content-types/doc.png', (error, image) => {
+      if(error) {
+        throw error
+      }
+      this.map.addImage('doc', image)
+      this.map.addLayer({
+        id: 'markers',
+        type: 'symbol',
+        source: {
+          type: 'geojson',
+          data: geojson
+        },
+        layout: {
+          'icon-image': 'doc',
+          'icon-size': 0.25,
+          'icon-allow-overlap': true
+        }
+      })
+    })
+    this.map.on('click', 'markers', (e) => {
+      var title = e.features[0].properties.title
+      var coordinates = e.features[0].geometry.coordinates.slice()
+      while(Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360
+      }
+
+      new mapbox.Popup()
+        .setLngLat(coordinates)
+        .setText(title)
         .addTo(this.map)
     })
   }
