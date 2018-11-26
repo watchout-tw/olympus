@@ -19,12 +19,14 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "@mapbox/mapbox-gl-geocoder": "^2.3.0",
     "@nuxtjs/google-tag-manager": "^1.1.0",
     "axios": "^0.17.1",
     "color": "^3.0.0",
     "d3": "^5.1.0",
     "firebase": "^5.5.9",
     "lodash.debounce": "^4.0.8",
+    "mapbox-gl": "^0.51.0",
     "nuxt": "^1.0.0",
     "pangu": "^3.3.0",
     "parse-color": "^1.0.0",
