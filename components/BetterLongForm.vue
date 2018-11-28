@@ -1,5 +1,5 @@
 <template>
-<div class="long-form">
+<div class="better-long-form">
   <div class="opening tcl-container">
     <div class="tcl-panel tcl-left-right-margin with-top-bottom-margin with-double-top-margin">
       <h1 class="medium">{{ project.title }}</h1>
@@ -421,7 +421,7 @@ export default {
 $color-incorrect: rgba($color-musou, 0.65);
 $color-correct: rgba($color-watchout, 0.65);
 
-.long-form {
+.better-long-form {
   > .scenes {
     > .scene {
       > .options {
