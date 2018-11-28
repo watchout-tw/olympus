@@ -19,7 +19,9 @@ export default {
     mapbox.accessToken = config.mapboxAccessToken
     this.map = new mapbox.Map({
       container: 'map-container',
-      style: 'mapbox://styles/mapbox/light-v9'
+      style: 'mapbox://styles/watchout/cjozx93ng11m72rlqumr7uobd',
+      center: [71.963, 36.011],
+      zoom: 1
     })
     this.map.addControl(new mapbox.NavigationControl(), 'top-left')
     // this.map.addControl(new MapboxGeocoder({ accessToken: config.mapboxAccessToken }), 'top-left')
@@ -28,9 +30,7 @@ export default {
       features: this.markers.map(marker => {
         return {
           type: 'Feature',
-          properties: {
-            title: marker.title
-          },
+          properties: marker,
           geometry: {
             type: 'Point',
             coordinates: [marker.lng, marker.lat]
@@ -40,11 +40,7 @@ export default {
     }
     // https://www.mapbox.com/mapbox-gl-js/example/add-image/
     // https://www.mapbox.com/mapbox-gl-js/example/popup-on-click/
-    this.map.loadImage('https://raw.githubusercontent.com/watchout-tw/watchout-common-assets/e631b3500c79507c9dcc481bcdd066f007aad902/images/content-types/doc.png', (error, image) => {
-      if(error) {
-        throw error
-      }
-      this.map.addImage('doc', image)
+    this.map.on('load', (e) => {
       this.map.addLayer({
         id: 'markers',
         type: 'symbol',
@@ -54,21 +50,20 @@ export default {
         },
         layout: {
           'icon-image': 'doc',
-          'icon-size': 0.25,
+          'icon-size': 1,
           'icon-allow-overlap': true
         }
       })
     })
     this.map.on('click', 'markers', (e) => {
-      var title = e.features[0].properties.title
-      var coordinates = e.features[0].geometry.coordinates.slice()
+      let feature = e.features[0]
+      let coordinates = feature.geometry.coordinates.slice()
       while(Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
         coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360
       }
-
       new mapbox.Popup()
         .setLngLat(coordinates)
-        .setText(title)
+        .setHTML(`<a href="${feature.properties.link}" target="_blank" class="a-block"><span class="a-target">${feature.properties.title}</span></a><div>${feature.properties.media}</div><div>${feature.properties.publish_date}</div>`)
         .addTo(this.map)
     })
   }
@@ -89,6 +84,7 @@ export default {
     flex-grow: 1;
     &.mapboxgl-map {
       font-family: $font-sans-serif;
+      font-size: auto;
     }
 
     .marker {
@@ -103,8 +99,7 @@ export default {
     }
     .mapboxgl-popup {
       max-width: 12rem;
-      font-size: $font-size-small;
-      line-height: $line-height-compact;
+      line-height: $line-height-default;
     }
     .mapboxgl-popup-content {
     }
