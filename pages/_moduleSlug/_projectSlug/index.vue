@@ -17,7 +17,7 @@
       <journey :module="module" :project="project" />
     </template>
     <template v-else-if="project.module === 'map'">
-      <map-module :module="module" :project="project" />
+      <better-map :module="module" :project="project" />
     </template>
     <template v-else>
       <div class="not-available" style="margin: 1rem;">技術升級中，需要多一點點時間。</div>
@@ -56,7 +56,7 @@ import Draw from '~/components/Draw'
 import LongForm from '~/components/LongForm'
 import BetterLongForm from '~/components/BetterLongForm'
 import Journey from '~/components/Journey'
-import Map from '~/components/Map'
+import BetterMap from '~/components/BetterMap'
 
 export default {
   mixins: [knowsMarkdown, knowsWatchout],
@@ -66,12 +66,12 @@ export default {
     return !!module && !!project
   },
   async asyncData({ params }) {
-    let project = projects.find(project => project.id === params.projectSlug)
     let module = modules.find(module => module.id === params.moduleSlug)
+    let project = projects.find(project => project.id === params.projectSlug)
 
     return {
-      project,
-      module
+      module,
+      project
     }
   },
   head() {
@@ -117,7 +117,7 @@ export default {
     LongForm,
     BetterLongForm,
     Journey,
-    MapModule: Map // map is a defined tag in HTML
+    BetterMap
   }
 }
 </script>
@@ -126,8 +126,6 @@ export default {
 @import '~watchout-common-assets/styles/resources';
 
 .page.project {
-  > .main {
-  }
   > header {
     margin: 4rem 1rem;
     > hgroup {
