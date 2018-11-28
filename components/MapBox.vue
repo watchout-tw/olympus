@@ -4,10 +4,12 @@
     <div class="map content" id="map"></div>
   </div>
   <div class="markers tcl-container">
-    <div class="marker tcl-panel tcl-left-right-margin with-top-bottom-margin with-padding bg-very-very-light-grey" v-for="marker of selectedMarkers">
-      <div class="font-size-small"><label>{{ marker.properties.publish_date }}</label>&nbsp;<label>{{ marker.properties.media }}</label></div>
-      <a class="title a-block"><span>{{ marker.properties.title }}</span></a>
-    </div>
+    <a class="marker a-block tcl-panel tcl-left-right-margin with-top-bottom-margin with-padding bg-very-very-light-grey" :href="marker.properties.link" target="_blank" v-for="marker of selectedMarkers">
+      <div class="date"><label>{{ marker.properties.publish_date }}</label>&nbsp;<label>{{ marker.properties.media }}</label></div>
+      <div class="title">{{ marker.properties.title }}</div>
+      <div class="title-tw">{{ marker.properties.title_tw }}</div>
+      <label class="more">閱讀更多</label>
+    </a>
     <div class="tcl-panel"></div>
     <div class="tcl-panel"></div>
     <div class="tcl-panel"></div>
@@ -166,6 +168,11 @@ export default {
         font-family: $font-sans-serif;
         font-size: auto;
       }
+      .mapboxgl-canvas {
+        &:active, &:focus {
+          outline: none;
+        }
+      }
 
       .mapboxgl-popup {
         max-width: 16rem;
@@ -189,13 +196,32 @@ export default {
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
     > .marker {
+      position: relative;
       @include shadow;
+      > .date {
+        font-size: $font-size-small;
+        line-height: $line-height-tight;
+      }
       > .title {
         font-family: 'Gentium Book Basic', Times, serif;
         font-style: italic;
         font-weight: bold;
-        font-size: 2em;
-        line-height: $line-height-compact;
+        font-size: 1.5rem;
+        line-height: $line-height-tight;
+        margin: 0.25rem 0;
+      }
+      > .title-tw {
+        font-weight: bold;
+      }
+      > .more {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        margin: 0.25rem;
+        font-size: $font-size-tiny;
+        line-height: $line-height-tight;
+        color: $color-secondary-text-grey;
+        @include underline(1.0);
       }
     }
   }
