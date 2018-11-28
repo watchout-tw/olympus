@@ -38,22 +38,23 @@ export default {
         }
       })
     }
+    let markerLayer = {
+      id: 'markers',
+      type: 'symbol',
+      source: {
+        type: 'geojson',
+        data: geojson
+      },
+      layout: {
+        'icon-image': 'doc',
+        'icon-size': 1,
+        'icon-allow-overlap': true
+      }
+    }
     // https://www.mapbox.com/mapbox-gl-js/example/add-image/
     // https://www.mapbox.com/mapbox-gl-js/example/popup-on-click/
     this.map.on('load', (e) => {
-      this.map.addLayer({
-        id: 'markers',
-        type: 'symbol',
-        source: {
-          type: 'geojson',
-          data: geojson
-        },
-        layout: {
-          'icon-image': 'doc',
-          'icon-size': 1,
-          'icon-allow-overlap': true
-        }
-      })
+      this.map.addLayer(markerLayer)
     })
     this.map.on('click', 'markers', (e) => {
       let feature = e.features[0]
