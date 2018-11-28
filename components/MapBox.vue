@@ -1,29 +1,39 @@
 <template>
 <div class="map-box">
-  <div id="map-container" class="map-container content"></div>
+  <div class="map-container">
+    <div class="map content" id="map"></div>
+  </div>
+  <div class="markers tcl-container">
+    <div class="marker tcl-panel tcl-left-right-margin with-top-bottom-margin with-padding bg-very-very-light-grey" v-for="marker of selectedMarkers">
+      <div class="font-size-small"><label>{{ marker.properties.publish_date }}</label>&nbsp;<label>{{ marker.properties.media }}</label></div>
+      <a class="title a-block"><span>{{ marker.properties.title }}</span></a>
+    </div>
+    <div class="tcl-panel"></div>
+    <div class="tcl-panel"></div>
+    <div class="tcl-panel"></div>
+  </div>
 </div>
 </template>
 
 <script>
 import config from 'watchout-common-functions/config/config'
 
-function getMarkerHTML(feature) {
-  return `<div class="marker-html"><div style="font-size: 0.85em;">${feature.properties.media} ${feature.properties.publish_date}</div><a href="${feature.properties.link}" target="_blank" class="a-block"><span class="a-target">${feature.properties.title}</span></a></div>`
-}
-
 export default {
   props: ['markers'],
   data() {
     return {
-      map: null
+      map: null,
+      mapElementID: 'map',
+      selectedMarkers: []
     }
   },
   mounted() {
     const mapbox = require('mapbox-gl')
     // const MapboxGeocoder = require('@mapbox/mapbox-gl-geocoder')
     mapbox.accessToken = config.mapboxAccessToken
+
     this.map = new mapbox.Map({
-      container: 'map-container',
+      container: this.mapElementID,
       style: 'mapbox://styles/watchout/cjozx93ng11m72rlqumr7uobd',
       center: [120.9605, 23.6978],
       zoom: 1
@@ -117,22 +127,21 @@ export default {
         if(error) {
           console.error(error)
         }
-        new mapbox.Popup()
-          .setLngLat(clusterCoordinates)
-          .setHTML(markers.map(getMarkerHTML).join(''))
-          .addTo(this.map)
+        this.selectedMarkers = markers
+        this.map.flyTo({
+          center: clusterCoordinates,
+          zoom: this.map.getZoom() + 1
+        })
       })
     })
     this.map.on('click', 'markers-not-in-cluster', (e) => {
-      let feature = e.features[0]
-      let coordinates = feature.geometry.coordinates.slice()
-      while(Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360
-      }
-      new mapbox.Popup()
-        .setLngLat(coordinates)
-        .setHTML(getMarkerHTML(feature))
-        .addTo(this.map)
+      let marker = e.features[0]
+      let coordinates = marker.geometry.coordinates.slice()
+      this.selectedMarkers = [marker]
+      this.map.flyTo({
+        center: coordinates,
+        zoom: this.map.getZoom() + 1
+      })
     })
   }
 }
@@ -142,47 +151,52 @@ export default {
 @import '~watchout-common-assets/styles/resources';
 @import 'mapbox-gl/dist/mapbox-gl.css';
 @import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
+@import url('https://fonts.googleapis.com/css?family=Gentium+Book+Basic:400,400i,700,700i');
 
 .map-box {
-  display: flex;
   width: 100%;
-  @include rect(1);
-  @include tcl-sm {
-    @include rect(2/1);
-  }
   > .map-container {
+    display: flex;
     width: 100%;
-    flex-grow: 1;
-    &.mapboxgl-map {
-      font-family: $font-sans-serif;
-      font-size: auto;
-    }
+    @include rect(2/1);
+    > .map {
+      width: 100%;
+      flex-grow: 1;
+      &.mapboxgl-map {
+        font-family: $font-sans-serif;
+        font-size: auto;
+      }
 
-    .marker {
-      background-size: cover;
-      width: 1rem;
-      height: 1rem;
-      cursor: pointer;
+      .mapboxgl-popup {
+        max-width: 16rem;
+        line-height: $line-height-default;
+      }
+      .mapboxgl-popup-content {
+        min-width: 4rem;
+        padding: 0.25rem 0.5rem;
+        > .marker-html {
+          margin: 0.5rem 0;
+        }
+      }
+      .mapboxgl-popup-close-button {
+        font-size: 1.5rem;
+        line-height: 1;
+        padding:0 0.25rem;
+      }
+    }
+  }
+  > .markers {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    > .marker {
       @include shadow;
-      &.doc {
-        background-image: url('~watchout-common-assets/images/content-types/doc.png');
+      > .title {
+        font-family: 'Gentium Book Basic', Times, serif;
+        font-style: italic;
+        font-weight: bold;
+        font-size: 2em;
+        line-height: $line-height-compact;
       }
-    }
-    .mapboxgl-popup {
-      max-width: 16rem;
-      line-height: $line-height-default;
-    }
-    .mapboxgl-popup-content {
-      min-width: 4rem;
-      padding: 0.25rem 0.5rem;
-      > .marker-html {
-        margin: 0.5rem 0;
-      }
-    }
-    .mapboxgl-popup-close-button {
-      font-size: 1.5rem;
-      line-height: 1;
-      padding:0 0.25rem;
     }
   }
 }
