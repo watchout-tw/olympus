@@ -2,7 +2,11 @@
 
 > Experimenting mass media on musou with nuxt.js
 
-## Build Setup
+## Development notes
+
+- Use `google-spreadsheet-to-json` to convert Google Sheet data to JSON.
+
+## Build setup
 
 ``` bash
 # install dependencies
