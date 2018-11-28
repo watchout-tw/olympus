@@ -55,12 +55,12 @@ export default {
       el: {},
       size: {},
       util: {},
-      rows: []
+      internalRows: []
     }
   },
-  props: ['raw', 'debug'],
+  props: ['rows', 'debug'],
   watch: {
-    raw: function() {
+    rows: function() {
       this.update()
     },
     debug: function(now) {
@@ -90,7 +90,7 @@ export default {
         .attr('viewBox', [0, 0, this.size.w, this.size.h].join(' '))
     },
     update() {
-      this.rows = this.raw.map(row => {
+      this.internalRows = this.rows.map(row => {
         var pos = this.util.projection([row.lng, row.lat])
         return Object.assign(row, {
           x: pos[0],
@@ -104,7 +104,7 @@ export default {
     },
     draw: function() {
       // draw quotes
-      var quotes = this.el.root.selectAll('g.quote').data(this.rows)
+      var quotes = this.el.root.selectAll('g.quote').data(this.internalRows)
       quotes.exit().remove()
       quotes.enter().append('g').merge(quotes)
         .attr('class', 'quote')
@@ -120,7 +120,7 @@ export default {
         .centerCenter()
 
       // draw center point of quotes
-      var circles = this.el.root.selectAll('circle.center').data(this.rows)
+      var circles = this.el.root.selectAll('circle.center').data(this.internalRows)
       circles.exit().remove()
       circles.enter().append('circle').merge(circles)
         .attr('class', 'center')
@@ -164,7 +164,7 @@ export default {
           return (d.width + d.height) * 0.125
         })
       )
-      simulation.nodes(this.rows)
+      simulation.nodes(this.internalRows)
       simulation.on('tick', function() {
         self.el.root.selectAll('g.quote').centerCenter()
         self.el.root.selectAll('circle.center')
@@ -178,6 +178,7 @@ export default {
 
 <style lang="scss">
 @import '~watchout-common-assets/styles/resources';
+@import '~assets/atlas-with-draw';
 
 .atlas-world {
   @include bp-lg-alt-down {
@@ -189,7 +190,7 @@ export default {
     margin: 0 0.25rem;
   }
   > .draw {
-    background: url(~/static/map/world_map_mercator-mod.jpg);
+    background: url('~/static/map/world_map_mercator-mod.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

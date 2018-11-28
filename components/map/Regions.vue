@@ -1,6 +1,9 @@
 <template>
-<div class="atlas d-flex flex-wrap">
-  <region v-for="(region, id) of regions" :raw="raw" :region="region" :debug="debug" :key="'region'+id"></region>
+<div class="atlas atlas-regions tcl-container">
+  <region v-for="option of config.options" :rows="rows" :group-by="config.groupBy" :option="option" :debug="debug" :key="'region-' + option.value" />
+  <div class="tcl-panel half-width"></div>
+  <div class="tcl-panel half-width"></div>
+  <div class="tcl-panel half-width"></div>
 </div>
 </template>
 
@@ -8,7 +11,7 @@
 import Region from '~/components/map/Region'
 
 export default {
-  props: ['regions', 'raw', 'debug'],
+  props: ['rows', 'config', 'debug'],
   components: {
     Region
   }

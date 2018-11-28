@@ -1,11 +1,11 @@
 <template>
-<div class="atlas-with-draw atlas-regions-region">
-  <div class="name">{{ region.translation }}</div>
+<div class="atlas-with-draw atlas-regions-region tcl-panel half-width">
+  <div class="label">{{ option.label }}</div>
   <div class="score">
     <span class="value">{{ score }}</span>
     <span class="unit">%</span>
   </div>
-  <div class="draw" :class="{ debug: debug }">
+  <div class="draw" :class="{ debug }">
     <svg :viewBox="viewBox"></svg>
   </div>
 </div>
@@ -19,10 +19,13 @@ d3.selection.prototype.makeLabel = makeLabel
 d3.selection.prototype.tightlyPack = tightlyPack
 
 export default {
-  props: ['raw', 'region', 'debug'],
-  data: function() {
+  props: ['rows', 'groupBy', 'option', 'debug'],
+  data() {
     return {
-      el: {},
+      el: {
+        container: null,
+        root: null
+      },
       size: {
         w: 320,
         h: 320,
@@ -35,22 +38,18 @@ export default {
     viewBox() {
       return [0, 0, this.size.w, this.size.h].join(' ')
     },
-    rows() {
-      return this.raw.filter(row => row.region === this.region.name)
-    }
-  },
-  watch: {
-    rows() {
-      this.draw()
+    filteredRows() {
+      return this.rows.filter(row => row[this.groupBy] === this.option.value)
     }
   },
   mounted() {
     this.el.container = d3.select(this.$el).select('.draw')
     this.el.root = this.el.container.select('svg')
+    this.draw()
   },
   methods: {
     draw() {
-      var quotes = this.el.root.selectAll('g.quote').data(this.rows)
+      let quotes = this.el.root.selectAll('g.quote').data(this.filteredRows)
       quotes.exit().remove()
       quotes.enter().append('g').merge(quotes)
         .attr('class', 'quote')
@@ -73,16 +72,16 @@ export default {
           }
         })
 
-      this.score = (this.rows.length > 0
-        ? Math.round(this.el.root.selectAll('g.quote.yes').size() / this.rows.length * 100)
+      this.score = (this.filteredRows.length > 0
+        ? Math.round(this.el.root.selectAll('g.quote.yes').size() / this.filteredRows.length * 100)
         : 0
       )
 
-      var height = 0
+      let height = 0
       this.el.root.selectAll('g.quote').each(function(d) {
-        var box = this.getBBox()
-        var translate = /translate\(([\d.]+),([\d.]+)\)/.exec(this.getAttribute('transform'))
-        var y = parseFloat(translate[2])
+        let box = this.getBBox()
+        let translate = /translate\(([\d.]+),([\d.]+)\)/.exec(this.getAttribute('transform'))
+        let y = parseFloat(translate[2])
         height = Math.max(height, Math.ceil(y + box.height))
       })
       this.size.h = height
@@ -93,14 +92,9 @@ export default {
 
 <style lang="scss">
 @import '~watchout-common-assets/styles/resources';
+@import '~assets/atlas-with-draw';
 
 .atlas-regions-region {
-  width: 50%;
-  max-width: 20rem;
-  margin-bottom: 1rem;
-  @include bp-sm-up {
-    width: 33.3333%;
-  }
   > .score {
     line-height: 2rem;
     > .value {
@@ -111,7 +105,7 @@ export default {
     }
   }
   > .draw {
-    margin: 0.5rem 0 1rem;
+    margin: 0.25rem 0;
   }
 }
 </style>
