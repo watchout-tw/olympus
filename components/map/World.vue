@@ -1,11 +1,9 @@
 <template>
-<div class="atlas">
-  <div class="atlas-with-draw atlas-world">
-    <div class="draw"></div>
-    <figcaption>
-      <a class="a-text" href="https://s-media-cache-ak0.pinimg.com/originals/a4/dc/b3/a4dcb30b0ba3b5e26cc5b6788b98c625.jpg" target="_blank">Image Source</a>
-    </figcaption>
-  </div>
+<div class="atlas atlas-with-draw atlas-world">
+  <div class="draw"></div>
+  <figcaption>
+    <a class="a-text" href="https://s-media-cache-ak0.pinimg.com/originals/a4/dc/b3/a4dcb30b0ba3b5e26cc5b6788b98c625.jpg" target="_blank">Image Source</a>
+  </figcaption>
 </div>
 </template>
 
@@ -181,19 +179,19 @@ export default {
 @import '~assets/atlas-with-draw';
 
 .atlas-world {
-  @include bp-lg-alt-down {
-    margin-left: -1rem;
-    margin-right: -1rem;
-  }
-  > figcaption {
-    font-size: 0.75rem;
-    margin: 0 0.25rem;
-  }
+  width: 100%;
+  max-width: $tcl-bp-lg;
+  margin-left: auto;
+  margin-right: auto;
   > .draw {
     background: url('~/static/map/world_map_mercator-mod.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+  }
+  > figcaption {
+    font-size: 0.75rem;
+    margin: 0 0.25rem;
   }
 }
 </style>

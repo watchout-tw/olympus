@@ -6,7 +6,7 @@
     </template>
     <template v-else-if="showSectionAfterPopQuiz">
       <div class="tcl-container" v-if="section.title && section.content">
-        <div class="tcl-panel tcl-left-right-margin">
+        <div class="tcl-panel tcl-left-right-margin with-top-bottom-margin">
           <h2>{{ section.title }}</h2>
           <div class="paragraphs last" v-html="section.content"></div>
         </div>
@@ -83,6 +83,9 @@ export default {
 .better-map {
   > .section {
     margin: 2rem 0 1rem;
+    &:first-child {
+      margin-top: 0;
+    }
   }
 }
 </style>
