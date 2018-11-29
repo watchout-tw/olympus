@@ -3,6 +3,7 @@
   <div class="map-container">
     <div class="map content" id="map"></div>
   </div>
+  <div class="note secondary-text font-size-small text-align-center margin-top-4">提示：點擊地圖上的圖示</div>
   <div class="markers tcl-container">
     <a class="marker a-block tcl-panel tcl-left-right-margin with-top-bottom-margin with-padding bg-very-very-light-grey" :href="marker.properties.link" target="_blank" v-for="marker of selectedMarkers">
       <div class="date"><label>{{ marker.properties.publish_date }}</label>&nbsp;<label>{{ marker.properties.media }}</label></div>
@@ -26,6 +27,7 @@ export default {
     return {
       map: null,
       mapElementID: 'map',
+      selectedClusterID: null,
       selectedMarkers: []
     }
   },
@@ -86,11 +88,11 @@ export default {
           'circle-radius': [
             'step',
             ['get', 'point_count'],
-            16,
+            20,
             10,
-            24,
+            30,
             25,
-            32
+            40
           ]
         }
       })
@@ -102,7 +104,7 @@ export default {
         layout: {
           'text-field': '{point_count_abbreviated}',
           'text-font': ['DIN Offc Pro Medium'],
-          'text-size': 16
+          'text-size': 20
         }
       })
       this.map.addLayer({
