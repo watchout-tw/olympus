@@ -3,7 +3,7 @@ export default {
   module: 'map',
   title: '投票完，世界怎麼看台灣？',
   description: '11月24日地方選舉和公民投票結果出爐，你覺得世界各國媒體如何理解這次投票呢？《沃草》蒐集了各國媒體的報導，讓我們一起來看看，大家怎麼看台灣。點擊地圖上的圖示，看當地新聞。',
-  image: 'modules/map.jpg',
+  image: 'map/181124.jpg',
   date: '2018-11-29 21:00:00',
   breaking: true,
   dataSource: '2018-election-international-coverage',
