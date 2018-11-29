@@ -162,7 +162,11 @@ export default {
   > .map-container {
     display: flex;
     width: 100%;
+    max-width: $tcl-bp-lg;
+    margin-left: auto;
+    margin-right: auto;
     @include rect(2/1);
+
     > .map {
       width: 100%;
       flex-grow: 1;
@@ -175,7 +179,6 @@ export default {
           outline: none;
         }
       }
-
       .mapboxgl-popup {
         max-width: 16rem;
         line-height: $line-height-default;
