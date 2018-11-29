@@ -3,7 +3,7 @@
   <div class="map-container">
     <div class="map content" id="map"></div>
   </div>
-  <div class="note secondary-text font-size-small text-align-center margin-top-4">提示：點擊地圖上的圖示</div>
+  <div class="note secondary-text font-size-small margin-top-4 d-flex align-items-center justify-content-center"><span>提示：點擊地圖上的圖示</span><span style="display: inline-block; font-size: 1.5rem; margin: 0 0.125rem;">④</span><span>看當地新聞</span></div>
   <div class="markers tcl-container">
     <a class="marker a-block tcl-panel tcl-left-right-margin with-top-bottom-margin with-padding bg-very-very-light-grey" :href="marker.properties.link" target="_blank" v-for="marker of selectedMarkers">
       <div class="date"><label>{{ marker.properties.publish_date }}</label>&nbsp;<label>{{ marker.properties.media }}</label></div>
@@ -82,17 +82,17 @@ export default {
             'rgba(80, 227, 194, 0.85)',
             10,
             'rgba(255, 181, 93, 0.85)',
-            25,
+            30,
             'rgba(255, 83, 104, 0.85)'
           ],
           'circle-radius': [
             'step',
             ['get', 'point_count'],
-            20,
+            16,
             10,
-            30,
+            24,
             25,
-            40
+            32
           ]
         }
       })

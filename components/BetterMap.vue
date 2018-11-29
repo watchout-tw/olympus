@@ -49,19 +49,30 @@
       <div class="tcl-panel"></div>
     </template>
   </div>
+  <div class="share-container tcl-container">
+    <div class="tcl-panel">
+      <div class="share text-align-center">
+        <div class="section-title small with-underline text-align-center"><span>分享</span></div>
+        <div class="margin-top-bottom-8">
+          <share-to-platforms :url="shareURL" />
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 </template>
 
 <script>
-import { knowsMarkdown } from 'watchout-common-functions/interfaces'
+import { knowsMarkdown, knowsWatchout } from 'watchout-common-functions/interfaces'
 import PopQuiz from '~/components/better-map/PopQuiz'
 import Tally from '~/components/map/Tally'
 import Regions from '~/components/map/Regions'
 import World from '~/components/map/World'
 import MapBox from '~/components/better-map/MapBox'
+import ShareToPlatforms from 'watchout-common-functions/components/ShareToPlatforms'
 
 export default {
-  mixins: [knowsMarkdown],
+  mixins: [knowsMarkdown, knowsWatchout],
   props: ['module', 'project'],
   data() {
     return {
@@ -71,6 +82,9 @@ export default {
     }
   },
   computed: {
+    shareURL() {
+      return this.getBaseURL('musou') + this.$route.fullPath
+    },
     hasPopQuiz() {
       return this.project.sections.filter(section => section.type === 'pop-quiz').length > 0
     },
@@ -83,7 +97,8 @@ export default {
     Tally,
     Regions,
     World,
-    MapBox
+    MapBox,
+    ShareToPlatforms
   }
 }
 </script>
