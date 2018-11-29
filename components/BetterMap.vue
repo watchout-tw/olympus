@@ -47,7 +47,7 @@ import PopQuiz from '~/components/better-map/PopQuiz'
 import Tally from '~/components/map/Tally'
 import Regions from '~/components/map/Regions'
 import World from '~/components/map/World'
-import MapBox from '~/components/map/MapBox'
+import MapBox from '~/components/better-map/MapBox'
 
 export default {
   mixins: [knowsMarkdown],
