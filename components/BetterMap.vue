@@ -24,19 +24,30 @@
       <template v-else-if="section.type === 'map-box'">
         <map-box :markers="data" />
       </template>
+      <div v-else-if="section.type === 'title-description'" class="tcl-container">
+        <div class="tcl-panel tcl-left-right-margin">
+          <h1 class="medium">{{ project.title }}</h1>
+          <div class="paragraphs a-text-parent" v-html="markdown(project.description)"></div>
+        </div>
+        <div class="tcl-panel"></div>
+      </div>
     </template>
   </div>
   <div class="closing tcl-container" v-if="showSectionAfterPopQuiz">
-    <div class="tcl-panel tcl-left-right-margin with-top-bottom-margin" v-if="project.conclusion">
-      <h2>{{ project.conclusion.title }}</h2>
-      <div class="paragraphs" v-html="markdown(project.conclusion.content)"></div>
-    </div>
-    <div class="tcl-panel"></div>
-    <div class="tcl-panel tcl-left-right-margin with-top-bottom-margin" v-if="project.callForAction">
-      <h2>{{ project.callForAction.title }}</h2>
-      <div class="paragraphs a-text-parent" v-html="markdown(project.callForAction.content)"></div>
-    </div>
-    <div class="tcl-panel"></div>
+    <template v-if="project.conclusion">
+      <div class="tcl-panel tcl-left-right-margin with-top-bottom-margin">
+        <h2>{{ project.conclusion.title }}</h2>
+        <div class="paragraphs" v-html="markdown(project.conclusion.content)"></div>
+      </div>
+      <div class="tcl-panel"></div>
+    </template>
+    <template v-if="project.callForAction">
+      <div class="tcl-panel tcl-left-right-margin with-top-bottom-margin">
+        <h2>{{ project.callForAction.title }}</h2>
+        <div class="paragraphs a-text-parent" v-html="markdown(project.callForAction.content)"></div>
+      </div>
+      <div class="tcl-panel"></div>
+    </template>
   </div>
 </div>
 </template>
