@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import firestore from 'watchout-common-functions/lib/firestore'
+import * as firestore from 'watchout-common-functions/lib/firestore'
 
 export default {
   async asyncData() {
