@@ -1,5 +1,5 @@
-export const SITE_TITLE = '→沃草←國會無雙↑媒體實驗'
-export const SITE_DESCRIPTION = '沃草《國會無雙》媒體實驗是⋯'
+export const SITE_TITLE = '→沃草←國會無雙'
+export const SITE_DESCRIPTION = '沃草《國會無雙》是⋯'
 export const L_DOUBLE_BRACKET = '《'
 export const R_DOUBLE_BRACKET = '》'
 export const L_SINGLE_BRACKET = '〈'

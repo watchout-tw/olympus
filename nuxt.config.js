@@ -7,15 +7,15 @@ function getProjectLogo(projectID) {
 }
 module.exports = {
   head: {
-    title: '→沃草←國會無雙↑媒體實驗',
+    title: '→沃草←國會無雙',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { name: 'description', content: '沃草《國會無雙》媒體實驗是⋯', hid: 'description' }
+      { name: 'description', content: '沃草《國會無雙》是⋯', hid: 'description' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: getFavicon('musou-media-experiment') },
-      { rel: 'apple-touch-icon', sizes: '256x256', href: getProjectLogo('musou-media-experiment') }
+      { rel: 'icon', type: 'image/x-icon', href: getFavicon('musou') },
+      { rel: 'apple-touch-icon', sizes: '256x256', href: getProjectLogo('musou') }
     ]
   },
   loading: {

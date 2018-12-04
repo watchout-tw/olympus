@@ -20,7 +20,7 @@ export default {
   mixins: [knowsWindowManagement],
   data() {
     return {
-      channel: env.channels['musou-media-experiment']
+      channel: env.channels.musou
     }
   },
   components: {
