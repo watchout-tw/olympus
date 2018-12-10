@@ -2,8 +2,7 @@
 <div class="page read index">
   <div class="docs">
     <div class="doc bg-musou-light margin-top-bottom-8" v-for="doc of docs">
-      <div>{{ doc.id }}</div>
-      <div>{{ doc.data }}</div>
+      <div>{{ doc }}</div>
     </div>
   </div>
 </div>
