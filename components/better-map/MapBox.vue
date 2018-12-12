@@ -4,17 +4,17 @@
     <div class="map content" id="map"></div>
     <div class="datetime">{{ currentDateTime }}</div>
   </div>
-  <div v-if="config && config.live" class="controls form-field-many-inputs justify-center margin-top-bottom-8">
+  <div v-if="config.live" class="controls form-field-many-inputs justify-center margin-top-bottom-8">
     <div class="input button large musou" @click="togglePlay"><span>{{ isPlaying ? '暫停' : '播放' }}</span></div>
     <div class="input button" @click="quitPlay" v-if="nextToPlay > -1"><span>跳出</span></div>
   </div>
-  <div class="note secondary-text font-size-small margin-top-4 d-flex align-items-center justify-content-center"><span>提示：點擊地圖上的圖示</span><span style="display: inline-block; font-size: 1.5rem; margin: 0 0.125rem;">④</span><span>看當地新聞</span></div>
-  <div class="markers tcl-container">
-    <a class="marker a-block tcl-panel tcl-left-right-margin with-top-bottom-margin with-padding bg-very-very-light-grey" :href="marker.properties.link" target="_blank" v-for="marker of selectedMarkers">
-      <div class="date"><label>{{ marker.properties.date }}</label>&nbsp;<label v-if="marker.properties.publisher">{{ marker.properties.publisher }}</label></div>
-      <div class="title" v-if="marker.properties.title">{{ marker.properties.title }}</div>
-      <div class="title-tw" v-if="marker.properties.title_tw">{{ marker.properties.title_tw }}</div>
-      <div class="description secondary-text font-size-small margin-top-bottom-4">{{ marker.properties.description }}</div>
+  <div class="note secondary-text font-size-small margin-top-4 d-flex align-items-center justify-content-center"><span>提示：點擊地圖上的圖示</span><span style="display: inline-block; font-size: 1.5rem; margin: 0 0.125rem;">④</span><span>看當地新聞</span><span v-if="config.live">、點擊「播放」自動播放</span></div>
+  <div class="active-features tcl-container">
+    <a class="feature a-block tcl-panel tcl-left-right-margin with-top-bottom-margin with-padding bg-very-very-light-grey" :href="feature.properties.link" target="_blank" v-for="feature of activeFeatures">
+      <div class="date"><label>{{ feature.properties.date }}</label>&nbsp;<label v-if="feature.properties.publisher">{{ feature.properties.publisher }}</label></div>
+      <div class="title" v-if="feature.properties.title">{{ feature.properties.title }}</div>
+      <div class="title-tw" v-if="feature.properties.title_tw">{{ feature.properties.title_tw }}</div>
+      <div class="description secondary-text font-size-small margin-top-bottom-4">{{ feature.properties.description }}</div>
       <label class="more">閱讀更多</label>
     </a>
     <div class="tcl-panel"></div>
@@ -49,13 +49,19 @@ function makeFeature(marker) {
 }
 
 export default {
-  props: ['markers', 'config'],
+  props: {
+    markers: Array,
+    config: {
+      type: Object,
+      default: {}
+    }
+  },
   data() {
     return {
       map: null,
       mapElementID: 'map',
-      selectedClusterID: null,
-      selectedMarkers: [],
+      activeClusterID: null,
+      activeFeatures: [],
       staticDS: null,
       liveDS: null,
       isPlaying: false,
@@ -86,8 +92,8 @@ export default {
           this.map.removeSource(sourceName)
         }
       })
-      this.selectedClusterID = null
-      this.selectedMarkers = []
+      this.activeClusterID = null
+      this.activeFeatures = []
       this.isPlaying = false
       this.nextToPlay = -1
       window.clearInterval(this.timer)
@@ -101,8 +107,8 @@ export default {
       this.map = new mapbox.Map({
         container: this.mapElementID,
         style: 'mapbox://styles/watchout/cjozx93ng11m72rlqumr7uobd',
-        center: this.config && this.config.center ? this.config.center : { lat: 23.9609981, lng: 120.9718638 },
-        zoom: this.config && this.config.zoom ? this.config.zoom : 1
+        center: this.config.center ? this.config.center : { lat: 23.9609981, lng: 120.9718638 },
+        zoom: this.config.zoom ? this.config.zoom : 1
       })
       this.map.addControl(new mapbox.NavigationControl(), 'top-left')
       // this.map.addControl(new MapboxGeocoder({ accessToken: config.mapboxAccessToken }), 'top-left')
@@ -124,7 +130,7 @@ export default {
           if(error) {
             console.error(error)
           }
-          this.selectedMarkers = markers
+          this.activeFeatures = markers
           this.map.flyTo({
             center: clusterCoordinates,
             zoom: this.map.getZoom() + 1
@@ -134,7 +140,7 @@ export default {
       this.map.on('click', 'markers-not-in-cluster', (e) => {
         let marker = e.features[0]
         let coordinates = marker.geometry.coordinates.slice()
-        this.selectedMarkers = [marker]
+        this.activeFeatures = [marker]
         this.map.flyTo({
           center: coordinates,
           zoom: this.map.getZoom() + 1
@@ -239,7 +245,7 @@ export default {
             let nextFeature = makeFeature(this.nextMarker)
             this.liveDS.features.push(nextFeature)
             this.map.getSource(SRC_LIVE).setData(this.liveDS)
-            this.selectedMarkers.unshift(nextFeature)
+            this.activeFeatures.unshift(nextFeature)
             this.nextToPlay += 1
           } else {
             this.togglePlay()
@@ -314,10 +320,10 @@ export default {
       font-weight: bold;
     }
   }
-  > .markers {
+  > .active-features {
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
-    > .marker {
+    > .feature {
       position: relative;
       @include shadow;
       > .date {
