@@ -236,8 +236,10 @@ export default {
         this.isPlaying = true
         this.timer = window.setInterval(() => {
           if(this.nextMarker) {
-            this.liveDS.features.push(makeFeature(this.nextMarker))
+            let nextFeature = makeFeature(this.nextMarker)
+            this.liveDS.features.push(nextFeature)
             this.map.getSource(SRC_LIVE).setData(this.liveDS)
+            this.selectedMarkers.unshift(nextFeature)
             this.nextToPlay += 1
           } else {
             this.togglePlay()
@@ -268,7 +270,10 @@ export default {
     max-width: $tcl-bp-lg;
     margin-left: auto;
     margin-right: auto;
-    @include rect(2/1);
+    @include rect(4/3);
+    @include tcl-sm {
+      @include rect(2/1);
+    }
 
     > .map {
       width: 100%;

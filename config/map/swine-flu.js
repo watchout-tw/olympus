@@ -13,14 +13,15 @@ export default {
       type: 'map-box',
       config: {
         center: { lat: 36.067108, lng: 120.382609 },
-        zoom: 3,
+        zoom: 2, // TODO: mobile zoom & desktop zoom?
         live: true,
         liveLayerPaint: {
+          'circle-color': 'rgba(0, 0, 0, 0.50)',
           'circle-radius': {
             property: 'data.total',
             stops: [
-              [1, 5],
-              [10000, 50]
+              [40, 4],
+              [20000, 48]
             ]
           }
         }
