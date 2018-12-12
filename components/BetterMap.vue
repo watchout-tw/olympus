@@ -22,7 +22,7 @@
         <world :rows="data" :debug="debug" />
       </template>
       <template v-else-if="section.type === 'map-box'">
-        <map-box :markers="data" />
+        <map-box :markers="data" :config="section.config" />
       </template>
       <div v-else-if="section.type === 'title-description'" class="tcl-container">
         <div class="tcl-panel tcl-left-right-margin">

@@ -23,7 +23,7 @@
 import config from 'watchout-common-functions/config/config'
 
 export default {
-  props: ['markers'],
+  props: ['markers', 'config'],
   data() {
     return {
       map: null,
@@ -40,8 +40,8 @@ export default {
     this.map = new mapbox.Map({
       container: this.mapElementID,
       style: 'mapbox://styles/watchout/cjozx93ng11m72rlqumr7uobd',
-      center: [120.9605, 23.6978],
-      zoom: 1
+      center: this.config && this.config.center ? this.config.center : { lat: 23.9609981, lng: 120.9718638 },
+      zoom: this.config && this.config.zoom ? this.config.zoom : 1
     })
     this.map.addControl(new mapbox.NavigationControl(), 'top-left')
     // this.map.addControl(new MapboxGeocoder({ accessToken: config.mapboxAccessToken }), 'top-left')
