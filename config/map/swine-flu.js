@@ -13,7 +13,17 @@ export default {
       type: 'map-box',
       config: {
         center: { lat: 36.067108, lng: 120.382609 },
-        zoom: 3
+        zoom: 3,
+        live: true,
+        liveLayerPaint: {
+          'circle-radius': {
+            property: 'data.total',
+            stops: [
+              [1, 5],
+              [10000, 50]
+            ]
+          }
+        }
       }
     },
     {
