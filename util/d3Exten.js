@@ -14,7 +14,7 @@ export function centerCenter() {
 export function makeLabel(options) {
   this.each(function(d) {
     var root = d3.select(this)
-      .classed('yes', /country|state|nation/.test(d.what + d.what_in_english))
+      .classed('yes', /country|state|nation/.test(d.data.what + d.data.what_in_english))
     var el = root.append('a') // where all the content actually go
       .attr('xlink:href', d.link)
       .attr('target', '_blank')
@@ -26,7 +26,7 @@ export function makeLabel(options) {
       y: options.padding.y + 1 / options.lineHeight - 0.1 // put first line of text right below anchor point
     }
 
-    var terms = d.what.split(/,\s*/).reverse()
+    var terms = d.data.what.split(/,\s*/).reverse()
     terms.forEach(function(term, i) {
       // text wrap: https://bl.ocks.org/mbostock/7555321
       var text = el.append('text')

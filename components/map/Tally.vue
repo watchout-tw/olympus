@@ -23,7 +23,7 @@ export default {
       return keys.reduce((results, id) => {
         let option = this.config.options.find(option => option.value === id)
         let rows = this.rows.filter(row => {
-          let testString = this.config.keys.map(key => row[key]).join('')
+          let testString = this.config.keys.map(key => key.substring(0, 5) === 'data.' ? row.data[key.substring(5)] : row[key]).join(' ')
           return new RegExp(option.matchPattern).test(testString)
         })
         let score = Math.round(rows.length / this.totalCount * 100)

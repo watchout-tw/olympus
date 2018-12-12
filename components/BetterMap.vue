@@ -75,10 +75,28 @@ export default {
   mixins: [knowsMarkdown, knowsWatchout],
   props: ['module', 'project'],
   data() {
+    let data = []
+    if(this.project.hasOwnProperty('dataSource')) {
+      data = require('~/data/map/' + this.project.dataSource)
+      data = data.map(entry => {
+        let newEntry = {
+          data: {}
+        }
+        Object.keys(entry).forEach(key => {
+          if(key.substring(0, 5) === 'data.') {
+            newEntry.data[key.substring(5)] = entry[key]
+          } else {
+            newEntry[key] = entry[key]
+          }
+        })
+        return newEntry
+      })
+    }
+
     return {
       debug: false,
       popQuizIsDone: false,
-      data: this.project.hasOwnProperty('dataSource') ? require('~/data/map/' + this.project.dataSource) : []
+      data
     }
   },
   computed: {

@@ -6,9 +6,10 @@
   <div class="note secondary-text font-size-small margin-top-4 d-flex align-items-center justify-content-center"><span>提示：點擊地圖上的圖示</span><span style="display: inline-block; font-size: 1.5rem; margin: 0 0.125rem;">④</span><span>看當地新聞</span></div>
   <div class="markers tcl-container">
     <a class="marker a-block tcl-panel tcl-left-right-margin with-top-bottom-margin with-padding bg-very-very-light-grey" :href="marker.properties.link" target="_blank" v-for="marker of selectedMarkers">
-      <div class="date"><label>{{ marker.properties.publish_date }}</label>&nbsp;<label>{{ marker.properties.media }}</label></div>
-      <div class="title">{{ marker.properties.title }}</div>
-      <div class="title-tw">{{ marker.properties.title_tw }}</div>
+      <div class="date"><label>{{ marker.properties.date }}</label>&nbsp;<label v-if="marker.properties.publisher">{{ marker.properties.publisher }}</label></div>
+      <div class="title" v-if="marker.properties.title">{{ marker.properties.title }}</div>
+      <div class="title-tw" v-if="marker.properties.title_tw">{{ marker.properties.title_tw }}</div>
+      <div class="description secondary-text font-size-small margin-top-bottom-4">{{ marker.properties.description }}</div>
       <label class="more">閱讀更多</label>
     </a>
     <div class="tcl-panel"></div>
