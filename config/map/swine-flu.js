@@ -1,8 +1,8 @@
 export default {
   id: 'swine-flu',
   module: 'map',
-  title: '中國有豬瘟',
-  description: '中國有豬瘟；中國有豬瘟；中國有豬瘟。',
+  title: '中国有豬瘟',
+  description: '中国有豬瘟；中国有豬瘟；中国有豬瘟。',
   image: 'map/swine-flu.jpg',
   date: '2018-12-18 21:00:00',
   breaking: true,
