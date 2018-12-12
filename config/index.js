@@ -10,8 +10,10 @@ import projLaborStandardAct from '~/config/swipe/labor-standard-act'
 import projTsaiSecondYear from '~/config/draw/tsai-second-year'
 import projKPV from '~/config/quiz/kpv'
 import proj181124 from '~/config/map/181124'
+import projSwineFlu from '~/config/map/swine-flu'
 
 export const projects = [
+  projSwineFlu,
   proj181124,
   projKPV,
   projTsaiSecondYear,
