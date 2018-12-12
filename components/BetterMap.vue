@@ -79,20 +79,17 @@ export default {
     if(this.project.hasOwnProperty('dataSource')) {
       data = require('~/data/map/' + this.project.dataSource)
       data = data.map(entry => {
-        let newEntry = {
-          data: {}
+        let dataKeys = Object.keys(entry).filter(key => key.substring(0, 5) === 'data.')
+        if(dataKeys.length > 0) {
+          return Object.assign(entry, {
+            data: Object.assign(...dataKeys.map(key => ({ [key.substring(5)]: entry[key] })))
+          })
+        } else {
+          return entry
         }
-        Object.keys(entry).forEach(key => {
-          if(key.substring(0, 5) === 'data.') {
-            newEntry.data[key.substring(5)] = entry[key]
-          } else {
-            newEntry[key] = entry[key]
-          }
-        })
-        return newEntry
       })
     }
-
+    // keep flattened data.* attributes because MapBox does not support data-driven styling with nested properties
     return {
       debug: false,
       popQuizIsDone: false,
