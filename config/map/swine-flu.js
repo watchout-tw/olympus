@@ -34,6 +34,10 @@ export default {
               ['/', ['sqrt', ['get', 'data.total']], 8]
             ]
           ]
+        },
+        feature: {
+          primaryField: 'date',
+          secondaryFields: ['country', 'national_region']
         }
       }
     },

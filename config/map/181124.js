@@ -10,7 +10,13 @@ export default {
   sections: [
     {
       id: 'map-box',
-      type: 'map-box'
+      type: 'map-box',
+      config: {
+        feature: {
+          primaryField: 'date',
+          secondaryFields: ['publisher']
+        }
+      }
     },
     {
       id: 'title-description',

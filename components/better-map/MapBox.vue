@@ -5,16 +5,16 @@
     <div class="datetime">{{ currentDateTime }}</div>
   </div>
   <div v-if="config.live" class="controls form-field-many-inputs justify-center margin-top-bottom-8">
-    <div class="input button large musou" @click="togglePlay"><span>{{ isPlaying ? '暫停' : '播放' }}</span></div>
-    <div class="input button" @click="quitPlay" v-if="nextToPlay > -1"><span>跳出</span></div>
+    <div class="input button large musou" @click="togglePlay"><span>{{ isPlaying ? '暫停' : (nextMarker ? '繼續播放' : '播放') }}</span></div>
+    <div class="input button" @click="quitPlay" v-if="nextToPlay > -1"><span>結束播放</span></div>
   </div>
   <div class="note secondary-text font-size-tiny margin-top-4" v-if="nextToPlay < 0">
     <div class="d-flex align-items-center justify-content-center"><span>點擊地圖上的圖示</span><span style="display: inline-block; margin: 0 0.125rem; font-size: 1.5rem; line-height: 1;">④</span><span>看當地新聞</span></div>
-    <div class="text-align-center" v-if="config.live">點擊「播放」自動播放</div>
+    <div class="text-align-center" v-if="config.live">點擊「播放」自動播放各地新聞</div>
   </div>
   <div class="active-features tcl-container">
     <a class="feature a-block tcl-panel tcl-left-right-margin with-top-bottom-margin with-padding bg-very-very-light-grey" :href="feature.properties.link" target="_blank" v-for="feature of activeFeatures">
-      <div class="date"><label>{{ feature.properties.date }}</label>&nbsp;<label v-if="feature.properties.publisher">{{ feature.properties.publisher }}</label></div>
+      <div class="primary-secondary-fields"><label>{{ feature.properties[config.feature.primaryField] }}</label>&nbsp;<label>{{ config.feature.secondaryFields.map(key => feature.properties[key]).join('') }}</label></div>
       <div class="title" v-if="feature.properties.title">{{ feature.properties.title }}</div>
       <div class="title-tw" v-if="feature.properties.title_tw">{{ feature.properties.title_tw }}</div>
       <div class="description secondary-text font-size-small margin-top-bottom-4">{{ feature.properties.description }}</div>
@@ -26,9 +26,9 @@
   </div>
   <div class="prompt-overlay" v-if="prompt.show">
     <div class="prompt" :class="prompt.classes">
-      <div class="date">{{ prompt.date }}</div>
-      <div class="message">{{ prompt.message }}</div>
-      <div class="dismiss" @click="prompt.show = false"><span>OK</span></div>
+      <div class="primary-secondary-fields font-weight-bold">{{ prompt.primaryField }}&nbsp;{{ prompt.secondaryFields }}</div>
+      <div class="message">{{ prompt.description }}</div>
+      <div class="dismiss" @click="dismissPrompt"><span>OK</span></div>
     </div>
   </div>
 </div>
@@ -80,8 +80,9 @@ export default {
       prompt: {
         show: false,
         classes: ['warning'],
-        date: null,
-        message: null
+        primaryField: null,
+        secondaryFields: null,
+        description: null
       }
     }
   },
@@ -263,23 +264,30 @@ export default {
             this.map.getSource(SRC_LIVE).setData(this.liveDS)
             this.activeFeatures.unshift(nextFeature)
             if(this.nextMarker.display_type === 'warning') {
-              this.prompt.date = this.nextMarker.date
-              this.prompt.message = this.nextMarker.description
+              this.prompt.primaryField = this.nextMarker[this.config.feature.primaryField]
+              this.prompt.secondaryFields = this.config.feature.secondaryFields.map(key => this.nextMarker[key]).join('')
+              this.prompt.description = this.nextMarker.description
               window.setTimeout(() => {
                 this.prompt.show = true
-              }, 500)
+              }, 420)
               this.togglePlay()
             }
             this.nextToPlay += 1
           } else {
             this.togglePlay()
           }
-        }, 200)
+        }, 250)
       }
     },
     quitPlay() {
       this.clear()
       this.draw()
+    },
+    dismissPrompt() {
+      this.prompt.show = false
+      if(!this.isPlaying && this.nextMarker) {
+        this.togglePlay()
+      }
     }
   }
 }
@@ -352,7 +360,7 @@ export default {
     > .feature {
       position: relative;
       @include shadow;
-      > .date {
+      > .primary-secondary-fields {
         font-size: $font-size-small;
         line-height: $line-height-tight;
       }

@@ -680,11 +680,11 @@
 }, {
   "date": "2018-10-31",
   "country": "台灣",
-  "city": "金門",
+  "national_region": "金門縣",
   "place": "水頭碼頭",
   "link": "https://www.agriharvest.tw/theme_data.php?theme=article&sub_theme=article&id=2431",
   "description": "農委會動植物防疫檢疫局上週在金門小三通水頭碼頭的農產品棄置箱，查到一包來自中國的香腸，今宣布驗出臺灣首例非洲豬瘟病毒，基因序列和中國病毒100%吻合。",
-  "address": "台灣金門水頭碼頭",
+  "address": "台灣金門縣水頭碼頭",
   "lat": 24.4151816,
   "lng": 118.286967,
   "display_type": "warning"
@@ -807,11 +807,11 @@
 }, {
   "date": "2018-11-09",
   "country": "日本",
-  "city": "東京",
+  "national_region": "東京都",
   "place": "羽田空港",
   "link": "https://tw.appledaily.com/new/realtime/20181109/1463650/",
   "description": "中國的非洲豬瘟疫情持續擴散，日本當局今天表示，查獲有中國上海飛抵東京羽田機場的旅客，所攜帶的餃子中，檢出非洲豬瘟。這是日本第二例旅客帶入非洲豬瘟，將在入境環節採取徹底的防疫措施。",
-  "address": "日本東京羽田空港",
+  "address": "日本東京都羽田空港",
   "lat": 35.5493932,
   "lng": 139.7798386,
   "display_type": "warning"
@@ -846,7 +846,7 @@
 }, {
   "date": "2018-11-13",
   "country": "台灣",
-  "city": "台中市",
+  "national_region": "台中市",
   "place": "清泉崗機場",
   "link": "https://www.agriharvest.tw/theme_data.php?theme=article&sub_theme=news&id=2479",
   "description": "畜衛所繼10月31日首次自中國大陸的香腸驗出非洲豬瘟病毒基因後，於今日再次於一件大陸豬肉製品(香腸)驗出非洲豬瘟病毒基因，該製品是於11月6日寄達該所，由防檢局臺中分局臺中機場檢疫站自清泉崗機場旅客農產品棄置箱所收集之中國大陸豬肉香腸製品。",
@@ -1070,11 +1070,11 @@
 }, {
   "date": "2018-11-30",
   "country": "台灣",
-  "city": "高雄",
+  "national_region": "高雄市",
   "place": "小港機場",
   "link": "https://www.cna.com.tw/news/firstnews/201811305005.aspx",
   "description": "農委會防檢局表示，畜衛所今天在小港機場查獲旅客棄置大陸豬肉香腸驗出非洲豬瘟病毒基因。這是繼10月31日、11月13日後，第3度在中國大陸豬肉製品驗出非洲豬瘟病毒基因。",
-  "address": "台灣高雄小港機場",
+  "address": "台灣高雄市小港機場",
   "lat": 22.574629,
   "lng": 120.3448068,
   "display_type": "warning"
@@ -1227,11 +1227,11 @@
 }, {
   "date": "2018-12-12",
   "country": "台灣",
-  "city": "桃園",
+  "national_region": "桃園市",
   "place": "桃園國際機場",
   "link": "https://www.cna.com.tw/news/firstnews/201812120133.aspx",
   "description": "農委會今天召開「防範非洲豬瘟強化措施及執行情形」記者會，公布首次從旅客攜入意圖闖關的中國肉製品中驗出非洲豬瘟病毒2件，分別是12月1日台灣籍旅客從重慶帶回豬肉臘腸、12月2日中國大陸旅客從哈爾濱攜入的豬肉紅腸，已不分國籍開罰新台幣1.5萬元。",
-  "address": "台灣桃園桃園國際機場",
+  "address": "台灣桃園市桃園國際機場",
   "lat": 25.0796514,
   "lng": 121.234217,
   "display_type": "warning"
