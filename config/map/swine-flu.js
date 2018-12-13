@@ -25,13 +25,13 @@ export default {
             'interpolate', ['linear'], ['zoom'],
             1, [
               'match', ['get', 'display_type'],
-              'warning', 12,
-              ['/', ['sqrt', ['get', 'data.total']], 4]
+              'warning', 8,
+              ['/', ['sqrt', ['get', 'data.total']], 12]
             ],
             13, [
               'match', ['get', 'display_type'],
-              'warning', 12,
-              ['/', ['sqrt', ['get', 'data.total']], 8]
+              'warning', 8,
+              ['/', ['sqrt', ['get', 'data.total']], 0.5]
             ]
           ]
         },
