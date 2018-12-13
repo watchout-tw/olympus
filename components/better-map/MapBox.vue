@@ -1,11 +1,11 @@
 <template>
-<div class="map-box">
+<div class="map-box" :class="[config.theme]">
   <div class="map-container">
     <div class="map content" id="map"></div>
     <div class="datetime">{{ currentDateTime }}</div>
   </div>
   <div v-if="config.live" class="controls form-field-many-inputs justify-center margin-top-bottom-8">
-    <div class="input button large musou" @click="togglePlay"><span>{{ isPlaying ? '暫停' : (nextMarker ? '繼續播放' : '播放') }}</span></div>
+    <div class="input button large musou" @click="togglePlay"><span>{{ isPlaying ? '暫停' : (nextMarker ? '繼續播放' : (nextToPlay < 0 ? '播放' : '再次播放')) }}</span></div>
     <div class="input button" @click="quitPlay" v-if="nextToPlay > -1"><span>結束播放</span></div>
   </div>
   <div class="note secondary-text font-size-tiny margin-top-4" v-if="nextToPlay < 0">
@@ -24,7 +24,7 @@
     <div class="tcl-panel"></div>
     <div class="tcl-panel"></div>
   </div>
-  <div class="prompt-overlay" v-if="prompt.show">
+  <div class="prompt-overlay" :class="[config.theme]" v-if="prompt.show">
     <div class="prompt" :class="prompt.classes">
       <div class="primary-secondary-fields font-weight-bold">{{ prompt.primaryField }}&nbsp;{{ prompt.secondaryFields }}</div>
       <div class="message">{{ prompt.description }}</div>
@@ -365,6 +365,9 @@ export default {
         @include underline(1.0);
       }
     }
+  }
+  &.dark {
+    background-color: #333;
   }
 }
 </style>

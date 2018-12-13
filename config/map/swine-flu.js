@@ -12,6 +12,7 @@ export default {
       id: 'map-box',
       type: 'map-box',
       config: {
+        theme: 'dark',
         center: { lat: 36.067108, lng: 120.382609 },
         zoom: 2, // TODO: mobile zoom & desktop zoom?
         clusterLayerPaint: {
