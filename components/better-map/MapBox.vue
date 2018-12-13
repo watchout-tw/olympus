@@ -9,8 +9,8 @@
     <div class="input button" @click="quitPlay" v-if="nextToPlay > -1"><span>結束播放</span></div>
   </div>
   <div class="note secondary-text font-size-tiny margin-top-4" v-if="nextToPlay < 0">
-    <div class="d-flex align-items-center justify-content-center"><span>點擊地圖上的圖示</span><span style="display: inline-block; margin: 0 0.125rem; font-size: 1.5rem; line-height: 1;">④</span><span>看當地新聞</span></div>
     <div class="text-align-center" v-if="config.live">點擊「播放」自動播放各地新聞</div>
+    <div class="d-flex align-items-center justify-content-center"><span>點擊地圖上的圖示</span><span style="display: inline-block; margin: 0 0.125rem; font-size: 1.5rem; line-height: 1;">④</span><span>看當地新聞</span></div>
   </div>
   <div class="active-features tcl-container" v-if="activeFeatures.length > 0">
     <a class="feature a-block tcl-panel tcl-left-right-margin with-top-bottom-margin with-padding bg-very-very-light-grey" :href="feature.properties.link" target="_blank" v-for="feature of activeFeatures">
