@@ -240,7 +240,7 @@ export default {
       return this.doShowResult('showOccurences') ? this.getShowResultAction('showOccurences') : undefined
     },
     shareURL() {
-      return this.getBaseURL('musou') + this.$route.fullPath
+      return this.getMusouProjectURL(this.module.id, this.project.id)
     }
   },
   watch: {

@@ -98,7 +98,7 @@ export default {
   },
   computed: {
     shareURL() {
-      return this.getBaseURL('musou') + this.$route.fullPath
+      return this.getMusouProjectURL(this.module.id, this.project.id)
     },
     hasPopQuiz() {
       return this.project.sections.filter(section => section.type === 'pop-quiz').length > 0
