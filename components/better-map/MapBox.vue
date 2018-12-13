@@ -8,7 +8,10 @@
     <div class="input button large musou" @click="togglePlay"><span>{{ isPlaying ? '暫停' : '播放' }}</span></div>
     <div class="input button" @click="quitPlay" v-if="nextToPlay > -1"><span>跳出</span></div>
   </div>
-  <div class="note secondary-text font-size-small margin-top-4 d-flex align-items-center justify-content-center"><span>提示：點擊地圖上的圖示</span><span style="display: inline-block; font-size: 1.5rem; margin: 0 0.125rem;">④</span><span>看當地新聞</span><span v-if="config.live">、點擊「播放」自動播放</span></div>
+  <div class="note secondary-text font-size-tiny margin-top-4" v-if="nextToPlay < 0">
+    <div class="d-flex align-items-center justify-content-center"><span>點擊地圖上的圖示</span><span style="display: inline-block; margin: 0 0.125rem; font-size: 1.5rem; line-height: 1;">④</span><span>看當地新聞</span></div>
+    <div class="text-align-center" v-if="config.live">點擊「播放」自動播放</div>
+  </div>
   <div class="active-features tcl-container">
     <a class="feature a-block tcl-panel tcl-left-right-margin with-top-bottom-margin with-padding bg-very-very-light-grey" :href="feature.properties.link" target="_blank" v-for="feature of activeFeatures">
       <div class="date"><label>{{ feature.properties.date }}</label>&nbsp;<label v-if="feature.properties.publisher">{{ feature.properties.publisher }}</label></div>
@@ -20,6 +23,13 @@
     <div class="tcl-panel"></div>
     <div class="tcl-panel"></div>
     <div class="tcl-panel"></div>
+  </div>
+  <div class="prompt-overlay" v-if="prompt.show">
+    <div class="prompt" :class="prompt.classes">
+      <div class="date">{{ prompt.date }}</div>
+      <div class="message">{{ prompt.message }}</div>
+      <div class="dismiss" @click="prompt.show = false"><span>OK</span></div>
+    </div>
   </div>
 </div>
 </template>
@@ -66,7 +76,13 @@ export default {
       liveDS: null,
       isPlaying: false,
       nextToPlay: -1,
-      timer: null
+      timer: null,
+      prompt: {
+        show: false,
+        classes: ['warning'],
+        date: null,
+        message: null
+      }
     }
   },
   computed: {
@@ -246,11 +262,19 @@ export default {
             this.liveDS.features.push(nextFeature)
             this.map.getSource(SRC_LIVE).setData(this.liveDS)
             this.activeFeatures.unshift(nextFeature)
+            if(this.nextMarker.playback_type === 'modal') {
+              this.prompt.date = this.nextMarker.date
+              this.prompt.message = this.nextMarker.description
+              window.setTimeout(() => {
+                this.prompt.show = true
+              }, 500)
+              this.togglePlay()
+            }
             this.nextToPlay += 1
           } else {
             this.togglePlay()
           }
-        }, 100)
+        }, 200)
       }
     },
     quitPlay() {
@@ -266,6 +290,8 @@ export default {
 @import 'mapbox-gl/dist/mapbox-gl.css';
 @import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 @import url('https://fonts.googleapis.com/css?family=Gentium+Book+Basic:400,400i,700,700i');
+@import '~assets/colors';
+@import '~assets/prompt-overlay';
 
 .map-box {
   width: 100%;
