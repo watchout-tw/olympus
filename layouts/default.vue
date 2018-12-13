@@ -4,7 +4,7 @@
   <nuxt/>
   <footer-standard />
   <modal-manager />
-  <support-watchout v-if="showSupport" id="ask" />
+  <support-watchout v-if="showSupport" id="musou" />
 </main>
 </template>
 
