@@ -37,5 +37,10 @@
 
   &.dark {
     background: rgba(#333, 0.94);
+    > .prompt {
+      &.warning {
+        background-color: $color-warning-dark;
+      }
+    }
   }
 }

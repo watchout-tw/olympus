@@ -12,7 +12,7 @@
     <div class="d-flex align-items-center justify-content-center"><span>點擊地圖上的圖示</span><span style="display: inline-block; margin: 0 0.125rem; font-size: 1.5rem; line-height: 1;">④</span><span>看當地新聞</span></div>
     <div class="text-align-center" v-if="config.live">點擊「播放」自動播放各地新聞</div>
   </div>
-  <div class="active-features tcl-container">
+  <div class="active-features tcl-container" v-if="activeFeatures.length > 0">
     <a class="feature a-block tcl-panel tcl-left-right-margin with-top-bottom-margin with-padding bg-very-very-light-grey" :href="feature.properties.link" target="_blank" v-for="feature of activeFeatures">
       <div class="primary-secondary-fields"><label>{{ feature.properties[config.feature.primaryField] }}</label>&nbsp;<label>{{ config.feature.secondaryFields.map(key => feature.properties[key]).join('') }}</label></div>
       <div class="title" v-if="feature.properties.title">{{ feature.properties.title }}</div>
@@ -282,6 +282,7 @@ export default {
 
 .map-box {
   width: 100%;
+  padding-bottom: 1rem;
   > .map-container {
     position: relative;
     display: flex;
