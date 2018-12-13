@@ -183,26 +183,7 @@ export default {
         type: 'circle',
         source: 'markers',
         filter: ['has', 'point_count'],
-        paint: {
-          'circle-color': [
-            'step',
-            ['get', 'point_count'],
-            'rgba(80, 227, 194, 0.85)',
-            10,
-            'rgba(255, 181, 93, 0.85)',
-            30,
-            'rgba(255, 83, 104, 0.85)'
-          ],
-          'circle-radius': [
-            'step',
-            ['get', 'point_count'],
-            16,
-            10,
-            24,
-            25,
-            32
-          ]
-        }
+        paint: this.config.clusterLayerPaint
       })
       this.map.addLayer({
         id: LAYER_CL_COUNT,
@@ -213,17 +194,15 @@ export default {
           'text-field': '{point_count_abbreviated}',
           'text-font': ['DIN Offc Pro Medium'],
           'text-size': 20
-        }
+        },
+        paint: this.config.clusterCountLayerPaint
       })
       this.map.addLayer({
         id: LAYER_MARKERS,
         type: 'circle',
         source: 'markers',
         filter: ['!', ['has', 'point_count']],
-        paint: {
-          'circle-color': 'rgba(80, 227, 194, 0.85)',
-          'circle-radius': 8
-        }
+        paint: this.config.markerLayerPaint
       })
     },
     preparePlay() {

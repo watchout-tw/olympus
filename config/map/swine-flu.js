@@ -14,6 +14,29 @@ export default {
       config: {
         center: { lat: 36.067108, lng: 120.382609 },
         zoom: 2, // TODO: mobile zoom & desktop zoom?
+        clusterLayerPaint: {
+          'circle-color': [
+            'step',
+            ['get', 'point_count'],
+            'rgba(0, 0, 0, 0.50)',
+            10,
+            'rgba(0, 0, 0, 0.65)',
+            30,
+            'rgba(0, 0, 0, 0.80)'
+          ],
+          'circle-radius': [
+            'interpolate', ['linear'], ['zoom'],
+            1, ['*', ['sqrt', ['get', 'point_count']], 8],
+            6, ['*', ['sqrt', ['get', 'point_count']], 16]
+          ]
+        },
+        clusterCountLayerPaint: {
+          'text-color': 'white'
+        },
+        markerLayerPaint: {
+          'circle-color': 'rgba(0, 0, 0, 0.65)',
+          'circle-radius': 8
+        },
         live: true,
         liveLayerPaint: {
           'circle-color': [

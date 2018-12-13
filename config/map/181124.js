@@ -12,6 +12,29 @@ export default {
       id: 'map-box',
       type: 'map-box',
       config: {
+        clusterLayerPaint: {
+          'circle-color': [
+            'step',
+            ['get', 'point_count'],
+            'rgba(80, 227, 194, 0.85)',
+            10,
+            'rgba(255, 181, 93, 0.85)',
+            30,
+            'rgba(255, 83, 104, 0.85)'
+          ],
+          'circle-radius': [
+            'interpolate', ['linear'], ['zoom'],
+            1, ['*', ['sqrt', ['get', 'point_count']], 8],
+            6, ['*', ['sqrt', ['get', 'point_count']], 16]
+          ]
+        },
+        clusterCountLayerPaint: {
+          'text-color': 'black'
+        },
+        markerLayerPaint: {
+          'circle-color': 'rgba(80, 227, 194, 0.85)',
+          'circle-radius': 8
+        },
         feature: {
           primaryField: 'date',
           secondaryFields: ['publisher']
