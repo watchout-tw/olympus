@@ -283,7 +283,7 @@ export default {
             // stop
             this.togglePlay()
           }
-        }, 100)
+        }, 200)
       }
     },
     quitPlay() {
