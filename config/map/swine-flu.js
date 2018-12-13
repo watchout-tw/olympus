@@ -62,6 +62,10 @@ export default {
         feature: {
           primaryField: 'date',
           secondaryFields: ['country', 'national_region']
+        },
+        finalPrompt: {
+          message: '中國有豬瘟\n\n偷帶會罰錢\n\n檢舉有獎金\n\n認同請分享',
+          classes: ['font-size-2x', 'text-align-center']
         }
       }
     },

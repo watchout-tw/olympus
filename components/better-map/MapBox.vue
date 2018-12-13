@@ -31,11 +31,22 @@
       <div class="dismiss" @click="dismissPrompt"><span>OK</span></div>
     </div>
   </div>
+  <div class="prompt-overlay" :class="[config.theme]" v-if="config.finalPrompt && canShowFinalPrompt && finalPrompt.show">
+    <div class="prompt" :class="prompt.classes">
+      <div class="message paragraphs no-margin tightly-packed" :class="config.finalPrompt.classes" v-html="markdown(config.finalPrompt.message)"></div>
+      <div class="share margin-top-bottom-single">
+        <share-to-platforms :url="shareURL" />
+      </div>
+      <div class="dismiss" @click="finalPrompt.show = false"><span>OK</span></div>
+    </div>
+  </div>
 </div>
 </template>
 
 <script>
+import { knowsMarkdown } from 'watchout-common-functions/interfaces'
 import config from 'watchout-common-functions/config/config'
+import ShareToPlatforms from 'watchout-common-functions/components/ShareToPlatforms'
 
 const SRC_STATIC = 'markers'
 const SRC_LIVE = 'markers-live'
@@ -59,7 +70,9 @@ function makeFeature(marker) {
 }
 
 export default {
+  mixins: [knowsMarkdown],
   props: {
+    shareURL: String,
     markers: Array,
     config: {
       type: Object,
@@ -83,6 +96,9 @@ export default {
         primaryField: null,
         secondaryFields: null,
         description: null
+      },
+      finalPrompt: {
+        show: false
       }
     }
   },
@@ -90,8 +106,20 @@ export default {
     nextMarker() {
       return this.nextToPlay >= 0 && this.nextToPlay < this.markers.length ? this.markers[this.nextToPlay] : null
     },
+    lastMarker() {
+      let index = this.nextToPlay - 1
+      return index >= 0 && index < this.markers.length ? this.markers[index] : null
+    },
     currentDateTime() {
       return this.nextToPlay >= 0 && this.nextToPlay < this.markers.length ? this.nextMarker.date : this.markers[this.markers.length - 1].date
+    },
+    canShowFinalPrompt() {
+      return !this.isPlaying && this.nextToPlay >= this.markers.length && !this.prompt.show
+    }
+  },
+  watch: {
+    canShowFinalPrompt() {
+      this.finalPrompt.show = this.canShowFinalPrompt
     }
   },
   mounted() {
@@ -237,25 +265,25 @@ export default {
         // resume
         this.isPlaying = true
         this.timer = window.setInterval(() => {
-          if(this.nextMarker) {
+          if(this.lastMarker && this.lastMarker.display_type === 'warning') {
+            // show prompt
+            this.prompt.primaryField = this.lastMarker[this.config.feature.primaryField]
+            this.prompt.secondaryFields = this.config.feature.secondaryFields.map(key => this.lastMarker[key]).join('')
+            this.prompt.description = this.lastMarker.description
+            this.togglePlay()
+            this.prompt.show = true
+          } else if(this.nextMarker) {
+            // show next marker
             let nextFeature = makeFeature(this.nextMarker)
             this.liveDS.features.push(nextFeature)
             this.map.getSource(SRC_LIVE).setData(this.liveDS)
             this.activeFeatures.unshift(nextFeature)
-            if(this.nextMarker.display_type === 'warning') {
-              this.prompt.primaryField = this.nextMarker[this.config.feature.primaryField]
-              this.prompt.secondaryFields = this.config.feature.secondaryFields.map(key => this.nextMarker[key]).join('')
-              this.prompt.description = this.nextMarker.description
-              window.setTimeout(() => {
-                this.prompt.show = true
-              }, 420)
-              this.togglePlay()
-            }
             this.nextToPlay += 1
           } else {
+            // stop
             this.togglePlay()
           }
-        }, 250)
+        }, 100)
       }
     },
     quitPlay() {
@@ -265,9 +293,13 @@ export default {
     dismissPrompt() {
       this.prompt.show = false
       if(!this.isPlaying && this.nextMarker) {
+        this.nextToPlay += 1
         this.togglePlay()
       }
     }
+  },
+  components: {
+    ShareToPlatforms
   }
 }
 </script>
@@ -279,6 +311,10 @@ export default {
 @import url('https://fonts.googleapis.com/css?family=Gentium+Book+Basic:400,400i,700,700i');
 @import '~assets/colors';
 @import '~assets/prompt-overlay';
+
+.font-size-2x {
+  font-size: 2rem;
+}
 
 .map-box {
   width: 100%;
