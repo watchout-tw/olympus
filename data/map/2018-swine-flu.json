@@ -315,7 +315,7 @@
   "address": "中国北京市",
   "lat": 39.90419989999999,
   "lng": 116.4073963,
-  "display_type": "modal"
+  "display_type": "warning"
 }, {
   "date": "2018-09-30",
   "country": "中国",
