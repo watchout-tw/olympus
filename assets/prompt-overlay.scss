@@ -1,0 +1,37 @@
+.prompt-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $color-modal-overlay-white;
+  z-index: $z-modal;
+
+  > .prompt {
+    max-width: 30rem;
+    padding: 2rem;
+    background-color: $color-very-light-grey;
+    &.correct {
+      background-color: $color-correct;
+    }
+    &.incorrect {
+      background-color: $color-incorrect;
+    }
+    &.warning {
+      background-color: $color-warning;
+    }
+
+    > .dismiss {
+      margin-top: 0.25rem;
+      text-align: right;
+      font-weight: bold;
+      cursor: pointer;
+      > span {
+        border-bottom: 2px black solid;
+      }
+    }
+  }
+}

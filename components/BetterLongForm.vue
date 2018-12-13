@@ -412,14 +412,13 @@ export default {
 
 <style lang="scss">
 @import '~watchout-common-assets/styles/resources';
+@import '~assets/colors';
+@import '~assets/prompt-overlay';
 
 .font-size-4x {
   font-size: 4rem;
   letter-spacing: -0.125rem;
 }
-
-$color-incorrect: rgba($color-musou, 0.65);
-$color-correct: rgba($color-watchout, 0.65);
 
 .better-long-form {
   > .scenes {
@@ -447,27 +446,6 @@ $color-correct: rgba($color-watchout, 0.65);
             background-color: $color-correct;
           }
         }
-      }
-    }
-  }
-  > .prompt-overlay {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: $color-modal-overlay-white;
-    > .prompt {
-      padding: 2rem;
-      background-color: $color-very-light-grey;
-      &.correct {
-        background-color: $color-correct;
-      }
-      &.incorrect {
-        background-color: $color-incorrect;
       }
     }
   }
