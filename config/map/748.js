@@ -5,7 +5,7 @@ export default {
   image: 'modules/map.jpg',
   date: '2017-06-14 21:00:00',
   breaking: false,
-  dataSource: 'same-sex-marriage-international-news-coverage',
+  dataSource: '2017-same-sex-marriage',
   sections: [
     {
       id: 'opening',
