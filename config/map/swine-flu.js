@@ -16,14 +16,24 @@ export default {
         zoom: 2, // TODO: mobile zoom & desktop zoom?
         live: true,
         liveLayerPaint: {
-          'circle-color': 'rgba(0, 0, 0, 0.50)',
-          'circle-radius': {
-            property: 'data.total',
-            stops: [
-              [40, 4],
-              [20000, 48]
+          'circle-color': [
+            'match', ['get', 'display_type'],
+            'warning', 'rgba(255, 83, 104, 0.85)',
+            'rgba(0, 0, 0, 0.50)'
+          ],
+          'circle-radius': [
+            'interpolate', ['linear'], ['zoom'],
+            1, [
+              'match', ['get', 'display_type'],
+              'warning', 12,
+              ['/', ['sqrt', ['get', 'data.total']], 4]
+            ],
+            13, [
+              'match', ['get', 'display_type'],
+              'warning', 12,
+              ['/', ['sqrt', ['get', 'data.total']], 8]
             ]
-          }
+          ]
         }
       }
     },

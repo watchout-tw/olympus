@@ -262,7 +262,7 @@ export default {
             this.liveDS.features.push(nextFeature)
             this.map.getSource(SRC_LIVE).setData(this.liveDS)
             this.activeFeatures.unshift(nextFeature)
-            if(this.nextMarker.playback_type === 'modal') {
+            if(this.nextMarker.display_type === 'warning') {
               this.prompt.date = this.nextMarker.date
               this.prompt.message = this.nextMarker.description
               window.setTimeout(() => {

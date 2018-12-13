@@ -12,7 +12,7 @@
   "address": "中国遼寧省瀋陽市瀋北新區",
   "lat": 41.912487,
   "lng": 123.583196,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-08-16",
   "country": "中国",
@@ -26,7 +26,7 @@
   "address": "中国河南省鄭州市",
   "lat": 34.746611,
   "lng": 113.625328,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-08-19",
   "country": "中国",
@@ -40,7 +40,7 @@
   "address": "中国江蘇省連雲港市海州區",
   "lat": 34.606756,
   "lng": 119.19371,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-08-23",
   "country": "中国",
@@ -54,7 +54,7 @@
   "address": "中国浙江省溫州市樂清市",
   "lat": 28.113725,
   "lng": 120.983906,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-08-30",
   "country": "中国",
@@ -69,7 +69,7 @@
   "address": "中国安徽省蕪湖市南陵縣",
   "lat": 30.91492199999999,
   "lng": 118.334359,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-09-02",
   "country": "中国",
@@ -83,7 +83,7 @@
   "address": "中国安徽省宣城市宣城區",
   "lat": 30.946249,
   "lng": 118.756589,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-09-03",
   "country": "中国",
@@ -98,7 +98,7 @@
   "address": "中国安徽省宣城市宣城區",
   "lat": 30.946249,
   "lng": 118.756589,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-09-03",
   "country": "中国",
@@ -113,7 +113,7 @@
   "address": "中国江蘇省無錫市宜興市",
   "lat": 31.340637,
   "lng": 119.823308,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-09-05",
   "country": "中国",
@@ -128,7 +128,7 @@
   "address": "中国黑龍江省佳木斯市長青鄉",
   "lat": 46.809014,
   "lng": 130.303302,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-09-06",
   "country": "中国",
@@ -143,7 +143,7 @@
   "address": "中国安徽省滁州市鳳陽縣",
   "lat": 32.874735,
   "lng": 117.531622,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-09-06",
   "country": "中国",
@@ -158,7 +158,7 @@
   "address": "中国黑龍江省佳木斯市向陽區",
   "lat": 46.80779,
   "lng": 130.365346,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-09-06",
   "country": "中国",
@@ -173,7 +173,7 @@
   "address": "中国安徽省蕪湖市南陵縣",
   "lat": 30.91492199999999,
   "lng": 118.334359,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-09-06",
   "country": "中国",
@@ -188,7 +188,7 @@
   "address": "中国安徽省宣城市宣城區",
   "lat": 30.946249,
   "lng": 118.756589,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-09-10",
   "country": "中国",
@@ -203,7 +203,7 @@
   "address": "中国安徽省銅陵市義安區",
   "lat": 30.952823,
   "lng": 117.791544,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-09-14",
   "country": "中国",
@@ -217,7 +217,7 @@
   "address": "中国內蒙古自治區錫林郭勒盟阿巴嘎旗",
   "lat": 44.02299499999999,
   "lng": 114.9502481,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-09-14",
   "country": "中国",
@@ -231,7 +231,7 @@
   "address": "中国河南省新鄉市獲嘉縣",
   "lat": 35.259808,
   "lng": 113.657433,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-09-17",
   "country": "中国",
@@ -246,7 +246,7 @@
   "address": "中国內蒙古自治區錫林郭勒盟正藍旗",
   "lat": 42.24163799999999,
   "lng": 115.99247,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-09-21",
   "country": "中国",
@@ -261,7 +261,7 @@
   "address": "中国吉林省公主嶺市南崴子鎮",
   "lat": 43.462169,
   "lng": 124.743685,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-09-21",
   "country": "中国",
@@ -276,7 +276,7 @@
   "address": "中国內蒙古自治區興安盟科爾沁右翼中旗",
   "lat": 45.060837,
   "lng": 121.4765299,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-09-24",
   "country": "中国",
@@ -290,7 +290,7 @@
   "address": "中国內蒙古自治區呼和浩特市",
   "lat": 40.842356,
   "lng": 111.749995,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-09-28",
   "country": "中国",
@@ -305,7 +305,7 @@
   "address": "中国吉林省松原市長嶺縣",
   "lat": 44.275895,
   "lng": 123.9674831,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-09-29",
   "country": "中国",
@@ -315,7 +315,7 @@
   "address": "中国北京市",
   "lat": 39.90419989999999,
   "lng": 116.4073963,
-  "playback_type": "modal"
+  "display_type": "modal"
 }, {
   "date": "2018-09-30",
   "country": "中国",
@@ -328,7 +328,7 @@
   "address": "中国遼寧省營口市",
   "lat": 40.667433,
   "lng": 122.235084,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-10-08",
   "country": "中国",
@@ -342,7 +342,7 @@
   "address": "中国遼寧省營口市",
   "lat": 40.667433,
   "lng": 122.235084,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-10-09",
   "country": "中国",
@@ -356,7 +356,7 @@
   "address": "中国遼寧省鞍山市",
   "lat": 41.108647,
   "lng": 122.994329,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-10-11",
   "country": "中国",
@@ -370,7 +370,7 @@
   "address": "中国遼寧省大連市",
   "lat": 38.91400300000001,
   "lng": 121.614682,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-10-12",
   "country": "中国",
@@ -384,7 +384,7 @@
   "address": "中国遼寧省鞍山市",
   "lat": 41.108647,
   "lng": 122.994329,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-10-12",
   "country": "中国",
@@ -399,7 +399,7 @@
   "address": "中国天津市蓟州區侯家營镇",
   "lat": 39.855988,
   "lng": 117.255619,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-10-14",
   "country": "中国",
@@ -414,7 +414,7 @@
   "address": "中国遼寧省鞍山市桑林鎮",
   "lat": 41.461779,
   "lng": 122.301824,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-10-15",
   "country": "中国",
@@ -428,7 +428,7 @@
   "address": "中国遼寧省錦州市",
   "lat": 41.095685,
   "lng": 121.1268459,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-10-15",
   "country": "中国",
@@ -442,7 +442,7 @@
   "address": "中国遼寧省盤錦市",
   "lat": 41.119997,
   "lng": 122.070714,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-10-15",
   "country": "中国",
@@ -456,7 +456,7 @@
   "address": "中国遼寧省北鎮市",
   "lat": 41.594744,
   "lng": 121.798685,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-10-16",
   "country": "中国",
@@ -471,7 +471,7 @@
   "address": "中国遼寧省鐵嶺市開原市",
   "lat": 42.54630700000001,
   "lng": 124.038268,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-10-16",
   "country": "中国",
@@ -486,7 +486,7 @@
   "address": "中国遼寧省盤錦市大洼區",
   "lat": 41.002279,
   "lng": 122.082574,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-10-17",
   "country": "中国",
@@ -501,7 +501,7 @@
   "address": "中国遼寧省盤錦市大洼區",
   "lat": 41.002279,
   "lng": 122.082574,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-10-17",
   "country": "中国",
@@ -516,7 +516,7 @@
   "address": "中国山西省大同市左雲縣",
   "lat": 40.013442,
   "lng": 112.703008,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-10-22",
   "country": "中国",
@@ -531,7 +531,7 @@
   "address": "中国雲南省昭通市鎮雄縣",
   "lat": 27.441636,
   "lng": 104.873648,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-10-22",
   "country": "中国",
@@ -545,7 +545,7 @@
   "address": "中国浙江省台州市",
   "lat": 28.65638,
   "lng": 121.42076,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-10-22",
   "country": "日本",
@@ -556,7 +556,7 @@
   "address": "日本北海道新千歳空港",
   "lat": 42.7871889,
   "lng": 141.6806889,
-  "playback_type": "modal"
+  "display_type": "warning"
 }, {
   "date": "2018-10-23",
   "country": "中国",
@@ -571,7 +571,7 @@
   "address": "中国湖南省益陽市桃江縣",
   "lat": 28.518085,
   "lng": 112.155822,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-10-23",
   "country": "中国",
@@ -586,7 +586,7 @@
   "address": "中国湖南省常德市桃源縣",
   "lat": 28.902503,
   "lng": 111.488925,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-10-25",
   "country": "中国",
@@ -601,7 +601,7 @@
   "address": "中国貴州省畢節市赫章縣",
   "lat": 27.123078,
   "lng": 104.727418,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-10-26",
   "country": "中国",
@@ -616,7 +616,7 @@
   "address": "中国貴州省畢節市七星關區",
   "lat": 27.298494,
   "lng": 105.305138,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-10-28",
   "country": "中国",
@@ -631,7 +631,7 @@
   "address": "中国湖南省常德市桃源縣",
   "lat": 28.902503,
   "lng": 111.488925,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-10-30",
   "country": "中国",
@@ -646,7 +646,7 @@
   "address": "中国山西省太原市陽曲縣",
   "lat": 38.058488,
   "lng": 112.672952,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-10-30",
   "country": "中国",
@@ -661,7 +661,7 @@
   "address": "中国湖南省懷化市沅陵縣",
   "lat": 28.452686,
   "lng": 110.393844,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-10-30",
   "country": "中国",
@@ -676,7 +676,7 @@
   "address": "中国雲南省普洱市思茅區",
   "lat": 22.78691,
   "lng": 100.977164,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-10-31",
   "country": "台灣",
@@ -687,7 +687,7 @@
   "address": "台灣金門水頭碼頭",
   "lat": 24.4151816,
   "lng": 118.286967,
-  "playback_type": "modal"
+  "display_type": "warning"
 }, {
   "date": "2018-11-03",
   "country": "中国",
@@ -702,7 +702,7 @@
   "address": "中国山西省太原市陽曲縣",
   "lat": 38.058488,
   "lng": 112.672952,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-11-04",
   "country": "中国",
@@ -717,7 +717,7 @@
   "address": "中国重慶市豐都縣興義鎮",
   "lat": 29.94857,
   "lng": 107.818939,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-11-05",
   "country": "中国",
@@ -732,7 +732,7 @@
   "address": "中国湖南省湘西土家族苗族自治州保靖縣",
   "lat": 28.709604,
   "lng": 109.651445,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-11-07",
   "country": "中国",
@@ -746,7 +746,7 @@
   "address": "中国湖北省羅田縣",
   "lat": 30.78429,
   "lng": 115.399222,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-11-08",
   "country": "中国",
@@ -760,7 +760,7 @@
   "address": "中国湖南省漣源市",
   "lat": 27.692542,
   "lng": 111.664316,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-11-08",
   "country": "中国",
@@ -774,7 +774,7 @@
   "address": "中国吉林省龍井市",
   "lat": 42.76631,
   "lng": 129.427066,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-11-08",
   "country": "中国",
@@ -788,7 +788,7 @@
   "address": "中国江西省萬年縣",
   "lat": 28.694582,
   "lng": 117.058445,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-11-08",
   "country": "中国",
@@ -803,7 +803,7 @@
   "address": "中国福建省莆田市城廂區",
   "lat": 25.419319,
   "lng": 118.993885,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-11-09",
   "country": "日本",
@@ -814,7 +814,7 @@
   "address": "日本東京羽田空港",
   "lat": 35.5493932,
   "lng": 139.7798386,
-  "playback_type": "modal"
+  "display_type": "warning"
 }, {
   "date": "2018-11-10",
   "country": "中国",
@@ -828,7 +828,7 @@
   "address": "中国安徽省青陽縣",
   "lat": 30.63923,
   "lng": 117.84743,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-11-13",
   "country": "中国",
@@ -842,7 +842,7 @@
   "address": "中国湖北省武穴市",
   "lat": 29.844107,
   "lng": 115.561217,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-11-13",
   "country": "台灣",
@@ -853,7 +853,7 @@
   "address": "台灣台中市清泉崗機場",
   "lat": 24.2621452,
   "lng": 120.6227409,
-  "playback_type": "modal"
+  "display_type": "warning"
 }, {
   "date": "2018-11-15",
   "country": "中国",
@@ -868,7 +868,7 @@
   "address": "中国湖北省黃岡市浠水縣",
   "lat": 30.451867,
   "lng": 115.265535,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-11-16",
   "country": "中国",
@@ -883,7 +883,7 @@
   "address": "中国四川省宜賓市高縣",
   "lat": 28.436166,
   "lng": 104.517748,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-11-16",
   "country": "中国",
@@ -896,7 +896,7 @@
   "address": "中国吉林省白山市渾江區",
   "lat": 41.945409,
   "lng": 126.416093,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-11-16",
   "country": "中国",
@@ -911,7 +911,7 @@
   "address": "中国雲南省昭通市威信縣",
   "lat": 27.8469,
   "lng": 105.049027,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-11-17",
   "country": "中国",
@@ -925,7 +925,7 @@
   "address": "中国江西省鄱陽縣",
   "lat": 29.011699,
   "lng": 116.699746,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-11-17",
   "country": "中国",
@@ -938,7 +938,7 @@
   "address": "中国雲南省昆明市呈貢區",
   "lat": 24.885531,
   "lng": 102.821468,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-11-17",
   "country": "中国",
@@ -952,7 +952,7 @@
   "address": "中国四川省新津縣",
   "lat": 30.410222,
   "lng": 103.811345,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-11-17",
   "country": "中国",
@@ -966,7 +966,7 @@
   "address": "中国上海市金山區",
   "lat": 30.741991,
   "lng": 121.341969,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-11-19",
   "country": "中国",
@@ -980,7 +980,7 @@
   "address": "中国黑龍江省哈爾濱市",
   "lat": 45.80377499999999,
   "lng": 126.534967,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-11-21",
   "country": "中国",
@@ -995,7 +995,7 @@
   "address": "中国湖南省懷化市鶴城區",
   "lat": 27.578926,
   "lng": 110.040315,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-11-23",
   "country": "中国",
@@ -1009,7 +1009,7 @@
   "address": "中国北京市房山區青龍湖鎮",
   "lat": 39.776117,
   "lng": 116.039089,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-11-23",
   "country": "中国",
@@ -1023,7 +1023,7 @@
   "address": "中国北京市房山區琉璃河鎮",
   "lat": 39.610653,
   "lng": 116.033218,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-11-23",
   "country": "中国",
@@ -1038,7 +1038,7 @@
   "address": "中国內蒙古自治區包頭市昆都倫區",
   "lat": 40.642034,
   "lng": 109.837776,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-11-26",
   "country": "中国",
@@ -1053,7 +1053,7 @@
   "address": "中国湖北省黃石市陽新縣",
   "lat": 29.830257,
   "lng": 115.215227,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-11-30",
   "country": "中国",
@@ -1066,7 +1066,7 @@
   "address": "中国天津市寧河區",
   "lat": 39.330087,
   "lng": 117.826724,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-11-30",
   "country": "台灣",
@@ -1077,7 +1077,7 @@
   "address": "台灣高雄小港機場",
   "lat": 22.574629,
   "lng": 120.3448068,
-  "playback_type": "modal"
+  "display_type": "warning"
 }, {
   "date": "2018-12-02",
   "country": "中国",
@@ -1092,7 +1092,7 @@
   "address": "中国江西省九江市柴桑區",
   "lat": 29.608431,
   "lng": 115.911323,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-12-03",
   "country": "中国",
@@ -1107,7 +1107,7 @@
   "address": "中国陕西省西安市鄠邑區",
   "lat": 34.109244,
   "lng": 108.604894,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-12-03",
   "country": "中国",
@@ -1121,7 +1121,7 @@
   "address": "中国北京市通州區",
   "lat": 39.909946,
   "lng": 116.656434,
-  "playback_type": "default"
+  "display_type": "default"
 }, {
   "date": "2018-12-03",
   "country": "中国",
@@ -1134,5 +1134,105 @@
   "address": "中国黑龍江省農墾總局北安管理局",
   "lat": 48.239135,
   "lng": 126.481867,
-  "playback_type": "default"
+  "display_type": "default"
+}, {
+  "date": "2018-12-05",
+  "country": "中国",
+  "national_region": "四川省",
+  "city": "瀘州市",
+  "place": "合江縣",
+  "data.total": 165,
+  "data.infected": 68,
+  "data.death": 68,
+  "link": "http://www.moa.gov.cn/gk/yjgl_1/yqfb/201812/t20181205_6164425.htm",
+  "description": "12月5日16时，农业农村部接到中国动物疫病预防控制中心报告，经中国动物卫生与流行病学中心（国家外来动物疫病研究中心）确诊, 四川省泸州市合江县一养殖户、陕西省西安市长安区一养殖户、北京市顺义区一种猪场排查出非洲猪瘟疫情。截至目前，合江县养殖户存栏生猪165头，发病68头，死亡68头。长安区养殖户存栏生猪245头，发病85头，死亡64头。顺义区种猪场存栏生猪2461头，发病53头，死亡26头。",
+  "address": "中国四川省瀘州市合江縣",
+  "lat": 28.811203,
+  "lng": 105.831067,
+  "display_type": "default"
+}, {
+  "date": "2018-12-05",
+  "country": "中国",
+  "national_region": "陝西省",
+  "city": "西安市",
+  "place": "長安區",
+  "data.total": 245,
+  "data.infected": 85,
+  "data.death": 64,
+  "link": "http://www.moa.gov.cn/gk/yjgl_1/yqfb/201812/t20181205_6164425.htm",
+  "description": "12月5日16时，农业农村部接到中国动物疫病预防控制中心报告，经中国动物卫生与流行病学中心（国家外来动物疫病研究中心）确诊, 四川省泸州市合江县一养殖户、陕西省西安市长安区一养殖户、北京市顺义区一种猪场排查出非洲猪瘟疫情。截至目前，合江县养殖户存栏生猪165头，发病68头，死亡68头。长安区养殖户存栏生猪245头，发病85头，死亡64头。顺义区种猪场存栏生猪2461头，发病53头，死亡26头。",
+  "address": "中国陝西省西安市長安區",
+  "lat": 34.158997,
+  "lng": 108.906994,
+  "display_type": "default"
+}, {
+  "date": "2018-12-05",
+  "country": "中国",
+  "national_region": "北京市",
+  "city": "順義區",
+  "data.total": 2461,
+  "data.infected": 53,
+  "data.death": 26,
+  "link": "http://www.moa.gov.cn/gk/yjgl_1/yqfb/201812/t20181205_6164425.htm",
+  "description": "12月5日16时，农业农村部接到中国动物疫病预防控制中心报告，经中国动物卫生与流行病学中心（国家外来动物疫病研究中心）确诊, 四川省泸州市合江县一养殖户、陕西省西安市长安区一养殖户、北京市顺义区一种猪场排查出非洲猪瘟疫情。截至目前，合江县养殖户存栏生猪165头，发病68头，死亡68头。长安区养殖户存栏生猪245头，发病85头，死亡64头。顺义区种猪场存栏生猪2461头，发病53头，死亡26头。",
+  "address": "中国北京市順義區",
+  "lat": 40.130347,
+  "lng": 116.65465,
+  "display_type": "default"
+}, {
+  "date": "2018-12-06",
+  "country": "中国",
+  "national_region": "山西省",
+  "city": "臨汾市",
+  "place": "堯都區",
+  "data.total": 91,
+  "data.infected": 45,
+  "data.death": 35,
+  "link": "http://www.moa.gov.cn/gk/yjgl_1/yqfb/201812/t20181206_6164466.htm",
+  "description": "12月6日10时，农业农村部接到中国动物疫病预防控制中心报告，经中国动物卫生与流行病学中心（国家外来动物疫病研究中心）确诊, 山西省临汾市尧都区一养殖户排查出非洲猪瘟疫情。截至目前，该养殖户存栏生猪91头，发病45头，死亡35头。",
+  "address": "中国山西省臨汾市堯都區",
+  "lat": 36.07884,
+  "lng": 111.579554,
+  "display_type": "default"
+}, {
+  "date": "2018-12-10",
+  "country": "中国",
+  "national_region": "陝西省",
+  "city": "榆林市",
+  "place": "神木市",
+  "data.total": 33,
+  "data.infected": 19,
+  "data.death": 19,
+  "link": "http://www.moa.gov.cn/gk/yjgl_1/yqfb/201812/t20181210_6164598.htm",
+  "description": "12月9日18时，农业农村部接到中国动物疫病预防控制中心报告，经中国动物卫生与流行病学中心（国家外来动物疫病研究中心）确诊,陕西省榆林市神木市一养殖户、贵州省贵阳市白云区一养殖户排查出非洲猪瘟疫情。截至目前，神木市养殖户存栏生猪33头，发病19头，死亡19头。白云区养殖户存栏生猪26头，发病5头，死亡5头。 ",
+  "address": "中国陝西省榆林市神木市",
+  "lat": 38.842497,
+  "lng": 110.498867,
+  "display_type": "default"
+}, {
+  "date": "2018-12-10",
+  "country": "中国",
+  "national_region": "貴州省",
+  "city": "貴陽市",
+  "place": "白雲區",
+  "data.total": 26,
+  "data.infected": 5,
+  "data.death": 5,
+  "link": "http://www.moa.gov.cn/gk/yjgl_1/yqfb/201812/t20181210_6164598.htm",
+  "description": "12月9日18时，农业农村部接到中国动物疫病预防控制中心报告，经中国动物卫生与流行病学中心（国家外来动物疫病研究中心）确诊,陕西省榆林市神木市一养殖户、贵州省贵阳市白云区一养殖户排查出非洲猪瘟疫情。截至目前，神木市养殖户存栏生猪33头，发病19头，死亡19头。白云区养殖户存栏生猪26头，发病5头，死亡5头。 ",
+  "address": "中国貴州省貴陽市白雲區",
+  "lat": 26.678561,
+  "lng": 106.623007,
+  "display_type": "default"
+}, {
+  "date": "2018-12-12",
+  "country": "台灣",
+  "city": "桃園",
+  "place": "桃園國際機場",
+  "link": "https://www.cna.com.tw/news/firstnews/201812120133.aspx",
+  "description": "農委會今天召開「防範非洲豬瘟強化措施及執行情形」記者會，公布首次從旅客攜入意圖闖關的中國肉製品中驗出非洲豬瘟病毒2件，分別是12月1日台灣籍旅客從重慶帶回豬肉臘腸、12月2日中國大陸旅客從哈爾濱攜入的豬肉紅腸，已不分國籍開罰新台幣1.5萬元。",
+  "address": "台灣桃園桃園國際機場",
+  "lat": 25.0796514,
+  "lng": 121.234217,
+  "display_type": "warning"
 }]
