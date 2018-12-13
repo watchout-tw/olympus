@@ -25,19 +25,19 @@
     <div class="tcl-panel"></div>
   </div>
   <div class="prompt-overlay" :class="[config.theme]" v-if="prompt.show">
-    <div class="prompt" :class="prompt.classes">
+    <div class="prompt" :class="config.prompt.classes">
       <div class="primary-secondary-fields font-weight-bold">{{ prompt.primaryField }}&nbsp;{{ prompt.secondaryFields }}</div>
       <div class="message">{{ prompt.description }}</div>
       <div class="dismiss" @click="dismissPrompt"><span>OK</span></div>
     </div>
   </div>
-  <div class="prompt-overlay" :class="[config.theme]" v-if="config.finalPrompt && canShowFinalPrompt && finalPrompt.show">
-    <div class="prompt" :class="prompt.classes">
-      <div class="message paragraphs no-margin tightly-packed" :class="config.finalPrompt.classes" v-html="markdown(config.finalPrompt.message)"></div>
+  <div class="prompt-overlay" :class="[config.theme]" v-if="config.finale && readyForFinale && finale.show">
+    <div class="prompt" :class="config.finale.classes">
+      <div class="message paragraphs no-margin no-margin-paragraphs" :class="config.finale.messageClasses" v-html="markdown(config.finale.message)"></div>
       <div class="share margin-top-bottom-single">
         <share-to-platforms :url="shareURL" />
       </div>
-      <div class="dismiss" @click="finalPrompt.show = false"><span>OK</span></div>
+      <div class="dismiss" @click="finale.show = false"><span>OK</span></div>
     </div>
   </div>
 </div>
@@ -92,12 +92,11 @@ export default {
       timer: null,
       prompt: {
         show: false,
-        classes: ['warning'],
         primaryField: null,
         secondaryFields: null,
         description: null
       },
-      finalPrompt: {
+      finale: {
         show: false
       }
     }
@@ -113,13 +112,13 @@ export default {
     currentDateTime() {
       return this.nextToPlay >= 0 && this.nextToPlay < this.markers.length ? this.nextMarker.date : this.markers[this.markers.length - 1].date
     },
-    canShowFinalPrompt() {
+    readyForFinale() {
       return !this.isPlaying && this.nextToPlay >= this.markers.length && !this.prompt.show
     }
   },
   watch: {
-    canShowFinalPrompt() {
-      this.finalPrompt.show = this.canShowFinalPrompt
+    readyForFinale() {
+      this.finale.show = this.readyForFinale
     }
   },
   mounted() {
