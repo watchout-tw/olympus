@@ -1,15 +1,27 @@
 <template>
 <div class="page read single">
-  {{ id }}
+  <div class="tcl-container without-margin">
+    <div class="tcl-panel">
+      <nuxt-link :to="{ name: 'read' }" class="a-text">返回</nuxt-link>
+    </div>
+    <div class="tcl-panel"></div>
+  </div>
+  <ghost-article :article="doc.content" />
 </div>
 </template>
 
 <script>
+import * as firestore from 'watchout-common-functions/lib/firestore'
+import GhostArticle from 'watchout-common-functions/components/ghost/Article'
 export default {
-  computed: {
-    id() {
-      return this.$route.params.id
+  async asyncData({ params }) {
+    let doc = await firestore.bunko.getDoc(params.id, true)
+    return {
+      doc
     }
+  },
+  components: {
+    GhostArticle
   }
 }
 </script>
