@@ -7,8 +7,8 @@
         <div class="title margin-top-bottom-8"><span class="a-target">{{ doc.title }}</span></div>
       </nuxt-link>
       <div class="authors font-size-small">
-        <a class="author a-text" :href="getParkPersonaProfileURL(getAuthorByContent(doc.type, author).persona)" target="_blank" v-for="(author, index) of doc.authors" :key="index">
-          {{ getAuthorByContent(doc.type, author).name }}
+        <a class="author a-text" :href="getParkPersonaProfileURL(cachedAuthorByContent(doc.type, author).persona)" target="_blank" v-for="(author, index) of doc.authors" :key="index">
+          {{ cachedAuthorByContent(doc.type, author).name }}
         </a>
       </div>
     </div>
@@ -21,11 +21,11 @@
 
 <script>
 import { env } from 'watchout-common-assets'
-import { knowsWatchout } from 'watchout-common-functions/interfaces'
+import { knowsCaching, knowsWatchout } from 'watchout-common-functions/interfaces'
 import * as firestore from 'watchout-common-functions/lib/firestore'
 
 export default {
-  mixins: [knowsWatchout],
+  mixins: [knowsCaching, knowsWatchout],
   async asyncData() {
     let authors = await firestore.bunko.getAuthors()
     let docs = await firestore.bunko.getDocs()
@@ -35,9 +35,6 @@ export default {
     }
   },
   methods: {
-    getAuthorByContent(type, id) {
-      return this.authors ? this.authors.find(author => author.content.id === id) : null
-    },
     getDocImageStyles(doc) {
       let styles = {}
       if(doc.image) {
