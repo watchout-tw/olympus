@@ -7,9 +7,10 @@
         <div class="title margin-top-bottom-8"><span class="a-target">{{ doc.title }}</span></div>
       </nuxt-link>
       <div class="authors font-size-small">
-        <a class="author a-text" :href="getParkPersonaProfileURL(cachedAuthorByContent(doc.type, author).persona)" target="_blank" v-for="(author, index) of doc.authors" :key="index">
-          {{ cachedAuthorByContent(doc.type, author).name }}
-        </a>
+        <template v-for="(author, index) of doc.authors">
+          <a class="author a-text" :href="getParkPersonaProfileURL(cachedAuthorByContent(doc.type, author).persona)" target="_blank">{{ cachedAuthorByContent(doc.type, author).name }}</a>
+          <span v-if="index < doc.authors.length - 1">、</span>
+        </template>
       </div>
     </div>
     <div class="tcl-panel half-width"></div>
