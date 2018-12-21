@@ -8,7 +8,7 @@
       </nuxt-link>
       <div class="authors font-size-small">
         <template v-for="(author, index) of doc.authors">
-          <a class="author a-text" :href="getParkPersonaProfileURL(cachedAuthorByContent(doc.type, author).persona)" target="_blank">{{ cachedAuthorByContent(doc.type, author).name }}</a>
+          <a class="author a-text" :href="getParkPersonaProfileURL(cachedAuthor(author).persona)" target="_blank">{{ cachedAuthor(author).name }}</a>
           <span v-if="index < doc.authors.length - 1">、</span>
         </template>
       </div>
