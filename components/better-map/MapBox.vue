@@ -5,8 +5,9 @@
     <div class="datetime">{{ currentDateTime }}</div>
   </div>
   <div v-if="config.live" class="controls form-field-many-inputs justify-center margin-top-bottom-8">
-    <div class="input button large musou" @click="togglePlay"><span>{{ isPlaying ? '暫停' : (nextMarker ? '繼續播放' : (nextToPlay < 0 ? '播放' : '再次播放')) }}</span></div>
-    <div class="input button" @click="quitPlay" v-if="nextToPlay > -1"><span>結束播放</span></div>
+    <div class="input button large musou" @click="play" v-if="!isPlaying">{{ nextEvent ? '繼續播放' : (nextToPlay < 0 ? '播放' : '再次播放') }}</div>
+    <div class="input button large musou" @click="pause" v-else>暫停</div>
+    <div class="input button" @click="quitPlay" v-if="isPlaying || nextToPlay > 0">結束播放</div>
   </div>
   <div class="note secondary-text font-size-tiny margin-top-4" v-if="nextToPlay < 0">
     <div class="text-align-center" v-if="config.live">點擊「播放」自動播放各地新聞</div>
@@ -87,6 +88,7 @@ export default {
       activeFeatures: [],
       staticDS: null,
       liveDS: null,
+      playbackInterval: 150,
       isPlaying: false,
       nextToPlay: -1,
       timer: null,
@@ -102,18 +104,34 @@ export default {
     }
   },
   computed: {
-    nextMarker() {
-      return this.nextToPlay >= 0 && this.nextToPlay < this.markers.length ? this.markers[this.nextToPlay] : null
+    eventQueue() {
+      let queue = []
+      for(let i = 0; i < this.markers.length; i++) {
+        let marker = this.markers[i]
+        queue.push({
+          type: 'marker',
+          markerIndex: i
+        })
+        if(marker.display_type === 'warning') {
+          queue.push({
+            type: 'warning',
+            markerIndex: i
+          })
+        }
+      }
+      return queue
     },
-    lastMarker() {
-      let index = this.nextToPlay - 1
-      return index >= 0 && index < this.markers.length ? this.markers[index] : null
+    nextEvent() {
+      return this.nextToPlay >= 0 && this.nextToPlay < this.eventQueue.length ? this.eventQueue[this.nextToPlay] : null
+    },
+    nextEventMarker() {
+      return this.nextEvent ? this.markers[this.nextEvent.markerIndex] : null
     },
     currentDateTime() {
-      return this.nextToPlay >= 0 && this.nextToPlay < this.markers.length ? this.nextMarker.date : this.markers[this.markers.length - 1].date
+      return this.nextEventMarker ? this.nextEventMarker.date : this.markers[this.markers.length - 1].date
     },
     readyForFinale() {
-      return !this.isPlaying && this.nextToPlay >= this.markers.length && !this.prompt.show
+      return !this.isPlaying && this.nextToPlay >= this.eventQueue.length && !this.prompt.show
     }
   },
   watch: {
@@ -140,8 +158,7 @@ export default {
       this.activeFeatures = []
       this.isPlaying = false
       this.nextToPlay = -1
-      window.clearInterval(this.timer)
-      this.timer = null
+      this.clearTimer()
     },
     init() {
       const mapbox = require('mapbox-gl')
@@ -232,6 +249,12 @@ export default {
         paint: this.config.markerLayerPaint
       })
     },
+    clearTimer() {
+      if(this.timer) {
+        window.clearTimeout(this.timer)
+      }
+      this.timer = null
+    },
     preparePlay() {
       this.clear()
       if(!this.map.getSource(SRC_LIVE)) {
@@ -250,40 +273,44 @@ export default {
         source: SRC_LIVE,
         paint: this.config.liveLayerPaint
       })
+      this.isPlaying = false
       this.nextToPlay = 0
+      this.clearTimer()
     },
-    togglePlay() {
-      if(this.isPlaying) {
-        // pause
-        window.clearInterval(this.timer)
-        this.isPlaying = false
-      } else {
-        if(this.nextToPlay < 0 || this.nextToPlay >= this.markers.length) {
-          this.preparePlay()
-        }
-        // resume
-        this.isPlaying = true
-        this.timer = window.setInterval(() => {
-          if(this.lastMarker && this.lastMarker.display_type === 'warning') {
-            // show prompt
-            this.prompt.primaryField = this.lastMarker[this.config.feature.primaryField]
-            this.prompt.secondaryFields = this.config.feature.secondaryFields.map(key => this.lastMarker[key]).join('')
-            this.prompt.description = this.lastMarker.description
-            this.togglePlay()
-            this.prompt.show = true
-          } else if(this.nextMarker) {
-            // show next marker
-            let nextFeature = makeFeature(this.nextMarker)
-            this.liveDS.features.push(nextFeature)
-            this.map.getSource(SRC_LIVE).setData(this.liveDS)
-            this.activeFeatures.unshift(nextFeature)
-            this.nextToPlay += 1
-          } else {
-            // stop
-            this.togglePlay()
-          }
-        }, 200)
+    play() {
+      if(this.nextToPlay < 0 || this.nextToPlay >= this.eventQueue.length) {
+        this.preparePlay()
       }
+      if(this.nextEvent.type === 'warning') {
+        // prompt
+        this.isPlaying = false
+        this.prompt.primaryField = this.nextEventMarker[this.config.feature.primaryField]
+        this.prompt.secondaryFields = this.config.feature.secondaryFields.map(key => this.nextEventMarker[key]).join('')
+        this.prompt.description = this.nextEventMarker.description
+        this.prompt.show = true
+
+        // done
+        this.nextToPlay += 1
+      } else if(this.nextEvent.type === 'marker') {
+        // display marker
+        this.isPlaying = true
+        let nextFeature = makeFeature(this.nextEventMarker)
+        this.liveDS.features.push(nextFeature)
+        this.map.getSource(SRC_LIVE).setData(this.liveDS)
+        this.activeFeatures.unshift(nextFeature)
+
+        // done
+        this.nextToPlay += 1
+        if(this.nextEvent) {
+          this.timer = window.setTimeout(this.play, this.playbackInterval)
+        } else {
+          this.isPlaying = false
+        }
+      }
+    },
+    pause() {
+      this.clearTimer()
+      this.isPlaying = false
     },
     quitPlay() {
       this.clear()
@@ -291,10 +318,7 @@ export default {
     },
     dismissPrompt() {
       this.prompt.show = false
-      if(!this.isPlaying && this.nextMarker) {
-        this.nextToPlay += 1
-        this.togglePlay()
-      }
+      this.play()
     }
   },
   components: {
