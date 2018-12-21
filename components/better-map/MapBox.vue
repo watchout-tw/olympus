@@ -26,14 +26,14 @@
     <div class="tcl-panel"></div>
   </div>
   <div class="prompt-overlay" :class="[config.theme]" v-if="prompt.show">
-    <div class="prompt" :class="config.prompt.classes">
+    <div class="prompt with-dismiss" :class="config.prompt.classes">
       <div class="primary-secondary-fields font-weight-bold">{{ prompt.primaryField }}&nbsp;{{ prompt.secondaryFields }}</div>
       <div class="message">{{ prompt.description }}</div>
       <div class="dismiss" @click="dismissPrompt"><span>OK</span></div>
     </div>
   </div>
   <div class="prompt-overlay" :class="[config.theme]" v-if="config.finale && readyForFinale && finale.show">
-    <div class="prompt" :class="config.finale.classes">
+    <div class="prompt with-dismiss" :class="config.finale.classes">
       <div class="message paragraphs no-margin no-margin-paragraphs" :class="config.finale.messageClasses" v-html="markdown(config.finale.message)"></div>
       <div class="share margin-top-bottom-single">
         <share-to-platforms :url="shareURL" />
