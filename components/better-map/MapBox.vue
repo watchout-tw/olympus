@@ -32,7 +32,7 @@
       <div class="dismiss" @click="dismissPrompt"><span>OK</span></div>
     </div>
   </div>
-  <div class="prompt-overlay" :class="[config.theme]" v-if="config.finale && readyForFinale && finale.show">
+  <div class="prompt-overlay" :class="[config.theme]" v-if="config.finale && finale.show">
     <div class="prompt with-dismiss" :class="config.finale.classes">
       <div class="message paragraphs no-margin no-margin-paragraphs" :class="config.finale.messageClasses" v-html="markdown(config.finale.message)"></div>
       <div class="share margin-top-bottom-single">
@@ -119,6 +119,11 @@ export default {
           })
         }
       }
+      if(this.config.finale) {
+        queue.push({
+          type: 'finale'
+        })
+      }
       return queue
     },
     nextEvent() {
@@ -129,14 +134,6 @@ export default {
     },
     currentDateTime() {
       return this.nextEventMarker ? this.nextEventMarker.date : this.markers[this.markers.length - 1].date
-    },
-    readyForFinale() {
-      return !this.isPlaying && this.nextToPlay >= this.eventQueue.length && !this.prompt.show
-    }
-  },
-  watch: {
-    readyForFinale() {
-      this.finale.show = this.readyForFinale
     }
   },
   mounted() {
@@ -281,18 +278,8 @@ export default {
       if(this.nextToPlay < 0 || this.nextToPlay >= this.eventQueue.length) {
         this.preparePlay()
       }
-      if(this.nextEvent.type === 'warning') {
-        // prompt
-        this.isPlaying = false
-        this.prompt.primaryField = this.nextEventMarker[this.config.feature.primaryField]
-        this.prompt.secondaryFields = this.config.feature.secondaryFields.map(key => this.nextEventMarker[key]).join('')
-        this.prompt.description = this.nextEventMarker.description
-        this.prompt.show = true
-
-        // done
-        this.nextToPlay += 1
-      } else if(this.nextEvent.type === 'marker') {
-        // display marker
+      if(this.nextEvent.type === 'marker') {
+        // show marker
         this.isPlaying = true
         let nextFeature = makeFeature(this.nextEventMarker)
         this.liveDS.features.push(nextFeature)
@@ -306,6 +293,22 @@ export default {
         } else {
           this.isPlaying = false
         }
+      } else if(this.nextEvent.type === 'warning') {
+        // show prompt
+        this.isPlaying = false
+        this.prompt.primaryField = this.nextEventMarker[this.config.feature.primaryField]
+        this.prompt.secondaryFields = this.config.feature.secondaryFields.map(key => this.nextEventMarker[key]).join('')
+        this.prompt.description = this.nextEventMarker.description
+        this.prompt.show = true
+
+        // done
+        this.nextToPlay += 1
+      } else if(this.nextEvent.type === 'finale') {
+        // show finale
+        this.isPlaying = false
+        this.finale.show = true
+        // done
+        this.nextToPlay += 1
       }
     },
     pause() {
