@@ -8,7 +8,7 @@
       </nuxt-link>
       <div class="authors font-size-small">
         <template v-for="(author, index) of doc.authors">
-          <a class="author a-text" :href="getParkPersonaProfileURL(cachedAuthor(author).persona)" target="_blank">{{ cachedAuthor(author).name }}</a>
+          <a class="author a-text" :href="getParkPersonaProfileURL(author)" target="_blank">{{ cachedAuthorByPersona(author).name }}</a>
           <span v-if="index < doc.authors.length - 1">、</span>
         </template>
       </div>
@@ -28,10 +28,8 @@ import * as firestore from 'watchout-common-functions/lib/firestore'
 export default {
   mixins: [knowsCaching, knowsWatchout],
   async asyncData() {
-    let authors = await firestore.bunko.getAuthors()
     let docs = await firestore.bunko.getDocs()
     return {
-      authors,
       docs
     }
   },
