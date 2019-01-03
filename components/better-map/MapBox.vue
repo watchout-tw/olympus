@@ -34,7 +34,7 @@
   </div>
   <div class="prompt-overlay" :class="[config.theme]" v-if="config.finale && finale.show">
     <div class="prompt with-dismiss" :class="config.finale.classes">
-      <div class="message paragraphs no-margin no-margin-paragraphs" :class="config.finale.messageClasses" v-html="markdown(config.finale.message)"></div>
+      <div class="message paragraphs no-margin" :class="config.finale.messageClasses" v-html="markdown(config.finale.message)"></div>
       <div class="share margin-top-bottom-single">
         <share-to-platforms :url="shareURL" />
       </div>
