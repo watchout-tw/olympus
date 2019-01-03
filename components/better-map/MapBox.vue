@@ -9,12 +9,12 @@
     <div class="input button large musou" @click="pause" v-else>暫停</div>
     <div class="input button" @click="quitPlay" v-if="isPlaying || nextToPlay > 0">結束播放</div>
   </div>
-  <div class="note secondary-text font-size-tiny margin-top-4" v-if="nextToPlay < 0">
+  <div class="note font-size-tiny margin-top-4" v-if="nextToPlay < 0">
     <div class="text-align-center" v-if="config.live">點擊「播放」自動播放各地新聞</div>
     <div class="d-flex align-items-center justify-content-center"><span>點擊地圖上的圖示</span><span style="display: inline-block; margin: 0 0.125rem; font-size: 1.5rem; line-height: 1;">④</span><span>看當地新聞</span></div>
   </div>
   <div class="active-features tcl-container" v-if="activeFeatures.length > 0">
-    <a class="feature a-block tcl-panel tcl-left-right-margin with-top-bottom-margin with-padding bg-very-very-light-grey" :href="feature.properties.link" target="_blank" v-for="feature of activeFeatures">
+    <a class="feature a-block tcl-panel tcl-left-right-margin with-top-bottom-margin bg-very-very-light-grey" :href="feature.properties.link" target="_blank" v-for="feature of activeFeatures" :style="getFeatureStyles(feature)">
       <div class="primary-secondary-fields"><label>{{ feature.properties[config.feature.primaryField] }}</label>&nbsp;<label>{{ config.feature.secondaryFields.map(key => feature.properties[key]).join('') }}</label></div>
       <div class="title" v-if="feature.properties.title">{{ feature.properties.title }}</div>
       <div class="title-tw" v-if="feature.properties.title_tw">{{ feature.properties.title_tw }}</div>
@@ -112,9 +112,9 @@ export default {
           type: 'marker',
           markerIndex: i
         })
-        if(marker.display_type === 'warning') {
+        if(marker.display_type === 'imminent_danger') {
           queue.push({
-            type: 'warning',
+            type: 'prompt',
             markerIndex: i
           })
         }
@@ -293,7 +293,7 @@ export default {
         } else {
           this.isPlaying = false
         }
-      } else if(this.nextEvent.type === 'warning') {
+      } else if(this.nextEvent.type === 'prompt') {
         // show prompt
         this.isPlaying = false
         this.prompt.primaryField = this.nextEventMarker[this.config.feature.primaryField]
@@ -322,6 +322,15 @@ export default {
     dismissPrompt() {
       this.prompt.show = false
       this.play()
+    },
+    getFeatureStyles(feature) {
+      let colors = this.config.colors
+      let styles = {}
+      let displayType = feature.properties.display_type
+      if(displayType !== 'default' && colors.hasOwnProperty(displayType)) {
+        styles.borderColor = colors[displayType]
+      }
+      return styles
     }
   },
   components: {
@@ -338,8 +347,11 @@ export default {
 @import '~assets/colors';
 @import '~assets/prompt-overlay';
 
-.font-size-2x {
-  font-size: 2rem;
+.font-size-large {
+  font-size: 1.25rem;
+}
+.text-align-default {
+  text-align: left;
 }
 
 .map-box {
@@ -401,6 +413,8 @@ export default {
     margin-bottom: 0.5rem;
     > .feature {
       position: relative;
+      padding: 0.5rem;
+      border: 0.5rem solid transparent;
       @include shadow;
       > .primary-secondary-fields {
         font-size: $font-size-small;
@@ -428,6 +442,9 @@ export default {
         @include underline(1.0);
       }
     }
+  }
+  > .note {
+    color: rgba(white, 0.95);
   }
   &.dark {
     background-color: #333;
