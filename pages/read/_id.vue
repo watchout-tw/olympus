@@ -6,18 +6,21 @@
     </div>
     <div class="tcl-panel"></div>
   </div>
-  <ghost-article :article="doc.content" />
+  <ghost-article :article="doc.content" :data="referenceData" />
 </div>
 </template>
 
 <script>
 import * as firestore from 'watchout-common-functions/lib/firestore'
+import { getReferenceData } from 'watchout-common-functions/lib/bunko'
 import GhostArticle from 'watchout-common-functions/components/ghost/Article'
 export default {
   async asyncData({ params }) {
     let doc = await firestore.bunko.getDoc(params.id, true)
+    let referenceData = await getReferenceData('mobiledoc', JSON.parse(doc.content.mobiledoc))
     return {
-      doc
+      doc,
+      referenceData
     }
   },
   components: {
