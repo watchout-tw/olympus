@@ -22,13 +22,14 @@
 
 <script>
 import { env } from 'watchout-common-assets'
+import { env as localEnv } from '~/config'
 import { knowsCaching, knowsWatchout } from 'watchout-common-functions/interfaces'
 import * as firestore from 'watchout-common-functions/lib/firestore'
 
 export default {
   mixins: [knowsCaching, knowsWatchout],
   async asyncData() {
-    let docs = await firestore.bunko.getDocs()
+    let docs = await firestore.bunko.getDocs(localEnv.channelID)
     return {
       docs
     }

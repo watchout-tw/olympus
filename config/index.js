@@ -66,3 +66,7 @@ export const modules = [
     description: '不靠感覺，靠資料、靠數據的新聞，有時候並不符合期待。你也來試試？'
   }
 ]
+
+export const env = {
+  channelID: 'musou'
+}
