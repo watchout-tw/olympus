@@ -29,7 +29,7 @@ import * as firestore from 'watchout-common-functions/lib/firestore'
 export default {
   mixins: [knowsCaching, knowsWatchout],
   async asyncData() {
-    let docs = await firestore.bunko.getDocs(localEnv.channelID)
+    let docs = await firestore.bunko.getDocs({ pubDest: localEnv.channelID })
     return {
       docs
     }
