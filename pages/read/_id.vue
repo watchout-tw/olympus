@@ -9,7 +9,7 @@
     </div>
     <div class="authors">
       <template v-for="(author, index) of doc.authors">
-        <a class="author a-text" :href="getParkPersonaProfileURL(author)" target="_blank">{{ cachedAuthorByPersona(author).name }}</a>
+        <a class="author a-text" :href="getParkPersonaProfileURL(author)">{{ cachedAuthorByPersona(author).name }}</a>
         <span v-if="index < doc.authors.length - 1">、</span>
       </template>
     </div>
