@@ -4,25 +4,26 @@
     <nuxt-link :to="{ name: 'read' }" class="a-text">返回列表</nuxt-link>
   </div>
   <doc-header :doc="doc" :cachedAuthors="cachedAuthors" />
-  <ghost-article :article="doc.content" :data="referenceData" />
+  <ghost-article :article="doc.content" :footnotes="footnotes" :links="links" :references="references" :data="dataOnReferences" />
 </div>
 </template>
 
 <script>
 import * as firestore from 'watchout-common-functions/lib/firestore'
 import { knowsCaching } from 'watchout-common-functions/interfaces'
-import { getReferenceData } from 'watchout-common-functions/lib/bunko'
+import { mobiledocProcessor } from 'watchout-common-functions/lib/bunko'
 import DocHeader from 'watchout-common-functions/components/comp/DocHeader'
 import GhostArticle from 'watchout-common-functions/components/ghost/Article'
 export default {
   mixins: [knowsCaching],
   async asyncData({ params }) {
     let doc = await firestore.bunko.getDoc(params.id, true)
-    let referenceData = await getReferenceData('mobiledoc', JSON.parse(doc.content.mobiledoc))
-    return {
+    let mobiledoc = JSON.parse(doc.content.mobiledoc)
+    let processed = await mobiledocProcessor(mobiledoc)
+    return Object.assign({
       doc,
-      referenceData
-    }
+      mobiledoc
+    }, processed)
   },
   components: {
     DocHeader,
