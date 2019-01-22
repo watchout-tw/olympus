@@ -1,6 +1,6 @@
 <template>
 <div class="better-map">
-  <div class="section" v-for="section of project.sections">
+  <div class="section" v-for="section of project.sections" :key="section.id">
     <template v-if="section.type === 'pop-quiz'">
       <pop-quiz :data="section" :done.sync="popQuizIsDone" />
     </template>

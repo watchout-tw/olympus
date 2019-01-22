@@ -14,7 +14,7 @@
     <div class="d-flex align-items-center justify-content-center"><span>點擊地圖上的圖示</span><span style="display: inline-block; margin: 0 0.125rem; font-size: 1.5rem; line-height: 1;">④</span><span>看當地新聞</span></div>
   </div>
   <div class="active-features tcl-container" v-if="activeFeatures.length > 0">
-    <a class="feature a-block tcl-panel tcl-left-right-margin with-top-bottom-margin bg-very-very-light-grey" :href="feature.properties.link" target="_blank" v-for="feature of activeFeatures" :style="getFeatureStyles(feature)">
+    <a class="feature a-block tcl-panel tcl-left-right-margin with-top-bottom-margin bg-very-very-light-grey" :href="feature.properties.link" target="_blank" v-for="feature of activeFeatures" :style="getFeatureStyles(feature)" :key="feature">
       <div class="primary-secondary-fields"><label>{{ feature.properties[config.feature.primaryField] }}</label>&nbsp;<label>{{ config.feature.secondaryFields.map(key => feature.properties[key]).join('') }}</label></div>
       <div class="title" v-if="feature.properties.title">{{ feature.properties.title }}</div>
       <div class="title-tw" v-if="feature.properties.title_tw">{{ feature.properties.title_tw }}</div>
@@ -275,6 +275,7 @@ export default {
       this.clearTimer()
     },
     play() {
+      console.log(this.activeFeatures)
       if(this.nextToPlay < 0 || this.nextToPlay >= this.eventQueue.length) {
         this.preparePlay()
       }
