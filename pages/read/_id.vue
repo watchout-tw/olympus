@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import * as info from '~/data/info'
 import * as firestore from 'watchout-common-functions/lib/firestore'
 import { knowsCaching, knowsWatchout } from 'watchout-common-functions/interfaces'
 import { mobiledocProcessor } from 'watchout-common-functions/lib/bunko'
@@ -24,6 +25,15 @@ export default {
       doc,
       mobiledoc
     }, processed)
+  },
+  head() {
+    const pageTitle = this.doc.title + info.SITE_TITLE
+    const pageDescription = this.doc.description
+    const pageImage = this.doc.imageObj ? this.doc.imageObj.permalink : null
+    return {
+      title: pageTitle,
+      meta: this.generateMeta('musou', pageTitle, pageDescription, pageImage)
+    }
   },
   components: {
     DocHeader,
