@@ -1,8 +1,8 @@
 <template>
 <div class="page read single">
-  <div class="controls responsive-typesetting-container margin-top-bottom-single">
+  <!--<div class="controls responsive-typesetting-container margin-top-bottom-single">
     <a :href="getWatchoutDocListURL()" class="a-text">返回列表</a>
-  </div>
+  </div>-->
   <doc-header :doc="doc" :cachedAuthors="cachedAuthors" />
   <ghost-article :article="doc.content" :footnotes="footnotes" :links="links" :references="references" :data="dataOnReferences" />
 </div>
