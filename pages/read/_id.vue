@@ -5,6 +5,10 @@
   </div>-->
   <doc-header :doc="doc" :cachedAuthors="cachedAuthors" />
   <ghost-article :article="doc.content" :footnotes="footnotes" :links="links" :references="references" :data="dataOnReferences" />
+  <div class="share margin-top-bottom-double">
+    <div class="section-title with-underline text-align-center margin-top-bottom-single"><span>認同請分享</span></div>
+    <share-to-platforms :url="shareURL" />
+  </div>
 </div>
 </template>
 
@@ -15,6 +19,8 @@ import { knowsCaching, knowsWatchout } from 'watchout-common-functions/interface
 import { mobiledocProcessor } from 'watchout-common-functions/lib/bunko'
 import DocHeader from 'watchout-common-functions/components/comp/DocHeader'
 import GhostArticle from 'watchout-common-functions/components/ghost/Article'
+import ShareToPlatforms from 'watchout-common-functions/components/ShareToPlatforms'
+
 export default {
   mixins: [knowsCaching, knowsWatchout],
   async asyncData({ params }) {
@@ -35,9 +41,15 @@ export default {
       meta: this.generateMeta('musou', pageTitle, pageDescription, pageImage)
     }
   },
+  computed: {
+    shareURL() {
+      return this.getCompDocURL('musou', this.$route.params.id)
+    }
+  },
   components: {
     DocHeader,
-    GhostArticle
+    GhostArticle,
+    ShareToPlatforms
   }
 }
 </script>
