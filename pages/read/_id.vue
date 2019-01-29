@@ -23,8 +23,12 @@ import ShareToPlatforms from 'watchout-common-functions/components/ShareToPlatfo
 
 export default {
   mixins: [knowsCaching, knowsWatchout],
-  async asyncData({ params }) {
+  async asyncData({ params, error }) {
     let doc = await firestore.bunko.getDoc(params.id, true)
+    if(!doc) { // FIXME: better error handling
+      error({ statusCode: 404 })
+      return
+    }
     let mobiledoc = JSON.parse(doc.content.mobiledoc)
     let processed = await mobiledocProcessor(mobiledoc)
     return Object.assign({
