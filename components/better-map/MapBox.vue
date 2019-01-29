@@ -440,7 +440,7 @@ export default {
         font-size: $font-size-tiny;
         line-height: $line-height-tight;
         color: $color-secondary-text-grey;
-        @include underline(1.0);
+        @include underline($color-watchout, 1.0);
       }
     }
   }
