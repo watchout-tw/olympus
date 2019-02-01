@@ -7,3 +7,21 @@
   </div>
 </div>
 </template>
+
+<script>
+import * as info from '~/data/info'
+import { knowsWatchout } from 'watchout-common-functions/interfaces'
+import defaultCoverImage from '~/static/musou.png'
+
+export default {
+  mixins: [knowsWatchout],
+  head() {
+    const pageTitle = '閱讀' + info.SEPARATOR + info.SITE_TITLE
+    const pageDescription = info.SITE_DESCRIPTION
+    return {
+      title: pageTitle,
+      meta: this.generateMeta('musou', pageTitle, pageDescription, defaultCoverImage)
+    }
+  }
+}
+</script>

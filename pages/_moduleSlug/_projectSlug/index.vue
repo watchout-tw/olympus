@@ -75,7 +75,7 @@ export default {
     }
   },
   head() {
-    let pageTitle = (this.project.beforeTitle ? this.project.beforeTitle : '') + info.L_SINGLE_BRACKET + this.project.title + info.R_SINGLE_BRACKET + info.SITE_TITLE
+    let pageTitle = (this.project.beforeTitle ? this.project.beforeTitle : '') + info.L_SINGLE_BRACKET + this.project.title + info.R_SINGLE_BRACKET + info.SEPARATOR + info.SITE_TITLE
     let pageDescription = this.project.description
     let image = typeof this.project.image === 'string' ? this.project.image : this.project.image.default
     if(typeof this.project.image === 'object') {

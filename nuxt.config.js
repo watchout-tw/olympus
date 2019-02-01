@@ -7,11 +7,11 @@ function getProjectLogo(projectID) {
 }
 module.exports = {
   head: {
-    title: '→沃草←國會無雙',
+    title: '沃草國會無雙',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { name: 'description', content: '沃草《國會無雙》是⋯', hid: 'description' }
+      { name: 'description', content: '沃草國會無雙是⋯', hid: 'description' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: getFavicon('musou') },

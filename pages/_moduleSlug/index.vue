@@ -35,9 +35,9 @@ export default {
     }
   },
   head() {
-    let pageTitle = info.L_SINGLE_BRACKET + this.module.title + info.R_SINGLE_BRACKET + info.SITE_TITLE
+    let pageTitle = this.module.title + info.SEPARATOR + info.SITE_TITLE
     let pageDescription = info.SITE_DESCRIPTION
-    let pageCover = require('~/static/modules/' + this.module.id + '.png')
+    let pageCover = require('~/static/modules/' + this.module.image)
     return {
       title: pageTitle,
       meta: this.generateMeta('musou', pageTitle, pageDescription, pageCover)
