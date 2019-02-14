@@ -47,7 +47,7 @@
     "html-loader": "^0.5.5",
     "node-sass": "^4.7.2",
     "sass-loader": "^6.0.6",
-    "url-loader": "^0.5.8",
+    "url-loader": "^1.1.2",
     "vue-loader": "^12.1.0",
     "vue-style-loader": "^3.0.1",
     "watchout-common-assets": "file:../watchout-common-assets",
