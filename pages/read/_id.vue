@@ -26,7 +26,7 @@ export default {
   mixins: [knowsCaching, knowsWatchout],
   async asyncData({ params, error }) {
     let doc = await firestore.bunko.getDoc(params.id, true)
-    if(!doc) { // FIXME: better error handling
+    if(!(doc && doc.publishedTo === info.CHANNEL_ID)) { // FIXME: better error handling
       error({ statusCode: 404 })
       return
     }
