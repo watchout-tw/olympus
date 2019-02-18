@@ -20,7 +20,7 @@ import { mobiledocProcessor } from 'watchout-common-functions/lib/bunko'
 import DocHeader from 'watchout-common-functions/components/comp/DocHeader'
 import GhostArticle from 'watchout-common-functions/components/ghost/Article'
 import ShareToPlatforms from 'watchout-common-functions/components/ShareToPlatforms'
-import defaultCoverImage from '~/static/musou.png'
+import defaultCoverImage from 'watchout-common-assets/images/default-cover-images/musou-2-1.jpg'
 
 export default {
   mixins: [knowsCaching, knowsWatchout],

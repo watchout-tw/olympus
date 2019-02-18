@@ -11,7 +11,7 @@
 <script>
 import * as info from '~/data/info'
 import { knowsWatchout } from 'watchout-common-functions/interfaces'
-import defaultCoverImage from '~/static/musou.png'
+import defaultCoverImage from 'watchout-common-assets/images/default-cover-images/musou-2-1.jpg'
 
 export default {
   mixins: [knowsWatchout],

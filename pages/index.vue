@@ -20,7 +20,7 @@ import { knowsWatchout } from 'watchout-common-functions/interfaces'
 import { projects, modules } from '~/config'
 import Welcome from 'watchout-common-functions/components/Welcome'
 import ProjectSignature from '~/components/ProjectSignature'
-import defaultCoverImage from '~/static/musou.png'
+import defaultCoverImage from 'watchout-common-assets/images/default-cover-images/musou-2-1.jpg'
 
 export default {
   mixins: [knowsWatchout],
