@@ -40,7 +40,6 @@ export default {
       .then(results => {
         if(window.plotdb) {
           window.plotdb.load(this.project.chart.id, chart => {
-            console.log(chart)
             chart.attach(document.getElementById(this.mountingPoint), {})
             this.isLoading = false
           })

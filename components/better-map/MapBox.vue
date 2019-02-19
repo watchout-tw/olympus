@@ -222,14 +222,14 @@ export default {
       this.map.addLayer({
         id: LAYER_CL,
         type: 'circle',
-        source: 'markers',
+        source: SRC_STATIC,
         filter: ['has', 'point_count'],
         paint: this.config.clusterLayerPaint
       })
       this.map.addLayer({
         id: LAYER_CL_COUNT,
         type: 'symbol',
-        source: 'markers',
+        source: SRC_STATIC,
         filter: ['has', 'point_count'],
         layout: {
           'text-field': '{point_count_abbreviated}',
@@ -241,7 +241,7 @@ export default {
       this.map.addLayer({
         id: LAYER_MARKERS,
         type: 'circle',
-        source: 'markers',
+        source: SRC_STATIC,
         filter: ['!', ['has', 'point_count']],
         paint: this.config.markerLayerPaint
       })
@@ -275,7 +275,6 @@ export default {
       this.clearTimer()
     },
     play() {
-      console.log(this.activeFeatures)
       if(this.nextToPlay < 0 || this.nextToPlay >= this.eventQueue.length) {
         this.preparePlay()
       }
