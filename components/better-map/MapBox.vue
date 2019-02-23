@@ -126,6 +126,7 @@ export default {
       let queue = []
       for(let i = 0; i < this.markers.length; i++) {
         let marker = this.markers[i]
+        // only shows prompt, no marker
         if(marker.display_type === 'introduction') {
           queue.push({
             type: 'prompt',
