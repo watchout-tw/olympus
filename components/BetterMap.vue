@@ -69,7 +69,6 @@ import Tally from '~/components/map/Tally'
 import Regions from '~/components/map/Regions'
 import World from '~/components/map/World'
 import MapBox from '~/components/better-map/MapBox'
-import MapBoxFly from '~/components/better-map/MapBoxFly'
 import ShareToPlatforms from 'watchout-common-functions/components/ShareToPlatforms'
 
 export default {
@@ -117,7 +116,6 @@ export default {
     Regions,
     World,
     MapBox,
-    MapBoxFly,
     ShareToPlatforms
   }
 }
