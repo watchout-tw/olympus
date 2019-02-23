@@ -22,7 +22,7 @@
         <world :rows="data" :debug="debug" />
       </template>
       <template v-else-if="section.type === 'map-box'">
-        <map-box :markers="data" :config="section.config" :shareURL="shareURL" />
+        <map-box :markers="data" :config="section.config" :shareURL="shareURL" :stepwise="isStepwise" />
       </template>
       <div v-else-if="section.type === 'title-description'" class="tcl-container">
         <div class="tcl-panel tcl-left-right-margin">
@@ -69,6 +69,7 @@ import Tally from '~/components/map/Tally'
 import Regions from '~/components/map/Regions'
 import World from '~/components/map/World'
 import MapBox from '~/components/better-map/MapBox'
+import MapBoxFly from '~/components/better-map/MapBoxFly'
 import ShareToPlatforms from 'watchout-common-functions/components/ShareToPlatforms'
 
 export default {
@@ -105,6 +106,9 @@ export default {
     },
     showSectionAfterPopQuiz() {
       return !this.hasPopQuiz || (this.hasPopQuiz && this.popQuizIsDone)
+    },
+    isStepwise() {
+      return this.project.module === 'map' && this.project.stepwise
     }
   },
   components: {
@@ -113,6 +117,7 @@ export default {
     Regions,
     World,
     MapBox,
+    MapBoxFly,
     ShareToPlatforms
   }
 }

@@ -9,6 +9,7 @@
   align-items: center;
   background: $color-modal-overlay-white;
   z-index: $z-modal;
+  overflow: scroll;
 
   > .prompt {
     max-width: 30rem;
@@ -35,6 +36,9 @@
       > span {
         border-bottom: 2px black solid;
       }
+    }
+    > .image {
+      max-width: 100%;
     }
   }
 
