@@ -168,7 +168,7 @@ export default {
       return this.prevEvent ? this.markers[this.prevEvent.markerIndex] : null
     },
     currentDateTime() {
-      return this.nextEvent ? this.markers[this.nextEvent.markerIndex - 1].date : this.markers[this.markers.length - 1].date
+      return this.nextEvent && this.nextEvent.markerIndex ? this.markers[this.nextEvent.markerIndex - 1].date : this.markers[this.markers.length - 1].date
     }
   },
   mounted() {
@@ -385,7 +385,7 @@ export default {
         this.map.getSource(SRC_FLY).setData(this.liveDS)
         this.map.flyTo({
           center: [this.nextEventMarker.lng, this.nextEventMarker.lat],
-          zoom: this.nextEventMarker.zoom ? this.nextEventMarker.zoom : 12,
+          zoom: this.nextEventMarker.zoom ? this.nextEventMarker.zoom : 15,
           speed: 1.2
         })
         this.activeFeatures.unshift(nextFeature)
