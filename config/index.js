@@ -11,8 +11,10 @@ import projTsaiSecondYear from '~/config/draw/tsai-second-year'
 import projKPV from '~/config/quiz/kpv'
 import proj181124 from '~/config/map/181124'
 import projSwineFlu from '~/config/map/swine-flu'
+import proj228 from '~/config/map/228'
 
 export const projects = [
+  proj228,
   projSwineFlu,
   proj181124,
   projKPV,
