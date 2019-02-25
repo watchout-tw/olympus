@@ -18,6 +18,7 @@ export default {
       id: 'map-box',
       type: 'map-box',
       config: {
+        mode: 'play',
         colors,
         theme: 'dark',
         center: { lat: 36.067108, lng: 120.382609 },

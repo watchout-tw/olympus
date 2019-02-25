@@ -12,6 +12,7 @@ export default {
     {
       id: 'map-box',
       type: 'map-box',
+      zoom: 1,
       config: {
         clusterLayerPaint: {
           'circle-color': [

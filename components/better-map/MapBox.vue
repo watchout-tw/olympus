@@ -4,14 +4,14 @@
     <div class="map content" id="map"></div>
     <div class="datetime">{{ currentDateTime }}</div>
   </div>
-  <div v-if="config.live" class="controls form-field-many-inputs justify-center margin-top-bottom-8">
-    <div class="input button large musou" @click="play" v-if="!isPlaying">{{ nextEvent ? '繼續播放' : (hasNotStarted ? '播放' : '再次播放') }}</div>
+  <div v-if="config.mode === 'play'" class="controls form-field-many-inputs justify-center margin-top-bottom-8">
+    <div class="input button large musou" @click="play" v-if="!isPlaying">{{ playButton }}</div>
     <div class="input button large musou" @click="pause" v-else>暫停</div>
     <div class="input button" @click="quitPlay" v-if="isPlaying || nextToPlay > 0">結束播放</div>
   </div>
-  <div v-if="config.story" class="controls form-field-many-inputs justify-center margin-top-bottom-8">
-    <div class="input button large musou" @click="flyBack" v-if="isPlaying && nextToPlay > 1">上一站</div>
-    <div class="input button large musou" @click="fly">{{ isPlaying ? '下一站' : (hasNotStarted ? '回到1947年的台灣' : '重玩一次') }}</div>
+  <div v-if="config.mode === 'fly'" class="controls form-field-many-inputs justify-center margin-top-bottom-8">
+    <div class="input button" @click="flyBack" v-if="isPlaying && nextToPlay > 1">{{ prevStepButton }}</div>
+    <div class="input button large musou" @click="fly">{{ nextStepButton }}</div>
   </div>
   <div class="note font-size-tiny margin-top-4" v-if="config.live && nextToPlay < 0">
     <div class="text-align-center" v-if="config.live">點擊「播放」自動播放各地新聞</div>
@@ -85,6 +85,9 @@ function makeFeature(marker) {
     }
   }
 }
+
+const defaultPrevStepButton = '上一步'
+const defaultNextStepButton = '下一步'
 
 export default {
   mixins: [knowsMarkdown],
@@ -170,6 +173,15 @@ export default {
     },
     currentDateTime() {
       return this.nextEvent && this.nextEvent.markerIndex ? this.markers[this.nextEvent.markerIndex - 1].date : this.markers[this.markers.length - 1].date
+    },
+    playButton() {
+      return this.nextEvent ? '繼續播放' : (this.hasNotStarted ? '播放' : '再次播放')
+    },
+    prevStepButton() {
+      return Array.isArray(this.activeFeatures) && this.activeFeatures.length > 0 ? (this.activeFeatures[0].properties.prev_step_button ? this.activeFeatures[0].properties.prev_step_button : defaultPrevStepButton) : defaultPrevStepButton
+    },
+    nextStepButton() {
+      return Array.isArray(this.activeFeatures) && this.activeFeatures.length > 0 ? (this.activeFeatures[0].properties.next_step_button ? this.activeFeatures[0].properties.next_step_button : defaultNextStepButton) : defaultNextStepButton
     }
   },
   mounted() {
@@ -215,11 +227,11 @@ export default {
           this.doc = response
         })
       } else {
-        this.map.on('load', this.setClusterMarkers)
-        this.setCluster()
+        this.map.on('load', this.drawStatic)
+        this.setClusterEventHandler()
       }
     },
-    setClusterMarkers() {
+    drawStatic() {
       if(!this.map.getSource(SRC_STATIC)) {
         this.staticDS = {
           type: 'FeatureCollection',
@@ -260,7 +272,7 @@ export default {
         paint: this.config.markerLayerPaint
       })
     },
-    setCluster() {
+    setClusterEventHandler() {
       this.map.on('click', 'clusters', (e) => {
         let cluster = this.map.queryRenderedFeatures(e.point, { layers: ['clusters'] })[0]
         let clusterCoordinates = cluster.geometry.coordinates
@@ -356,7 +368,7 @@ export default {
         this.nextToPlay += 1
       }
     },
-    setFlyMarkers() {
+    prepareFly() {
       this.clear()
       if(!this.map.getSource(SRC_FLY)) {
         this.liveDS = {
@@ -377,7 +389,7 @@ export default {
     },
     fly() {
       if(this.nextToPlay < 0 || this.nextToPlay >= this.eventQueue.length) {
-        this.setFlyMarkers()
+        this.prepareFly()
       }
       this.imageIsLoaded = false
       this.isPlaying = true
@@ -539,7 +551,6 @@ export default {
       }
       > .title {
         font-family: 'Gentium Book Basic', Times, serif;
-        font-style: italic;
         font-weight: bold;
         font-size: 1.5rem;
         line-height: $line-height-tight;
@@ -550,7 +561,7 @@ export default {
       }
       > .image {
         max-width: 100%;
-        margin: 0.25rem 0;
+        margin: 0.25rem auto;
       }
       > .more {
         position: absolute;

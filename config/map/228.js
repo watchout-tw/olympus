@@ -20,6 +20,7 @@ export default {
       id: 'map-box',
       type: 'map-box',
       config: {
+        mode: 'fly',
         colors,
         theme: 'dark',
         center: { lat: 23.797815, lng: 121.000736 },
@@ -29,6 +30,7 @@ export default {
           primaryField: 'date',
           secondaryFields: ['address']
         },
+        start: '回到1947的台灣⋯',
         prompt: {
           classes: ['warning']
         },
