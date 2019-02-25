@@ -7,9 +7,9 @@ let colors = {
 export default {
   id: '228-72',
   module: 'map',
-  title: '二二八互動地圖',
+  title: '重返二二八起點',
   beforeTitle: '互動地圖',
-  description: 'tbd',
+  description: '1947年發生的「二二八事件」已經過了72年，即便是當年六歲的孩童，現在都已經高齡78歲，超過台灣男性平均壽命。那麼誰還能留下來，訴說那段時間的故事呢？《沃草》結合史料和當代的地圖資料，試著帶你去體驗當年的時代氛圍，重返二二八的起點。',
   image: 'map/swine-flu.jpg',
   date: '2018-12-13 21:00:00',
   breaking: true,
