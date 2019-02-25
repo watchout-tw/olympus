@@ -13,8 +13,8 @@
     <div class="input button" @click="flyBack" v-if="isPlaying && nextToPlay > 1">{{ prevStepButton }}</div>
     <div class="input button large musou" @click="fly">{{ nextStepButton }}</div>
   </div>
-  <div class="note font-size-tiny margin-top-4" v-if="config.live && nextToPlay < 0">
-    <div class="text-align-center" v-if="config.live">點擊「播放」自動播放各地新聞</div>
+  <div class="note font-size-tiny margin-top-4" v-if="config.mode === 'play' && hasNotStarted">
+    <div class="text-align-center" v-if="config.mode === 'play'">點擊「播放」自動播放各地新聞</div>
     <div class="d-flex align-items-center justify-content-center"><span>點擊地圖上的圖示</span><span style="display: inline-block; margin: 0 0.125rem; font-size: 1.5rem; line-height: 1;">④</span><span>看當地新聞</span></div>
   </div>
   <div class="active-features tcl-container" v-if="activeFeatures.length > 0">
@@ -22,7 +22,8 @@
       <div class="primary-secondary-fields" v-if="feature.properties[config.feature.primaryField]"><label>{{ feature.properties[config.feature.primaryField] }}</label>&nbsp;<label>{{ config.feature.secondaryFields.map(key => feature.properties[key]).join('') }}</label></div>
       <div class="title" v-if="feature.properties.title">{{ feature.properties.title }}</div>
       <img class="image" v-if="feature.properties.image" v-show="imageIsLoaded" @load="imageIsLoaded = true" :src="feature.properties.image">
-      <div class="description secondary-text font-size-small margin-top-bottom-4" v-if="feature.properties.image_caption">{{ feature.properties.image_caption }}</div>
+      <div class="image-caption secondary-text font-size-small" v-if="feature.properties.image_caption">{{ feature.properties.image_caption }}</div>
+      <div class="image-license secondary-text font-size-tiny" v-if="feature.properties.image_license">{{ feature.properties.image_license }}</div>
       <audio controls v-if="feature.properties.audio"><source :src="feature.properties.audio" type="audio/mp3">哭哭，瀏覽器不支援播放音檔 QQ</audio>
       <div class="title-tw" v-if="feature.properties.title_tw">{{ feature.properties.title_tw }}</div>
       <div class="description secondary-text font-size-small margin-top-bottom-4">{{ feature.properties.description }}</div>
@@ -177,10 +178,20 @@ export default {
       return this.nextEvent ? '繼續播放' : (this.hasNotStarted ? '播放' : '再次播放')
     },
     prevStepButton() {
-      return Array.isArray(this.activeFeatures) && this.activeFeatures.length > 0 ? (this.activeFeatures[0].properties.prev_step_button ? this.activeFeatures[0].properties.prev_step_button : defaultPrevStepButton) : defaultPrevStepButton
+      let text = defaultPrevStepButton
+      if(Array.isArray(this.activeFeatures) && this.activeFeatures.length > 0 && this.activeFeatures[0].properties.prev_step_button) {
+        text = this.activeFeatures[0].properties.prev_step_button
+      }
+      return text
     },
     nextStepButton() {
-      return Array.isArray(this.activeFeatures) && this.activeFeatures.length > 0 ? (this.activeFeatures[0].properties.next_step_button ? this.activeFeatures[0].properties.next_step_button : defaultNextStepButton) : defaultNextStepButton
+      let text = defaultNextStepButton
+      if(this.hasNotStarted && this.config.start) {
+        text = this.config.start
+      } else if(Array.isArray(this.activeFeatures) && this.activeFeatures.length > 0 && this.activeFeatures[0].properties.next_step_button) {
+        text = this.activeFeatures[0].properties.next_step_button
+      }
+      return text
     }
   },
   mounted() {
@@ -331,7 +342,7 @@ export default {
       this.clearTimer()
     },
     play() {
-      if(this.nextToPlay < 0 || this.nextToPlay >= this.eventQueue.length) {
+      if(this.hasNotStarted || this.nextToPlay >= this.eventQueue.length) {
         this.preparePlay()
       }
       if(this.nextEvent.type === 'marker') {
@@ -384,10 +395,11 @@ export default {
         type: 'circle',
         source: SRC_FLY
       })
-      this.nextToPlay++
+      this.isPlaying = false
+      this.nextToPlay = 0
     },
     fly() {
-      if(this.nextToPlay < 0 || this.nextToPlay >= this.eventQueue.length) {
+      if(this.hasNotStarted || this.nextToPlay >= this.eventQueue.length) {
         this.prepareFly()
       }
       this.imageIsLoaded = false
@@ -414,10 +426,10 @@ export default {
         this.isPlaying = false
         this.finale.show = true
       }
-      this.nextToPlay++
+      this.nextToPlay += 1
     },
     flyBack() {
-      this.nextToPlay--
+      this.nextToPlay -= 1
       if (this.prevEvent.type === 'marker') {
         this.liveDS.features.splice(this.liveDS.features.length - 1, 1)
         this.map.getSource(SRC_FLY).setData(this.liveDS)
