@@ -97,8 +97,7 @@ export default {
     config: {
       type: Object,
       default: {}
-    },
-    stepwise: Boolean
+    }
   },
   data() {
     return {
@@ -222,7 +221,7 @@ export default {
       // https://www.mapbox.com/mapbox-gl-js/example/add-image/
       // https://www.mapbox.com/mapbox-gl-js/example/popup-on-click/
       // https://www.mapbox.com/mapbox-gl-js/example/cluster/
-      if (this.stepwise) {
+      if(this.config.finale.type === 'doc') {
         firestore.bunko.getDoc(this.config.finale.id, true).then(response => {
           this.doc = response
         })
@@ -444,12 +443,15 @@ export default {
     },
     quitPlay() {
       this.clear()
-      this.draw()
+      this.drawStatic()
     },
     dismissPrompt() {
       this.prompt.show = false
-      if (this.stepwise) this.fly()
-      else this.play()
+      if(this.config.mode === 'fly') {
+        this.fly()
+      } else if(this.config.mode === 'play') {
+        this.play()
+      }
     },
     getFeatureStyles(feature) {
       let colors = this.config.colors

@@ -13,7 +13,6 @@ export default {
   image: 'map/swine-flu.jpg',
   date: '2018-12-13 21:00:00',
   breaking: true,
-  stepwise: true,
   dataSource: '2019-228',
   sections: [
     {

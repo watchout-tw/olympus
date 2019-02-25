@@ -78,6 +78,7 @@ export default {
           classes: ['warning']
         },
         finale: {
+          type: 'default',
           classes: ['warning'],
           message: '漂流到金門海灘上的死豬，已被驗出有非洲豬瘟病毒。在中國已失控的非洲豬瘟，如果真的入侵台灣，將重創國內上千億的豬肉產業。\n\n請分享《中國有豬瘟》，讓更多人知道疫情的嚴重。',
           messageClasses: ['font-size-large']

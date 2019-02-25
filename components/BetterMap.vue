@@ -22,7 +22,7 @@
         <world :rows="data" :debug="debug" />
       </template>
       <template v-else-if="section.type === 'map-box'">
-        <map-box :markers="data" :config="section.config" :shareURL="shareURL" :stepwise="isStepwise" />
+        <map-box :markers="data" :config="section.config" :shareURL="shareURL" />
       </template>
       <div v-else-if="section.type === 'title-description'" class="tcl-container">
         <div class="tcl-panel tcl-left-right-margin">
@@ -105,9 +105,6 @@ export default {
     },
     showSectionAfterPopQuiz() {
       return !this.hasPopQuiz || (this.hasPopQuiz && this.popQuizIsDone)
-    },
-    isStepwise() {
-      return this.project.module === 'map' && this.project.stepwise
     }
   },
   components: {
