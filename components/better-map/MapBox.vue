@@ -20,10 +20,10 @@
   <div class="active-features tcl-container" v-if="activeFeatures.length > 0">
     <a class="feature a-block tcl-panel tcl-left-right-margin with-top-bottom-margin bg-very-very-light-grey" :href="feature.properties.link" target="_blank" v-for="(feature, index) of activeFeatures" :style="getFeatureStyles(feature)" :key="`active-feature-${index}`">
       <div class="primary-secondary-fields" v-if="feature.properties[config.feature.primaryField]"><label>{{ feature.properties[config.feature.primaryField] }}</label>&nbsp;<label>{{ config.feature.secondaryFields.map(key => feature.properties[key]).join('') }}</label></div>
+      <div class="title" v-if="feature.properties.title">{{ feature.properties.title }}</div>
       <img class="image" v-if="feature.properties.image" v-show="imageIsLoaded" @load="imageIsLoaded = true" :src="feature.properties.image">
       <div class="description secondary-text font-size-small margin-top-bottom-4" v-if="feature.properties.image_caption">{{ feature.properties.image_caption }}</div>
       <audio controls v-if="feature.properties.audio"><source :src="feature.properties.audio" type="audio/mp3">哭哭，瀏覽器不支援播放音檔 QQ</audio>
-      <div class="title" v-if="feature.properties.title">{{ feature.properties.title }}</div>
       <div class="title-tw" v-if="feature.properties.title_tw">{{ feature.properties.title_tw }}</div>
       <div class="description secondary-text font-size-small margin-top-bottom-4">{{ feature.properties.description }}</div>
       <label class="more" v-if="feature.properties.link">閱讀更多</label>
