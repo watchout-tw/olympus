@@ -49,7 +49,7 @@ export default {
   authorship: [
     {
       job: '資料蒐集',
-      people: ['洪國鈞']
+      people: ['洪國鈞', '薛翰駿']
     },
     {
       job: '設計開發',
