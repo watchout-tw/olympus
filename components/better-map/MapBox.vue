@@ -19,14 +19,16 @@
   </div>
   <div class="active-features tcl-container" v-if="activeFeatures.length > 0">
     <a class="feature a-block tcl-panel tcl-left-right-margin with-top-bottom-margin bg-very-very-light-grey" :href="feature.properties.link" target="_blank" v-for="(feature, index) of activeFeatures" :style="getFeatureStyles(feature)" :key="`active-feature-${index}`">
-      <div class="primary-secondary-fields" v-if="feature.properties[config.feature.primaryField]"><label>{{ feature.properties[config.feature.primaryField] }}</label>&nbsp;<label>{{ config.feature.secondaryFields.map(key => feature.properties[key]).join('') }}</label></div>
+      <div class="primary-secondary-fields" v-if="feature.properties[config.feature.primaryField]"><label>{{ feature.properties[config.feature.primaryField] }}</label>&nbsp;<label>{{ config.feature.secondaryFields ? config.feature.secondaryFields.map(key => feature.properties[key]).join('') : '' }}</label></div>
       <div class="title" v-if="feature.properties.title">{{ feature.properties.title }}</div>
-      <img class="image" v-if="feature.properties.image" v-show="imageIsLoaded" @load="imageIsLoaded = true" :src="feature.properties.image">
-      <div class="image-caption secondary-text font-size-small" v-if="feature.properties.image_caption">{{ feature.properties.image_caption }}</div>
+      <div class="image-container margin-top-bottom-4" v-if="feature.properties.image">
+        <img class="image" v-show="imageIsLoaded" @load="imageIsLoaded = true" :src="feature.properties.image">
+      </div>
+      <div class="image-caption secondary-text font-size-tiny" v-if="feature.properties.image_caption">{{ feature.properties.image_caption }}</div>
       <div class="image-license secondary-text font-size-tiny" v-if="feature.properties.image_license">{{ feature.properties.image_license }}</div>
-      <audio controls v-if="feature.properties.audio"><source :src="feature.properties.audio" type="audio/mp3">哭哭，瀏覽器不支援播放音檔 QQ</audio>
+      <audio controls class="audio" v-if="feature.properties.audio"><source :src="feature.properties.audio" type="audio/mp3">你的瀏覽器無法播放聲音檔</audio>
       <div class="title-tw" v-if="feature.properties.title_tw">{{ feature.properties.title_tw }}</div>
-      <div class="description secondary-text font-size-small margin-top-bottom-4">{{ feature.properties.description }}</div>
+      <div class="description secondary-text font-size-small margin-top-bottom-8">{{ feature.properties.description }}</div>
       <label class="more" v-if="feature.properties.link">閱讀更多</label>
     </a>
     <div class="tcl-panel"></div>
@@ -186,10 +188,14 @@ export default {
     },
     nextStepButton() {
       let text = defaultNextStepButton
-      if(this.hasNotStarted && this.config.start) {
-        text = this.config.start
-      } else if(Array.isArray(this.activeFeatures) && this.activeFeatures.length > 0 && this.activeFeatures[0].properties.next_step_button) {
-        text = this.activeFeatures[0].properties.next_step_button
+      if(this.nextEvent) {
+        if(Array.isArray(this.activeFeatures) && this.activeFeatures.length > 0 && this.activeFeatures[0].properties.next_step_button) {
+          text = this.activeFeatures[0].properties.next_step_button
+        }
+      } else if(this.hasNotStarted) {
+        text = this.config.start ? this.config.start : '開始'
+      } else {
+        text = this.config.restart ? this.config.restart : '從頭開始'
       }
       return text
     }
@@ -402,9 +408,10 @@ export default {
       if(this.hasNotStarted || this.nextToPlay >= this.eventQueue.length) {
         this.prepareFly()
       }
-      this.imageIsLoaded = false
-      this.isPlaying = true
-      if (this.nextEvent.type === 'marker') {
+      if(this.nextEvent.type === 'marker') {
+        this.isPlaying = true
+        this.imageIsLoaded = false
+
         let nextFeature = makeFeature(this.nextEventMarker)
         this.liveDS.features.push(nextFeature)
         this.map.getSource(SRC_FLY).setData(this.liveDS)
@@ -414,23 +421,28 @@ export default {
           speed: 1.2
         })
         this.activeFeatures.unshift(nextFeature)
-      } else if (this.nextEvent.type === 'prompt') {
-        // show prompt
+      } else if(this.nextEvent.type === 'prompt') {
         this.isPlaying = false
+        this.imageIsLoaded = true
+
+        // show prompt
         this.prompt.primaryField = this.nextEventMarker[this.config.feature.primaryField]
         this.prompt.secondaryFields = this.config.feature.secondaryFields.map(key => this.nextEventMarker[key]).join('')
         this.prompt.description = this.nextEventMarker.description
         this.prompt.image = this.nextEventMarker.image
         this.prompt.show = true
-      } else if (this.nextEvent.type === 'finale') {
+      } else if(this.nextEvent.type === 'finale') {
         this.isPlaying = false
+        this.imageIsLoaded = true
+
+        // show finale
         this.finale.show = true
       }
       this.nextToPlay += 1
     },
     flyBack() {
       this.nextToPlay -= 1
-      if (this.prevEvent.type === 'marker') {
+      if(this.prevEvent.type === 'marker') {
         this.liveDS.features.splice(this.liveDS.features.length - 1, 1)
         this.map.getSource(SRC_FLY).setData(this.liveDS)
         this.map.flyTo({
@@ -439,7 +451,7 @@ export default {
           speed: 1.2
         })
         this.activeFeatures.splice(0, 1)
-      } else if (this.prevEvent.type === 'prompt') {
+      } else if(this.prevEvent.type === 'prompt') {
         // show prompt
         this.isPlaying = false
         this.prompt.primaryField = this.prevEventMarker[this.config.feature.primaryField]
@@ -573,9 +585,11 @@ export default {
       > .title-tw {
         font-weight: bold;
       }
-      > .image {
-        max-width: 100%;
-        margin: 0.25rem auto;
+      > .image-container {
+        background-color: $color-generic-grey;
+      }
+      > .audio {
+        width: 100%;
       }
       > .more {
         position: absolute;

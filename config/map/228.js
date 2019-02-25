@@ -26,10 +26,10 @@ export default {
         zoom: 5, // TODO: mobile zoom & desktop zoom?
         story: true,
         feature: {
-          primaryField: 'date',
-          secondaryFields: ['address']
+          primaryField: 'date'
         },
         start: '回到1947的台灣⋯',
+        restart: '再次回到1947的台灣⋯',
         prompt: {
           classes: ['warning']
         },
