@@ -5,7 +5,7 @@ let colors = {
 }
 
 export default {
-  id: '228',
+  id: '228-72',
   module: 'map',
   title: '二二八互動地圖',
   beforeTitle: '互動地圖',
