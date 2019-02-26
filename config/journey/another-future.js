@@ -6,7 +6,7 @@ const defaultDarkTextColor = '#333'
 export default {
   id: 'another-future',
   module: 'journey',
-  beforeTitle: '《二二八日記》',
+  beforeTitle: '二二八日記',
   title: '你不知道你失去了什麼',
   image: 'journey/another-future.jpg',
   date: '2018-02-27 20:00:00',
