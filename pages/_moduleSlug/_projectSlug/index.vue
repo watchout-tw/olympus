@@ -50,6 +50,7 @@
 <script>
 import * as info from '~/data/info'
 import { projects, modules } from '~/config'
+import * as firestore from 'watchout-common-functions/lib/firestore'
 import { knowsMarkdown, knowsWatchout } from 'watchout-common-functions/interfaces'
 import Swipe from '~/components/Swipe'
 import Draw from '~/components/Draw'
@@ -69,16 +70,33 @@ export default {
     let module = modules.find(module => module.id === params.moduleSlug)
     let project = projects.find(project => project.id === params.projectSlug)
 
+    let projectSlug = params.moduleSlug + '/' + params.projectSlug
+    let fsProject = await firestore.bunko.getProjectBySlug(projectSlug)
+
     return {
       module,
-      project
+      project,
+      fsProject
     }
   },
   head() {
-    let pageTitle = (this.project.beforeTitle ? this.project.beforeTitle : '') + info.L_SINGLE_BRACKET + this.project.title + info.R_SINGLE_BRACKET + info.SEPARATOR + info.SITE_TITLE
-    let pageDescription = this.project.description
-    let image = typeof this.project.image === 'string' ? this.project.image : this.project.image.default
+    let pageTitle = null
+    let pageDescription = null
+    let image = null
+    let pageCover = null
+    if(this.fsProject) {
+      pageTitle = this.fsProject.title + info.SEPARATOR + info.SITE_TITLE
+      pageDescription = this.fsProject.description
+      pageCover = this.fsProject.image
+    } else {
+      pageTitle = (this.project.beforeTitle ? `${info.L_FILLED_BRACKET}${this.project.beforeTitle}${info.R_FILLED_BRACKET}` : '') + this.project.title + info.SEPARATOR + info.SITE_TITLE
+      pageDescription = this.project.description
+      image = typeof this.project.image === 'string' ? this.project.image : this.project.image.default
+      pageCover = require('~/static/' + image)
+    }
     if(typeof this.project.image === 'object') {
+      image = this.project.image.default
+
       let path = this.project.image.pathTemplate
       let spots = path.match(/{[0-9]+}/g)
       let pathIsValid = spots.length === this.project.image.replacements.length
@@ -98,8 +116,8 @@ export default {
       if(pathIsValid) {
         image = path
       }
+      pageCover = require('~/static/' + image)
     }
-    let pageCover = require('~/static/' + image)
 
     return {
       title: pageTitle,
