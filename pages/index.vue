@@ -47,12 +47,10 @@ export default {
       dataOnReferences[projectRefs[i].url] = projects[i]
     }
 
-    // concat all references & sort
     let references = docRefs.concat(projectRefs)
     references.sort((a, b) => {
       return util.fsTSToDateObj(dataOnReferences[b.url].publishedAt) - util.fsTSToDateObj(dataOnReferences[a.url].publishedAt)
     })
-
     return {
       references,
       dataOnReferences
