@@ -102,7 +102,8 @@ export default {
     config: {
       type: Object,
       default: {}
-    }
+    },
+    id: String
   },
   data() {
     return {
@@ -233,7 +234,9 @@ export default {
       // https://www.mapbox.com/mapbox-gl-js/example/popup-on-click/
       // https://www.mapbox.com/mapbox-gl-js/example/cluster/
       if(this.config.finale && this.config.finale.type === 'doc') {
-        firestore.bunko.getDoc(this.config.finale.id, true).then(response => {
+        firestore.bunko.getProjectBySlug(`map/${this.id}`).then(response => {
+          return firestore.bunko.getDoc(response.config.finale.id, true)
+        }).then(response => {
           this.$set(this, 'doc', response)
         })
       } else {
