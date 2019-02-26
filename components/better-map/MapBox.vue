@@ -238,6 +238,8 @@ export default {
           return firestore.bunko.getDoc(response.config.finale.id, true)
         }).then(response => {
           this.$set(this, 'doc', response)
+        }).catch(error => {
+          console.error(error)
         })
       } else {
         this.map.on('load', this.drawStatic)
