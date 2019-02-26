@@ -10,6 +10,9 @@
         <img class="image" :src="'https://beta.bunko.watchout.tw' + mobiledoc.cards[section[1]][1].src"/>
       </template>
     </div>
+    <div class="share margin-top-bottom-single">
+      <share-to-platforms :url="shareURL" />
+    </div>
     <div class="dismiss" @click="dismiss"><span>OK</span></div>
   </div>
   <div class="close fixed white" @click="dismiss"></div>
@@ -21,12 +24,14 @@
 // TODO: Make this a independent component in common-function
 import { knowsBunko, knowsMarkdown } from 'watchout-common-functions/interfaces'
 import GhostArticle from 'watchout-common-functions/components/ghost/Article'
+import ShareToPlatforms from 'watchout-common-functions/components/ShareToPlatforms'
 
 export default {
   mixins: [knowsBunko, knowsMarkdown],
   props: {
     doc: Object,
-    show: Boolean
+    show: Boolean,
+    shareURL: String
   },
   computed: {
     mobiledoc() {
@@ -42,7 +47,8 @@ export default {
     }
   },
   components: {
-    GhostArticle
+    GhostArticle,
+    ShareToPlatforms
   }
 }
 </script>

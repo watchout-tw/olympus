@@ -56,7 +56,7 @@
       <div class="dismiss" @click="finale.show = false"><span>OK</span></div>
     </div>
   </div>
-  <popup-article v-if="config.finale && config.finale.type === 'doc'" v-show="finale.show" :show.sync="finale.show" :doc="doc" />
+  <popup-article v-if="config.finale && config.finale.type === 'doc'" v-show="finale.show" :show.sync="finale.show" :doc="doc" :shareURL="shareURL" />
 </div>
 </template>
 
