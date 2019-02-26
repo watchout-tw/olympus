@@ -230,7 +230,7 @@ export default {
       // https://www.mapbox.com/mapbox-gl-js/example/add-image/
       // https://www.mapbox.com/mapbox-gl-js/example/popup-on-click/
       // https://www.mapbox.com/mapbox-gl-js/example/cluster/
-      if(this.config.finale.type === 'doc') {
+      if(this.config.finale && this.config.finale.type === 'doc') {
         firestore.bunko.getDoc(this.config.finale.id, true).then(response => {
           this.doc = response
         })
