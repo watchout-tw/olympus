@@ -7,7 +7,7 @@
   "address": "台灣",
   "lat": 23.797815,
   "lng": 121.000736,
-  "zoom": 5,
+  "zoom": 6,
   "prev_step_button": "上一站",
   "next_step_button": "下一站",
   "display_type": "default"
@@ -114,7 +114,7 @@
   "address": "警備總司令部",
   "lat": 25.0463125,
   "lng": 121.5211099,
-  "zoom": 10,
+  "zoom": 11,
   "prev_step_button": "上一站",
   "next_step_button": "下一站",
   "display_type": "default"
@@ -127,7 +127,7 @@
   "address": "行政長官公署",
   "lat": 23.797815,
   "lng": 121.000736,
-  "zoom": 5,
+  "zoom": 6,
   "prev_step_button": "上一站",
   "next_step_button": "下一站",
   "display_type": "default"
@@ -153,7 +153,7 @@
   "address": "中山堂",
   "lat": 25.0433839,
   "lng": 121.5093392,
-  "zoom": 14,
+  "zoom": 15,
   "prev_step_button": "上一站",
   "next_step_button": "下一站",
   "display_type": "default"
@@ -180,7 +180,7 @@
   "address": "高雄中學",
   "lat": 22.6377741,
   "lng": 120.2975705,
-  "zoom": 16,
+  "zoom": 15,
   "prev_step_button": "上一站",
   "next_step_button": "下一站",
   "display_type": "default"
@@ -234,7 +234,7 @@
   "address": "基隆港",
   "lat": 25.15558,
   "lng": 121.7613347,
-  "zoom": 12,
+  "zoom": 14,
   "prev_step_button": "上一站",
   "next_step_button": "下一站",
   "display_type": "default"
@@ -247,7 +247,7 @@
   "address": "基隆市",
   "lat": 25.1297953,
   "lng": 121.7420152,
-  "zoom": 10,
+  "zoom": 12,
   "prev_step_button": "上一站",
   "next_step_button": "下一站",
   "display_type": "default"
@@ -271,7 +271,7 @@
   "address": "台灣",
   "lat": 23.797815,
   "lng": 121.000736,
-  "zoom": 5,
+  "zoom": 6,
   "prev_step_button": "上一站",
   "next_step_button": "那些消失的台灣菁英⋯",
   "display_type": "default"
