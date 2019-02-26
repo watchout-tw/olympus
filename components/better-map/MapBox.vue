@@ -2,7 +2,7 @@
 <div class="map-box" :class="[config.theme]">
   <div class="map-container">
     <div class="map content" id="map"></div>
-    <div class="datetime">{{ currentDateTime }}</div>
+    <div class="datetime" v-if="currentDateTime">{{ currentDateTime }}</div>
   </div>
   <div v-if="config.mode === 'play'" class="controls form-field-many-inputs justify-center margin-top-bottom-8">
     <div class="input button large musou" @click="play" v-if="!isPlaying">{{ playButton }}</div>
@@ -44,11 +44,11 @@
     </div>
   </div>
   <div class="prompt-overlay" :class="[config.theme]" v-if="config.finale && finale.show">
-    <div class="prompt with-dismiss" v-if="config.finale.type === 'doc'">
+    <div v-if="config.finale.type === 'doc'" class="prompt with-dismiss">
       <ghost-article :article="doc.content" />
       <div class="dismiss" @click="finale.show = false"><span>OK</span></div>
     </div>
-    <div class="prompt with-dismiss" :class="config.finale.classes" v-else>
+    <div v-else class="prompt with-dismiss" :class="config.finale.classes" >
       <div class="message paragraphs no-margin" :class="config.finale.messageClasses" v-html="markdown(config.finale.message)"></div>
       <div class="share margin-top-bottom-single">
         <share-to-platforms :url="shareURL" />
@@ -132,14 +132,6 @@ export default {
       let queue = []
       for(let i = 0; i < this.markers.length; i++) {
         let marker = this.markers[i]
-        // only shows prompt, no marker
-        if(marker.display_type === 'introduction') {
-          queue.push({
-            type: 'prompt',
-            markerIndex: i
-          })
-          continue
-        }
         queue.push({
           type: 'marker',
           markerIndex: i
