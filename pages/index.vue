@@ -24,8 +24,7 @@ import * as firestore from 'watchout-common-functions/lib/firestore'
 import * as util from 'watchout-common-functions/lib/util'
 import * as info from '~/data/info'
 import { knowsWatchout } from 'watchout-common-functions/interfaces'
-import { makeReference, getMusouProjectURL } from 'watchout-common-functions/lib/watchout'
-import { projects, modules } from '~/config'
+import { makeReference } from 'watchout-common-functions/lib/watchout'
 import Welcome from 'watchout-common-functions/components/Welcome'
 import ProjectSignature from '~/components/ProjectSignature'
 import ReferencePreview from 'watchout-common-functions/components/ReferencePreview'
@@ -42,29 +41,10 @@ export default {
       dataOnReferences[docRefs[i].url] = docs[i]
     }
 
-    // make projects into references
-    let projectRefs = projects.map(project => {
-      let ref = makeReference('musou-project', project.module + '/' + project.id)
-      ref.permalink = getMusouProjectURL(project.module, project.id)
-      return ref
-    })
-
-    // make data on project references
-    let dataOnProjectReferences = projects.map(project => {
-      let image = require('~/static/' + (typeof project.image === 'string' ? project.image : project.image.default))
-      return {
-        title: (project.beforeTitle ? `${info.L_FILLED_BRACKET}${project.beforeTitle}${info.R_FILLED_BRACKET}${project.title}` : project.title),
-        description: project.description,
-        image,
-        publishedAt: util.dateObjToFsTS(new Date(project.date)),
-        publishedTo: 'musou',
-        status: 'active'
-      }
-    })
-    for(let i = 0; i < projects.length; i++) {
-      let ref = projectRefs[i]
-      let data = dataOnProjectReferences[i]
-      dataOnReferences[ref.url] = data
+    let projects = await firestore.bunko.getProjects({ pubDest: 'musou' })
+    let projectRefs = projects.map(project => makeReference('project', project.slug, { publishedTo: project.publishedTo }))
+    for(let i = 0; i < projectRefs.length; i++) {
+      dataOnReferences[projectRefs[i].url] = projects[i]
     }
 
     // concat all references & sort
@@ -75,9 +55,7 @@ export default {
 
     return {
       references,
-      dataOnReferences,
-      projects,
-      modules
+      dataOnReferences
     }
   },
   head() {
