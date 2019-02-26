@@ -35,7 +35,7 @@ export default {
         },
         finale: {
           type: 'doc',
-          id: 'pM9TqPuxNO1jCWMdN6jB',
+          id: 'pXnCb0YgUaci9Jeuxg0I',
           classes: ['warning'],
           messageClasses: ['font-size-large']
         }

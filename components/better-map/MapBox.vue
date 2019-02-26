@@ -43,7 +43,7 @@
       <div class="dismiss" @click="dismissPrompt"><span>OK</span></div>
     </div>
   </div>
-  <div class="prompt-overlay" :class="[config.theme]" v-if="config.finale && finale.show">
+  <div class="prompt-overlay" :class="[config.theme]" v-if="config.finale && config.finale.type !== 'doc' && finale.show">
     <div v-if="config.finale.type === 'doc'" class="prompt with-dismiss">
       <ghost-article :article="doc.content" />
       <div class="dismiss" @click="finale.show = false"><span>OK</span></div>
@@ -56,6 +56,7 @@
       <div class="dismiss" @click="finale.show = false"><span>OK</span></div>
     </div>
   </div>
+  <popup-article v-if="config.finale && config.finale.type === 'doc'" v-show="finale.show" :show.sync="finale.show" :doc="doc" />
 </div>
 </template>
 
@@ -65,6 +66,7 @@ import { knowsMarkdown } from 'watchout-common-functions/interfaces'
 import config from 'watchout-common-functions/config/config'
 import ShareToPlatforms from 'watchout-common-functions/components/ShareToPlatforms'
 import GhostArticle from 'watchout-common-functions/components/ghost/Article'
+import PopupArticle from './PopupArticle'
 
 const SRC_STATIC = 'markers'
 const SRC_LIVE = 'markers-live'
@@ -232,7 +234,7 @@ export default {
       // https://www.mapbox.com/mapbox-gl-js/example/cluster/
       if(this.config.finale && this.config.finale.type === 'doc') {
         firestore.bunko.getDoc(this.config.finale.id, true).then(response => {
-          this.doc = response
+          this.$set(this, 'doc', response)
         })
       } else {
         this.map.on('load', this.drawStatic)
@@ -481,6 +483,7 @@ export default {
   },
   components: {
     GhostArticle,
+    PopupArticle,
     ShareToPlatforms
   }
 }
@@ -599,7 +602,7 @@ export default {
     color: rgba(white, 0.95);
   }
   &.dark {
-    background-color: #333;
+    background-color: $color-dark-grey;
   }
 }
 </style>
