@@ -58,13 +58,14 @@ export default {
   left: 0;
   right: 0;
   display: flex;
+  justify-content: center;
   background: $color-modal-overlay-grey;
   color: $color-very-very-light-grey;
   z-index: $z-modal;
   overflow: scroll;
   -webkit-overflow-scrolling: touch;
   > .content {
-    max-width: 100%;
+    max-width: 30rem;
     padding-top: 1em;
     .card {
       padding: 0 1em 0.5em 1em;
