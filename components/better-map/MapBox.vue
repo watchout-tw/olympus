@@ -524,12 +524,11 @@ export default {
     position: relative;
     display: flex;
     width: 100%;
-    max-width: $tcl-bp-lg;
     margin-left: auto;
     margin-right: auto;
-    @include rect(4/3);
+    height: 35vh;
     @include tcl-sm {
-      @include rect(2/1);
+      height: 50vh;
     }
 
     > .map {
@@ -584,7 +583,7 @@ export default {
         line-height: $line-height-tight;
       }
       > .title {
-        font-family: 'Gentium Book Basic', Times, serif;
+        font-family: 'Gentium Book Basic', $font-sans-serif;
         font-weight: bold;
         font-size: 1.5rem;
         line-height: $line-height-tight;
@@ -616,6 +615,9 @@ export default {
   }
   &.dark {
     background-color: $color-dark-grey;
+  }
+  .mapboxgl-ctrl.mapboxgl-ctrl-attrib {
+    font-size: $font-size-tiny;
   }
 }
 </style>
