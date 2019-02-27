@@ -1,7 +1,6 @@
 let colors = {
-  'default': 'rgba(0, 0, 0, 0.50)',
-  'warning': 'rgba(255, 83, 104, 0.75)',
-  'imminent_danger': 'rgba(255, 83, 104, 0.95)'
+  'other': 'rgba(0, 0, 0, 0.50)',
+  'default': 'rgba(255, 83, 104, 0.95)'
 }
 
 export default {
@@ -30,6 +29,13 @@ export default {
         },
         start: '回到1947的台灣⋯',
         restart: '再次回到1947的台灣⋯',
+        flyLayerPaint: {
+          'circle-color': [
+            'match', ['get', 'isLatest'],
+            'latest', colors.default,
+            colors.other
+          ]
+        },
         prompt: {
           classes: ['warning']
         },

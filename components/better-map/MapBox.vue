@@ -398,7 +398,8 @@ export default {
       this.map.addLayer({
         id: LAYER_FLY,
         type: 'circle',
-        source: SRC_FLY
+        source: SRC_FLY,
+        paint: this.config.flyLayerPaint
       })
       this.isPlaying = false
       this.nextToPlay = 0
@@ -412,6 +413,10 @@ export default {
         this.imageIsLoaded = false
 
         let nextFeature = makeFeature(this.nextEventMarker)
+        if (this.liveDS.features.length > 0) {
+          delete this.liveDS.features[this.liveDS.features.length - 1].properties.isLatest
+        }
+        nextFeature.properties.isLatest = 'latest'
         this.liveDS.features.push(nextFeature)
         this.map.getSource(SRC_FLY).setData(this.liveDS)
         this.map.flyTo({
@@ -443,6 +448,9 @@ export default {
       this.nextToPlay -= 1
       if(this.prevEvent.type === 'marker') {
         this.liveDS.features.splice(this.liveDS.features.length - 1, 1)
+        if(this.liveDS.features.length > 0) {
+          this.liveDS.features[this.liveDS.features.length - 1].properties.isLatest = 'latest'
+        }
         this.map.getSource(SRC_FLY).setData(this.liveDS)
         this.map.flyTo({
           center: [this.prevEventMarker.lng, this.prevEventMarker.lat],
