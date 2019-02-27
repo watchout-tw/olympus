@@ -1,5 +1,5 @@
 let colors = {
-  'other': 'rgba(0, 0, 0, 0.50)',
+  'other': 'rgba(0, 0, 0, 0.65)',
   'default': 'rgba(255, 83, 104, 0.95)'
 }
 
