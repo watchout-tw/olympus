@@ -28,7 +28,7 @@
       <div class="image-license secondary-text font-size-tiny" v-if="feature.properties.image_license">{{ feature.properties.image_license }}</div>
       <audio controls class="audio" v-if="feature.properties.audio"><source :src="feature.properties.audio" type="audio/mp3">你的瀏覽器無法播放聲音檔</audio>
       <div class="title-tw" v-if="feature.properties.title_tw">{{ feature.properties.title_tw }}</div>
-      <div class="description secondary-text font-size-small margin-top-bottom-8">{{ feature.properties.description }}</div>
+      <div class="description paragraphs secondary-text font-size-small margin-top-bottom-8" v-html="markdown(feature.properties.description)"></div>
       <label class="more" v-if="feature.properties.link">閱讀更多</label>
     </a>
     <div class="tcl-panel"></div>
