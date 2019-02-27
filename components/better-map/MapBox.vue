@@ -530,6 +530,8 @@ export default {
     @include tcl-sm {
       height: 50vh;
     }
+    min-height: 12rem;
+    max-height: 36rem;
 
     > .map {
       width: 100%;
