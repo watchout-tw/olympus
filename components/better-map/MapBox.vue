@@ -18,7 +18,7 @@
     <div class="d-flex align-items-center justify-content-center"><span>點擊地圖上的圖示</span><span style="display: inline-block; margin: 0 0.125rem; font-size: 1.5rem; line-height: 1;">④</span><span>看當地新聞</span></div>
   </div>
   <div class="active-features tcl-container" v-if="activeFeatures.length > 0">
-    <a class="feature a-block tcl-panel tcl-left-right-margin with-top-bottom-margin bg-very-very-light-grey" :href="feature.properties.link" target="_blank" v-for="(feature, index) of activeFeatures" :style="getFeatureStyles(feature)" :key="`active-feature-${index}`">
+    <a v-for="(feature, index) of activeFeatures" class="feature a-block tcl-panel tcl-left-right-margin with-top-bottom-margin bg-very-very-light-grey" :href="feature.properties.link" target="_blank" :style="getFeatureStyles(feature)" :key="`active-feature-${index}`">
       <div class="primary-secondary-fields" v-if="feature.properties[config.feature.primaryField]"><label>{{ feature.properties[config.feature.primaryField] }}</label>&nbsp;<label>{{ config.feature.secondaryFields ? config.feature.secondaryFields.map(key => feature.properties[key]).join('') : '' }}</label></div>
       <div class="title" v-if="feature.properties.title">{{ feature.properties.title }}</div>
       <div class="image-container margin-top-bottom-4" v-if="feature.properties.image">
