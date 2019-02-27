@@ -1,6 +1,6 @@
 <template>
 <div class="popup-article">
-  <div class="content margin-top-bottom-single">
+  <div class="content margin-top-bottom-double">
     <h3 class="title text-align-center" v-html="spacingOptimizer(title)"></h3>
     <div class="card" v-for="(section, index) of mobiledoc.sections" :key="index" v-if="section[0] === 10"><!-- && section[0] === 10 && mobiledoc.cards[section[1]][0] === 'markdown'">-->
       <template v-if="mobiledoc.cards[section[1]][0] === 'markdown'">
@@ -79,7 +79,7 @@ export default {
         font-size: 1rem;
       }
       .image {
-        max-width: 100%; 
+        max-width: 100%;
       }
     }
     > .dismiss {
