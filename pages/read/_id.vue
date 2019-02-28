@@ -1,6 +1,8 @@
 <template>
 <div class="page read single">
-  <doc-header :doc="doc" :cachedAuthors="cachedAuthors" />
+  <div class="doc-header-container responsive-typesetting-container margin-top-double margin-bottom-single">
+    <doc-header :doc="doc" :variable-font-size="true" :cachedAuthors="cachedAuthors" />
+  </div>
   <ghost-article :article="doc.content" :links="links" :footnotes="footnotes" :references="references" :data="dataOnReferences" />
   <after-article :shareURL="shareURL" :links="links" :footnotes="footnotes" :references="references" :data="dataOnReferences" />
 </div>
