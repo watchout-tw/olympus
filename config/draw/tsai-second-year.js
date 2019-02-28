@@ -1,25 +1,6 @@
 export default {
   id: 'tsai-second-year',
   module: 'draw',
-  title: '蔡總統的第二年',
-  description: '蔡英文政府本屆任期即將過半，在兩週年到來的前夕，你給蔡政府的期中成績單打幾分？《沃草》比較了這十幾年來的各項政府公開數據，請你先畫出自己心中的感受，再看看跟真實數據差多少？',
-  image: 'draw/tsai-second-year.png',
-  date: '2018-05-16 22:00:00',
-  breaking: false,
-  authorship: [
-    {
-      job: '數據分析',
-      people: ['洪國鈞']
-    },
-    {
-      job: '編輯',
-      people: ['洪國鈞']
-    },
-    {
-      job: '設計開發',
-      people: ['陳昭廷', '游知澔']
-    }
-  ],
   charts: [
     {
       id: 'economy-growth-rate',

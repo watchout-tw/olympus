@@ -1,10 +1,6 @@
 export default {
   id: '748',
   module: 'map',
-  title: '同志結婚會滅國？醒醒吧，你沒有▁▁',
-  image: 'modules/map.jpg',
-  date: '2017-06-14 21:00:00',
-  breaking: false,
   dataSource: '2017-same-sex-marriage',
   sections: [
     {
@@ -128,15 +124,5 @@ export default {
   callForAction: {
     title: '你看到的外媒報導沒出現嗎？',
     content: '由於人力、時間和語言能力的限制，我們能蒐集到的相關報導數量有限，你有看到其他的嗎？你可以[來這裡](https://goo.gl/forms/edndn3zHgZ1lHzUK2)填寫你所看到的新聞資料，我們會在確認內容後更新網頁內容，並將你列為貢獻者。\n\n在《沃草》，我們持續以各種方式，**努力降低理解複雜議題的門檻**。互動、資訊新聞需要許多人力整理資料、設計、製作，如果你喜歡《沃草》的內容，請別忘了[支持我們](https://watchout.tw/?support)哦！'
-  },
-  authorship: [
-    {
-      job: '資料分析',
-      people: ['洪國鈞', '游知澔']
-    },
-    {
-      job: '設計開發',
-      people: ['游知澔']
-    }
-  ]
+  }
 }

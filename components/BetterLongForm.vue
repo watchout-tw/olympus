@@ -2,15 +2,15 @@
 <div class="better-long-form">
   <div class="opening tcl-container">
     <div class="tcl-panel tcl-left-right-margin with-top-bottom-margin with-double-top-margin">
-      <h1 class="medium">{{ project.title }}</h1>
-      <div class="paragraphs" v-html="markdown(project.description)"></div>
+      <h1 class="medium" v-html="spacingOptimizer(doc.title)"></h1>
+      <div class="paragraphs" v-html="markdown(doc.description)"></div>
     </div>
     <div class="tcl-panel"></div>
   </div>
   <re-captcha :token.sync="crToken" :tokenSource.sync="crTokenSource" />
   <div class="scenes tcl-container" v-if="isHuman">
     <div class="scene tcl-panel full-width tcl-left-right-margin with-top-bottom-margin with-quad-top-margin" :class="{ 'has-correct-answer': hasCorrectAnswer, locked: scene.lock }" v-for="scene in scenes" :key="scene.title" v-if="scene.show">
-      <h2>{{ scene.title }}</h2>
+      <h2 v-html="spacingOptimizer(scene.title)"></h2>
       <div class="options form-field-many-inputs">
         <div class="option input button wrap" :class="{ immutable: scene.lock, selected: option === scene.selectedOption, correct: hasCorrectAnswer && option.isCorrect }" v-for="option in scene.options" :key="option.title" @click="onClick(scene, option)">
           <div class="details margin-bottom-4 font-weight-bold" v-if="scene.selectedOption && option.details">
@@ -75,17 +75,6 @@
       <div class="font-size-small text-align-center secondary-text">測驗尚未結束，同志仍須繼續努力作答。</div>
     </div>
   </div>
-  <div class="share-container tcl-container" v-if="completed && project.share">
-    <div class="tcl-panel">
-      <div class="share text-align-center">
-        <div class="section-title small with-underline text-align-center"><span>分享</span></div>
-        <div class="margin-top-bottom-8" v-if="project.share.message">{{ project.share.message }}</div>
-        <div class="margin-top-bottom-8">
-          <share-to-platforms :url="shareURL" />
-        </div>
-      </div>
-    </div>
-  </div>
   <div class="prompt-overlay" v-if="prompt.show && doAfterClick('showPrompt')">
     <div class="prompt" :class="prompt.classes">
       <div class="score text-align-center" v-if="actionShowPrompt.keys.includes('score')">{{ prompt.content.score }}</div>
@@ -96,9 +85,8 @@
 </template>
 
 <script>
-import { knowsAuth, knowsCoralReef, knowsError, knowsMarkdown, knowsReCaptcha, knowsWatchout } from 'watchout-common-functions/interfaces'
+import { knowsAuth, knowsBunko, knowsCoralReef, knowsError, knowsMarkdown, knowsReCaptcha, knowsWatchout } from 'watchout-common-functions/interfaces'
 import ReCaptcha from 'watchout-common-functions/components/ReCaptcha'
-import ShareToPlatforms from 'watchout-common-functions/components/ShareToPlatforms'
 import * as coralreef from 'watchout-common-functions/lib/coralreef'
 import { resolve } from '~/util/util'
 
@@ -112,8 +100,8 @@ function getDateString(timeObj) {
 }
 
 export default {
-  mixins: [knowsAuth, knowsCoralReef, knowsError, knowsMarkdown, knowsReCaptcha, knowsWatchout],
-  props: ['project', 'module'],
+  mixins: [knowsAuth, knowsBunko, knowsCoralReef, knowsError, knowsMarkdown, knowsReCaptcha, knowsWatchout],
+  props: ['project', 'module', 'doc'],
   data() {
     let scenes = this.project.sequence.scenes.map(scene => {
       let flags = {
@@ -238,9 +226,6 @@ export default {
     },
     actionShowOccur() {
       return this.doShowResult('showOccurences') ? this.getShowResultAction('showOccurences') : undefined
-    },
-    shareURL() {
-      return this.getMusouProjectURL(this.module.id, this.project.id)
     }
   },
   watch: {
@@ -404,8 +389,7 @@ export default {
     }
   },
   components: {
-    ReCaptcha,
-    ShareToPlatforms
+    ReCaptcha
   }
 }
 </script>

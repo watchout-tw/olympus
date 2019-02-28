@@ -1,11 +1,6 @@
 export default {
   id: 'republic-of-china',
   module: 'quiz',
-  title: '做個堂堂正正的中華民國人',
-  image: 'quiz/republic-of-china.jpg',
-  date: '2017-10-10 20:00:00',
-  breaking: false,
-  description: '「中華民國」106歲生日要到了，在祝福生日快樂（放假）的同時，你對「中華民國」的認識有多少呢？快來測驗看看吧！',
   sequence: {
     navigation: 'sequential',
     hasCorrectAnswer: true,
@@ -232,16 +227,6 @@ export default {
     }
   ],
   closing: '想看標準答案嗎？可以到[全國法規資料庫](http://law.moj.gov.tw/)搜尋看看上面那些法規的原文是什麼。覺得「中華民國」從憲法開始就很荒謬嗎？可以到你選區的立法委員臉書頁面上，告訴他們你的想法。或許明年今日，臺灣就不用替「中華民國」過生日囉。',
-  authorship: [
-    {
-      job: '編輯',
-      people: ['洪國鈞', '王希']
-    },
-    {
-      job: '設計開發',
-      people: ['游知澔']
-    }
-  ],
   references: [
     '[全國法規資料庫](http://law.moj.gov.tw)'
   ]

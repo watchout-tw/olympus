@@ -6,12 +6,6 @@ let colors = {
 export default {
   id: 'swine-flu',
   module: 'map',
-  title: '中国有豬瘟',
-  beforeTitle: '互動地圖',
-  description: '中國豬瘟疫情不斷延燒，台灣出現五起自中國攜帶**有非洲豬瘟病毒**的豬肉製品案例，12月12日農委會更是以**警訊通知**告知全民疫情嚴重性。《沃草》以中國農業農村部資料和周邊國家新聞為素材，帶大家一起體驗《中国有豬瘟》互動地圖。',
-  image: 'map/swine-flu.jpg',
-  date: '2018-12-13 21:00:00',
-  breaking: true,
   dataSource: '2018-swine-flu',
   sections: [
     {
@@ -84,20 +78,6 @@ export default {
           messageClasses: ['font-size-large']
         }
       }
-    },
-    {
-      id: 'title-description',
-      type: 'title-description'
-    }
-  ],
-  authorship: [
-    {
-      job: '資料蒐集',
-      people: ['洪國鈞']
-    },
-    {
-      job: '設計開發',
-      people: ['游知澔']
     }
   ]
 }

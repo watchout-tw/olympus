@@ -1,11 +1,6 @@
 export default {
   id: 'labor-standard-act',
   module: 'swipe',
-  title: '勞基法流言終結者',
-  description: '《沃草》幫你整理這次《勞基法》修法最常見的幾種似是而非的說法，我們已經努力把它變簡單了，快來看看吧！',
-  image: 'swipe/labor-standard-act.png',
-  date: '2018-05-01 20:00:00',
-  breaking: true,
   cards: [
     {
       type: 'text',
@@ -236,16 +231,6 @@ export default {
   share: {
     message: '你的雇主違法了嗎？除了撥打1955，還可以去勞動部網站線上填表申訴，別讓姑息成了勞動權益的幫凶喔！'
   },
-  authorship: [
-    {
-      job: '編輯',
-      people: ['洪國鈞', '薛翰駿']
-    },
-    {
-      job: '設計開發',
-      people: ['游知澔']
-    }
-  ],
   references: [
     '[廢止放寬七休一函釋](https://www.mol.gov.tw/media/3809646/1050629-%E5%BB%A2%E6%AD%A2%E5%85%A7%E6%94%BF%E9%83%A875%E5%B9%B45%E6%9C%8817%E6%97%A5398001%E8%99%9F%E5%87%BD%E4%BB%A4.pdf)',
     '[適用放寬七休一行業](https://www.mol.gov.tw/media/5758708/%E6%8C%87%E5%AE%9A%E5%8B%9E%E5%8B%95%E5%9F%BA%E6%BA%96%E6%B3%95%E7%AC%AC36%E6%A2%9D%E7%AC%AC4%E9%A0%85%E8%A1%8C%E6%A5%AD.pdf)',

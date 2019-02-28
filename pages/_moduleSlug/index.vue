@@ -1,50 +1,63 @@
 <template>
 <div class="page module">
-  <header class="tcl-container">
-    <div class="tcl-panel with-top-bottom-margin with-double-top-margin">
-      <h1 class="text-align-center small">{{ module.title }}</h1>
+  <div class="title-container">
+    <div class="section-title small with-underline text-align-center margin-top-single margin-bottom-8"><span>模組</span></div>
+    <h1 class="medium text-align-center">{{ module.title }}</h1>
+  </div>
+  <div class="docs tcl-container margin-top-bottom-8">
+    <div class="doc tcl-panel tcl-left-right-margin with-top-bottom-margin" v-for="(reference, index) of projectRefs" :key="index">
+      <reference-preview :reference="reference" :data="dataOnReferences" display="vertical" :show-pub-dest="true" />
     </div>
-  </header>
-  <div class="tcl-container">
-    <div class="tcl-panel with-top-bottom-margin" v-for="project of projects" v-if="project.status !== 'unlisted'" :key="project.id">
-      <project-signature :module="module" :project="project" />
-    </div>
-    <div class="tcl-panel"></div>
+    <div class="tcl-panel half-width"></div>
+    <div class="tcl-panel half-width"></div>
+    <div class="tcl-panel half-width"></div>
   </div>
 </div>
 </template>
 
 <script>
+import * as firestore from 'watchout-common-functions/lib/firestore'
 import * as info from '~/data/info'
+import { modules } from '~/config'
 import { knowsWatchout } from 'watchout-common-functions/interfaces'
-import { projects, modules } from '~/config'
-import ProjectSignature from '~/components/ProjectSignature'
+import { makeReference } from 'watchout-common-functions/lib/watchout'
+import ReferencePreview from 'watchout-common-functions/components/ReferencePreview'
+import defaultCoverImage from 'watchout-common-assets/images/default-cover-images/musou-2-1.jpg'
 
 export default {
   mixins: [knowsWatchout],
-  validate({ params }) {
-    return !!modules.find(module => module.id === params.moduleSlug)
-  },
   async asyncData({ params }) {
-    let projectsOfModule = projects.filter(project => project.module === params.moduleSlug)
+    let moduleSlug = params.moduleSlug
     let module = modules.find(module => module.id === params.moduleSlug)
+    let projects = await firestore.bunko.getProjects({ pubDest: 'musou' })
+
+    projects = projects.filter(project => {
+      let m = project.slug.split('/')[0]
+      return moduleSlug === m
+    })
+    let projectRefs = projects.map(project => makeReference('project', project.slug, { publishedTo: project.publishedTo }))
+
+    let dataOnReferences = {}
+    for(let i = 0; i < projectRefs.length; i++) {
+      dataOnReferences[projectRefs[i].url] = projects[i]
+    }
 
     return {
-      projects: projectsOfModule,
-      module
+      module,
+      projectRefs,
+      dataOnReferences
     }
   },
   head() {
     let pageTitle = this.module.title + info.SEPARATOR + info.SITE_TITLE
     let pageDescription = info.SITE_DESCRIPTION
-    let pageCover = require('~/static/modules/' + this.module.image)
     return {
       title: pageTitle,
-      meta: this.generateMeta('musou', pageTitle, pageDescription, pageCover)
+      meta: this.generateMeta('musou', pageTitle, pageDescription, defaultCoverImage)
     }
   },
   components: {
-    ProjectSignature
+    ReferencePreview
   }
 }
 </script>

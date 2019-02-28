@@ -2,48 +2,46 @@
 <div class="page project" :style="pageStyles">
   <div class="main">
     <template v-if="project.module === 'swipe'">
-      <swipe :module="module" :project="project" />
+      <swipe :module="module" :project="project" :shareURL="shareURL" />
     </template>
     <template v-else-if="project.module === 'quiz'">
-      <better-long-form :module="module" :project="project" />
+      <better-long-form :module="module" :project="project" :doc="doc" />
     </template>
     <template v-else-if="project.module === 'role-play'">
       <long-form :module="module" :project="project" />
     </template>
     <template v-else-if="project.module === 'draw'">
-      <draw :module="module" :project="project" />
+      <draw :module="module" :project="project" :doc="doc" />
     </template>
     <template v-else-if="project.module === 'journey'">
       <journey :module="module" :project="project" />
     </template>
     <template v-else-if="project.module === 'map'">
-      <better-map :module="module" :project="project" />
+      <better-map :module="module" :project="project" :shareURL="shareURL" />
     </template>
     <template v-else>
       <div class="not-available" style="margin: 1rem;">技術升級中，需要多一點點時間。</div>
     </template>
   </div>
-  <header>
-    <hgroup>
-      <h2 class="small"><nuxt-link :to="{ name: 'moduleSlug', params: { moduleSlug: module.id }}" class="a-text">{{ module.title }}</nuxt-link></h2>
-      <h1 class="small">{{ project.title }}</h1>
-    </hgroup>
-    <div class="credit secondary-text">
-      <div class="authorship">
-        <div class="item" v-for="item of project.authorship" :key="item.job">
-          <div class="job">{{ item.job }}</div>
-          <div class="person" v-for="person of item.people" :key="person">{{ person }}</div>
-        </div>
-      </div>
-      <div class="date">{{ project.date }}</div>
+  <div class="share margin-top-bottom-double">
+    <div class="section-title with-underline text-align-center margin-top-bottom-single"><span>認同請分享</span></div>
+    <share-to-platforms :url="shareURL" />
+  </div>
+  <div class="tcl-container margin-top-bottom-double">
+    <div class="tcl-panel tcl-left-right-margin">
+      <doc-header :doc="doc" titleSize="small" :description="true" :cachedAuthors="cachedAuthors" />
     </div>
-    <div class="references" v-if="project.references && project.references.length > 0">
-      <div class="section-title with-underline small"><span>參考資料</span></div>
+    <div class="tcl-panel"></div>
+  </div>
+  <div class="references-container tcl-container" v-if="project.references && project.references.length > 0">
+    <div class="references tcl-panel tcl-left-right-margin">
+      <h4 class="margin-top-bottom-4">參考資料</h4>
       <ul class="items font-size-small">
         <li class="item paragraphs no-margin a-text-parent" v-for="item of project.references" v-html="markdown(item)"></li>
       </ul>
     </div>
-  </header>
+    <div class="tcl-panel"></div>
+  </div>
 </div>
 </template>
 
@@ -51,52 +49,46 @@
 import * as info from '~/data/info'
 import { projects, modules } from '~/config'
 import * as firestore from 'watchout-common-functions/lib/firestore'
-import { knowsMarkdown, knowsWatchout } from 'watchout-common-functions/interfaces'
+import { knowsBunko, knowsCaching, knowsMarkdown, knowsWatchout } from 'watchout-common-functions/interfaces'
 import Swipe from '~/components/Swipe'
 import Draw from '~/components/Draw'
 import LongForm from '~/components/LongForm'
 import BetterLongForm from '~/components/BetterLongForm'
 import Journey from '~/components/Journey'
 import BetterMap from '~/components/BetterMap'
+import ShareToPlatforms from 'watchout-common-functions/components/ShareToPlatforms'
+import DocHeader from 'watchout-common-functions/components/comp/DocHeader'
 
 export default {
-  mixins: [knowsMarkdown, knowsWatchout],
+  mixins: [knowsBunko, knowsCaching, knowsMarkdown, knowsWatchout],
   validate({ params }) {
     const module = modules.find(module => module.id === params.moduleSlug)
     const project = projects.find(project => project.id === params.projectSlug)
     return !!module && !!project
   },
-  async asyncData({ params }) {
+  async asyncData({ params, error }) {
     let module = modules.find(module => module.id === params.moduleSlug)
     let project = projects.find(project => project.id === params.projectSlug)
 
     let projectSlug = params.moduleSlug + '/' + params.projectSlug
-    let fsProject = await firestore.bunko.getProjectBySlug(projectSlug)
+    let doc = await firestore.bunko.getProjectBySlug(projectSlug)
 
+    if(!doc) {
+      error({ statusCode: 404 })
+      return
+    }
     return {
       module,
       project,
-      fsProject
+      doc
     }
   },
   head() {
-    let pageTitle = null
-    let pageDescription = null
-    let image = null
-    let pageCover = null
-    if(this.fsProject) {
-      pageTitle = this.fsProject.title + info.SEPARATOR + info.SITE_TITLE
-      pageDescription = this.fsProject.description
-      pageCover = this.fsProject.image
-    } else {
-      pageTitle = (this.project.beforeTitle ? `${info.L_FILLED_BRACKET}${this.project.beforeTitle}${info.R_FILLED_BRACKET}` : '') + this.project.title + info.SEPARATOR + info.SITE_TITLE
-      pageDescription = this.project.description
-      image = typeof this.project.image === 'string' ? this.project.image : this.project.image.default
-      pageCover = require('~/static/' + image)
-    }
+    let pageTitle = this.doc.title + info.SEPARATOR + info.SITE_TITLE
+    let pageDescription = this.doc.description
+    let pageCover = this.doc.image
     if(typeof this.project.image === 'object') {
-      image = this.project.image.default
-
+      let image = this.project.image.default
       let path = this.project.image.pathTemplate
       let spots = path.match(/{[0-9]+}/g)
       let pathIsValid = spots.length === this.project.image.replacements.length
@@ -127,6 +119,9 @@ export default {
   computed: {
     pageStyles() {
       return this.project.page && this.project.page.styles ? this.project.page.styles : {}
+    },
+    shareURL() {
+      return this.getMusouProjectURL(this.module.id, this.project.id)
     }
   },
   components: {
@@ -135,7 +130,9 @@ export default {
     LongForm,
     BetterLongForm,
     Journey,
-    BetterMap
+    BetterMap,
+    ShareToPlatforms,
+    DocHeader
   }
 }
 </script>
@@ -144,33 +141,8 @@ export default {
 @import '~watchout-common-assets/styles/resources';
 
 .page.project {
-  > header {
-    margin: 4rem 1rem;
-    > hgroup {
-      > h1 {
-        margin: 0.25rem 0;
-      }
-    }
-    > .credit {
-      font-size: 0.875rem;
-      > .authorship {
-        > .item {
-          display: flex;
-          > .job {
-            flex-basis: 4rem;
-            margin-right: 1rem;
-          }
-          > .person {
-            margin-right: 1rem;
-          }
-        }
-      }
-    }
+  > .references-container {
     > .references {
-      margin-top: 1rem;
-      > .section-title {
-        margin-bottom: 0.25rem;
-      }
       > .items {
         list-style: disc;
         padding-left: 2em;

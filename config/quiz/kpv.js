@@ -1,7 +1,6 @@
 export default {
   id: 'kpv',
   module: 'quiz',
-  title: '柯p值小測驗：你有多了解柯文哲？',
   image: {
     default: 'quiz/kpv.png',
     pathTemplate: 'quiz/kpv-{1}.png',
@@ -12,9 +11,6 @@ export default {
       }
     ]
   },
-  date: '2018-11-08 20:00:00',
-  breaking: true,
-  description: '台北市長柯文哲的發言經常引起關注，不只為他帶來高人氣，甚至形成了「柯粉」、「柯黑」，在網路上爭論不休。\n\n2014年參選時，柯文哲加入沃草《市長給問嗎》，在網站上回答公民的提問。我們蒐集了當時柯文哲的回答內容，以及他四年來各種議題的發言，做成這次的《柯p值小測驗》。究竟哪些話是柯文哲說的呢？你認識的柯文哲是2014的候選人，還是選後的柯市長呢？快來試試看，你有多了解柯文哲！',
   sequence: {
     navigation: 'sequential',
     hasCorrectAnswer: true,
@@ -597,16 +593,6 @@ export default {
   share: {
     message: '分享你獨一無二的柯文哲'
   },
-  authorship: [
-    {
-      job: '編輯',
-      people: ['王希', '洪國鈞']
-    },
-    {
-      job: '設計開發',
-      people: ['游知澔']
-    }
-  ],
   references: [
     '[2014年沃草《市長給問嗎》各候選人的回答](https://ask.watchout.tw/games/2014-taipei)',
     '[2014/12/27《ETtoday》記者黃瀞瑩專訪台北市長柯文哲](https://www.ettoday.net/news/20141227/444198.htm)',

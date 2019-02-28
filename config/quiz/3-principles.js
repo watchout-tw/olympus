@@ -1,11 +1,6 @@
 export default {
   id: '3-principles',
   module: 'quiz',
-  title: '你唸過三民主義嗎？',
-  image: 'quiz/3-principles.jpg',
-  date: '2017-11-12 20:00:00',
-  breaking: false,
-  description: '11月12日是孫中山先生的生日，他創立的獨家學說《三民主義》，更是陪伴台灣人民數十年。從大學聯考到公職考試，只要沒有熟讀《三民主義》，就很有可能在人生的道路上慘遭滑鐵盧，名落孫山！\n\n為了「紀念」孫中山冥誕，沃草特別整理了歷屆三民主義考題，讓大家體驗一下「中華民國」是如何用考試篩選人民的吧！',
   sequence: {
     navigation: 'sequential',
     hasCorrectAnswer: true,
@@ -242,16 +237,6 @@ export default {
     }
   ],
   closing: '覺得《三民主義》考題很荒謬嗎？這可是《中華民國憲法》明定的立國精神喔！1949年以來，只有熟讀《三民主義》的台灣人，才能得到較好的升學機會或是考上公職，成為「人生勝利組」，這就是數十年來中華民國國家機器篩選「人才」的方法。直到1994年考試院才開始逐步廢除《三民主義》作為國家考試科目；大學入學考試則一直要到2009年開始才不用再考《三民主義》。',
-  authorship: [
-    {
-      job: '編輯',
-      people: ['洪國鈞']
-    },
-    {
-      job: '設計開發',
-      people: ['游知澔']
-    }
-  ],
   references: [
     '考選部1993年警察特考[試題](http://wwwc.moex.gov.tw/ExamQuesFiles/Question/082/018000c104.pdf)及[答案](http://wwwc.moex.gov.tw/ExamQuesFiles/StandardAnswer/082/33448s.pdf)',
     '考選部1994年國安局特考[試題](http://wwwc.moex.gov.tw/ExamQuesFiles/Question/083/013000c084.pdf)及[答案](http://wwwc.moex.gov.tw/ExamQuesFiles/StandardAnswer/083/15604s.pdf)',

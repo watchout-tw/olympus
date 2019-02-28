@@ -62,7 +62,7 @@ import ShareToPlatforms from 'watchout-common-functions/components/ShareToPlatfo
 
 export default {
   mixins: [knowsDOM, knowsMarkdown, knowsWatchout],
-  props: ['module', 'project'],
+  props: ['module', 'project', 'shareURL'],
   data() {
     var cards = this.project.cards.map(card => ({
       data: card,
@@ -113,9 +113,6 @@ export default {
     },
     nextCardPrompt() {
       return this.deckIsEmpty ? '結束了喔' : '下一題謝謝'
-    },
-    shareURL() {
-      return this.getMusouProjectURL(this.module.id, this.project.id)
     }
   },
   watch: {

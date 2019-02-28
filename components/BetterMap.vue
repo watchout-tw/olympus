@@ -24,13 +24,6 @@
       <template v-else-if="section.type === 'map-box'">
         <map-box :markers="data" :config="section.config" :shareURL="shareURL" :id="project.id" />
       </template>
-      <div v-else-if="section.type === 'title-description'" class="tcl-container">
-        <div class="tcl-panel tcl-left-right-margin">
-          <h1 class="medium">{{ project.title }}</h1>
-          <div class="paragraphs a-text-parent" v-html="markdown(project.description)"></div>
-        </div>
-        <div class="tcl-panel"></div>
-      </div>
     </template>
   </div>
   <div class="closing tcl-container" v-if="showSectionAfterPopQuiz">
@@ -49,16 +42,6 @@
       <div class="tcl-panel"></div>
     </template>
   </div>
-  <div class="share-container tcl-container">
-    <div class="tcl-panel">
-      <div class="share text-align-center">
-        <div class="section-title small with-underline text-align-center"><span>分享</span></div>
-        <div class="margin-top-bottom-8">
-          <share-to-platforms :url="shareURL" />
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 </template>
 
@@ -69,11 +52,10 @@ import Tally from '~/components/map/Tally'
 import Regions from '~/components/map/Regions'
 import World from '~/components/map/World'
 import MapBox from '~/components/better-map/MapBox'
-import ShareToPlatforms from 'watchout-common-functions/components/ShareToPlatforms'
 
 export default {
   mixins: [knowsMarkdown, knowsWatchout],
-  props: ['module', 'project'],
+  props: ['module', 'project', 'shareURL'],
   data() {
     let data = []
     if(this.project.hasOwnProperty('dataSource')) {
@@ -97,9 +79,6 @@ export default {
     }
   },
   computed: {
-    shareURL() {
-      return this.getMusouProjectURL(this.module.id, this.project.id)
-    },
     hasPopQuiz() {
       return this.project.sections.filter(section => section.type === 'pop-quiz').length > 0
     },
@@ -112,8 +91,7 @@ export default {
     Tally,
     Regions,
     World,
-    MapBox,
-    ShareToPlatforms
+    MapBox
   }
 }
 </script>

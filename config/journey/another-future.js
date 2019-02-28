@@ -6,11 +6,6 @@ const defaultDarkTextColor = '#333'
 export default {
   id: 'another-future',
   module: 'journey',
-  beforeTitle: '二二八日記',
-  title: '你不知道你失去了什麼',
-  image: 'journey/another-future.jpg',
-  date: '2018-02-27 20:00:00',
-  breaking: true,
   sequence: {
     autoplay: false,
     startDate: '1945-10-08',
@@ -1544,16 +1539,6 @@ export default {
       }
     ] // end of scenes
   },
-  authorship: [
-    {
-      job: '編輯設計',
-      people: ['洪國鈞']
-    },
-    {
-      job: '設計開發',
-      people: ['游知澔']
-    }
-  ],
   references: [
     '二二八事件紀念基金會',
     '中研院台灣史研究所台灣日記知識庫',

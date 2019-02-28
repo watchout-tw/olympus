@@ -3,10 +3,10 @@
   <div class="opening tcl-container">
     <div class="content tcl-panel with-top-bottom-margin with-double-top-margin tcl-left-right-margin">
       <hgroup>
-        <h2>{{ module.title }}</h2>
-        <h1>{{ project.title }}</h1>
+        <h2 v-html="spacingOptimizer(module.title)"></h2>
+        <h1 v-html="spacingOptimizer(doc.title)"></h1>
       </hgroup>
-      <div class="paragraphs last a-text-parent" v-html="markdown(project.description)"></div>
+      <div class="paragraphs last a-text-parent" v-html="markdown(doc.description)"></div>
     </div>
     <div class="tcl-panel"></div>
   </div>
@@ -29,13 +29,13 @@
 </template>
 
 <script>
-import { knowsAuth, knowsCoralReef, knowsMarkdown } from 'watchout-common-functions/interfaces'
+import { knowsAuth, knowsBunko, knowsCoralReef, knowsMarkdown } from 'watchout-common-functions/interfaces'
 import ReCaptcha from 'watchout-common-functions/components/ReCaptcha'
 import LineChart from '~/components/draw/LineChart'
 
 export default {
-  mixins: [knowsAuth, knowsCoralReef, knowsMarkdown],
-  props: ['module', 'project'],
+  mixins: [knowsAuth, knowsBunko, knowsCoralReef, knowsMarkdown],
+  props: ['module', 'project', 'doc'],
   data() {
     return {
       submittingChartID: null

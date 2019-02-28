@@ -26,7 +26,6 @@ import * as info from '~/data/info'
 import { knowsWatchout } from 'watchout-common-functions/interfaces'
 import { makeReference } from 'watchout-common-functions/lib/watchout'
 import Welcome from 'watchout-common-functions/components/Welcome'
-import ProjectSignature from '~/components/ProjectSignature'
 import ReferencePreview from 'watchout-common-functions/components/ReferencePreview'
 import defaultCoverImage from 'watchout-common-assets/images/default-cover-images/musou-2-1.jpg'
 
@@ -64,14 +63,8 @@ export default {
       meta: this.generateMeta('musou', pageTitle, pageDescription, defaultCoverImage)
     }
   },
-  methods: {
-    getModule(id) {
-      return this.modules.find(module => module.id === id)
-    }
-  },
   components: {
     Welcome,
-    ProjectSignature,
     ReferencePreview
   }
 }
