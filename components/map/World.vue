@@ -25,9 +25,9 @@ function areIntersecting(a, b) {
 }
 // https://stackoverflow.com/questions/21900713/finding-all-connected-components-of-an-undirected-graph
 function bfs(v, adjacency, visited) {
-  var q = []
-  var currentGroup = []
-  var i, len, adjV, nextVertex
+  let q = []
+  let currentGroup = []
+  let i, len, adjV, nextVertex
   q.push(v)
   visited[v] = true
   while(q.length > 0) {
@@ -76,7 +76,7 @@ export default {
       this.size.r = 4
       this.size.lineHeight = 1.25
 
-      this.util.offset = {x: 0, y: 64}
+      this.util.offset = { x: 0, y: 64 }
       const projection = d3.geoMercator()
         .scale(this.size.w / (2 * Math.PI))
         .translate([this.size.w / 2, this.size.h / 2 + this.util.offset.y])
@@ -89,7 +89,7 @@ export default {
     },
     update() {
       this.internalRows = this.rows.map(row => {
-        var pos = this.util.projection([row.lng, row.lat])
+        let pos = this.util.projection([row.lng, row.lat])
         return Object.assign(row, {
           x: pos[0],
           y: pos[1]
@@ -102,7 +102,7 @@ export default {
     },
     draw: function() {
       // draw quotes
-      var quotes = this.el.root.selectAll('g.quote').data(this.internalRows)
+      let quotes = this.el.root.selectAll('g.quote').data(this.internalRows)
       quotes.exit().remove()
       quotes.enter().append('g').merge(quotes)
         .attr('class', 'quote')
@@ -118,7 +118,7 @@ export default {
         .centerCenter()
 
       // draw center point of quotes
-      var circles = this.el.root.selectAll('circle.center').data(this.internalRows)
+      let circles = this.el.root.selectAll('circle.center').data(this.internalRows)
       circles.exit().remove()
       circles.enter().append('circle').merge(circles)
         .attr('class', 'center')
@@ -127,15 +127,15 @@ export default {
         .attr('r', 2)
     },
     group: function() {
-      var adjacency = []
-      var rectangles = this.el.root.selectAll('g.quote').nodes()
-      var i
+      let adjacency = []
+      let rectangles = this.el.root.selectAll('g.quote').nodes()
+      let i
       for(i = 0; i < rectangles.length; i++) {
-        var nodes = []
-        var r1 = rectangles[i].getBoundingClientRect()
-        for(var j = 0; j < rectangles.length; j++) {
+        let nodes = []
+        let r1 = rectangles[i].getBoundingClientRect()
+        for(let j = 0; j < rectangles.length; j++) {
           if(i !== j) {
-            var r2 = rectangles[j].getBoundingClientRect()
+            let r2 = rectangles[j].getBoundingClientRect()
             if(areIntersecting(r1, r2)) {
               nodes.push(j)
             }
@@ -144,19 +144,19 @@ export default {
         adjacency.push(nodes)
       }
 
-      var groups = []
-      var visited = {}
+      let groups = []
+      let visited = {}
       for(i = 0; i < adjacency.length; i++) {
         if(adjacency.hasOwnProperty(i) && !visited[i]) {
-          var group = bfs(i, adjacency, visited)
+          let group = bfs(i, adjacency, visited)
           group.sort(function(a, b) { return a - b })
           groups.push(group)
         }
       }
     },
     spread: function() {
-      var self = this
-      var simulation = d3.forceSimulation()
+      let self = this
+      let simulation = d3.forceSimulation()
       simulation.force('collide', d3.forceCollide()
         .radius(function(d) {
           return (d.width + d.height) * 0.125

@@ -88,12 +88,12 @@ export default {
   },
   computed: {
     score() {
-      var s = 0.2
-      var y = s * (this.config.axes.y.max - this.config.axes.y.min)
-      var n = 0
-      var answered = 0
-      var d = 0
-      var sum = 0
+      let s = 0.2
+      let y = s * (this.config.axes.y.max - this.config.axes.y.min)
+      let n = 0
+      let answered = 0
+      let d = 0
+      let sum = 0
       this.rows.user.forEach((row, i) => {
         if(!row.fix) {
           n = n + 1
@@ -166,7 +166,7 @@ export default {
           row.show = true
         })
         this.drawOrig()
-      }).catch((error) => {
+      }).catch(error => {
         this.submit.state = STATES.FAILED
         this.submit.message = SUBMIT_MESSAGES[STATES.FAILED]
         this.handleError(error)
@@ -177,7 +177,7 @@ export default {
     },
     genSpeechData() {
       const keys = ['x', 'y', 'label']
-      var points = this.rows.user.filter(u => !u.fix)
+      let points = this.rows.user.filter(u => !u.fix)
       points = points.map(function(point) {
         return keys.reduce(function(r, key) {
           r[key] = point[key]
@@ -205,12 +205,12 @@ export default {
       // https://github.com/d3/d3-selection/blob/master/README.md#selection_data
       // General Update Pattern
       // select → data → exit → remove → enter → append → merge
-      var self = this
+      let self = this
 
       // find segments
-      var segments = []
-      var currentSegment = []
-      for(var point of points) {
+      let segments = []
+      let currentSegment = []
+      for(let point of points) {
         if(!point.show) {
           if(currentSegment.length > 0) {
             segments.push(currentSegment)
@@ -225,12 +225,12 @@ export default {
       }
 
       // draw path
-      var paths = el.selectAll('path').data(segments)
+      let paths = el.selectAll('path').data(segments)
       paths.exit().remove()
       paths.enter().append('path').merge(paths).attr('d', this.util.line)
 
       // draw circles
-      var circles = el.selectAll('circle').data(points, function(d) { return d.x })
+      let circles = el.selectAll('circle').data(points, function(d) { return d.x })
       circles.exit().remove()
       circles.enter().append('circle').merge(circles)
         .attr('r', this.size.r)
@@ -241,10 +241,10 @@ export default {
 
       // draw labels
       if(drawLabels) {
-        var endpoints = segments.reduce(function(acc, cur) {
+        let endpoints = segments.reduce(function(acc, cur) {
           return acc.concat([cur[0], cur[cur.length - 1]])
         }, [])
-        var labels = el.selectAll('text.data').data(endpoints, function(d) { return d.x })
+        let labels = el.selectAll('text.data').data(endpoints, function(d) { return d.x })
         labels.exit().remove()
         labels.enter().append('text').merge(labels)
           .text(function(d) { return self.util.sequence.label.format(d.y) })
@@ -255,7 +255,7 @@ export default {
       }
 
       if(title) {
-        var anchor = 2
+        let anchor = 2
         el.append('text')
           .attr('class', 'title')
           .attr('x', this.util.axes.x.scale(points[anchor].x))
@@ -266,9 +266,9 @@ export default {
       }
     },
     init() {
-      var size = this.size
-      var util = this.util
-      var config = this.config
+      let size = this.size
+      let util = this.util
+      let config = this.config
 
       // calculations
       size.w = 480
@@ -305,11 +305,11 @@ export default {
         g.call(util.axes.x.axis)
         g.select('.domain').remove()
         g.selectAll('.tick').each(function(d, i, nodes) {
-          var tick = d3.select(this)
+          let tick = d3.select(this)
           tick.select('line')
 
           tick.selectAll('text').remove()
-          var text = tick.append('g')
+          let text = tick.append('g')
             .attr('transform', 'translate(' + [-util.axes.x.scale.step() / 2, size.h - size.p - size.r * 8].join(',') + ')')
 
           // draw labels
@@ -320,8 +320,8 @@ export default {
             delim = 'Q'
           }
           if(delim) {
-            var [a, b] = d.split(delim).map(i => parseInt(i))
-            var target = this.previousSibling
+            let [a, b] = d.split(delim).map(i => parseInt(i))
+            let target = this.previousSibling
             while(!!target && d3.select(target).datum().indexOf(delim) < 0) {
               target = target.previousSibling
             }
@@ -364,7 +364,7 @@ export default {
       }
     },
     draw() {
-      var self = this
+      let self = this
 
       this.el.root = this.el.container.append('svg')
         .attr('viewBox', [0, 0, this.size.w, this.size.h].join(' '))
@@ -376,7 +376,7 @@ export default {
         .attr('class', 'bg')
         .attr('transform', 'translate(' + [-this.util.axes.x.scale.step() / 2, 0].join(',') + ')')
 
-      var rectangles = this.el.bg.selectAll('rect').data(this.rows.user)
+      let rectangles = this.el.bg.selectAll('rect').data(this.rows.user)
       rectangles.exit().remove()
       rectangles.enter().append('rect').merge(rectangles)
         .attr('x', function(d) { return self.util.axes.x.scale(d.x) })
@@ -385,9 +385,9 @@ export default {
         .attr('height', this.util.axes.y.scale(this.config.axes.y.min) - this.util.axes.y.scale(this.config.axes.y.max))
         .attr('fill', function(d) { return colors[d.label] })
 
-      var lastPresident = 'chiang'
+      let lastPresident = 'chiang'
       this.rows.user.forEach(function(row, i, rows) {
-        var [president] = row.label.split('-')
+        let [president] = row.label.split('-')
         if(president !== lastPresident) {
           self.el.bg.append('text')
             .text(presidents[president])
@@ -415,7 +415,7 @@ export default {
       if(this.config.compare) {
         self.el.comp = []
         this.config.compare.forEach(function(comp, i) {
-          var g = self.el.root.append('g').attr('class', 'sequence comp')
+          let g = self.el.root.append('g').attr('class', 'sequence comp')
           self.el.comp.push(g)
           self.drawComp(i, comp.label)
         })
@@ -436,7 +436,7 @@ export default {
         // find point to modify
         const start = self.util.axes.x.scale.range()[0]
         const step = self.util.axes.x.scale.step()
-        var target
+        let target
         for(target = 0; x > start + step * (target + 0.5); target++) {}
         if(target < self.rows.orig.length && !self.rows.orig[target].fix) {
           self.rows.user[target].y = self.util.axes.y.scale.invert(y)
@@ -453,12 +453,12 @@ export default {
       this.drawOrig()
 
       // setup `you-draw` animation
-      var lastOrig = this.rows.orig.filter((row, i) => {
+      let lastOrig = this.rows.orig.filter((row, i) => {
         return row.fix && i + 1 < this.rows.orig.length && !this.rows.orig[i + 1].fix
       }).pop()
 
-      var viewport = window.innerWidth
-      var zoom = viewport > this.size.w ? 1 : viewport / this.size.w
+      let viewport = window.innerWidth
+      let zoom = viewport > this.size.w ? 1 : viewport / this.size.w
       this.el.container.select('.you-draw')
         .style('top', this.util.axes.y.scale(lastOrig.y) * zoom - 60 + 'px')
         .style('left', this.util.axes.x.scale(lastOrig.x) * zoom + 'px')

@@ -1,7 +1,7 @@
 <template>
 <main>
   <nav-bar :channel="channel" />
-  <nuxt/>
+  <nuxt />
   <footer-standard />
   <modal-manager />
   <support-watchout v-if="showSupport" id="musou" />

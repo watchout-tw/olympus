@@ -24,7 +24,7 @@
     <div class="control-panel d-flex">
       <div class="previous" @click="changeScene('prev')"></div>
       <template v-if="activeSceneClasses.includes('fork')">
-        <div v-for="option of activeScene.options" class="option" :class="option.type" @click="changeScene(option.action, option.target)" :style="getStyles('options', option)"><span>{{ option.label }}</span></div>
+        <div v-for="(option, index) of activeScene.options" class="option" :class="option.type" @click="changeScene(option.action, option.target)" :style="getStyles('options', option)" :key="index"><span>{{ option.label }}</span></div>
       </template>
       <template v-else>
         <div class="next" @click="changeScene('next')"></div>
@@ -39,16 +39,16 @@
 
 <script>
 import { knowsMarkdown, knowsDOM, knowsAudio } from 'watchout-common-functions/interfaces'
+import parseColor from 'parse-color'
 import MainVisual from './journey/MainVisual'
 import VisualTags from './journey/VisualTags'
 import SubtitlingMachine from './journey/SubtitlingMachine'
-import parseColor from 'parse-color'
 
 export default {
   mixins: [knowsMarkdown, knowsDOM, knowsAudio],
   props: ['project'],
   data() {
-    var state = {
+    let state = {
       activeSceneIndex: 0,
       canvas: {
         width: 0,
@@ -114,7 +114,7 @@ export default {
       return this.activeSceneDate ? this.activeSceneDate.getFullYear() + '年' + (this.activeSceneDate.getMonth() + 1) + '月' + this.activeSceneDate.getDate() + '日' : undefined
     },
     activeSceneCountDown() {
-      var result = null
+      let result = null
       if(this.activeSceneDate && this.sequence.endDate) {
         const endDate = new Date(this.sequence.endDate)
         const oneDay = 24 * 60 * 60 * 1000
@@ -142,7 +142,7 @@ export default {
       return this.canvas.width >= this.mainVisual.width && this.canvas.height >= this.mainVisual.height
     },
     getStyles(name, data = undefined) {
-      var styles = {}
+      let styles = {}
       const global = this.sequence.default ? this.sequence.default.styles ? this.sequence.default.styles[name] : undefined : undefined
       const scene = this.activeScene.default ? this.activeScene.default.styles ? this.activeScene.default.styles[name] : undefined : undefined
       const local = data ? data.styles : undefined
@@ -174,7 +174,7 @@ export default {
         }
       }
       if(styles.background && typeof styles.background === 'object') {
-        var color = parseColor(styles.background.color)
+        let color = parseColor(styles.background.color)
         if(styles.background.opacity) {
           color = parseColor('rgba(' + color.rgb.slice().concat(styles.background.opacity).join(',') + ')')
         }
@@ -217,7 +217,7 @@ export default {
       }
     },
     getNextSceneIndex(action, target) {
-      var nextSceneIndex = this.activeSceneIndex
+      let nextSceneIndex = this.activeSceneIndex
       if(action === 'next') {
         nextSceneIndex = this.activeScene.hasOwnProperty('next') ? this.getSceneIndexFromID(this.activeScene.next) : (this.activeSceneIndex + this.scenes.length + 1) % this.scenes.length
       } else if(action === 'prev') {
@@ -247,7 +247,7 @@ export default {
         })
         return // do not change scene until fade is complete
       }
-      if (nextAudio) {
+      if(nextAudio) {
         this.playAudio(nextAudio)
         this.backgroundAudio = nextAudio
       }

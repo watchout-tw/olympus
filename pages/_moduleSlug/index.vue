@@ -26,6 +26,10 @@ import defaultCoverImage from 'watchout-common-assets/images/default-cover-image
 
 export default {
   mixins: [knowsWatchout],
+  validate({ params }) {
+    const module = modules.find(module => module.id === params.moduleSlug)
+    return !!module
+  },
   async asyncData({ params }) {
     let moduleSlug = params.moduleSlug
     let module = modules.find(module => module.id === params.moduleSlug)

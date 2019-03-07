@@ -48,7 +48,7 @@
       <ghost-article :article="doc.content" />
       <div class="dismiss" @click="finale.show = false"><span>OK</span></div>
     </div>
-    <div v-else class="prompt with-dismiss" :class="config.finale.classes" >
+    <div v-else class="prompt with-dismiss" :class="config.finale.classes">
       <div class="message paragraphs no-margin" :class="config.finale.messageClasses" v-html="markdown(config.finale.message)"></div>
       <div class="share margin-top-bottom-single">
         <share-to-platforms :url="shareURL" />
@@ -97,13 +97,22 @@ const defaultNextStepButton = '下一步'
 export default {
   mixins: [knowsMarkdown],
   props: {
-    shareURL: String,
-    markers: Array,
+    shareURL: {
+      type: String,
+      default: null
+    },
+    markers: {
+      type: Array,
+      default: () => []
+    },
     config: {
       type: Object,
-      default: {}
+      default: () => ({})
     },
-    id: String
+    id: {
+      type: String,
+      default: null
+    }
   },
   data() {
     return {
@@ -288,7 +297,7 @@ export default {
       })
     },
     setClusterEventHandler() {
-      this.map.on('click', 'clusters', (e) => {
+      this.map.on('click', 'clusters', e => {
         let cluster = this.map.queryRenderedFeatures(e.point, { layers: ['clusters'] })[0]
         let clusterCoordinates = cluster.geometry.coordinates
 
@@ -308,7 +317,7 @@ export default {
           })
         })
       })
-      this.map.on('click', 'markers-not-in-cluster', (e) => {
+      this.map.on('click', 'markers-not-in-cluster', e => {
         let marker = e.features[0]
         let coordinates = marker.geometry.coordinates.slice()
         this.activeFeatures = [marker]
@@ -413,7 +422,7 @@ export default {
         this.imageIsLoaded = false
 
         let nextFeature = makeFeature(this.nextEventMarker)
-        if (this.liveDS.features.length > 0) {
+        if(this.liveDS.features.length > 0) {
           delete this.liveDS.features[this.liveDS.features.length - 1].properties.isLatest
         }
         nextFeature.properties.isLatest = 'latest'

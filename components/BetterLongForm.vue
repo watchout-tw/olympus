@@ -45,7 +45,7 @@
           <div class="margin-top-bottom-8 text-align-center">{{ actionShowGroups.message }}</div>
           <div class="text-align-center" v-if="actionShowGroups.showGroupMessage">{{ result.message }}</div>
           <div class="segments d-flex margin-top-bottom-8" v-if="actionShowGroups.chartType === 'segments'">
-            <div class="segment padding-8" v-for="(group, index) of result.groups" :style="{ width: (group.count / result.totalCount) * 100 + '%', backgroundColor: group.color }" v-if="group.count > 0" >
+            <div class="segment padding-8" v-for="(group, index) of result.groups" :style="{ width: (group.count / result.totalCount) * 100 + '%', backgroundColor: group.color }" v-if="group.count > 0" :key="index">
               <div>{{ group.name }}</div>
               <div>{{ Math.round(group.count / result.totalCount * 100) + '%' }}</div>
             </div>
@@ -54,8 +54,8 @@
         <template v-if="doShowResult('showOccurences') && actionShowOccur.show">
           <div class="section-title small with-underline text-align-center"><span>成份分析</span></div>
           <div class="segments d-flex margin-top-bottom-8" v-if="actionShowOccur.chartType === 'segments'">
-            <div class="segment padding-8" v-for="(occurence, index) of result.occurences" :style="{ width: (occurence.count / result.totalCount) * 100 + '%', backgroundColor: actionShowOccur.segment.colors[index % actionShowOccur.segment.colors.length] }">
-              <div v-for="key in actionShowOccur.segment.keys">{{ occurence.details[key] }}</div>
+            <div class="segment padding-8" v-for="(occurence, index) of result.occurences" :style="{ width: (occurence.count / result.totalCount) * 100 + '%', backgroundColor: actionShowOccur.segment.colors[index % actionShowOccur.segment.colors.length] }" :key="index">
+              <div v-for="(key, keyIndex) in actionShowOccur.segment.keys" :key="keyIndex">{{ occurence.details[key] }}</div>
               <div>{{ Math.round(occurence.count / result.totalCount * 100) + '%' }}</div>
             </div>
           </div>
@@ -324,7 +324,7 @@ export default {
           }
           coralreef.createSpeech(speechData, this.crToken, this.crTokenSource).then(() => {
             // TODO: success
-          }).catch((error) => {
+          }).catch(error => {
             // TODO: extra error handling
             this.handleError(error)
           })

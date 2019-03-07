@@ -6,7 +6,7 @@
         <div class="message">{{ project.share.message }}</div>
         <share-to-platforms :classes="['cuboids']" :url="shareURL" />
       </div>
-      <div v-for="(card, index) of cards" class="swipe-card" :data-card-index="index" :class="cardClasses(index)" :style="cardStyles(index)">
+      <div v-for="(card, index) of cards" class="swipe-card" :data-card-index="index" :class="cardClasses(index)" :style="cardStyles(index)" :key="index">
         <label v-if="index > 0" class="index">{{ index }}</label>
         <template v-if="card.data.id === 'cover'">
           <h1 class="title medium">{{ card.data.title }}</h1>
@@ -32,7 +32,7 @@
         <div class="but paragraphs" v-html="markdown(activeCard.data.but)"></div>
         <template v-if="showMore">
           <div class="more">
-            <div class="section" v-if="activeCard.data.more" v-for="section in activeCard.data.more" :class="section.type">
+            <div class="section" v-if="activeCard.data.more" v-for="(section, index) in activeCard.data.more" :class="section.type" :key="index">
               <template v-if="section.type === 'markdown'">
                 <div class="content paragraphs a-text-only" v-if="section.content" v-html="markdown(section.content)"></div>
               </template>
@@ -64,7 +64,7 @@ export default {
   mixins: [knowsDOM, knowsMarkdown, knowsWatchout],
   props: ['module', 'project', 'shareURL'],
   data() {
-    var cards = this.project.cards.map(card => ({
+    let cards = this.project.cards.map(card => ({
       data: card,
       ...card.options && { options: card.options },
       el: null,
@@ -198,7 +198,7 @@ export default {
       this.cards[this.cards.length - index - 1].swingObj = this.stack.createCard(el)
       this.mirror.unshift(index)
     })
-    this.stack.on('dragstart', (e) => {
+    this.stack.on('dragstart', e => {
       const index = +e.target.dataset.cardIndex
       if(this.cards[index]) {
         this.cards.forEach(card => {
@@ -208,13 +208,13 @@ export default {
       }
       this.activeCardIndex = index
     })
-    this.stack.on('dragmove', (e) => {
+    this.stack.on('dragmove', e => {
       const index = +e.target.dataset.cardIndex
       if(this.cards[index]) {
         this.cards[index].offset.x = e.offset
       }
     })
-    this.stack.on('throwinend', (e) => {
+    this.stack.on('throwinend', e => {
       const index = +e.target.dataset.cardIndex
       if(this.cards[index]) {
         this.cards[index].state.dragging = false
@@ -225,10 +225,10 @@ export default {
         this.mirror.push(index)
       }
     })
-    this.stack.on('throwout', (e) => {
+    this.stack.on('throwout', e => {
       this.lastSwipe = e.throwDirection.toString().toLowerCase().indexOf('right') > -1 ? +1 : -1
     })
-    this.stack.on('throwoutend', (e) => {
+    this.stack.on('throwoutend', e => {
       const index = +e.target.dataset.cardIndex
       if(this.cards[index]) {
         this.cards[index].state.isOut = true
@@ -237,7 +237,7 @@ export default {
       this.activeCardIndex = index
       if(this.cards[index].state.isOut === true && this.cards[index].state.hasBeenOut === false) {
         // first remove it from mirror
-        var toRemove = this.mirror.indexOf(index)
+        let toRemove = this.mirror.indexOf(index)
         if(toRemove >= 0 && toRemove < this.mirror.length) {
           this.mirror.splice(toRemove, 1)
         } else {

@@ -37,7 +37,7 @@
     <div class="references tcl-panel tcl-left-right-margin">
       <h4 class="margin-top-bottom-4">參考資料</h4>
       <ul class="items font-size-small">
-        <li class="item paragraphs no-margin a-text-parent" v-for="item of project.references" v-html="markdown(item)"></li>
+        <li class="item paragraphs no-margin a-text-parent" v-for="(item, index) of project.references" v-html="markdown(item)" :key="index"></li>
       </ul>
     </div>
     <div class="tcl-panel"></div>

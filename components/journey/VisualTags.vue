@@ -2,7 +2,7 @@
 <div class="visual-tags" v-if="tags" :style="visualTagContainerStyles">
   <div v-for="tag of tags" class="visual-tag" :style="visualTagStyle(tag)" @click="visualTagClick(tag)" :key="getVisualTagKey(tag)">
     <div class="region" :style="Object.assign(getDimensions(tag), getStyles('visualTags', tag))"></div>
-    <div class="content" :style="" v-if="tag.content">{{ tag.content }}</div>
+    <div class="content" v-if="tag.content">{{ tag.content }}</div>
   </div>
 </div>
 </template>
@@ -40,7 +40,7 @@ export default {
         const transform = {
           scale: this.canvas.transform.scale === 1 ? 2 : 1
         }
-        const newCanvas = {...this.canvas, transformOrigin, transform}
+        const newCanvas = { ...this.canvas, transformOrigin, transform }
         this.$emit('update:canvas', newCanvas)
       } else if(tag.click === 'revealUnder') {
         tag.visible = false
@@ -56,13 +56,13 @@ export default {
       }
     },
     getDimensions(data) {
-      var styles = {}
+      let styles = {}
       styles.width = data.width * this.zoom + 'px'
       styles.height = data.height * this.zoom + 'px'
       return styles
     },
     getVisibility(data) {
-      var styles = {}
+      let styles = {}
       if(data.hasOwnProperty('visible') && data.visible === false) {
         styles.opacity = 0
         styles.visibility = 'hidden'

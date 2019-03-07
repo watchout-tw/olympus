@@ -1,6 +1,6 @@
 export function resolve(obj, path) {
   path = path.split('.')
-  var current = obj
+  let current = obj
   while(path.length) {
     if(typeof current !== 'object') {
       return undefined

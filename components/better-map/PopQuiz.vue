@@ -5,17 +5,17 @@
     <div class="question primary">
       <span>{{ config.question.primary.before }}</span>
       <span>&nbsp;</span>
-      <span class="blank">{{ selectedOption ? selectedOption.label : '　　' }}</span>
+      <span class="blank">{{ selectedOption ? selectedOption.label : spaces }}</span>
       <span>&nbsp;</span>
       <span>{{ config.question.primary.after }}</span>
     </div>
     <div class="questionsecondary">
       <span>{{ config.question.secondary.before }}</span>
-      <span class="blank">{{ selectedOption ? selectedOption.label : '　　' }}</span>
+      <span class="blank">{{ selectedOption ? selectedOption.label : spaces }}</span>
       <span>{{ config.question.secondary.after }}</span>
     </div>
     <div class="options">
-      <div class="option" :class="{ selected: selectedOption && selectedOption.value === option.value }" v-for="(option, index) of config.options" @click="selectedOption = option">{{ getCircledDigit(index + 1) }}&nbsp;{{ option.label }}</div>
+      <div class="option" :class="{ selected: selectedOption && selectedOption.value === option.value }" v-for="(option, index) of config.options" @click="selectedOption = option" :key="index">{{ getCircledDigit(index + 1) }}&nbsp;{{ option.label }}</div>
     </div>
   </div>
   <div class="submit tcl-panel full-width tcl-left-right-margin">
@@ -33,6 +33,8 @@ import { getCircledDigit } from '~/util/util'
 import SubmitButton from 'watchout-common-functions/components/button/Submit'
 import * as STATES from 'watchout-common-functions/lib/states'
 
+const spaces = '　　'
+
 export default {
   mixins: [knowsMarkdown],
   props: ['data', 'done'],
@@ -42,7 +44,8 @@ export default {
       submit: {
         state: STATES.DEFAULT,
         message: null
-      }
+      },
+      spaces
     }
   },
   computed: {

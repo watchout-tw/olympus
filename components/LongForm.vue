@@ -2,7 +2,7 @@
 <div class="long-form" :style="project.chart.styles">
   <a :href="plotDBLink" target="_blank" class="a-block plotdb-credit font-size-small text-align-center">
     <span>This project is made possible by </span>
-    <img class="plotdb-logo inline" :src="plotDBLogo" width="163px" style="margin: 0 0.25rem;"/>
+    <img class="plotdb-logo inline" :src="plotDBLogo" width="163px" style="margin: 0 0.25rem;" />
   </a>
   <div class="loading text-align-center" v-if="isLoading">載入中，請稍候⋯</div>
   <div id="plotdb-chart"></div>
@@ -54,7 +54,7 @@ export default {
   methods: {
     loadScript(url) {
       return new Promise(function(resolve, reject) {
-        var script = document.createElement('script')
+        let script = document.createElement('script')
         script.type = 'text/javascript'
         script.async = true
         script.src = url

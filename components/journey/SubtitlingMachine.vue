@@ -50,7 +50,7 @@ export default {
       return /[A-Za-z0-9`~$%^&*\-=+\\|/!;:,.?]/.test(string)
     },
     tokenize(sentence, addSpaceBack = true) {
-      var segments = pangu.spacing(sentence.toUpperCase()).split(' ')
+      let segments = pangu.spacing(sentence.toUpperCase()).split(' ')
       if(addSpaceBack) {
         for(let i = segments.length - 2; i >= 0; i--) {
           if(this.isLatin(segments[i]) && this.isLatin(segments[i + 1])) {
@@ -82,7 +82,7 @@ export default {
       clearInterval(this.tokenTimer)
       this.lineTimer = setTimeout(() => {
         this.lineTimer = null
-        var nextLineIndex = this.lineIndex + 1
+        let nextLineIndex = this.lineIndex + 1
         if(nextLineIndex >= this.lines.length) {
           this.stop()
         } else {

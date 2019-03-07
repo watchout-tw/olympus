@@ -9,27 +9,21 @@
 <script>
 export default {
   props: ['mainVisual', 'canvasIsLarger'],
-  data() {
-    return {
-      croppingMethod: 'cover'
-    }
-  },
   computed: {
     mainVisualContentStyles() {
-      var styles = {}
+      let styles = {}
       if(this.mainVisual && this.mainVisual.type === 'image') {
         if(this.mainVisual.magnify === false) {
           if(this.canvasIsLarger()) {
             // actual size
-            this.croppingMethod = 'none'
             styles.backgroundSize = this.mainVisual.width + 'px'
           } else {
             // contain
-            this.croppingMethod = styles.backgroundSize = 'contain'
+            styles.backgroundSize = 'contain'
           }
         } else {
           // cover
-          this.croppingMethod = styles.backgroundSize = 'cover'
+          styles.backgroundSize = 'cover'
         }
         if(this.mainVisual.blur) {
           styles.filter = 'blur(4px)'
