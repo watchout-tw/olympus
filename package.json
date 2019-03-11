@@ -1,7 +1,7 @@
 {
   "name": "olympus",
   "version": "1.0.0",
-  "description": "Experimenting mass media on musou with nuxt.js",
+  "description": "News media experiments with nuxt.js",
   "author": "Department of Technology at Watchout <dev@watchout.tw>",
   "private": true,
   "config": {
