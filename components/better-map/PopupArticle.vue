@@ -7,7 +7,7 @@
         <div v-html="markdown(mobiledoc.cards[section[1]][1].markdown)"></div>
       </template>
       <template v-else-if="mobiledoc.cards[section[1]][0] === 'image'">
-        <img class="image" :src="'https://beta.bunko.watchout.tw' + mobiledoc.cards[section[1]][1].src" />
+        <img class="image" :src="ghostBaseURL + mobiledoc.cards[section[1]][1].src" />
       </template>
     </div>
     <div class="share margin-top-bottom-single">
@@ -22,6 +22,7 @@
 <script>
 // This is a prototype of something between Infobox and Prompt
 // TODO: Make this a independent component in common-function
+import config from 'watchout-common-functions/config/config'
 import { knowsBunko, knowsMarkdown } from 'watchout-common-functions/interfaces'
 import ShareToPlatforms from 'watchout-common-functions/components/ShareToPlatforms'
 
@@ -36,6 +37,11 @@ export default {
     shareURL: {
       type: String,
       default: null
+    }
+  },
+  data() {
+    return {
+      ghostBaseURL: config.ghostBaseURL
     }
   },
   computed: {
