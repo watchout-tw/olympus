@@ -3,8 +3,8 @@
   <div class="doc-header-container responsive-typesetting-container margin-top-double margin-bottom-single">
     <doc-header :doc="doc" :variable-font-size="true" :cachedAuthors="cachedAuthors" />
   </div>
-  <ghost-article :sections="sections" :cards="cards" :links="links" :footnotes="footnotes" :references="references" :data="dataOnReferences" />
-  <after-article :shareURL="shareURL" :links="links" :footnotes="footnotes" :references="references" :data="dataOnReferences" />
+  <ghost-article :sections="sections" :cards="cards" :references="references" :data="dataOnReferences" />
+  <after-article :shareURL="shareURL" :links="links" :sources="sources" :footnotes="footnotes" :references="references" :data="dataOnReferences" />
 </div>
 </template>
 
