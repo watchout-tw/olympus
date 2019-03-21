@@ -9,8 +9,8 @@
     <re-captcha :token.sync="crToken" :tokenSource.sync="crTokenSource" />
   </div>
   <div class="scenes" v-if="isHuman">
-    <div class="scene margin-top-bottom-double padding-top-bottom-single" :class="{ 'has-correct-answer': hasCorrectAnswer, locked: scene.lock }" v-for="(scene, index) in history" :key="`history-entry-${index}`" :id="`history-entry-${index}`">
-      <div class="paragraphs responsive-typesetting-container margin-top-bottom-8">
+    <div class="scene padding-top-bottom-single" :class="{ 'has-correct-answer': hasCorrectAnswer, locked: scene.lock }" v-for="(scene, index) in history" :key="`history-entry-${index}`" :id="`history-entry-${index}`">
+      <div class="responsive-typesetting-container margin-top-bottom-8">
         <div v-if="scene.beforeTitle" class="paragraphs a-text-parent" v-html="markdown(scene.beforeTitle)"></div>
         <h2 v-if="scene.title" class="margin-top-bottom-single" v-html="spacingOptimizer(scene.title)"></h2>
         <h3 v-if="scene.subtitle" v-html="spacingOptimizer(scene.subtitle)"></h3>
