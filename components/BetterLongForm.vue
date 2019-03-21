@@ -75,7 +75,7 @@
     <div class="closing margin-top-bottom-double a-text-parent" v-html="markdown(project.closing)"></div>
   </div>
   <div class="appendix-container padding-top-bottom-double responsive-typesetting-container" v-if="isHuman && isCompleted && hasAppendix">
-    <div class="appendix secondary-text font-size-small" :class="apdxDispType" v-html="appendixHTML"></div>
+    <div class="appendix secondary-text font-size-small" :class="apdxDispType" v-html="apdxHTML"></div>
   </div>
   <div class="incomplete-prompt padding-top-bottom-double" v-if="isHuman && !isCompleted && project.incompletePrompt"><!-- is not completed -->
     <div class="font-size-small text-align-center secondary-text">{{ project.incompletePrompt }}</div>
@@ -119,7 +119,7 @@ export default {
     let hasAppendix = this.project.hasOwnProperty('appendix')
     let apdxDispType = hasAppendix ? this.project.appendix.displayType : undefined
     let apdxDispItemType = hasAppendix ? this.project.appendix.displayItemType : undefined
-    let appendixHTML = null
+    let apdxHTML = null
     if(hasAppendix && this.project.appendix.type === 'json') {
       let data = require('~/data/' + this.project.appendix.reference)
       if(apdxDispType === 'list') {
@@ -132,7 +132,7 @@ export default {
           }
           return newItem
         })
-        appendixHTML = data.map(item => `<div class="item"><label>${item.date}</label><h4>${this.spacingOptimizer(item.title)}</h4><label>${this.spacingOptimizer(item.description)}</label></div>`).join(EMPTY)
+        apdxHTML = data.map(item => `<div class="item"><label>${item.date}</label><h4>${this.spacingOptimizer(item.title)}</h4><label>${this.spacingOptimizer(item.description)}</label></div>`).join(EMPTY)
       }
     }
 
@@ -149,7 +149,7 @@ export default {
       hasAppendix,
       apdxDispType,
       apdxDispItemType,
-      appendixHTML,
+      apdxHTML,
       prompt: {
         duration: devMode ? 500 : 1500,
         show: false,
