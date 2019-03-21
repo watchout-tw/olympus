@@ -130,7 +130,7 @@ export default {
           }
           return newItem
         })
-        appendixHTML = data.map(item => `<div class="item">${item.date}<br/>${item.title}<br/>${item.description}</div>`).join(EMPTY)
+        appendixHTML = data.map(item => `<div class="item"><label>${item.date}</label><h4>${this.spacingOptimizer(item.title)}</h4><label>${this.spacingOptimizer(item.description)}</label></div>`).join(EMPTY)
       }
     }
 
