@@ -69,8 +69,11 @@
       </div>
     </template>
   </div>
-  <div class="closing-container padding-top-bottom-double responsive-typesetting-container" v-if="isHuman && isCompleted && project.closing">
+  <div class="closing-container padding-top-bottom-double responsive-typesetting-container" v-if="isHuman && isCompleted && hasClosing">
     <div class="closing margin-top-bottom-double a-text-parent" v-html="markdown(project.closing)"></div>
+  </div>
+  <div class="appendix-container padding-top-bottom-double responsive-typesetting-container" v-if="isHuman && isCompleted && hasAppendix">
+    <div class="appendix secondary-text font-size-small" :class="apdxDispType" v-html="appendixHTML"></div>
   </div>
   <div class="incomplete-prompt padding-top-bottom-double" v-if="isHuman && !isCompleted && project.incompletePrompt"><!-- is not completed -->
     <div class="font-size-small text-align-center secondary-text">{{ project.incompletePrompt }}</div>
@@ -88,6 +91,7 @@
 import { knowsAuth, knowsBunko, knowsCoralReef, knowsError, knowsMarkdown, knowsReCaptcha, knowsWatchout } from 'watchout-common-functions/interfaces'
 import ReCaptcha from 'watchout-common-functions/components/ReCaptcha'
 import * as coralreef from 'watchout-common-functions/lib/coralreef'
+import * as util from 'watchout-common-functions/lib/util'
 import { resolve } from '~/util/util'
 
 const devMode = false
@@ -99,19 +103,51 @@ function getDateString(timeObj) {
   return [timeObj.year, pad0(timeObj.month), pad0(timeObj.date)].filter(val => !!val).join('-')
 }
 
+const EMPTY = ''
+const SEMICOLON = '；'
+
 export default {
   mixins: [knowsAuth, knowsBunko, knowsCoralReef, knowsError, knowsMarkdown, knowsReCaptcha, knowsWatchout],
   props: ['project', 'module', 'doc'],
   data() {
     let scenes = this.project.sequence.scenes
-    let showPromptAction = this.project.sequence.afterClickActions ? this.project.sequence.afterClickActions.find(action => action.name === 'showPrompt') : null
-    let promptContent = showPromptAction ? Object.assign({}, ...showPromptAction.keys.map(key => ({ [key]: null }))) : {}
+    let hasClosing = this.project.hasOwnProperty('closing')
+
+    // appendix
+    let hasAppendix = this.project.hasOwnProperty('appendix')
+    let apdxDispType = hasAppendix ? this.project.appendix.displayType : undefined
+    let apdxDispItemType = hasAppendix ? this.project.appendix.displayItemType : undefined
+    let appendixHTML = null
+    if(hasAppendix && this.project.appendix.type === 'json') {
+      let data = require('~/data/' + this.project.appendix.reference)
+      if(apdxDispType === 'list') {
+        data = data.map(item => {
+          let newItem = {}
+          if(apdxDispItemType === 'person') {
+            newItem.date = util.formatter.date(item.date)
+            newItem.title = [item.name, ...(item.gender ? [item.gender] : []), ...(item.age ? [item.age] : [])].join(SEMICOLON)
+            newItem.description = item.description
+          }
+          return newItem
+        })
+        appendixHTML = data.map(item => `<div class="item">${item.date}<br/>${item.title}<br/>${item.description}</div>`).join(EMPTY)
+      }
+    }
+
+    // prompt
+    let actionShowPrompt = this.project.sequence.afterClickActions ? this.project.sequence.afterClickActions.find(action => action.name === 'showPrompt') : null
+    let promptContent = actionShowPrompt ? Object.assign({}, ...actionShowPrompt.keys.map(key => ({ [key]: null }))) : {}
     return {
       scenes,
       currentSceneIndex: -1,
       history: [],
       accumulatedScore: 0,
       accumulatedDetails: [],
+      hasClosing,
+      hasAppendix,
+      apdxDispType,
+      apdxDispItemType,
+      appendixHTML,
       prompt: {
         duration: devMode ? 500 : 1500,
         show: false,
@@ -511,6 +547,17 @@ export default {
           &.correct {
             background-color: $color-correct;
           }
+        }
+      }
+    }
+  }
+  > .appendix-container {
+    > .appendix {
+      &.list {
+        display: flex;
+        flex-wrap: wrap;
+        > .item {
+          margin: 0.5rem;
         }
       }
     }

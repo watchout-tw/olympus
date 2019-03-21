@@ -688,6 +688,12 @@ export default {
   }, // end of sequence object
   incompletePrompt: '戒嚴時代仍在繼續，你必須努力生存下來。',
   closing: '經過了數十年戒嚴，你雖然沒有活躍的校園生活，無法讀自己想讀的書，跟朋友交往也都戰戰兢兢，連兒女做什麼都要嚴加控管，以免惹禍上身，但你活下來了。你成為這個時代的倖存者。\n\n其他人就沒有這麼幸運了。一個個現在看起來稀鬆平常的選擇，讓數以千計的人在那個時代因莫須有的罪名被槍決，成為戒嚴時期白色恐怖受難者。\n\n以下為部份戒嚴時期被槍決的受難者。沒有加害人。',
+  appendix: {
+    type: 'json',
+    reference: 'role-play/white-terror-executions-partial.json',
+    displayType: 'list',
+    displayItemType: 'person'
+  },
   references: [
     '《走過長夜：政治受難者的生命故事》（輯一･秋蟬的悲鳴、輯二･看到陽光的時候、輯三･換不回的青春，共三冊）。新北市：國家人權博物館籌備處，2015。',
     '《冤獄、求生與揚名——政治受難者歐陽劍華與張常美的生命故事特展專刊》。新北市：國家人權博物館籌備處，2015。',
