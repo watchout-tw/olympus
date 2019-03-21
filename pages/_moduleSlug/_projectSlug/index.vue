@@ -4,11 +4,8 @@
     <template v-if="project.module === 'swipe'">
       <swipe :module="module" :project="project" :shareURL="shareURL" />
     </template>
-    <template v-else-if="project.module === 'quiz'">
+    <template v-else-if="['quiz', 'role-play'].includes(project.module)">
       <better-long-form :module="module" :project="project" :doc="doc" />
-    </template>
-    <template v-else-if="project.module === 'role-play'">
-      <long-form :module="module" :project="project" />
     </template>
     <template v-else-if="project.module === 'draw'">
       <draw :module="module" :project="project" :doc="doc" />
@@ -52,7 +49,6 @@ import * as firestore from 'watchout-common-functions/lib/firestore'
 import { knowsBunko, knowsCaching, knowsMarkdown, knowsWatchout } from 'watchout-common-functions/interfaces'
 import Swipe from '~/components/Swipe'
 import Draw from '~/components/Draw'
-import LongForm from '~/components/LongForm'
 import BetterLongForm from '~/components/BetterLongForm'
 import Journey from '~/components/Journey'
 import BetterMap from '~/components/BetterMap'
@@ -72,7 +68,6 @@ export default {
 
     let projectSlug = params.moduleSlug + '/' + params.projectSlug
     let doc = await firestore.bunko.getProjectBySlug(projectSlug)
-
     if(!doc) {
       error({ statusCode: 404 })
       return
@@ -127,7 +122,6 @@ export default {
   components: {
     Swipe,
     Draw,
-    LongForm,
     BetterLongForm,
     Journey,
     BetterMap,

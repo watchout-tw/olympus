@@ -14,10 +14,14 @@ export default {
   sequence: {
     navigation: 'sequential',
     hasCorrectAnswer: true,
+    showCorrectAnswer: true,
     canChangeAnswer: false,
     afterClickActions: [
       {
         name: 'coralreef'
+      },
+      {
+        name: 'showDetail'
       },
       {
         name: 'accumulateScore'
@@ -524,7 +528,8 @@ export default {
         }
       }
     ]
-  },
+  }, // end of sequence object
+  incompletePrompt: '測驗尚未結束，同志仍須繼續努力作答。',
   showResultActions: [
     {
       name: 'sort',
@@ -590,9 +595,6 @@ export default {
     }
   ],
   closing: '四年過去了，還記得2014《台北市長給問嗎》，候選人說過什麼嗎？凡走過必留下痕跡，候選人在《台北市長給問嗎》的回答紀錄，都是檢驗政治人物的重要參考。\n\n針對2018選舉，沃草團隊推出《[六都市長給問嗎](https://ask.watchout.tw/)》，目標是持續強化公民與政治人物直接溝通的平台。基於這樣的理念，從今年六月起，我們就持續邀請所有六都市長候選人加入網站，台北市五位候選人中，已有吳萼洋、姚文智、李錫錕確定加入，而丁守中、柯文哲兩位的競選團隊成員也已口頭承諾阿草加入網站，請各位持續關注他們兩位的參戰消息。我們會持續邀請，也請所有關注市長選舉的公民，到網站上提問、連署你所關心的問題，也關注哪些候選人真正加入，並回答公民的問題。',
-  share: {
-    message: '分享你獨一無二的柯文哲'
-  },
   references: [
     '[2014年沃草《市長給問嗎》各候選人的回答](https://ask.watchout.tw/games/2014-taipei)',
     '[2014/12/27《ETtoday》記者黃瀞瑩專訪台北市長柯文哲](https://www.ettoday.net/news/20141227/444198.htm)',

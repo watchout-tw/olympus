@@ -4,6 +4,7 @@ export default {
   sequence: {
     navigation: 'sequential',
     hasCorrectAnswer: true,
+    showCorrectAnswer: true,
     canChangeAnswer: false,
     afterClickActions: [
       {
@@ -212,7 +213,8 @@ export default {
         ]
       }
     ]
-  },
+  }, // end of sequence object
+  incompletePrompt: '測驗尚未結束，同志仍須繼續努力作答。',
   results: [
     {
       score: 100,

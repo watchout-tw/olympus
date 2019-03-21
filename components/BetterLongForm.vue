@@ -1,84 +1,84 @@
 <template>
-<div class="better-long-form">
-  <div class="opening tcl-container">
-    <div class="tcl-panel tcl-left-right-margin with-top-bottom-margin with-double-top-margin">
-      <h1 class="medium" v-html="spacingOptimizer(doc.title)"></h1>
-      <div class="paragraphs" v-html="markdown(doc.description)"></div>
-    </div>
-    <div class="tcl-panel"></div>
+<div class="better-long-form" :class="[ project.theme ? `theme-${project.theme}` : '' ]">
+  <div class="opening responsive-typesetting-container padding-top-double padding-bottom-single">
+    <h2 v-html="spacingOptimizer(module.title)"></h2>
+    <h1 v-html="spacingOptimizer(doc.title)"></h1>
+    <div v-if="doc.description" class="paragraphs" v-html="markdown(doc.description)"></div>
   </div>
-  <re-captcha :token.sync="crToken" :tokenSource.sync="crTokenSource" />
-  <div class="scenes tcl-container" v-if="isHuman">
-    <div class="scene tcl-panel full-width tcl-left-right-margin with-top-bottom-margin with-quad-top-margin" :class="{ 'has-correct-answer': hasCorrectAnswer, locked: scene.lock }" v-for="scene in scenes" :key="scene.title" v-if="scene.show">
-      <h2 v-html="spacingOptimizer(scene.title)"></h2>
-      <div class="options form-field-many-inputs">
-        <div class="option input button wrap" :class="{ immutable: scene.lock, selected: option === scene.selectedOption, correct: hasCorrectAnswer && option.isCorrect }" v-for="option in scene.options" :key="option.title" @click="onClick(scene, option)">
-          <div class="details margin-bottom-4 font-weight-bold" v-if="scene.selectedOption && option.details">
+  <div class="responsive-typesetting-container" v-if="doAfterClick('coralreef')">
+    <re-captcha :token.sync="crToken" :tokenSource.sync="crTokenSource" />
+  </div>
+  <div class="scenes responsive-typesetting-container" v-if="isHuman">
+    <div class="scene margin-top-bottom-double padding-top-bottom-single" :class="{ 'has-correct-answer': hasCorrectAnswer, locked: scene.lock }" v-for="(scene, index) in history" :key="`history-entry-${index}`" :id="`history-entry-${index}`">
+      <div v-if="scene.beforeTitle" class="paragraphs a-text-parent margin-8" v-html="markdown(scene.beforeTitle)"></div>
+      <h2 v-if="scene.title" class="margin-top-bottom-single" v-html="spacingOptimizer(scene.title)"></h2>
+      <h3 v-if="scene.subtitle" class="margin-top-bottom-8" v-html="spacingOptimizer(scene.subtitle)"></h3>
+      <div v-if="scene.description" class="paragraphs a-text-parent margin-8" v-html="markdown(scene.description)"></div>
+      <div v-if="scene.image" class="image-container margin-top-bottom-single">
+        <img :src="scene.image.reference" :alt="scene.image.caption" />
+        <div v-if="scene.image.caption" class="caption paragraphs no-margin a-text-parent secondary-text margin-top-bottom-8" v-html="markdown(scene.image.caption, true)"></div>
+      </div>
+      <div class="options">
+        <div class="option input button wrap" :class="{ 'immutable': scene.lock, 'selected': option === scene.selectedOption, 'not-selected': !option.isCorrect && scene.selectedOption && option !== scene.selectedOption, 'correct': showCorrectAnswer && hasCorrectAnswer && option.isCorrect }" v-for="option in scene.options" :key="option.title" @click="onClick(scene, option)">
+          <div class="details margin-bottom-4 font-weight-bold" v-if="scene.selectedOption && doAfterClick('showDetail') && option.details">
             <span v-if="option.details.time" class="latin-within-han first">{{ option.details.time.year }}</span>
             <span v-if="option.details.person">{{ option.details.person.name }}</span>
           </div>
-          <h3 class="small font-weight-normal">{{ option.title }}</h3>
-          <div class="details margin-top-4 font-size-tiny secondary-text" v-if="scene.selectedOption && option.details">
+          <div class="title" v-html="spacingOptimizer(option.title)"></div>
+          <div class="details margin-top-4 font-size-tiny secondary-text" v-if="scene.selectedOption && doAfterClick('showDetail') && option.details">
             <span class="time latin-within-han first" v-if="option.details.time">{{ [option.details.time.year, option.details.time.month, option.details.time.date].filter(val => !!val).join('/') }}</span>
-            <span v-if="option.details.person.title">{{ option.details.person.title }}</span>
+            <span v-if="option.details.person && option.details.person.title">{{ option.details.person.title }}</span>
             <span v-if="option.details.person">{{ option.details.person.name }}</span>
-            <span class="platform">在{{ option.details.platform }}<template v-if="option.details.scenario">{{ option.details.scenario }}</template><template v-if="option.details.type">的{{ option.details.type }}</template></span>
+            <span v-if="option.details.platform" class="platform">在{{ option.details.platform }}<template v-if="option.details.scenario">{{ option.details.scenario }}</template><template v-if="option.details.type">的{{ option.details.type }}</template></span>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="tcl-container" v-else>
-    <div class="tcl-panel tcl-left-right-margin with-top-bottom-margin with-double-top-margin text-align-center">
-      機器人防治檢查中，請稍候。
-    </div>
+  <div class="human-verification-prompt padding-top-bottom-double" v-else><!-- is not human -->
+    <div class="font-size-small text-align-center secondary-text">機器人防治檢查中，請稍候。</div>
   </div>
-  <div class="result-container tcl-container" v-if="isHuman">
-    <div class="tcl-panel full-width with-top-bottom-margin with-quad-top-margin" v-if="completed">
-      <div class="result margin-top-bottom-double">
-        <template v-if="doShowResult('showScore')">
-          <div class="section-title small with-underline text-align-center"><span>總分</span></div>
-          <div class="text-align-center font-size-4x">{{ accumulatedScore }}</div>
-        </template>
-        <template v-if="doShowResult('showGroups') && actionShowGroups.show">
-          <div class="section-title small with-underline text-align-center"><span>成份分析</span></div>
-          <div class="margin-top-bottom-8 text-align-center">{{ actionShowGroups.message }}</div>
-          <div class="text-align-center" v-if="actionShowGroups.showGroupMessage">{{ result.message }}</div>
-          <div class="segments d-flex margin-top-bottom-8" v-if="actionShowGroups.chartType === 'segments'">
-            <div class="segment padding-8" v-for="(group, index) of result.groups" :style="{ width: (group.count / result.totalCount) * 100 + '%', backgroundColor: group.color }" v-if="group.count > 0" :key="index">
-              <div>{{ group.name }}</div>
-              <div>{{ Math.round(group.count / result.totalCount * 100) + '%' }}</div>
-            </div>
-          </div>
-        </template>
-        <template v-if="doShowResult('showOccurences') && actionShowOccur.show">
-          <div class="section-title small with-underline text-align-center"><span>成份分析</span></div>
-          <div class="segments d-flex margin-top-bottom-8" v-if="actionShowOccur.chartType === 'segments'">
-            <div class="segment padding-8" v-for="(occurence, index) of result.occurences" :style="{ width: (occurence.count / result.totalCount) * 100 + '%', backgroundColor: actionShowOccur.segment.colors[index % actionShowOccur.segment.colors.length] }" :key="index">
-              <div v-for="(key, keyIndex) in actionShowOccur.segment.keys" :key="keyIndex">{{ occurence.details[key] }}</div>
-              <div>{{ Math.round(occurence.count / result.totalCount * 100) + '%' }}</div>
-            </div>
-          </div>
-        </template>
-        <template v-if="showSimpleResult">
-          <div class="section-title small with-underline text-align-center"><span>總分</span></div>
-          <div class="text-align-center font-size-4x">{{ accumulatedScore }}</div>
-          <div class="text-align-center">{{ simpleResult }}</div>
-        </template>
+  <div class="result responsive-typesetting-container" v-if="isHuman && isCompleted">
+    <template v-if="showSimpleResult">
+      <div class="section-title small with-underline text-align-center"><span>總分</span></div>
+      <div class="text-align-center font-size-4x">{{ accumulatedScore }}</div>
+      <div class="text-align-center">{{ simpleResult }}</div>
+    </template>
+    <template v-if="doShowResult('showScore')">
+      <div class="section-title small with-underline text-align-center"><span>總分</span></div>
+      <div class="text-align-center font-size-4x">{{ accumulatedScore }}</div>
+    </template>
+    <template v-if="doShowResult('showGroups') && actionShowGroups.show">
+      <div class="section-title small with-underline text-align-center"><span>成份分析</span></div>
+      <div class="margin-top-bottom-8 text-align-center">{{ actionShowGroups.message }}</div>
+      <div class="text-align-center" v-if="actionShowGroups.showGroupMessage">{{ result.message }}</div>
+      <div class="segments d-flex margin-top-bottom-8" v-if="actionShowGroups.chartType === 'segments'">
+        <div class="segment padding-8" v-for="(group, index) of result.groups" :style="{ width: (group.count / result.totalCount) * 100 + '%', backgroundColor: group.color }" v-if="group.count > 0" :key="index">
+          <div>{{ group.name }}</div>
+          <div>{{ Math.round(group.count / result.totalCount * 100) + '%' }}</div>
+        </div>
       </div>
-    </div>
-    <div class="tcl-panel tcl-left-right-margin with-top-bottom-margin with-double-top-margin" v-if="completed">
-      <div class="closing a-text-parent" v-html="markdown(project.closing)"></div>
-    </div>
-    <div class="tcl-panel" v-if="completed"></div>
-    <div class="tcl-panel with-top-bottom-margin with-quad-top-margin with-quad-bottom-margin" v-if="!completed">
-      <div class="font-size-small text-align-center secondary-text">測驗尚未結束，同志仍須繼續努力作答。</div>
-    </div>
+    </template>
+    <template v-if="doShowResult('showOccurences') && actionShowOccur.show">
+      <div class="section-title small with-underline text-align-center"><span>成份分析</span></div>
+      <div class="segments d-flex margin-top-bottom-8" v-if="actionShowOccur.chartType === 'segments'">
+        <div class="segment padding-8" v-for="(occurence, index) of result.occurences" :style="{ width: (occurence.count / result.totalCount) * 100 + '%', backgroundColor: actionShowOccur.segment.colors[index % actionShowOccur.segment.colors.length] }" :key="index">
+          <div v-for="(key, keyIndex) in actionShowOccur.segment.keys" :key="keyIndex">{{ occurence.details[key] }}</div>
+          <div>{{ Math.round(occurence.count / result.totalCount * 100) + '%' }}</div>
+        </div>
+      </div>
+    </template>
+  </div>
+  <div class="closing-container padding-top-bottom-double responsive-typesetting-container" v-if="isHuman && isCompleted && project.closing">
+    <div class="closing margin-top-bottom-double a-text-parent" v-html="markdown(project.closing)"></div>
+  </div>
+  <div class="incomplete-prompt padding-top-bottom-double" v-if="isHuman && !isCompleted && project.incompletePrompt"><!-- is not completed -->
+    <div class="font-size-small text-align-center secondary-text">{{ project.incompletePrompt }}</div>
   </div>
   <div class="prompt-overlay" v-if="prompt.show && doAfterClick('showPrompt')">
     <div class="prompt" :class="prompt.classes">
       <div class="score text-align-center" v-if="actionShowPrompt.keys.includes('score')">{{ prompt.content.score }}</div>
-      <div class="message" v-if="actionShowPrompt.keys.includes('message')">{{ prompt.content.message }}</div>
+      <div class="message" v-if="actionShowPrompt.keys.includes('message')" v-html="spacingOptimizer(prompt.content.message)"></div>
     </div>
   </div>
 </div>
@@ -103,20 +103,13 @@ export default {
   mixins: [knowsAuth, knowsBunko, knowsCoralReef, knowsError, knowsMarkdown, knowsReCaptcha, knowsWatchout],
   props: ['project', 'module', 'doc'],
   data() {
-    let scenes = this.project.sequence.scenes.map(scene => {
-      let flags = {
-        show: false,
-        lock: false,
-        selectedOption: null
-      }
-      return Object.assign({}, scene, flags)
-    })
-    scenes[0].show = true
-
+    let scenes = this.project.sequence.scenes
     let showPromptAction = this.project.sequence.afterClickActions ? this.project.sequence.afterClickActions.find(action => action.name === 'showPrompt') : null
     let promptContent = showPromptAction ? Object.assign({}, ...showPromptAction.keys.map(key => ({ [key]: null }))) : {}
     return {
       scenes,
+      currentSceneIndex: -1,
+      history: [],
       accumulatedScore: 0,
       accumulatedDetails: [],
       prompt: {
@@ -124,21 +117,23 @@ export default {
         show: false,
         classes: [],
         content: promptContent
-      }
+      },
+      isCompleted: false,
+      scrollTimer: null
     }
   },
   computed: {
     isHuman() {
-      return this.crToken !== undefined && this.crToken !== null
+      return this.doAfterClick('coralreef') ? this.crToken !== undefined && this.crToken !== null : true
     },
     hasCorrectAnswer() {
       return this.project.sequence.hasCorrectAnswer
     },
+    showCorrectAnswer() {
+      return this.project.sequence.showCorrectAnswer
+    },
     canChangeAnswer() {
       return this.project.sequence.canChangeAnswer
-    },
-    completed() {
-      return devMode ? true : this.scenes.filter(scene => !scene.selectedOption).length === 0
     },
     showSimpleResult() {
       return this.project.results && Array.isArray(this.project.results)
@@ -226,17 +221,19 @@ export default {
     },
     actionShowOccur() {
       return this.doShowResult('showOccurences') ? this.getShowResultAction('showOccurences') : undefined
+    },
+    currentScene() {
+      return this.history.length > 0 ? this.history[this.history.length - 1] : null
     }
   },
   watch: {
-    completed() {
-      let action
+    isCompleted() {
       if(this.doAtCompletion('updateQuery')) {
-        action = this.getAtCompletionAction('updateQuery')
+        let action = this.getAtCompletionAction('updateQuery')
         let source = resolve(this, action.value.source)
         let key = action.key
         let value
-        if(this.completed) {
+        if(this.isCompleted) {
           if(action.value.method === 'each') {
             value = source.map(item => resolve(item, action.value.key)).join(action.value.joinChar)
           }
@@ -252,13 +249,76 @@ export default {
   },
   mounted() {
     this.clearQuery()
+    this.goToNextScene()
   },
   methods: {
+    scrollToCurrentScene() {
+      if(!this.doAfterClick('scroll')) {
+        return
+      }
+      if(this.scrollTimer) {
+        clearTimeout(this.scrollTimer)
+      }
+      let entryIndex = this.history.length - 1
+      if(entryIndex > 0) { // avoid scroll to entry 0
+        document.getElementById(`history-entry-${entryIndex}`).scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        }) // FIXME: mobile safari does not support smooth behavior
+      }
+    },
+    getNextSceneIndex(option) {
+      let nextSceneIndex = -1
+      if(this.currentSceneIndex < 0) {
+        nextSceneIndex = 0
+      } else if(option && option.goto) {
+        nextSceneIndex = this.scenes.findIndex(scene => scene.id === option.goto)
+      } else if(this.currentSceneIndex + 1 < this.scenes.length) {
+        nextSceneIndex = this.currentSceneIndex + 1
+      }
+      return nextSceneIndex
+    },
+    goToNextScene(option) {
+      let nextScene = null
+      let nextSceneIndex = this.getNextSceneIndex(option)
+      if(nextSceneIndex > -1) {
+        let flags = {
+          lock: false,
+          selectedOption: null
+        }
+        nextScene = Object.assign({}, this.scenes[nextSceneIndex], flags)
+        this.history.push(nextScene)
+        this.currentSceneIndex = nextSceneIndex
+
+        this.$nextTick(() => {
+          this.scrollToCurrentScene()
+        })
+
+        // execute before-click actions
+        if(this.doBeforeClick('accumulateDetails')) {
+          let keys = this.getBeforeClickAction('accumulateDetails').keys
+          this.accumulateDetails(nextScene.details, keys, +1)
+        }
+
+        // check if next scene has options
+        if(!(Array.isArray(this.currentScene.options) && this.currentScene.options.length > 0)) {
+          this.isCompleted = true
+        }
+      } else {
+        this.isCompleted = true
+      }
+    },
     clearQuery() {
       this.$router.push({
         path: this.$route.path,
         query: null
       })
+    },
+    doBeforeClick(actionName) {
+      return this.project.sequence.beforeClickActions ? this.project.sequence.beforeClickActions.filter(action => action.name === actionName).length > 0 : false
+    },
+    getBeforeClickAction(actionName) {
+      return this.project.sequence.beforeClickActions ? this.project.sequence.beforeClickActions.find(action => action.name === actionName) : null
     },
     doAfterClick(actionName) {
       return this.project.sequence.afterClickActions ? this.project.sequence.afterClickActions.filter(action => action.name === actionName).length > 0 : false
@@ -286,16 +346,12 @@ export default {
       }
       return offset
     },
-    getOptionDetailObject(option) {
-      let keys = this.getAfterClickAction('accumulateDetails').keys
-      return Object.assign({}, ...keys.map(key => {
+    accumulateDetails(details = {}, keys = [], plusMinus = +1) { // (option, plusMinus) {
+      let detailObj = Object.assign({}, ...keys.map(key => {
         return {
-          [key]: resolve(option.details, key)
+          [key]: resolve(details, key)
         }
       }))
-    },
-    accumulateDetails(option, plusMinus) {
-      let detailObj = this.getOptionDetailObject(option)
       if(plusMinus > 0) {
         this.accumulatedDetails.push(JSON.stringify(detailObj))
       } else {
@@ -306,82 +362,84 @@ export default {
       }
     },
     onClick(scene, option) {
-      if(!scene.lock) {
-        // accumulate
-        if(this.doAfterClick('coralreef')) {
-          this.optionToSubmit = option
-          if(!this.crToken) {
-            window.grecaptcha.execute()
-            return
-          }
+      if(scene.lock) {
+        return
+      }
 
-          let speechData = {
-            targetID: scene.speechTarget.id,
-            classes: [scene.speechTarget.speechType],
-            data: {
-              selectedOption: option
-            }
-          }
-          coralreef.createSpeech(speechData, this.crToken, this.crTokenSource).then(() => {
-            // TODO: success
-          }).catch(error => {
-            // TODO: extra error handling
-            this.handleError(error)
-          })
-        }
-        let offset = 0
-        if(this.doAfterClick('accumulateScore')) {
-          if(scene.selectedOption) {
-            this.accumulateScore(scene.selectedOption, -1)
-          }
-          offset = this.accumulateScore(option, +1)
-        }
-        if(this.doAfterClick('accumulateDetails')) {
-          if(scene.selectedOption) {
-            this.accumulateDetails(scene.selectedOption, -1)
-          }
-          this.accumulateDetails(option, +1)
+      // coralreef
+      if(this.doAfterClick('coralreef') && !devMode) {
+        this.optionToSubmit = option
+        if(!this.crToken) {
+          window.grecaptcha.execute()
+          return
         }
 
-        // set selected option
-        scene.selectedOption = option
-
-        // prepare for prompt
-        if(this.doAfterClick('compareDetails')) {
-          let action = this.getAfterClickAction('compareDetails')
-          let match = Object.keys(action.base).map(key => {
-            let baseVal = action.base[key]
-            let val = resolve(option.details, key)
-            return baseVal === val
-          })
-          let scenario = action.matchScenarios.find(matchScenario => {
-            let result = match.map((matchVal, matchIndex) => {
-              let matchBaseVal = matchScenario.match[matchIndex]
-              return [undefined, null, matchVal].includes(matchBaseVal)
-            }).reduce((a, v) => a && v)
-            return result
-          })
-          this.prompt.classes = scenario.classes
-          this.prompt.content.message = scenario.message
+        let speechData = {
+          targetID: scene.speechTarget.id,
+          classes: [scene.speechTarget.speechType],
+          data: {
+            selectedOption: option
+          }
         }
+        coralreef.createSpeech(speechData, this.crToken, this.crTokenSource).then(() => {
+          // TODO: success
+        }).catch(error => {
+          // TODO: extra error handling
+          this.handleError(error)
+        })
+      }
 
-        // prompt
+      // accumulate
+      let offset = 0
+      if(this.doAfterClick('accumulateScore')) {
+        if(scene.selectedOption) {
+          this.accumulateScore(scene.selectedOption, -1)
+        }
+        offset = this.accumulateScore(option, +1)
+      }
+      if(this.doAfterClick('accumulateDetails')) {
+        let keys = this.getAfterClickAction('accumulateDetails').keys
+        if(scene.selectedOption) {
+          this.accumulateDetails(scene.selectedOption.details, keys, -1)
+        }
+        this.accumulateDetails(option.details, keys, +1)
+      }
+
+      // set selected option
+      scene.selectedOption = option
+
+      // compare details & prepare for prompt
+      if(this.doAfterClick('compareDetails')) {
+        let action = this.getAfterClickAction('compareDetails')
+        let match = Object.keys(action.base).map(key => {
+          let baseVal = action.base[key]
+          let val = resolve(option.details, key)
+          return baseVal === val
+        })
+        let scenario = action.matchScenarios.find(matchScenario => {
+          let result = match.map((matchVal, matchIndex) => {
+            let matchBaseVal = matchScenario.match[matchIndex]
+            return [undefined, null, matchVal].includes(matchBaseVal)
+          }).reduce((a, v) => a && v)
+          return result
+        })
+        this.prompt.classes = scenario.classes
+        this.prompt.content.message = scenario.message
+      }
+
+      // prompt
+      if(this.doAfterClick('showPrompt')) {
         this.prompt.content.score = offset >= 0 ? ('+' + offset) : offset
         this.showPrompt()
-
-        // set flags
-        if(!this.canChangeAnswer) {
-          scene.lock = true
-        }
-
-        // show next scene
-        if(this.project.sequence.navigation === 'sequential') {
-          let index = this.scenes.indexOf(scene)
-          if(index > -1 && index + 1 < this.scenes.length) {
-            this.scenes[index + 1].show = true
-          }
-        }
       }
+
+      // set flags
+      if(!this.canChangeAnswer) {
+        scene.lock = true
+      }
+
+      // show next scene
+      this.goToNextScene(option)
     },
     showPrompt() {
       this.prompt.show = true
@@ -404,13 +462,34 @@ export default {
   letter-spacing: -0.125rem;
 }
 
+// themes
+.theme-dark {
+  background-color: $color-nice-grey;
+  color: $color-font-color-default-white;
+}
+
 .better-long-form {
   > .scenes {
     > .scene {
       > .options {
+        margin: 0.75rem 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: flex-start;
         > .option {
-          &.selected {
-            background-color: $color-correct;
+          margin: 0.375rem;
+          flex-basis: 100%;
+          &:only-child {
+            text-align: center;
+          }
+          @include tcl-sm {
+            &:not(:only-child) {
+              flex-basis: calc(50% - 0.75rem);
+            }
+          }
+          &.not-selected {
+            opacity: 0.35;
           }
         }
       }
