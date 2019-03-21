@@ -8,17 +8,19 @@
   <div class="responsive-typesetting-container" v-if="doAfterClick('coralreef')">
     <re-captcha :token.sync="crToken" :tokenSource.sync="crTokenSource" />
   </div>
-  <div class="scenes responsive-typesetting-container" v-if="isHuman">
+  <div class="scenes" v-if="isHuman">
     <div class="scene margin-top-bottom-double padding-top-bottom-single" :class="{ 'has-correct-answer': hasCorrectAnswer, locked: scene.lock }" v-for="(scene, index) in history" :key="`history-entry-${index}`" :id="`history-entry-${index}`">
-      <div v-if="scene.beforeTitle" class="paragraphs a-text-parent margin-8" v-html="markdown(scene.beforeTitle)"></div>
-      <h2 v-if="scene.title" class="margin-top-bottom-single" v-html="spacingOptimizer(scene.title)"></h2>
-      <h3 v-if="scene.subtitle" class="margin-top-bottom-8" v-html="spacingOptimizer(scene.subtitle)"></h3>
-      <div v-if="scene.description" class="paragraphs a-text-parent margin-8" v-html="markdown(scene.description)"></div>
+      <div class="paragraphs responsive-typesetting-container margin-top-bottom-8">
+        <div v-if="scene.beforeTitle" class="paragraphs a-text-parent" v-html="markdown(scene.beforeTitle)"></div>
+        <h2 v-if="scene.title" class="margin-top-bottom-single" v-html="spacingOptimizer(scene.title)"></h2>
+        <h3 v-if="scene.subtitle" v-html="spacingOptimizer(scene.subtitle)"></h3>
+      </div>
+      <div v-if="scene.description" class="paragraphs responsive-typesetting-container a-text-parent margin-top-bottom-8" v-html="markdown(scene.description)"></div>
       <div v-if="scene.image" class="image-container margin-top-bottom-single">
         <img :src="scene.image.reference" :alt="scene.image.caption" />
         <div v-if="scene.image.caption" class="caption paragraphs no-margin a-text-parent secondary-text font-size-small margin-top-bottom-8" v-html="markdown(scene.image.caption, true)"></div>
       </div>
-      <div class="options">
+      <div class="options responsive-typesetting-container margin-top-bottom-12">
         <div class="option input button wrap" :class="{ 'immutable': scene.lock, 'selected': option === scene.selectedOption, 'not-selected': !option.isCorrect && scene.selectedOption && option !== scene.selectedOption, 'correct': showCorrectAnswer && hasCorrectAnswer && option.isCorrect }" v-for="option in scene.options" :key="option.title" @click="onClick(scene, option)">
           <div class="details margin-bottom-4 font-weight-bold" v-if="scene.selectedOption && doAfterClick('showDetail') && option.details">
             <span v-if="option.details.time" class="latin-within-han first">{{ option.details.time.year }}</span>
@@ -511,7 +513,6 @@ export default {
   > .scenes {
     > .scene {
       > .options {
-        margin: 0.75rem 0;
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-start;
