@@ -507,6 +507,9 @@ export default {
 .theme-dark {
   background-color: $color-nice-grey;
   color: $color-font-color-default-white;
+  .secondary-text {
+    color: $color-secondary-text-dark-grey;
+  }
 }
 
 .better-long-form {
