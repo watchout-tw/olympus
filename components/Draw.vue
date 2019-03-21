@@ -10,7 +10,12 @@
     </div>
     <div class="tcl-panel"></div>
   </div>
-  <re-captcha :token.sync="crToken" :tokenSource.sync="crTokenSource" />
+  <div class="tcl-container">
+    <div class="tcl-panel tcl-left-right-margin with-top-bottom-margin">
+      <re-captcha :token.sync="crToken" :tokenSource.sync="crTokenSource" />
+    </div>
+    <div class="tcl-panel"></div>
+  </div>
   <div class="charts tcl-container">
     <div class="tcl-panel with-top-bottom-margin with-double-top-margin chart-container" v-for="chartConfig in charts" :key="chartConfig.id">
       <line-chart :submittingChartID.sync="submittingChartID" :config="chartConfig" :token="crToken" :tokenSource="crTokenSource"></line-chart>
