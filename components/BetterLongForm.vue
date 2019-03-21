@@ -16,7 +16,7 @@
       <div v-if="scene.description" class="paragraphs a-text-parent margin-8" v-html="markdown(scene.description)"></div>
       <div v-if="scene.image" class="image-container margin-top-bottom-single">
         <img :src="scene.image.reference" :alt="scene.image.caption" />
-        <div v-if="scene.image.caption" class="caption paragraphs no-margin a-text-parent secondary-text margin-top-bottom-8" v-html="markdown(scene.image.caption, true)"></div>
+        <div v-if="scene.image.caption" class="caption paragraphs no-margin a-text-parent secondary-text font-size-small margin-top-bottom-8" v-html="markdown(scene.image.caption, true)"></div>
       </div>
       <div class="options">
         <div class="option input button wrap" :class="{ 'immutable': scene.lock, 'selected': option === scene.selectedOption, 'not-selected': !option.isCorrect && scene.selectedOption && option !== scene.selectedOption, 'correct': showCorrectAnswer && hasCorrectAnswer && option.isCorrect }" v-for="option in scene.options" :key="option.title" @click="onClick(scene, option)">
@@ -123,6 +123,9 @@ export default {
     }
   },
   computed: {
+    navigation() {
+      return this.project.sequence.navigation
+    },
     isHuman() {
       return this.doAfterClick('coralreef') ? this.crToken !== undefined && this.crToken !== null : true
     },
@@ -271,10 +274,10 @@ export default {
       let nextSceneIndex = -1
       if(this.currentSceneIndex < 0) {
         nextSceneIndex = 0
-      } else if(option && option.goto) {
-        nextSceneIndex = this.scenes.findIndex(scene => scene.id === option.goto)
-      } else if(this.currentSceneIndex + 1 < this.scenes.length) {
+      } else if(this.navigation === 'sequential' && this.currentSceneIndex + 1 < this.scenes.length) {
         nextSceneIndex = this.currentSceneIndex + 1
+      } else if(this.navigation === 'random' && option && option.goto) {
+        nextSceneIndex = this.scenes.findIndex(scene => scene.id === option.goto)
       }
       return nextSceneIndex
     },
