@@ -544,7 +544,7 @@ export default {
         'person.title': '候選人',
         'person.name': '柯文哲'
       },
-      message: '你的柯文哲成份組成分析圖表',
+      message: '你的柯文哲成份組成統計圖表',
       groups: [
         {
           name: '選前柯文哲',
