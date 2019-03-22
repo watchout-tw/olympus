@@ -40,7 +40,7 @@
   <div class="human-verification-prompt padding-top-bottom-double" v-else><!-- is not human -->
     <div class="font-size-small text-align-center secondary-text">機器人防治檢查中，請稍候。</div>
   </div>
-  <div class="result responsive-typesetting-container" v-if="isHuman && isCompleted">
+  <div class="result responsive-typesetting-container padding-top-bottom-single" v-if="isHuman && isCompleted">
     <template v-if="showSimpleResult">
       <div class="section-title small with-underline text-align-center"><span>總分</span></div>
       <div class="text-align-center font-size-4x">{{ accumulatedScore }}</div>
@@ -71,10 +71,10 @@
       </div>
     </template>
   </div>
-  <div class="closing-container padding-top-bottom-double responsive-typesetting-container" v-if="isHuman && isCompleted && hasClosing">
-    <div class="closing margin-top-bottom-double a-text-parent" v-html="markdown(project.closing)"></div>
+  <div class="closing-container padding-top-bottom-single responsive-typesetting-container" v-if="isHuman && isCompleted && hasClosing">
+    <div class="closing a-text-parent" v-html="markdown(project.closing)"></div>
   </div>
-  <div class="appendix-container padding-top-bottom-double responsive-typesetting-container" v-if="isHuman && isCompleted && hasAppendix">
+  <div class="appendix-container padding-top-bottom-single responsive-typesetting-container" v-if="isHuman && isCompleted && hasAppendix">
     <div class="appendix secondary-text font-size-small" :class="apdxDispType" v-html="apdxHTML"></div>
   </div>
   <div class="incomplete-prompt padding-top-bottom-double" v-if="isHuman && !isCompleted && project.incompletePrompt"><!-- is not completed -->
