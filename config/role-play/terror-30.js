@@ -10,8 +10,7 @@ export default {
       {
         name: 'accumulateDetails',
         keys: [
-          'sentence.type',
-          'sentence.amount'
+          'outcomes'
         ]
       }
     ],
@@ -278,10 +277,12 @@ export default {
           caption: '姜民權在審訊室隨手撕下的日曆'
         },
         details: {
-          sentence: {
-            type: '入獄',
-            amount: 120
-          }
+          outcomes: [
+            {
+              type: '入獄',
+              amount: 120
+            }
+          ]
         },
         options: [
           {
@@ -300,10 +301,12 @@ export default {
           caption: '張常美（圖中）與獄友合照'
         },
         details: {
-          sentence: {
-            type: '入獄',
-            amount: 144
-          }
+          outcomes: [
+            {
+              type: '入獄',
+              amount: 144
+            }
+          ]
         },
         options: [
           {
@@ -322,9 +325,11 @@ export default {
           caption: '傅如芝（左一）與獄友合照'
         },
         details: {
-          sentence: {
-            type: '槍決'
-          }
+          outcomes: [
+            {
+              type: '槍決'
+            }
+          ]
         },
         options: [
           {
@@ -343,10 +348,12 @@ export default {
           caption: '讓林約幹遭受牽連的陳盛妙案公文，當時判決前還需送交蔣介石「裁示」'
         },
         details: {
-          sentence: {
-            type: '入獄',
-            amount: 36
-          }
+          outcomes: [
+            {
+              type: '入獄',
+              amount: 36
+            }
+          ]
         },
         options: [
           {
@@ -365,10 +372,12 @@ export default {
           caption: '呂沙棠出獄時的照片'
         },
         details: {
-          sentence: {
-            type: '入獄',
-            amount: 144
-          }
+          outcomes: [
+            {
+              type: '入獄',
+              amount: 144
+            }
+          ]
         },
         options: [
           {
@@ -387,10 +396,12 @@ export default {
           caption: '當時持有或閱讀禁書即可能有牢獄之災'
         },
         details: {
-          sentence: {
-            type: '入獄',
-            amount: 120
-          }
+          outcomes: [
+            {
+              type: '入獄',
+              amount: 120
+            }
+          ]
         },
         options: [
           {
@@ -409,10 +420,12 @@ export default {
           caption: '當時報紙報導台大及師院學生被捕情形（圖片來源：1949/4/12民聲日報）'
         },
         details: {
-          sentence: {
-            type: '引爆事件',
-            amount: 1
-          }
+          outcomes: [
+            {
+              type: '引爆事件',
+              amount: 1
+            }
+          ]
         },
         options: [
           {
@@ -431,10 +444,12 @@ export default {
           caption: '國民黨特務逮捕事件後，葉宏甲做出名作《諸葛四郎大戰魔鬼黨》'
         },
         details: {
-          sentence: {
-            type: '入獄',
-            amount: 10
-          }
+          outcomes: [
+            {
+              type: '入獄',
+              amount: 10
+            }
+          ]
         },
         options: [
           {
@@ -453,10 +468,12 @@ export default {
           caption: '吳大祿被捕時的學生證'
         },
         details: {
-          sentence: {
-            type: '入獄',
-            amount: 78
-          }
+          outcomes: [
+            {
+              type: '入獄',
+              amount: 78
+            }
+          ]
         },
         options: [
           {
@@ -475,9 +492,11 @@ export default {
           caption: '丁窈窕28歲被槍決前的照片'
         },
         details: {
-          sentence: {
-            type: '槍決'
-          }
+          outcomes: [
+            {
+              type: '槍決'
+            }
+          ]
         },
         options: [
           {
@@ -496,9 +515,11 @@ export default {
           caption: '七一三事件直至1990年代才獲平反（圖片來源：1999/12/11中國時報）'
         },
         details: {
-          sentence: {
-            type: '槍決'
-          }
+          outcomes: [
+            {
+              type: '槍決'
+            }
+          ]
         },
         options: [
           {
@@ -517,10 +538,12 @@ export default {
           caption: '田世藩出獄後曾於1960年獲得美國頒贈的銀星勳章（圖片來源：1960/1/6民聲日報）'
         },
         details: {
-          sentence: {
-            type: '判刑',
-            amount: 96
-          }
+          outcomes: [
+            {
+              type: '判刑',
+              amount: 96
+            }
+          ]
         },
         options: [
           {
@@ -539,9 +562,11 @@ export default {
           caption: '當年童尚經編製的刊物（圖片來源：露天拍賣）'
         },
         details: {
-          sentence: {
-            type: '槍決'
-          }
+          outcomes: [
+            {
+              type: '槍決'
+            }
+          ]
         },
         options: [
           {
@@ -560,9 +585,11 @@ export default {
           caption: '當年沈嫄璋被以「繩刑」刑求圖（歐陽劍華繪）'
         },
         details: {
-          sentence: {
-            type: '被刑求致死'
-          }
+          outcomes: [
+            {
+              type: '被刑求致死'
+            }
+          ]
         },
         options: [
           {
@@ -581,9 +608,11 @@ export default {
           caption: '許席圖直至1990年才被發現花蓮玉里療養院，但早已精神失常（圖片來源：1991/7/14中國時報）'
         },
         details: {
-          sentence: {
-            type: '被刑求到發瘋'
-          }
+          outcomes: [
+            {
+              type: '被刑求到發瘋'
+            }
+          ]
         },
         options: [
           {
@@ -602,9 +631,11 @@ export default {
           caption: '蔡炳紅原是被判交付感化三年，經蔣介石批註「應發還嚴為複審」後，改判死刑。'
         },
         details: {
-          sentence: {
-            type: '槍決'
-          }
+          outcomes: [
+            {
+              type: '槍決'
+            }
+          ]
         },
         options: [
           {
@@ -623,9 +654,11 @@ export default {
           caption: '劉晉鈺當年被槍決時的報導（圖片來源：1950/7/18臺灣民聲日報）'
         },
         details: {
-          sentence: {
-            type: '槍決'
-          }
+          outcomes: [
+            {
+              type: '槍決'
+            }
+          ]
         },
         options: [
           {
@@ -644,7 +677,7 @@ export default {
           caption: '當年檢舉者可以分得密告獎金，為沒收財務價值的30%。'
         },
         details: {
-          sentences: [
+          outcomes: [
             {
               type: '家產充公'
             },
@@ -671,7 +704,7 @@ export default {
           caption: '陳文成全家福照。'
         },
         details: {
-          sentences: [
+          outcomes: [
             {
               type: '陳屍校園'
             }
