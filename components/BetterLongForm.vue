@@ -1,26 +1,26 @@
 <template>
 <div class="better-long-form" :class="[ project.theme ? `theme-${project.theme}` : '' ]">
-  <div class="opening responsive-typesetting-container padding-top-double padding-bottom-single">
+  <div class="opening responsive-typesetting-container-medium padding-top-double padding-bottom-single">
     <h2 v-html="spacingOptimizer(module.title)"></h2>
     <h1 v-html="spacingOptimizer(doc.title)"></h1>
     <div v-if="doc.description" class="paragraphs" v-html="markdown(doc.description)"></div>
   </div>
-  <div class="responsive-typesetting-container" v-if="doAfterClick('coralreef')">
+  <div class="responsive-typesetting-container-medium" v-if="doAfterClick('coralreef')">
     <re-captcha :token.sync="crToken" :tokenSource.sync="crTokenSource" />
   </div>
   <div class="scenes" v-if="isHuman">
     <div class="scene padding-top-bottom-single" :class="{ 'has-correct-answer': hasCorrectAnswer, 'locked': scene.lock, ...(scene.display && { [scene.display]: true }) }" v-for="(scene, index) in history" :key="`history-entry-${index}`" :id="`history-entry-${index}`">
-      <div class="responsive-typesetting-container margin-top-bottom-8">
+      <div class="responsive-typesetting-container-medium margin-top-bottom-8">
         <div v-if="scene.beforeTitle" class="paragraphs a-text-parent margin-bottom-8" v-html="markdown(scene.beforeTitle)"></div>
         <h2 v-if="scene.title" class="margin-top-bottom-4" v-html="spacingOptimizer(scene.title)"></h2>
         <h3 v-if="scene.subtitle" class="margin-top-bottom-4" v-html="spacingOptimizer(scene.subtitle)"></h3>
       </div>
-      <div v-if="scene.description" class="paragraphs responsive-typesetting-container a-text-parent margin-top-bottom-8" v-html="markdown(scene.description)"></div>
-      <div v-if="scene.image" class="image-container margin-top-bottom-single">
+      <div v-if="scene.description" class="paragraphs responsive-typesetting-container-medium a-text-parent margin-top-bottom-8" v-html="markdown(scene.description)"></div>
+      <div v-if="scene.image" class="image-container-medium margin-top-bottom-single">
         <img :src="scene.image.reference" :alt="scene.image.caption" />
         <div v-if="scene.image.caption" class="caption paragraphs no-margin a-text-parent secondary-text font-size-small margin-top-bottom-8" v-html="markdown(scene.image.caption, true)"></div>
       </div>
-      <div class="options responsive-typesetting-container margin-top-bottom-8">
+      <div class="options responsive-typesetting-container-medium margin-top-bottom-8">
         <div class="option input button wrap" :class="{ 'immutable': scene.lock, 'selected': option === scene.selectedOption, 'not-selected': !option.isCorrect && scene.selectedOption && option !== scene.selectedOption, 'correct': showCorrectAnswer && hasCorrectAnswer && option.isCorrect }" v-for="option in scene.options" :key="option.title" @click="onClick(scene, option)">
           <div class="details margin-bottom-4 font-weight-bold" v-if="scene.selectedOption && doAfterClick('showDetail') && option.details">
             <span v-if="option.details.time" class="latin-within-han first">{{ option.details.time.year }}</span>
@@ -41,16 +41,16 @@
     <div class="font-size-small text-align-center secondary-text">機器人防治檢查中，請稍候。</div>
   </div>
   <div class="result" v-if="isHuman && isCompleted">
-    <div v-if="showSimpleResult" class="simple-result responsive-typesetting-container padding-top-bottom-single">
+    <div v-if="showSimpleResult" class="simple-result responsive-typesetting-container-medium padding-top-bottom-single">
       <div class="section-title small with-underline text-align-center"><span>總分</span></div>
       <div class="text-align-center font-size-4x">{{ accumulatedScore }}</div>
       <div class="text-align-center">{{ simpleResult }}</div>
     </div>
-    <div v-if="doShowResult('showScore')" class="result-score responsive-typesetting-container padding-top-bottom-single">
+    <div v-if="doShowResult('showScore')" class="result-score responsive-typesetting-container-medium padding-top-bottom-single">
       <div class="section-title small with-underline text-align-center"><span>總分</span></div>
       <div class="text-align-center font-size-4x">{{ accumulatedScore }}</div>
     </div>
-    <div v-if="doShowResult('showGroups') && actionShowGroups.show" class="result-groups responsive-typesetting-container padding-top-bottom-single">
+    <div v-if="doShowResult('showGroups') && actionShowGroups.show" class="result-groups responsive-typesetting-container-medium padding-top-bottom-single">
       <div class="section-title small with-underline text-align-center"><span>成份統計</span></div>
       <div class="margin-top-bottom-8 text-align-center">{{ actionShowGroups.message }}</div>
       <div class="text-align-center" v-if="actionShowGroups.showGroupMessage">{{ result.message }}</div>
@@ -61,7 +61,7 @@
         </div>
       </div>
     </div>
-    <div v-if="doShowResult('showOccurences') && actionShowOccur.show" class="result-occurences responsive-typesetting-container padding-top-bottom-single">
+    <div v-if="doShowResult('showOccurences') && actionShowOccur.show" class="result-occurences responsive-typesetting-container-medium padding-top-bottom-single">
       <div class="section-title small with-underline text-align-center"><span>成份分析</span></div>
       <div class="segments d-flex margin-top-bottom-8" v-if="actionShowOccur.chartType === 'segments'">
         <div class="segment padding-8" v-for="(occurence, index) of result.occurences" :style="{ width: (occurence.count / result.totalCount) * 100 + '%', backgroundColor: actionShowOccur.segment.colors[index % actionShowOccur.segment.colors.length] }" :key="index">
@@ -71,10 +71,10 @@
       </div>
     </div>
   </div>
-  <div class="closing-container padding-top-bottom-single responsive-typesetting-container" v-if="isHuman && isCompleted && hasClosing">
+  <div class="closing-container padding-top-bottom-single responsive-typesetting-container-medium" v-if="isHuman && isCompleted && hasClosing">
     <div class="closing paragraphs no-margin a-text-parent" v-html="markdown(project.closing)"></div>
   </div>
-  <div class="appendix-container padding-top-bottom-single responsive-typesetting-container" v-if="isHuman && isCompleted && hasAppendix">
+  <div class="appendix-container padding-top-bottom-single responsive-typesetting-container-medium" v-if="isHuman && isCompleted && hasAppendix">
     <div class="appendix secondary-text font-size-small" :class="apdxDispType" v-html="apdxHTML"></div>
   </div>
   <div class="incomplete-prompt padding-top-bottom-double" v-if="isHuman && !isCompleted && project.incompletePrompt"><!-- is not completed -->
