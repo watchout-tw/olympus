@@ -289,7 +289,8 @@ export default {
             title: '不小心被捕了嗎？再重回一次戒嚴時代吧',
             goto: 2
           }
-        ]
+        ],
+        display: 'strong-headings'
       },
       {
         id: 202,
@@ -313,7 +314,8 @@ export default {
             title: '不小心被捕了嗎？再重回一次戒嚴時代吧',
             goto: 2
           }
-        ]
+        ],
+        display: 'strong-headings'
       },
       {
         id: 203,
@@ -336,7 +338,8 @@ export default {
             title: '不小心被捕了嗎？再重回一次戒嚴時代吧',
             goto: 2
           }
-        ]
+        ],
+        display: 'strong-headings'
       },
       {
         id: 204,
@@ -360,7 +363,8 @@ export default {
             title: '不小心被捕了嗎？再重回一次戒嚴時代吧',
             goto: 2
           }
-        ]
+        ],
+        display: 'strong-headings'
       },
       {
         id: 301,
@@ -384,7 +388,8 @@ export default {
             title: '書這種東西好像不能亂讀，再選一次',
             goto: 3
           }
-        ]
+        ],
+        display: 'strong-headings'
       },
       {
         id: 302,
@@ -408,7 +413,8 @@ export default {
             title: '看來書不能放在書包裡，再選一次',
             goto: 3
           }
-        ]
+        ],
+        display: 'strong-headings'
       },
       {
         id: 401,
@@ -432,7 +438,8 @@ export default {
             title: '把同學給害慘了，重選一次吧',
             goto: 4
           }
-        ]
+        ],
+        display: 'strong-headings'
       },
       {
         id: 402,
@@ -456,7 +463,8 @@ export default {
             title: '拜訪朋友風險太高，我再想一次好了',
             goto: 4
           }
-        ]
+        ],
+        display: 'strong-headings'
       },
       {
         id: 403,
@@ -480,7 +488,8 @@ export default {
             title: '沒想到戒嚴時代那麼嚴格，重選一次吧',
             goto: 4
           }
-        ]
+        ],
+        display: 'strong-headings'
       },
       {
         id: 501,
@@ -503,7 +512,8 @@ export default {
             title: '沒想到後果這麼嚴重，重新來過吧',
             goto: 5
           }
-        ]
+        ],
+        display: 'strong-headings'
       },
       {
         id: 601,
@@ -526,7 +536,8 @@ export default {
             title: '再給你一次機會，這次要怎麼選？',
             goto: 6
           }
-        ]
+        ],
+        display: 'strong-headings'
       },
       {
         id: 701,
@@ -550,7 +561,8 @@ export default {
             title: '注意你的身份！你再好好想想⋯',
             goto: 7
           }
-        ]
+        ],
+        display: 'strong-headings'
       },
       {
         id: 801,
@@ -573,7 +585,8 @@ export default {
             title: '真不小心，果然是認真就輸了，再來一次',
             goto: 8
           }
-        ]
+        ],
+        display: 'strong-headings'
       },
       {
         id: 901,
@@ -596,7 +609,8 @@ export default {
             title: '聽話也不行？那我再想想⋯',
             goto: 9
           }
-        ]
+        ],
+        display: 'strong-headings'
       },
       {
         id: 1001,
@@ -619,7 +633,8 @@ export default {
             title: '好心被雷親！還是別多管閒事好了⋯',
             goto: 10
           }
-        ]
+        ],
+        display: 'strong-headings'
       },
       {
         id: 1101,
@@ -642,7 +657,8 @@ export default {
             title: '這樣就被槍決了，不過就是傳個紙條，再選一次吧',
             goto: 11
           }
-        ]
+        ],
+        display: 'strong-headings'
       },
       {
         id: 1201,
@@ -665,7 +681,8 @@ export default {
             title: '有那麼嚴重？再選一次好了',
             goto: 12
           }
-        ]
+        ],
+        display: 'strong-headings'
       },
       {
         id: 1301,
@@ -692,7 +709,8 @@ export default {
             title: '有錢難買早知道，早知道我就選⋯',
             goto: 13
           }
-        ]
+        ],
+        display: 'strong-headings'
       },
       {
         id: 1401,
@@ -715,7 +733,8 @@ export default {
             title: '沒想到會那麼危險，再選一次好了',
             goto: 14
           }
-        ]
+        ],
+        display: 'strong-headings'
       }
     ]
   }, // end of sequence object
