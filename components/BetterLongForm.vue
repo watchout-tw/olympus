@@ -40,18 +40,18 @@
   <div class="human-verification-prompt padding-top-bottom-double" v-else><!-- is not human -->
     <div class="font-size-small text-align-center secondary-text">機器人防治檢查中，請稍候。</div>
   </div>
-  <div class="result responsive-typesetting-container padding-top-bottom-single" v-if="isHuman && isCompleted">
-    <template v-if="showSimpleResult">
+  <div class="result" v-if="isHuman && isCompleted">
+    <div v-if="showSimpleResult" class="simple-result responsive-typesetting-container padding-top-bottom-single">
       <div class="section-title small with-underline text-align-center"><span>總分</span></div>
       <div class="text-align-center font-size-4x">{{ accumulatedScore }}</div>
       <div class="text-align-center">{{ simpleResult }}</div>
-    </template>
-    <template v-if="doShowResult('showScore')">
+    </div>
+    <div v-if="doShowResult('showScore')" class="result-score responsive-typesetting-container padding-top-bottom-single">
       <div class="section-title small with-underline text-align-center"><span>總分</span></div>
       <div class="text-align-center font-size-4x">{{ accumulatedScore }}</div>
-    </template>
-    <template v-if="doShowResult('showGroups') && actionShowGroups.show">
-      <div class="section-title small with-underline text-align-center"><span>成份分析</span></div>
+    </div>
+    <div v-if="doShowResult('showGroups') && actionShowGroups.show" class="result-groups responsive-typesetting-container padding-top-bottom-single">
+      <div class="section-title small with-underline text-align-center"><span>成份統計</span></div>
       <div class="margin-top-bottom-8 text-align-center">{{ actionShowGroups.message }}</div>
       <div class="text-align-center" v-if="actionShowGroups.showGroupMessage">{{ result.message }}</div>
       <div class="segments d-flex margin-top-bottom-8" v-if="actionShowGroups.chartType === 'segments'">
@@ -60,8 +60,8 @@
           <div>{{ Math.round(group.count / result.totalCount * 100) + '%' }}</div>
         </div>
       </div>
-    </template>
-    <template v-if="doShowResult('showOccurences') && actionShowOccur.show">
+    </div>
+    <div v-if="doShowResult('showOccurences') && actionShowOccur.show" class="result-occurences responsive-typesetting-container padding-top-bottom-single">
       <div class="section-title small with-underline text-align-center"><span>成份分析</span></div>
       <div class="segments d-flex margin-top-bottom-8" v-if="actionShowOccur.chartType === 'segments'">
         <div class="segment padding-8" v-for="(occurence, index) of result.occurences" :style="{ width: (occurence.count / result.totalCount) * 100 + '%', backgroundColor: actionShowOccur.segment.colors[index % actionShowOccur.segment.colors.length] }" :key="index">
@@ -69,10 +69,10 @@
           <div>{{ Math.round(occurence.count / result.totalCount * 100) + '%' }}</div>
         </div>
       </div>
-    </template>
+    </div>
   </div>
   <div class="closing-container padding-top-bottom-single responsive-typesetting-container" v-if="isHuman && isCompleted && hasClosing">
-    <div class="closing a-text-parent" v-html="markdown(project.closing)"></div>
+    <div class="closing paragraphs no-margin a-text-parent" v-html="markdown(project.closing)"></div>
   </div>
   <div class="appendix-container padding-top-bottom-single responsive-typesetting-container" v-if="isHuman && isCompleted && hasAppendix">
     <div class="appendix secondary-text font-size-small" :class="apdxDispType" v-html="apdxHTML"></div>
