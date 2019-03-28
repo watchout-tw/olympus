@@ -4,12 +4,12 @@
     <div class="map content" id="map"></div>
     <div class="datetime" v-if="currentDateTime">{{ currentDateTime }}</div>
   </div>
-  <div v-if="config.mode === 'play'" class="controls form-field-many-inputs justify-center margin-top-bottom-8">
+  <div v-if="config.mode === 'play'" class="controls form-field-many-inputs form-field-align-center margin-top-bottom-8">
     <div class="input button large musou" @click="play" v-if="!isPlaying">{{ playButton }}</div>
     <div class="input button large musou" @click="pause" v-else>暫停</div>
     <div class="input button" @click="quitPlay" v-if="isPlaying || nextToPlay > 0">結束播放</div>
   </div>
-  <div v-if="config.mode === 'fly'" class="controls form-field-many-inputs justify-center margin-top-bottom-8">
+  <div v-if="config.mode === 'fly'" class="controls form-field-many-inputs form-field-align-center margin-top-bottom-8">
     <div class="input button" @click="flyBack" v-if="isPlaying && nextToPlay > 1">{{ prevStepButton }}</div>
     <div class="input button large musou" @click="fly">{{ nextStepButton }}</div>
   </div>
