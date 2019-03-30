@@ -12,8 +12,10 @@ import projKPV from '~/config/quiz/kpv'
 import proj181124 from '~/config/map/181124'
 import projSwineFlu from '~/config/map/swine-flu'
 import proj22872 from '~/config/map/228-72'
+import projChineseHK from '~/config/role-play/chinese-hk'
 
 export const projects = [
+  projChineseHK,
   proj22872,
   projSwineFlu,
   proj181124,
