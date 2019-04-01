@@ -71,10 +71,10 @@
       </div>
     </div>
   </div>
-  <div class="closing-container padding-top-bottom-single responsive-typesetting-container-medium" v-if="isHuman && isCompleted && hasClosing">
+  <div class="closing-container padding-top-bottom-double responsive-typesetting-container-medium" v-if="isHuman && isCompleted && hasClosing">
     <div class="closing paragraphs no-margin a-text-parent" v-html="markdown(project.closing)"></div>
   </div>
-  <div class="appendix-container padding-top-bottom-single responsive-typesetting-container-medium" v-if="isHuman && isCompleted && hasAppendix">
+  <div class="appendix-container padding-top-bottom-double responsive-typesetting-container-medium" v-if="isHuman && isCompleted && hasAppendix">
     <div class="appendix secondary-text font-size-small" :class="apdxDispType" v-html="apdxHTML"></div>
   </div>
   <div class="incomplete-prompt padding-top-bottom-double" v-if="isHuman && !isCompleted && project.incompletePrompt"><!-- is not completed -->
