@@ -125,9 +125,9 @@ export default {
         id: 201,
         title: '犯「組織考試作弊罪」被引渡到中國',
         subtitle: '你是章無涯',
-        description: '適用《逃犯條例》罪類 44：串謀犯欺詐罪。2016年，章無涯等6名被告，於以無線電設備傳輸考試答案的方式，在碩士研究生招生考試中組織作弊，被判監禁1年8個月至4年，並被罰款4萬元。',
+        description: '適用《逃犯條例》罪類44：串謀犯欺詐罪。2016年，章無涯等6名被告，於以無線電設備傳輸考試答案的方式，在碩士研究生招生考試中組織作弊，被判監禁1年8個月至4年，並被罰款4萬元。',
         image: {
-          reference: 'https://i.waa.tw/AnXqcpu.png'
+          reference: 'https://i.waa.tw/HkXbujT.png'
         },
         options: [
           {
@@ -141,9 +141,9 @@ export default {
         id: 202,
         title: '犯「非法持有槍支」被引渡到中國',
         subtitle: '你是高姓北京大學生',
-        description: '適用《逃犯條例》罪類 19：與火器有關的法律所訂的罪行。2018年，一名高姓北京大學生，因學校劇社排演話劇時道具所需，在網上購買了數支「玩具槍」，並存放於學校宿舍內，被判非法持有槍支罪罪成。',
+        description: '適用《逃犯條例》罪類19：與火器有關的法律所訂的罪行。2018年，一名高姓北京大學生，因學校劇社排演話劇時道具所需，在網上購買了數支「玩具槍」，並存放於學校宿舍內，被判非法持有槍支罪罪成。',
         image: {
-          reference: 'https://i.waa.tw/bLLO07F.png'
+          reference: 'https://i.waa.tw/bWVK2DY.png'
         },
         options: [
           {
@@ -157,9 +157,9 @@ export default {
         id: 203,
         title: '犯「間諜罪」被引渡到中國',
         subtitle: '你是許佳瀅',
-        description: '適用《逃犯條例》罪類 9：以欺騙手段取得財產。中國中央電視台報導，台灣女子許佳瀅引誘一名18歲大學生，用金錢收買、色情引誘等手段，從該學生身上套取中國科工領域的數百分研究資料。台灣國防部後發表回應，稱子虛烏有。',
+        description: '適用《逃犯條例》罪類9：以欺騙手段取得財產。中國中央電視台報導，台灣女子許佳瀅引誘一名18歲大學生，用金錢收買、色情引誘等手段，從該學生身上套取中國科工領域的數百分研究資料。台灣國防部後發表回應，稱子虛烏有。',
         image: {
-          reference: 'https://i.waa.tw/QRtI7BM.png'
+          reference: 'https://i.waa.tw/2jNoyxL.png'
         },
         options: [
           {
@@ -173,9 +173,9 @@ export default {
         id: 204,
         title: '犯「合同詐騙罪」被引渡到中國',
         subtitle: '你是郭春生',
-        description: '適用《逃犯條例》罪類 44：串謀犯欺詐罪。港商郭春生1996年以公司名義與招商銀行在香港簽訂了抵押貸款協議。郭的公司其後無力還款，招商銀則沒有循香港司法程序追討，反而在大陸起訴郭春生。2009年，郭春生被中國法院以「合同詐騙罪」刑事起訴，一審被判無期徒刑及沒收所有財產；2012年獲減刑至十八年。',
+        description: '適用《逃犯條例》罪類44：串謀犯欺詐罪。港商郭春生1996年以公司名義與招商銀行在香港簽訂了抵押貸款協議。郭的公司其後無力還款，招商銀則沒有循香港司法程序追討，反而在大陸起訴郭春生。2009年，郭春生被中國法院以「合同詐騙罪」刑事起訴，一審被判無期徒刑及沒收所有財產；2012年獲減刑至十八年。',
         image: {
-          reference: 'https://i.waa.tw/q5lM2Ue.png'
+          reference: 'https://i.waa.tw/ht3aXj7.png'
         },
         options: [
           {
@@ -189,9 +189,9 @@ export default {
         id: 301,
         title: '犯「製作、販賣淫穢物品牟利罪」被引渡到中國',
         subtitle: '你是天一',
-        description: '適用《逃犯條例》罪類 39：與婦女及女童有關的罪行。2017年，作家天一的男男同性戀小說《攻佔》在網路上熱賣，經國家新聞出版廣電總局鑒定，定性《攻佔》為「淫穢出版物」，作者被判監禁十年零六個月。',
+        description: '適用《逃犯條例》罪類39：與婦女及女童有關的罪行。2017年，作家天一的男男同性戀小說《攻佔》在網路上熱賣，經國家新聞出版廣電總局鑒定，定性《攻佔》為「淫穢出版物」，作者被判監禁十年零六個月。',
         image: {
-          reference: 'https://i.waa.tw/E3EY8AO.png'
+          reference: 'https://i.waa.tw/iieGN71.png'
         },
         options: [
           {
@@ -205,9 +205,9 @@ export default {
         id: 302,
         title: '犯「違反不正當競爭」被引渡到中國',
         subtitle: '你是楊治',
-        description: '適用《逃犯條例》罪類 14：與保護知識產權、版權有關的法律所訂的罪行。2018年，作家楊治利用金庸作品中的人物，二次創作同人小說，被金庸控告侵犯著作權不成立，但法院指仍違反不正當競爭，判賠償188萬元人民幣。',
+        description: '適用《逃犯條例》罪類14：與保護知識產權、版權有關的法律所訂的罪行。2018年，作家楊治利用金庸作品中的人物，二次創作同人小說，被金庸控告侵犯著作權不成立，但法院指仍違反不正當競爭，判賠償188萬元人民幣。',
         image: {
-          reference: 'https://i.waa.tw/0lLyGRm.png'
+          reference: 'https://i.waa.tw/Qnn3ClO.png'
         },
         options: [
           {
@@ -221,9 +221,9 @@ export default {
         id: 303,
         title: '犯「尋釁滋事罪」被引渡到中國',
         subtitle: '你是劉成昆',
-        description: '適用《逃犯條例》罪類 7：刑事恐嚇。2018年，北京的自媒體人劉成昆因在網上發表了兩篇小說，被認為影射了內蒙古伊利集團董事長潘剛涉腐外逃，被呼和浩特警方跨省抓捕，而尋釁滋事罪判處1年及8個月徒刑。',
+        description: '適用《逃犯條例》罪類7：刑事恐嚇。2018年，北京的自媒體人劉成昆因在網上發表了兩篇小說，被認為影射了內蒙古伊利集團董事長潘剛涉腐外逃，被呼和浩特警方跨省抓捕，而尋釁滋事罪判處1年及8個月徒刑。',
         image: {
-          reference: 'https://i.waa.tw/FRX6L1r.png'
+          reference: 'https://i.waa.tw/AG1BL72.png'
         },
         options: [
           {
@@ -237,9 +237,9 @@ export default {
         id: 401,
         title: '犯「尋釁滋事罪」被引渡到中國',
         subtitle: '你是「快手」網民',
-        description: '適用《逃犯條例》罪類 7：刑事恐嚇。靈壽縣公安局網警發現，有網民在「快手」上發布了一段內容為警員巡邏的影片，一位網民在該影片評論區發表了侮辱民警執法的文字，被指犯尋釁滋事，且影響惡劣，處以行政拘留5日。',
+        description: '適用《逃犯條例》罪類7：刑事恐嚇。靈壽縣公安局網警發現，有網民在「快手」上發布了一段內容為警員巡邏的影片，一位網民在該影片評論區發表了侮辱民警執法的文字，被指犯尋釁滋事，且影響惡劣，處以行政拘留5日。',
         image: {
-          reference: 'https://i.waa.tw/W4ez7G3.png'
+          reference: 'https://i.waa.tw/fW5GZxJ.png'
         },
         options: [
           {
@@ -253,9 +253,9 @@ export default {
         id: 402,
         title: '犯「傳播淫穢物品罪」被引渡到中國',
         subtitle: '你是羅姓男子',
-        description: '適用《逃犯條例》罪類 39：與婦女及女童有關的罪行。2017年，羅姓男子創建一個微信群，擔任該群管理員。有他人內在群組內發布色情影片，羅姓男子被指犯傳播淫穢物品罪，判處有期徒刑6個月。',
+        description: '適用《逃犯條例》罪類39：與婦女及女童有關的罪行。2017年，羅姓男子創建一個微信群，擔任該群管理員。有他人內在群組內發布色情影片，羅姓男子被指犯傳播淫穢物品罪，判處有期徒刑6個月。',
         image: {
-          reference: 'https://i.waa.tw/iF3XCf3.png'
+          reference: 'https://i.waa.tw/VpN1HTn.png'
         },
         options: [
           {
@@ -269,9 +269,9 @@ export default {
         id: 501,
         title: '犯「非法經營罪」被引渡到中國',
         subtitle: '你是吳向洋',
-        description: '適用《逃犯條例》罪類 11：與公司有關的法律所訂的罪行。男子吳向洋在未取得《增值電信業務經營許可證》下，利用淘寶網開設網店及開設網站「凡狗」，向用戶出租或銷售VPN軟件和VPN路由器硬件，被判有期徒刑五年六個月。',
+        description: '適用《逃犯條例》罪類11：與公司有關的法律所訂的罪行。男子吳向洋在未取得《增值電信業務經營許可證》下，利用淘寶網開設網店及開設網站「凡狗」，向用戶出租或銷售VPN軟件和VPN路由器硬件，被判有期徒刑五年六個月。',
         image: {
-          reference: 'https://i.waa.tw/TlHOTtx.png'
+          reference: 'https://i.waa.tw/cL3N4aH.png'
         },
         options: [
           {
@@ -287,7 +287,7 @@ export default {
         subtitle: '你是游燕',
         description: '適用《逃犯條例》罪類：走私；與違禁品的進出口有關的法律。淘寶網店女店主游燕，經營代購進口服裝多年，因在香港以信用卡購買服飾再帶回內地，被法院以「走私逃稅」罪名判監10年，並處罰金550萬人民幣。',
         image: {
-          reference: 'https://i.waa.tw/NFhN3IF.png'
+          reference: 'https://i.waa.tw/4R5yB61.png'
         },
         options: [
           {
@@ -303,7 +303,7 @@ export default {
         subtitle: '你是中國无印良品',
         description: '2018年中國大陸出現「无印良品Natural Mill」，從裝修到產品都與廣為之識的日本無印良品（MUJI）雷同，但正牌日本無印竟輸掉商標權官司，今後在中國的商品都要刪除「無印良品」字樣。',
         image: {
-          reference: 'https://i.waa.tw/n86tJBc.png'
+          reference: 'https://i.waa.tw/suBStef.png'
         },
         display: 'strong-headings'
       }
