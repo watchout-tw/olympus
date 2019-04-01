@@ -26,7 +26,7 @@ export default {
         id: 2,
         title: '我是哪一種學生？',
         image: {
-          reference: 'https://i.waa.tw/oDkeiFT.png'
+          reference: 'https://i.waa.tw/aaYYW6m.png'
         },
         options: [
           {
@@ -56,7 +56,7 @@ export default {
         beforeTitle: '還是當個文學系學生安全。最近，老師教了我們寫小說。',
         title: '要寫什麼小說才好？',
         image: {
-          reference: 'https://i.waa.tw/st4xB5c.png'
+          reference: 'https://i.waa.tw/s1H1kFU.png'
         },
         options: [
           {
@@ -82,7 +82,7 @@ export default {
         beforeTitle: '青春無敵。在街上尋找寫作靈感，看見有一對男女在鬧分手，警察也正在調停，很多人圍著湊熱鬧。',
         title: '要不要去看一下？',
         image: {
-          reference: 'https://i.waa.tw/LnIkLYl.png'
+          reference: 'https://i.waa.tw/GuzODND.png'
         },
         options: [
           {
@@ -104,7 +104,7 @@ export default {
         beforeTitle: '別管別人的閒事，為自己的生活努力。為幫補學費和生活費，幾個同學打算一起開網店賺一點錢。',
         title: '開怎樣的店好？',
         image: {
-          reference: 'https://i.waa.tw/S3N4e6D.png'
+          reference: 'https://i.waa.tw/VSq59W7.png'
         },
         options: [
           {
