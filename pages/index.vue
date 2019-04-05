@@ -32,15 +32,15 @@ import defaultCoverImage from 'watchout-common-assets/images/default-cover-image
 export default {
   mixins: [knowsWatchout],
   async asyncData() {
-    // get docs with pub-dest musou
-    let docs = await firestore.bunko.getDocs({ pubDest: 'musou' })
+    // get docs with pub-dest filter
+    let docs = await firestore.bunko.getDocs({ pubDest: info.CHANNEL_ID })
     let docRefs = docs.map(doc => makeReference('doc', doc.id, { publishedTo: doc.publishedTo }))
     let dataOnReferences = {}
     for(let i = 0; i < docRefs.length; i++) {
       dataOnReferences[docRefs[i].url] = docs[i]
     }
 
-    let projects = await firestore.bunko.getProjects({ pubDest: 'musou' })
+    let projects = await firestore.bunko.getProjects({ pubDest: info.CHANNEL_ID })
     let projectRefs = projects.map(project => makeReference('project', project.slug, { publishedTo: project.publishedTo }))
     for(let i = 0; i < projectRefs.length; i++) {
       dataOnReferences[projectRefs[i].url] = projects[i]
@@ -60,7 +60,7 @@ export default {
     let pageDescription = info.SITE_DESCRIPTION
     return {
       title: pageTitle,
-      meta: this.generateMeta('musou', pageTitle, pageDescription, defaultCoverImage)
+      meta: this.generateMeta(info.CHANNEL_ID, pageTitle, pageDescription, defaultCoverImage)
     }
   },
   components: {
