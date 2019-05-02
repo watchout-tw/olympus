@@ -4,7 +4,7 @@
     <doc-header :doc="doc" :variable-font-size="true" :cachedAuthors="cachedAuthors" />
   </div>
   <ghost-article :sections="sections" :cards="cards" :references="references" :data="dataOnReferences" />
-  <after-article :shareURL="shareURL" :links="links" :sources="sources" :footnotes="footnotes" :references="references" :data="dataOnReferences" />
+  <after-article :shareURL="shareURL" :links="links" :sources="sources" :footnotes="footnotes" :references="references" :data="dataOnReferences" :cachedAuthors="cachedAuthors" />
 </div>
 </template>
 
