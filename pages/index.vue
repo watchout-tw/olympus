@@ -10,7 +10,7 @@
   </div>
   <div class="docs tcl-container margin-top-bottom-4">
     <div class="doc tcl-panel tcl-left-right-margin with-top-bottom-margin" :class="{ 'half-width': index >= 4 }" v-for="(reference, index) of references" :key="index" v-if="index > 0">
-      <reference-preview :reference="reference" :data="dataOnReferences" :display="index >= 4 ? 'vertical' : null" :show-pub-dest="true" :cachedAuthors="cachedAuthors" />
+      <reference-preview :reference="reference" :data="dataOnReferences" display="vertical" :show-pub-dest="true" :cachedAuthors="cachedAuthors" />
     </div>
     <div class="tcl-panel half-width"></div>
     <div class="tcl-panel half-width"></div>
