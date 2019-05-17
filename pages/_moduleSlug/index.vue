@@ -6,7 +6,7 @@
   </div>
   <div class="docs tcl-container margin-top-bottom-8">
     <div class="doc tcl-panel tcl-left-right-margin with-top-bottom-margin" v-for="(reference, index) of projectRefs" :key="index">
-      <reference-preview :reference="reference" :data="dataOnReferences" display="vertical" :show-pub-dest="true" />
+      <reference-preview :reference="reference" :data="dataOnReferences" display="vertical" :show-pub-dest="true" :cachedAuthors="cachedAuthors" />
     </div>
     <div class="tcl-panel half-width"></div>
     <div class="tcl-panel half-width"></div>
@@ -19,13 +19,13 @@
 import * as firestore from 'watchout-common-functions/lib/firestore'
 import * as info from '~/data/info'
 import { modules } from '~/config'
-import { knowsWatchout } from 'watchout-common-functions/interfaces'
+import { knowsCaching, knowsWatchout } from 'watchout-common-functions/interfaces'
 import { makeReference } from 'watchout-common-functions/lib/watchout'
 import ReferencePreview from 'watchout-common-functions/components/ReferencePreview'
 import defaultCoverImage from 'watchout-common-assets/images/default-cover-images/musou-2-1.jpg'
 
 export default {
-  mixins: [knowsWatchout],
+  mixins: [knowsCaching, knowsWatchout],
   validate({ params }) {
     const module = modules.find(module => module.id === params.moduleSlug)
     return !!module
