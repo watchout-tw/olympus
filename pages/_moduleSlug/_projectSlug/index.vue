@@ -16,8 +16,11 @@
     <template v-else-if="project.module === 'map'">
       <better-map :module="module" :project="project" :shareURL="shareURL" />
     </template>
+    <template v-else-if="project.module === 'categorized-browser'">
+      <categorized-browser :module="module" :project="project" :shareURL="shareURL" />
+    </template>
     <template v-else>
-      <div class="not-available" style="margin: 1rem;">技術升級中，需要多一點點時間。</div>
+      <div class="not-available margin-double text-align-center">技術升級中，需要多一點點時間。</div>
     </template>
   </div>
   <div class="share margin-top-bottom-double">
@@ -52,6 +55,7 @@ import Draw from '~/components/Draw'
 import BetterLongForm from '~/components/BetterLongForm'
 import Journey from '~/components/Journey'
 import BetterMap from '~/components/BetterMap'
+import CategorizedBrowser from '~/components/CategorizedBrowser'
 import ShareToPlatforms from 'watchout-common-functions/components/ShareToPlatforms'
 import DocHeader from 'watchout-common-functions/components/comp/DocHeader'
 
@@ -125,6 +129,7 @@ export default {
     BetterLongForm,
     Journey,
     BetterMap,
+    CategorizedBrowser,
     ShareToPlatforms,
     DocHeader
   }
