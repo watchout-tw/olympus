@@ -21,6 +21,7 @@
       <div class="count"><span class="value">{{ selectedEntries.length }}</span><span class="unit secondary-text font-size-small">{{ project.countUnit }}</span></div>
       <div class="secondary-text font-size-small">{{ project.countDescription }}{{ PUNCT.L.QUOTE }}{{ selectedCategory.i18n.tw }}{{ PUNCT.R.QUOTE }}</div>
     </div>
+    <div class="tcl-panel"></div>
   </div>
   <div v-if="popQuizIsDone" class="entries tcl-container">
     <div class="entry tcl-panel half-width bg-very-very-light-grey with-padding" v-for="(entry, entryIndex) of selectedEntries" :key="entryIndex">
