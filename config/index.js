@@ -13,8 +13,10 @@ import proj181124 from '~/config/map/181124'
 import projSwineFlu from '~/config/map/swine-flu'
 import proj22872 from '~/config/map/228-72'
 import projGreaterBayArea from '~/config/role-play/greater-bay-area'
+import projCandidateHan from '~/config/map/candidate-han'
 
 export const projects = [
+  projCandidateHan,
   projGreaterBayArea,
   proj22872,
   projSwineFlu,
