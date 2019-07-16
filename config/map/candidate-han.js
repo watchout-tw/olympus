@@ -7,8 +7,16 @@ export default {
     before: '',
     after: '的韓國瑜贏得中國國民黨總統初選。'
   },
-  countDescription: '則國際媒體報導說韓國瑜',
+  countUnit: '則',
+  countDescription: '國際媒體報導說韓國瑜',
   categories: [
+    {
+      id: 'mention_pro_china',
+      i18n: {
+        tw: '親中',
+        en: 'pro-China'
+      }
+    },
     {
       id: 'mention_populist',
       i18n: {
@@ -21,13 +29,6 @@ export default {
       i18n: {
         tw: '像川普',
         en: 'Trump-like'
-      }
-    },
-    {
-      id: 'mention_pro_china',
-      i18n: {
-        tw: '親中',
-        en: 'pro-China'
       }
     },
     {

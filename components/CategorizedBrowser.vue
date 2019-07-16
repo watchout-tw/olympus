@@ -10,15 +10,17 @@
       </div>
       <div class="options">
         <div class="option" :class="{ 'text-color-musou': category.id === selectedCategoryID }" v-for="(category, categoryIndex) of categories" :key="categoryIndex" @click="selectCategory(category.id)">
-          <span>{{ DIGITS.CIRCLED[categoryIndex + 1] }}</span>&nbsp;<span>{{ category.i18n.tw }}</span>&nbsp;<span>{{ category.i18n.en }}</span>
+          <span>{{ DIGITS.CIRCLED[categoryIndex + 1] }}</span>&nbsp;<span>{{ category.i18n.tw }}</span>
         </div>
       </div>
     </div>
     <div class="tcl-panel"></div>
   </div>
-  <div v-if="popQuizIsDone" class="summary">
-    <div class="count">{{ selectedEntries.length }}</div>
-    <div class="secondary-text text-align-center font-size-small">{{ project.countDescription }}{{ PUNCT.L.QUOTE }}{{ selectedCategory.i18n.tw }}{{ PUNCT.R.QUOTE }}</div>
+  <div v-if="popQuizIsDone" class="summary-container tcl-container">
+    <div class="summary tcl-panel tcl-left-right-margin with-top-bottom-margin">
+      <div class="count"><span class="value">{{ selectedEntries.length }}</span><span class="unit secondary-text font-size-small">{{ project.countUnit }}</span></div>
+      <div class="secondary-text font-size-small">{{ project.countDescription }}{{ PUNCT.L.QUOTE }}{{ selectedCategory.i18n.tw }}{{ PUNCT.R.QUOTE }}</div>
+    </div>
   </div>
   <div v-if="popQuizIsDone" class="entries tcl-container">
     <div class="entry tcl-panel half-width bg-very-very-light-grey with-padding" v-for="(entry, entryIndex) of selectedEntries" :key="entryIndex">
@@ -118,11 +120,18 @@ export default {
       }
     }
   }
-  > .summary {
-    > .count {
-      font-size: 2rem;
-      font-weight: bold;
-      text-align: center;
+  > .summary-container {
+    > .summary {
+      > .count {
+        > .value {
+          font-size: 2.5rem;
+          line-height: 1.125;
+          font-weight: bold;
+        }
+        > .unit {
+          margin-left: 0.125rem;
+        }
+      }
     }
   }
 }
