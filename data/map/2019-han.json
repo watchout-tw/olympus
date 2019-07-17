@@ -8,7 +8,7 @@
   "data.mention_tw_is_part_of_china": "Han has said both sides are part of “one China”, a cherished principle for Beijing, and has previously described Taiwan independence as being “more scary” than syphilis."
 }, {
   "date": "2019-07-15",
-  "publisher": "Associated Press",
+  "publisher": "AP",
   "publisher_tw": "美聯社",
   "title": "Taiwan party picks mayor over ex-Foxconn chief for 2020 run",
   "link": "https://www.apnews.com/ec76138b373141eb811a9f3c4e5569ae",
@@ -190,6 +190,41 @@
   "link": "http://shanghaiist.com/2019/07/15/populist-mayor-han-kuo-yu-picked-by-kmt-to-run-against-tsai-ing-wen-for-taiwan-presidency/",
   "data.mention_populist": "Everyone pick up your creepy Han Kuo-yu masks now because the populist mayor of Kaohsiung has just won the Kuomintang (KMT) primary poll to become the party’s candidate in Taiwan’s 2020 presidential election.",
   "data.mention_pro_china": "His rise has been helped along by pro-China “red media,” particularly those outlets run by Tsai Eng-meng, the chairman of the ubiquitous snack food company Want Want China who also owns a pair of Taiwanese television networks, CTi TV and CTV, along with theChina Times newspaper."
+}, {
+  "date": "2019-07-16",
+  "publisher": "Arab News",
+  "title": "US defends Taiwan as Chinese threat looms",
+  "link": "http://www.arabnews.com/node/1526546",
+  "data.mention_pro_china": "With Tsai running for re-election in January 2020, arming with top-line America equipment is to keep the island nation from any Chinese moves in 2021. Her opponent, Han Kuo-yu, is pro-Beijing."
+}, {
+  "date": "2019-07-16",
+  "publisher": "Foreign Policy",
+  "publisher_tw": "外交政策",
+  "title": "Trump Seeks to Shut Down Asylum at Southern Border",
+  "link": "https://foreignpolicy.com/2019/07/16/white-house-moves-to-shut-down-asylum-at-southern-border-erdogan-turkey-s400-russia-neo-nazis-italy/",
+  "data.mention_pro_china": "Han Kuo-yu, the charismatic mayor of Kaohsiung, has been nominated as the presidential candidate of Taiwan’s opposition party after scoring highly in opinion poll results. The pro-China leader, who appears to have had a little help from his friends across the strait, saw off spirited competition from billionaire Terry Gou, the chairman of Foxconn Technology, who came in second."
+}, {
+  "date": "2019-07-16",
+  "publisher": "Monocle",
+  "title": "Rich promise?",
+  "link": "https://monocle.com/minute/2019/07/16/",
+  "data.mention_trump_like": "Taiwanese voters need to spend the next six months taking a close look at this enigmatic politician. Right now the only people making a better living from his Trump-esque promises to make the city rich again are the stall-holders selling Han-branded T-shirts, mugs and other trinkets at the night market."
+}, {
+  "date": "2019-07-16",
+  "publisher": "Foreign Policy",
+  "publisher_tw": "外交政策",
+  "title": "Ich Bin Ein Hong Konger",
+  "link": "https://foreignpolicy.com/2019/07/16/ich-bin-ein-hong-konger-protests-china-west-berlin/",
+  "data.mention_populist": "The opposition party opposes Taiwanese independence, and this weekend the victor in the Kuomintang primary was Han Kuo-yu, a Beijing-friendly populist mayor.",
+  "data.mention_pro_china": "The opposition party opposes Taiwanese independence, and this weekend the victor in the Kuomintang primary was Han Kuo-yu, a Beijing-friendly populist mayor."
+}, {
+  "date": "2019-07-16",
+  "publisher": "The French Institute for International and Strategic Affairs",
+  "publisher_tw": "法國國際和戰略事務研究所",
+  "title": "Taïwan : « L’élection de janvier 2020 sera une lutte à distance entre Pékin et Washington »",
+  "link": "https://www.iris-france.org/139162-taiwan-lelection-de-janvier-2020-sera-une-lutte-a-distance-entre-pekin-et-washington/",
+  "data.mention_populist": "Le candidat de l’opposition (KMT, nationaliste) à la présidentielle de Taïwan de 2020 vient d’être désigné, il s’agit de Han Kuo-yu, maire relativement peu connu jusqu’ici. Qualifié de populiste pro-Pékin, que révèle sa percée sur la scène politique taïwanaise ? Les relations entre Taipei et Pékin vont-elles être remises au cœur du débat ?",
+  "data.mention_pro_china": "Le candidat de l’opposition (KMT, nationaliste) à la présidentielle de Taïwan de 2020 vient d’être désigné, il s’agit de Han Kuo-yu, maire relativement peu connu jusqu’ici. Qualifié de populiste pro-Pékin, que révèle sa percée sur la scène politique taïwanaise ? Les relations entre Taipei et Pékin vont-elles être remises au cœur du débat ?"
 }, {
   "date": "2019-07-15",
   "publisher": "ABC Nyheter",
