@@ -4,9 +4,9 @@
     <div class="control-panel tcl-panel tcl-left-right-margin with-top-bottom-margin">
       <div class="description">{{ project.description }}</div>
       <div class="question">
-        <span>{{ project.question.before }}</span>
-        <span class="blank">{{ selectedCategory ? selectedCategory.i18n.tw : PUNCT.IDEOSPACE + PUNCT.IDEOSPACE }}</span>
-        <span>{{ project.question.after }}</span>
+        <span v-html="spacingOptimizer(project.question.before)"></span>
+        <span class="blank" v-html="selectedCategory ? spacingOptimizer(selectedCategory.i18n.tw) : PUNCT.IDEOSPACE + PUNCT.IDEOSPACE"></span>
+        <span v-html="spacingOptimizer(project.question.after)"></span>
       </div>
       <div class="options" ref="options">
         <div class="option" :class="{ 'text-color-musou': category.id === selectedCategoryID }" v-for="(category, categoryIndex) of categories" :key="categoryIndex" @click="selectCategory(category.id)">
@@ -24,10 +24,10 @@
     <div class="tcl-panel"></div>
   </div>
   <div v-if="popQuizIsDone && selectedEntries.length > 0" class="entries tcl-container">
-    <div class="entry tcl-panel tcl-left-right-margin with-top-bottom-margin bg-very-very-light-grey with-padding" :class="{ 'half-width': !listedEntries[entryIndex].expanded }" v-for="(entry, entryIndex) of selectedEntries" :key="entryIndex">
+    <div class="entry tcl-panel tcl-left-right-margin with-top-bottom-margin bg-very-very-light-grey with-padding" :class="{ 'half-width': !listedEntries[entryIndex].expanded }" v-for="(entry, entryIndex) of selectedEntries" :key="`entry-${entryIndex}`">
       <h3 class="publisher medium">{{ entry.publisher }}</h3>
       <div class="publisher-tw font-size-small secondary-text" v-if="entry.publisher_tw">{{ entry.publisher_tw }}</div>
-      <div class="categorized-mention" v-if="listedEntries[entryIndex].expanded">{{ entry.data[selectedCategoryID] }}</div>
+      <div class="categorized-mention paragraphs margin-8" v-if="listedEntries[entryIndex].expanded">{{ entry.data[selectedCategoryID] }}</div>
       <div class="actions">
         <a class="a-text font-size-small" @click="listedEntries[entryIndex].expanded = !listedEntries[entryIndex].expanded">{{ listedEntries[entryIndex].expanded ? '收合' : '展開' }}</a>
         <span>･</span>
@@ -43,7 +43,7 @@
 
 <script>
 import { knowsMarkdown, knowsWatchout } from 'watchout-common-functions/interfaces'
-import { PUNCT, DIGITS } from 'watchout-common-functions/lib/bunko'
+import { PUNCT, DIGITS, spacingOptimizer } from 'watchout-common-functions/lib/bunko'
 
 export default {
   mixins: [knowsMarkdown, knowsWatchout],
@@ -95,6 +95,7 @@ export default {
     }
   },
   methods: {
+    spacingOptimizer,
     selectCategory(catID) {
       this.selectedCategoryID = catID
       setTimeout(() => {
@@ -104,7 +105,7 @@ export default {
             behavior: 'smooth'
           })
         }
-      }, 150)
+      }, 350)
     },
     getCategory(catID) {
       return this.categories.find(cat => cat.id === catID)
