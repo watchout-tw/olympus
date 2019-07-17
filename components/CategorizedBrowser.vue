@@ -132,6 +132,7 @@ export default {
       > .question {
         padding-top: 1rem;
         font-size: 1.75rem;
+        font-weight: bold;
         > .blank {
           border-bottom: 2px black solid;
         }
