@@ -23,11 +23,16 @@
     </div>
     <div class="tcl-panel"></div>
   </div>
-  <div v-if="popQuizIsDone" class="entries tcl-container">
-    <div class="entry tcl-panel half-width bg-very-very-light-grey with-padding" v-for="(entry, entryIndex) of selectedEntries" :key="entryIndex">
-      <h3 class="publisher">{{ entry.publisher }}</h3>
+  <div v-if="popQuizIsDone && selectedEntries.length > 0" class="entries tcl-container">
+    <div class="entry tcl-panel tcl-left-right-margin with-top-bottom-margin bg-very-very-light-grey with-padding" :class="{ 'half-width': !listedEntries[entryIndex].expanded }" v-for="(entry, entryIndex) of selectedEntries" :key="entryIndex">
+      <h3 class="publisher medium">{{ entry.publisher }}</h3>
       <div class="publisher-tw font-size-small secondary-text" v-if="entry.publisher_tw">{{ entry.publisher_tw }}</div>
-      <a class="a-text font-size-small" :href="entry.link" target="_blank">⋯</a>
+      <div class="categorized-mention" v-if="listedEntries[entryIndex].expanded">{{ entry.data[selectedCategoryID] }}</div>
+      <div class="actions">
+        <a class="a-text font-size-small" @click="listedEntries[entryIndex].expanded = !listedEntries[entryIndex].expanded">{{ listedEntries[entryIndex].expanded ? '收合' : '展開' }}</a>
+        <span>･</span>
+        <a class="a-text font-size-small" :href="entry.link" target="_blank">全文</a>
+      </div>
     </div>
     <div class="tcl-panel half-width"></div>
     <div class="tcl-panel half-width"></div>
@@ -62,7 +67,8 @@ export default {
       PUNCT,
       DIGITS,
       data,
-      selectedCategoryID: null
+      selectedCategoryID: null,
+      listedEntries: []
     }
   },
   computed: {
@@ -77,6 +83,14 @@ export default {
     },
     selectedEntries() {
       return this.selectedCategoryID ? this.getEntriesInCategory(this.selectedCategoryID) : []
+    }
+  },
+  watch: {
+    selectedCategory() {
+      this.listedEntries.splice(0, this.listedEntries.length)
+      this.listedEntries.push(...this.selectedEntries.map(entry => ({
+        expanded: false
+      })))
     }
   },
   methods: {
@@ -108,13 +122,13 @@ export default {
     > .control-panel {
       > .question {
         margin: 1rem 0;
-        font-size: 2rem;
+        font-size: 1.75rem;
         > .blank {
           border-bottom: 2px black solid;
         }
       }
       > .options {
-        font-size: 1.25rem;
+        font-size: 1.5rem;
         > .option {
           cursor: pointer;
         }
@@ -132,6 +146,14 @@ export default {
         > .unit {
           margin-left: 0.125rem;
         }
+      }
+    }
+  }
+  > .entries {
+    > .entry {
+      > .actions {
+        display: flex;
+        align-items: center;
       }
     }
   }
