@@ -8,7 +8,7 @@
         <span class="blank">{{ selectedCategory ? selectedCategory.i18n.tw : PUNCT.IDEOSPACE + PUNCT.IDEOSPACE }}</span>
         <span>{{ project.question.after }}</span>
       </div>
-      <div class="options">
+      <div class="options" ref="options">
         <div class="option" :class="{ 'text-color-musou': category.id === selectedCategoryID }" v-for="(category, categoryIndex) of categories" :key="categoryIndex" @click="selectCategory(category.id)">
           <span>{{ DIGITS.CIRCLED[categoryIndex + 1] }}</span>&nbsp;<span>{{ category.i18n.tw }}</span>
         </div>
@@ -16,7 +16,7 @@
     </div>
     <div class="tcl-panel"></div>
   </div>
-  <div v-if="popQuizIsDone" class="summary-container tcl-container">
+  <div v-if="popQuizIsDone" class="summary-container tcl-container" ref="summary">
     <div class="summary tcl-panel tcl-left-right-margin with-top-bottom-margin">
       <div class="count"><span class="value">{{ selectedEntries.length }}</span><span class="unit secondary-text font-size-small">{{ project.countUnit }}</span></div>
       <div class="secondary-text font-size-small">{{ project.countDescription }}{{ PUNCT.L.QUOTE }}{{ selectedCategory.i18n.tw }}{{ PUNCT.R.QUOTE }}</div>
@@ -68,6 +68,7 @@ export default {
       DIGITS,
       data,
       selectedCategoryID: null,
+      scrollTarget: 'options',
       listedEntries: []
     }
   },
@@ -96,6 +97,14 @@ export default {
   methods: {
     selectCategory(catID) {
       this.selectedCategoryID = catID
+      setTimeout(() => {
+        let target = this.$refs[this.scrollTarget]
+        if(target) {
+          target.scrollIntoView({
+            behavior: 'smooth'
+          })
+        }
+      }, 150)
     },
     getCategory(catID) {
       return this.categories.find(cat => cat.id === catID)
@@ -121,13 +130,14 @@ export default {
   > .control-panels {
     > .control-panel {
       > .question {
-        margin: 1rem 0;
+        padding-top: 1rem;
         font-size: 1.75rem;
         > .blank {
           border-bottom: 2px black solid;
         }
       }
       > .options {
+        padding-top: 1rem;
         font-size: 1.5rem;
         > .option {
           cursor: pointer;
