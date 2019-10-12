@@ -11,7 +11,7 @@
   </div>
   <div class="docs tcl-container margin-top-bottom-4">
     <div class="doc tcl-panel tcl-left-right-margin with-top-bottom-margin" :class="{ 'half-width': index > 2 }" v-for="(reference, index) of docRefs" :key="`doc-${index}`" v-if="index > 0">
-      <reference-preview :reference="reference" :data="dataOnReferences" display="vertical" :show-pub-dest="true" :cachedAuthors="cachedAuthors" />
+      <reference-preview :reference="reference" :data="dataOnReferences" display="vertical" :description="null" :contributor-list-style="null" :read-more-style="null" :show-pub-dest="true" :cachedAuthors="cachedAuthors" />
     </div>
     <div class="tcl-panel half-width"></div>
     <div class="tcl-panel half-width"></div>
@@ -30,7 +30,7 @@
   </div>
   <div class="docs tcl-container margin-top-bottom-4">
     <div class="doc tcl-panel tcl-left-right-margin with-top-bottom-margin" :class="{ 'half-width': index > 2 }" v-for="(reference, index) of projectRefs" :key="`doc-${index}`" v-if="index > 0">
-      <reference-preview :reference="reference" :data="dataOnReferences" display="vertical" :show-pub-dest="true" :cachedAuthors="cachedAuthors" />
+      <reference-preview :reference="reference" :data="dataOnReferences" display="vertical" :description="null" :contributor-list-style="null" :read-more-style="null" :show-pub-dest="true" :cachedAuthors="cachedAuthors" />
     </div>
     <div class="tcl-panel half-width"></div>
     <div class="tcl-panel half-width"></div>
