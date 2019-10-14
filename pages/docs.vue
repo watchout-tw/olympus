@@ -85,7 +85,7 @@ export default {
     async loadMore() {
       if(this.hasMore) {
         this.moreButtonStatus.state = STATES.LOADING
-        let docs = await firestore.bunko.getDocs({ lastDocID: this.lastDocID, limit: pageSize })
+        let docs = await firestore.bunko.getDocs({ pubDest: info.CHANNEL_ID, lastDocID: this.lastDocID, limit: pageSize })
         if(docs.length > 0) {
           this.moreButtonStatus.state = STATES.SUCCESS
 
