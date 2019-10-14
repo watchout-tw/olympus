@@ -2,7 +2,7 @@ export default [
   {
     label: {
       type: 'text',
-      value: '文件'
+      value: '內容'
     },
     route: {
       name: 'docs'
