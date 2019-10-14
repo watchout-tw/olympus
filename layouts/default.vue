@@ -1,6 +1,6 @@
 <template>
 <main>
-  <nav-bar :channel="channel" />
+  <nav-bar :channel="channel" :menu="menu" />
   <nuxt />
   <footer-standard />
   <modal-manager />
@@ -11,6 +11,7 @@
 <script>
 import { env } from 'watchout-common-assets'
 import { knowsWindowManagement } from 'watchout-common-functions/interfaces'
+import menu from '~/data/menu'
 import NavBar from 'watchout-common-functions/components/NavBar'
 import FooterStandard from 'watchout-common-functions/components/FooterStandard'
 import ModalManager from 'watchout-common-functions/components/ModalManager'
@@ -20,7 +21,8 @@ export default {
   mixins: [knowsWindowManagement],
   data() {
     return {
-      channel: env.channels.musou
+      channel: env.channels.musou,
+      menu
     }
   },
   components: {
