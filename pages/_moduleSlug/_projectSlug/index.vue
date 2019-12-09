@@ -49,7 +49,7 @@
 import * as info from '~/data/info'
 import { projects, modules } from '~/config'
 import * as firestore from 'watchout-common-functions/lib/firestore'
-import { knowsBunko, knowsCaching, knowsMarkdown, knowsWatchout } from 'watchout-common-functions/interfaces'
+import { knowsBunko, knowsFSCache, knowsMarkdown, knowsWatchout } from 'watchout-common-functions/interfaces'
 import Swipe from '~/components/Swipe'
 import Draw from '~/components/Draw'
 import BetterLongForm from '~/components/BetterLongForm'
@@ -60,7 +60,7 @@ import ShareToPlatforms from 'watchout-common-functions/components/ShareToPlatfo
 import DocHeader from 'watchout-common-functions/components/comp/DocHeader'
 
 export default {
-  mixins: [knowsBunko, knowsCaching, knowsMarkdown, knowsWatchout],
+  mixins: [knowsBunko, knowsFSCache, knowsMarkdown, knowsWatchout],
   validate({ params }) {
     const module = modules.find(module => module.id === params.moduleSlug)
     const project = projects.find(project => project.id === params.projectSlug)

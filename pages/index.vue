@@ -49,7 +49,7 @@
 <script>
 import * as firestore from 'watchout-common-functions/lib/firestore'
 import * as info from '~/data/info'
-import { knowsCaching, knowsWatchout } from 'watchout-common-functions/interfaces'
+import { knowsFSCache, knowsWatchout } from 'watchout-common-functions/interfaces'
 import { makeReference } from 'watchout-common-functions/lib/watchout'
 import Welcome from 'watchout-common-functions/components/Welcome'
 import ReferencePreview from 'watchout-common-functions/components/ReferencePreview'
@@ -58,7 +58,7 @@ import defaultCoverImage from 'watchout-common-assets/images/default-cover-image
 const getLimit = 7
 
 export default {
-  mixins: [knowsCaching, knowsWatchout],
+  mixins: [knowsFSCache, knowsWatchout],
   async asyncData() {
     // get docs with pub-dest filter
     let docs = await firestore.bunko.getDocs({ pubDest: info.CHANNEL_ID, limit: getLimit })

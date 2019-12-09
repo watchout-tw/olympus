@@ -17,12 +17,12 @@
 <script>
 import * as firestore from 'watchout-common-functions/lib/firestore'
 import * as info from '~/data/info'
-import { knowsCaching, knowsWatchout } from 'watchout-common-functions/interfaces'
+import { knowsFSCache, knowsWatchout } from 'watchout-common-functions/interfaces'
 import { makeReference } from 'watchout-common-functions/lib/watchout'
 import ReferencePreview from 'watchout-common-functions/components/ReferencePreview'
 
 export default {
-  mixins: [knowsCaching, knowsWatchout],
+  mixins: [knowsFSCache, knowsWatchout],
   async asyncData() {
     let projects = await firestore.bunko.getProjects({ pubDest: info.CHANNEL_ID })
     let projectRefs = projects.map(project => makeReference('project', project.slug, { publishedTo: project.publishedTo }))

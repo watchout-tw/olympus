@@ -11,7 +11,7 @@
 <script>
 import * as info from '~/data/info'
 import * as firestore from 'watchout-common-functions/lib/firestore'
-import { knowsCaching, knowsWatchout } from 'watchout-common-functions/interfaces'
+import { knowsFSCache, knowsWatchout } from 'watchout-common-functions/interfaces'
 import { mobiledocProcessor } from 'watchout-common-functions/lib/bunko'
 import DocHeader from 'watchout-common-functions/components/comp/DocHeader'
 import GhostArticle from 'watchout-common-functions/components/ghost/Article'
@@ -19,7 +19,7 @@ import AfterArticle from 'watchout-common-functions/components/ghost/AfterArticl
 import defaultCoverImage from 'watchout-common-assets/images/default-cover-images/musou-2-1.jpg'
 
 export default {
-  mixins: [knowsCaching, knowsWatchout],
+  mixins: [knowsFSCache, knowsWatchout],
   async asyncData({ params, error }) {
     let doc = await firestore.bunko.getDoc(params.id, true)
     if(!(doc && doc.publishedTo === info.CHANNEL_ID)) { // FIXME: better error handling

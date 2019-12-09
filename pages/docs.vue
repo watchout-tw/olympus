@@ -27,7 +27,7 @@
 import * as STATES from 'watchout-common-functions/lib/states'
 import * as firestore from 'watchout-common-functions/lib/firestore'
 import * as info from '~/data/info'
-import { knowsCaching, knowsWatchout } from 'watchout-common-functions/interfaces'
+import { knowsFSCache, knowsWatchout } from 'watchout-common-functions/interfaces'
 import { makeReference } from 'watchout-common-functions/lib/watchout'
 import ReferencePreview from 'watchout-common-functions/components/ReferencePreview'
 import SubmitButton from 'watchout-common-functions/components/button/Submit'
@@ -41,7 +41,7 @@ function makeDocRefs(docs) {
 }
 
 export default {
-  mixins: [knowsCaching, knowsWatchout],
+  mixins: [knowsFSCache, knowsWatchout],
   async asyncData() {
     let docCount = await firestore.bunko.countDocs({ pubDest: info.CHANNEL_ID })
     let docs = await firestore.bunko.getDocs({ pubDest: info.CHANNEL_ID, limit: firstPageSize })
@@ -102,9 +102,6 @@ export default {
         }
       }
     }
-  },
-  method: {
-    makeDocRefs
   },
   components: {
     ReferencePreview,
