@@ -45,6 +45,9 @@ module.exports = {
       }
     }
   },
+  plugins: [
+    '~/plugins/firestore.js'
+  ],
   modules: [
     ['@nuxtjs/google-tag-manager', { id: 'GTM-TF76PLV' }]
   ],
