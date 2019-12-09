@@ -9,7 +9,6 @@
 </template>
 
 <script>
-import * as info from '~/data/info'
 import * as firestore from 'watchout-common-functions/lib/firestore'
 import { knowsFSCache, knowsWatchout } from 'watchout-common-functions/interfaces'
 import { mobiledocProcessor } from 'watchout-common-functions/lib/bunko'
@@ -17,6 +16,7 @@ import DocHeader from 'watchout-common-functions/components/comp/DocHeader'
 import GhostArticle from 'watchout-common-functions/components/ghost/Article'
 import AfterArticle from 'watchout-common-functions/components/ghost/AfterArticle'
 import defaultCoverImage from 'watchout-common-assets/images/default-cover-images/musou-2-1.jpg'
+import * as info from '~/data/info'
 
 export default {
   mixins: [knowsFSCache, knowsWatchout],

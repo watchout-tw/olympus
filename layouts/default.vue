@@ -11,11 +11,11 @@
 <script>
 import { env } from 'watchout-common-assets'
 import { knowsWindowManagement } from 'watchout-common-functions/interfaces'
-import menu from '~/data/menu'
 import NavBar from 'watchout-common-functions/components/NavBar'
 import FooterStandard from 'watchout-common-functions/components/FooterStandard'
 import ModalManager from 'watchout-common-functions/components/ModalManager'
 import SupportWatchout from 'watchout-common-functions/components/SupportWatchout'
+import menu from '~/data/menu'
 
 export default {
   mixins: [knowsWindowManagement],

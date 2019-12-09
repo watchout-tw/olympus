@@ -26,11 +26,11 @@
 <script>
 import * as STATES from 'watchout-common-functions/lib/states'
 import * as firestore from 'watchout-common-functions/lib/firestore'
-import * as info from '~/data/info'
 import { knowsFSCache, knowsWatchout } from 'watchout-common-functions/interfaces'
 import { makeReference } from 'watchout-common-functions/lib/watchout'
 import ReferencePreview from 'watchout-common-functions/components/ReferencePreview'
 import SubmitButton from 'watchout-common-functions/components/button/Submit'
+import * as info from '~/data/info'
 
 let firstPageSize = 15
 let pageSize = 8

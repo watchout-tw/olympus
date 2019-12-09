@@ -9,9 +9,9 @@
 </template>
 
 <script>
-import * as info from '~/data/info'
 import { knowsWatchout } from 'watchout-common-functions/interfaces'
 import defaultCoverImage from 'watchout-common-assets/images/default-cover-images/musou-2-1.jpg'
+import * as info from '~/data/info'
 
 export default {
   mixins: [knowsWatchout],

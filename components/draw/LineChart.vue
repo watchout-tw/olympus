@@ -45,10 +45,10 @@ const colors = {
   'tsai-1': 'rgba(0, 255, 0, 0.25)'
 }
 const presidents = {
-  'hui': '李登輝',
-  'bian': '陳水扁',
-  'ma': '馬英九',
-  'tsai': '蔡英文'
+  hui: '李登輝',
+  bian: '陳水扁',
+  ma: '馬英九',
+  tsai: '蔡英文'
 }
 const UNDONE_SCORE = -1
 const SUBMIT_MESSAGES = {

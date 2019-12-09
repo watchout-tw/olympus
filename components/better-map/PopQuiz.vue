@@ -29,9 +29,9 @@
 
 <script>
 import { knowsMarkdown } from 'watchout-common-functions/interfaces'
-import { getCircledDigit } from '~/util/util'
 import SubmitButton from 'watchout-common-functions/components/button/Submit'
 import * as STATES from 'watchout-common-functions/lib/states'
+import { getCircledDigit } from '~/util/util'
 
 const spaces = '　　'
 

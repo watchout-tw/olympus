@@ -46,18 +46,18 @@
 </template>
 
 <script>
-import * as info from '~/data/info'
-import { projects, modules } from '~/config'
 import * as firestore from 'watchout-common-functions/lib/firestore'
 import { knowsBunko, knowsFSCache, knowsMarkdown, knowsWatchout } from 'watchout-common-functions/interfaces'
+import ShareToPlatforms from 'watchout-common-functions/components/ShareToPlatforms'
+import DocHeader from 'watchout-common-functions/components/comp/DocHeader'
+import * as info from '~/data/info'
+import { projects, modules } from '~/config'
 import Swipe from '~/components/Swipe'
 import Draw from '~/components/Draw'
 import BetterLongForm from '~/components/BetterLongForm'
 import Journey from '~/components/Journey'
 import BetterMap from '~/components/BetterMap'
 import CategorizedBrowser from '~/components/CategorizedBrowser'
-import ShareToPlatforms from 'watchout-common-functions/components/ShareToPlatforms'
-import DocHeader from 'watchout-common-functions/components/comp/DocHeader'
 
 export default {
   mixins: [knowsBunko, knowsFSCache, knowsMarkdown, knowsWatchout],

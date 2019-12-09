@@ -71,14 +71,14 @@ import PopupArticle from './PopupArticle'
 const SRC_STATIC = 'markers'
 const SRC_LIVE = 'markers-live'
 const SRC_FLY = 'markers-fly'
-const SOURCES = [ SRC_STATIC, SRC_LIVE, SRC_FLY ]
+const SOURCES = [SRC_STATIC, SRC_LIVE, SRC_FLY]
 
 const LAYER_CL = 'clusters'
 const LAYER_CL_COUNT = 'cluster-count'
 const LAYER_MARKERS = 'markers-not-in-cluster'
 const LAYER_LIVE = 'markers-live'
 const LAYER_FLY = 'markers-fly'
-const LAYERS = [ LAYER_CL, LAYER_CL_COUNT, LAYER_MARKERS, LAYER_LIVE, LAYER_FLY ]
+const LAYERS = [LAYER_CL, LAYER_CL_COUNT, LAYER_MARKERS, LAYER_LIVE, LAYER_FLY]
 
 function makeFeature(marker) {
   return {
