@@ -12,16 +12,16 @@
     </div>
   </div>
   <div class="mission">
-    <div class="commander">👮‍</div>
+    <div class="commander">‍</div>
     <div class="response-text">{{ responseText }}</div>
-    <div class="book-container tcl-container">
+    <div class="book-container tcl-container no-margin">
       <div class="book-panel tcl-panel tcl-left-right-margin">
         <div class="book">
           <div class="content">
-            <div class="book-page" :class="[page.type]" v-for="(page, pageIndex) of pages" :key="pageIndex" v-show="pageIndex === activePageIndex">
-              <div v-if="page.type === 'text'" v-html="page.content"></div>
-              <h3 v-if="page.type === 'title'" v-html="page.content"></h3>
-              <img v-if="page.type === 'image'" :src="`/formosa/${page.content}`" height="100%" />
+            <div class="book-page" v-for="(page, pageIndex) of pages" :key="pageIndex" v-show="pageIndex === activePageIndex" :style="{ backgroundImage: page.image ? `url(/formosa/${page.image})` : '' }">
+              <h3 v-if="page.beforeTitle" v-html="spacingOptimizer(page.beforeTitle)"></h3>
+              <h2 v-if="page.title" v-html="spacingOptimizer(page.title)"></h2>
+              <div v-if="page.bodyText" v-html="markdown(page.bodyText)"></div>
             </div>
           </div>
         </div>
@@ -31,7 +31,7 @@
         </div>
       </div>
     </div>
-    <div class="control-container tcl-container">
+    <div class="control-container tcl-container no-margin">
       <div class="controls tcl-panel tcl-left-right-margin with-top-bottom-margin">
         <div class="form-field-buttons no-wrap no-margin">
           <button class="input button musou dark" @click="pageIsOkay">{{ textMap.isOkay }}</button>
@@ -45,7 +45,7 @@
 
 <script>
 import { knowsMarkdown } from 'watchout-common-functions/interfaces'
-import { PUNCT } from 'watchout-common-functions/lib/bunko'
+import { spacingOptimizer, PUNCT } from 'watchout-common-functions/lib/bunko'
 
 let textMap = {
   title: '特務學校',
@@ -64,44 +64,35 @@ let textMap = {
 }
 let pages = [
   {
-    type: 'image',
-    content: 'cover.jpg'
+    image: 'cover.jpg'
   },
   {
-    type: 'title',
-    content: '發刊詞'
+    beforeTitle: '發刊詞',
+    title: '共同來推動新生代政治運動！'
   },
   {
-    type: 'text',
-    content: '玉山蒼蒼，碧海茫茫，婆娑之洋，美麗之島，是我們生長的家鄉。我們深愛這片土地及啜飲其乳汁長大的子民，更關懷我們未來共同的命運。同時我們相信，決定我們未來道路和命運，不再是任何政權和這政權所豢養之文人的權利，而是我們所有人民大眾的權利。'
+    bodyText: '玉山蒼蒼，碧海茫茫，婆娑之洋，美麗之島，是我們生長的家鄉。我們深愛這片土地及啜飲其乳汁長大的子民，更關懷我們未來共同的命運。同時我們相信，決定我們未來道路和命運，不再是任何政權和這政權所豢養之文人的權利，而是我們所有人民大眾的權利。'
   },
   {
-    type: 'image',
-    content: 'directory-1.jpg'
+    image: 'directory-1.jpg'
   },
   {
-    type: 'image',
-    content: 'directory-2.jpg'
+    image: 'directory-2.jpg'
   },
   {
-    type: 'text',
-    content: '國民黨政府面對這一熱烈的選擧活動，在其政治危機來臨時驚慌失措，急急忙忙下令停止選擧，並施展一連串高壓手段，企圖摧毀這一股民主運動的洪流，這造成半年來我們社會的緊張不安。'
+    bodyText: '國民黨政府面對這一熱烈的選擧活動，在其政治危機來臨時驚慌失措，急急忙忙下令停止選擧，並施展一連串高壓手段，企圖摧毀這一股民主運動的洪流，這造成半年來我們社會的緊張不安。'
   },
   {
-    type: 'text',
-    content: '三十年來，國民黨已禁忌、神話隱蔽我們國家社會的許許多多問題，扼殺了我們政治的生機，阻礙了社會的進步。'
+    bodyText: '三十年來，國民黨已禁忌、神話隱蔽我們國家社會的許許多多問題，扼殺了我們政治的生機，阻礙了社會的進步。'
   },
   {
-    type: 'text',
-    content: '「美麗島」雜誌的目標就是要推動新生代政治運動。我們將提供廣大的園地給所有不願意讓禁忌、神話、權勢束縛，而願意站在自己的土地上講話的同胞，共同來耕耘這美麗之島。'
+    bodyText: '「美麗島」雜誌的目標就是要推動新生代政治運動。我們將提供廣大的園地給所有不願意讓禁忌、神話、權勢束縛，而願意站在自己的土地上講話的同胞，共同來耕耘這美麗之島。'
   },
   {
-    type: 'text',
-    content: '但是，三十年來在意識上忽視群眾、背離群眾的國民黨在運動過程中驚奇地發現，「群眾突然之間成為可見的，且很穩固地盤踞在社會最顯明的地帶。」國民黨面對這一情勢，迷惘無助，無法正確估計其群眾基礎，於是，順應世界潮流之民主化意識與維續政權的統治意識相互掙扎、扯裂。'
+    bodyText: '但是，三十年來在意識上忽視群眾、背離群眾的國民黨在運動過程中驚奇地發現，「群眾突然之間成為可見的，且很穩固地盤踞在社會最顯明的地帶。」國民黨面對這一情勢，迷惘無助，無法正確估計其群眾基礎，於是，順應世界潮流之民主化意識與維續政權的統治意識相互掙扎、扯裂。'
   },
   {
-    type: 'text',
-    content: '國民黨就在這種掙扎、扯裂、徬徨的矛盾心理下迎接新生一代的挑戰！'
+    bodyText: '國民黨就在這種掙扎、扯裂、徬徨的矛盾心理下迎接新生一代的挑戰！'
   }
 ]
 
@@ -159,7 +150,8 @@ export default {
       } else {
         this.responseText = textMap.responses.emptySelection
       }
-    }
+    },
+    spacingOptimizer
   }
 }
 </script>
@@ -174,6 +166,9 @@ $light: #EFEFEF;
 $mission: #DDD;
 $page: white; //#FFF7DD;
 
+@mixin move-to-front {
+  z-index: 2;
+}
 @mixin vertical-text {
   writing-mode: vertical-rl;
   text-orientation: mixed;
@@ -227,21 +222,30 @@ $page: white; //#FFF7DD;
     padding: 1rem 0;
     background-color: $mission;
     > .commander {
-      padding: 0 1rem;
-      font-size: 2rem;
+      width: 4rem;
+      height: 4rem;
+      margin-left: 1rem;
+      background-image: url('/formosa/policeman.png');
+      background-size: contain;
+      background-position: center center;
+      @include move-to-front;
+      @include tcl-md {
+        position: absolute;
+        top: 1rem;
+      }
     }
     > .response-text {
       @include vertical-text;
       position: absolute;
       top: -0.625rem;
-      left: 3.25rem;
+      left: 5rem;
       padding: 0.75rem 0.5rem;
       max-height: 12.5rem;
       border: 2px solid $secret;
       border-radius: 0.125rem;
       font-weight: bold;
       color: $secret;
-      z-index: 2;
+      @include move-to-front;
     }
     > .book-container {
       > .book-panel {
@@ -252,17 +256,13 @@ $page: white; //#FFF7DD;
           .book-page {
             width: 100%;
             height: 100%;
+            padding: 2rem;
             background-color: $page;
+            background-size: cover;
+            background-position: center center;
             @include vertical-text;
             @include shadow-expanded;
-            &.text {
-              padding: 2rem;
-              font-size: 1.25rem;
-            }
-            &.title {
-              padding: 2rem;
-              font-size: 1.5rem;
-            }
+            font-size: 1.25rem;
           }
         }
         > .prev-next {
@@ -277,7 +277,7 @@ $page: white; //#FFF7DD;
             position: relative;
             width: 2rem;
             height: 2rem;
-            background-color: transparent;
+            background-color: $light;
             &.inactive {
               opacity: 0.25;
             }
