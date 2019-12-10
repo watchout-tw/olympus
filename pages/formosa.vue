@@ -180,12 +180,13 @@ export default {
     }
   },
   head() {
-    let pageTitle = textMap.title + PUNCT.SLASH + info.SITE_TITLE
-    let pageDescription = textMap.description
-    let pageCover = projectCoverImage
+    let title = textMap.title + PUNCT.SLASH + info.SITE_TITLE
+    let description = textMap.description
+    let image = projectCoverImage
+    let meta = this.generateMeta('musou', title, description, image)
     return {
-      title: pageTitle,
-      meta: this.generateMeta('musou', pageTitle, pageDescription, pageCover)
+      title,
+      meta
     }
   },
   methods: {
