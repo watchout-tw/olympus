@@ -6,7 +6,10 @@
         <div class="content">
           <h1 class="small">{{ textMap.title }}</h1>
           <div class="paragraphs vertical" v-html="markdown(textMap.intro)"></div>
-          <div class="start" @click="start">{{ textMap.start }}</div>
+          <div class="action start" @click="start">
+            <label>{{ textMap.start }}</label>
+            <div class="arrow"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -35,8 +38,8 @@
     <div class="control-container tcl-container no-margin">
       <div class="controls tcl-panel tcl-left-right-margin with-top-bottom-margin">
         <div class="form-field-buttons no-wrap no-margin">
-          <button class="input button musou dark" @click="pageIsOkay">{{ textMap.isOkay }}</button>
-          <button class="input button musou dark" @click="pageIsNotOkay">{{ textMap.isNotOkay }}</button>
+          <button class="input button musou dark" @click="pageIsOkay" v-html="spacingOptimizer(isOkayText)"></button>
+          <button class="input button musou dark" @click="pageIsNotOkay" v-html="spacingOptimizer(isNotOkayText)"></button>
         </div>
       </div>
     </div>
@@ -54,23 +57,28 @@ let textMap = {
     '近年來，國內情勢動盪，據說，有一群所謂「民主運動」的叛亂份子，似乎正在伺機而動。身為特務人員，你的職責是蒐證、調查，揭發叛亂份子的陰謀。',
   start: '訓練開始',
   isOkay: '報告，這沒問題',
-  isNotOkay: '報告，這有問題'
+  isNotOkay: '報告，這有問題',
+  confirm: '報告，確定！',
+  notSure: '報告，不確定！'
 }
 
 let responses = {
   moveAlong: '動作快。',
+  selectText: '點選找出有問題的文字，仔細點！',
   tooEasy: '全都有問題？你以為當特務這麼簡單嗎？',
   areYouSure: '你確定嗎？',
   okay: '這不是重點，繼續往下。',
   outOfScope: '眼睛看哪裡啊！',
-  emptySelection: '哪裡有問題不會說清楚嗎？',
+  emptySelection: '哪裡有問題是不會標記清楚嗎？',
   impossible: '怎麼可能沒問題。',
   wellDone: '幹得不錯，重點都有抓到。繼續往下。',
   notGoodEnough: '有抓到一些重點了，還可以更好。',
   missingTarget: '根本沒抓到重點啊，用腦！'
 }
 
-let defaultResult = '尚未構成刑責'
+let RES_SQ_TUTORIAL = 1
+
+let defaultResult = '尚未構成刑責。'
 
 let pages = [
   {
@@ -147,9 +155,12 @@ export default {
       activePageIndex: 0,
       selectedText: null,
       responseText: responses.moveAlong,
+      responseSequenceTimer: null,
       PUNCT,
       okayCounter: 0,
-      notOkayCounter: 0
+      notOkayCounter: 0,
+      isOkayText: textMap.isOkay,
+      isNotOkayText: textMap.isNotOkay
     }
   },
   computed: {
@@ -171,6 +182,15 @@ export default {
           behavior: 'smooth'
         })
       }
+      this.startResponseSequence(RES_SQ_TUTORIAL)
+    },
+    startResponseSequence(seqID) {
+      if(seqID === RES_SQ_TUTORIAL) {
+        this.responseText = responses.moveAlong
+        this.responseSequenceTimer = setTimeout(() => {
+          this.responseText = responses.selectText
+        }, 2000)
+      }
     },
     goPrevPage() {
       if(this.activePageIndex > 0) {
@@ -182,7 +202,7 @@ export default {
       if(this.activePageIndex < this.pages.length - 1) {
         this.activePageIndex++
       }
-      this.responseText = responses.moveAlong
+      this.startResponseSequence(RES_SQ_TUTORIAL)
     },
     pageIsOkay() {
       this.okayCounter++
@@ -243,6 +263,7 @@ export default {
       this.selectedText = selectedText
     },
     selectSegment(event, segment) {
+      clearTimeout(this.responseSequenceTimer)
       segment.isSelected = !segment.isSelected
     },
     spacingOptimizer
@@ -294,18 +315,38 @@ $page: #DFE2DB;
       > .opening-scene {
         > .content {
           width: 100%;
-          max-height: 28rem;
+          max-height: 24rem;
           @include vertical-text;
           color: $secret;
-          > .start {
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            padding: 0.75rem 0.5rem;
-            background-color: $secret;
-            font-size: 1.25rem;
-            font-weight: bold;
-            color: $darkness;
+          > .action.start {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            > label {
+              margin-bottom: 0.5rem;
+              font-size: 1.25rem;
+              font-weight: bold;
+            }
+            > .arrow {
+              position: relative;
+              width: 3rem;
+              height: 3rem;
+              background-color: $secret;
+              border-radius: 50%;
+              @include arrow(1.125rem, down);
+            }
+          }
+
+          > .actions {
+            text-align: right;
+            > .start {
+              // display: inline-block;
+              padding: 0.75rem 0.5rem;
+              background-color: $secret;
+              font-size: 1.25rem;
+              font-weight: bold;
+              color: $darkness;
+            }
           }
         }
       }
@@ -363,13 +404,19 @@ $page: #DFE2DB;
                 font-size: 1rem;
               }
               .title {
-                font-size: 1.25rem;
+                font-size: 1.5rem;
                 letter-spacing: 0.0625rem;
                 line-height: $line-height-comfortable;
+                @include iPhone5 {
+                  font-size: 1.25rem;
+                }
               }
               .body {
                 font-size: 1.25rem;
                 line-height: $line-height-comfortable;
+                @include iPhone5 {
+                  font-size: 1.125rem;
+                }
               }
               .result {
                 margin-right: 0.25rem;
