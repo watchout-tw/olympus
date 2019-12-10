@@ -149,6 +149,7 @@ export default {
         selectedText = document.selection.createRange().text
       }
       if(selectedText) {
+        selectedText = selectedText.trim()
         if(['title', 'text'].includes(this.activePage.type) && this.activePage.content.includes(selectedText)) {
           this.selectedText = selectedText
           this.responseText = textMap.responses.areYouSure
