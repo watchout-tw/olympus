@@ -1,10 +1,12 @@
 <template>
 <div class="page formosa">
-  <div class="opening">
-    <div class="content">
-      <h1 class="small">{{ textMap.title }}</h1>
-      <div class="paragraphs vertical" v-html="markdown(textMap.intro)"></div>
-      <div class="start">{{ textMap.start }}</div>
+  <div class="opening-container tcl-container no-margin">
+    <div class="opening tcl-panel tcl-left-right-margin with-top-bottom-margin">
+      <div class="content">
+        <h1 class="small">{{ textMap.title }}</h1>
+        <div class="paragraphs vertical" v-html="markdown(textMap.intro)"></div>
+        <div class="start">{{ textMap.start }}</div>
+      </div>
     </div>
   </div>
   <div class="mission">
@@ -46,7 +48,7 @@ import { knowsMarkdown } from 'watchout-common-functions/interfaces'
 
 let textMap = {
   title: '特務學校',
-  intro: '你是新分發的特務。',
+  intro: '你是新分發的特務。你被教導愛黨、愛國、絕對忠誠。共匪隨時隨地都在滲透我正統中國，絕不能讓他們的詭計得逞。',
   start: '訓練開始',
   isOkay: '報告，這沒問題',
   isNotOkay: '報告，這有問題',
@@ -176,23 +178,25 @@ $page: white; //#FFF7DD;
 }
 
 .page.formosa {
-  > .opening {
-    @include rect(1);
-    width: 100%;
+  > .opening-container {
+    padding: 1rem 0;
     background-color: $darkness;
-    > .content {
-      @include vertical-text;
-      padding: 2rem;
-      color: $secret;
-      > .start {
-        position: absolute;
-        left: 2rem;
-        bottom: 2rem;
-        padding: 0.75rem 0.5rem;
-        background-color: $secret;
-        color: $darkness;
-        font-size: 1.25rem;
-        font-weight: bold;
+    > .opening {
+      > .content {
+        width: 100%;
+        max-height: 28rem;
+        @include vertical-text;
+        color: $secret;
+        > .start {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          padding: 0.75rem 0.5rem;
+          background-color: $secret;
+          font-size: 1.25rem;
+          font-weight: bold;
+          color: $darkness;
+        }
       }
     }
   }
@@ -236,7 +240,6 @@ $page: white; //#FFF7DD;
             height: 100%;
             background-color: $page;
             @include vertical-text;
-            font-family: serif;
             @include shadow-expanded;
             &.text {
               padding: 2rem;
