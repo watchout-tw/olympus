@@ -18,10 +18,12 @@
       <div class="book-panel tcl-panel tcl-left-right-margin">
         <div class="book">
           <div class="content">
-            <div class="page" v-for="(page, pageIndex) of pages" :key="pageIndex" v-show="pageIndex === activePageIndex" :style="{ backgroundImage: page.image ? `url(/formosa/${page.image})` : '' }">
+            <div class="page" v-for="(page, pageIndex) of pages" :key="`page-${pageIndex}`" v-show="pageIndex === activePageIndex" :style="{ backgroundImage: page.image ? `url(/formosa/${page.image})` : '' }">
               <h4 v-if="page.beforeTitle" v-html="spacingOptimizer(page.beforeTitle)" class="before-title"></h4>
               <h3 v-if="page.title" v-html="spacingOptimizer(page.title)" class="title"></h3>
-              <div v-if="page.bodyText" v-html="page.bodyHTML" class="body"></div>
+              <div v-if="page.bodyText" class="body">
+                <span v-for="(segment, segmentIndex) of page.bodyTextSegements" :key="`segment-${segmentIndex}`" class="selectable" :class="{ selected: segment.isSelected }" @click="selectSegment($event, segment)">{{ segment.content }}</span>
+              </div>
               <div v-if="page.result && pagesIX[pageIndex].showResult && page.hasText" v-html="markdown(page.result)" class="result"></div>
             </div>
           </div>
@@ -117,11 +119,17 @@ export default {
     for(let i = 0; i < pages.length; i++) {
       if(pages[i].bodyText) {
         let tokens = pages[i].bodyText.split(new RegExp(`([${PUNCT.COMMA}${PUNCT.FSTOP}${PUNCT.EXCLA}${PUNCT.Q}${PUNCT.PAUSE}${PUNCT.L.QUOTE}${PUNCT.R.QUOTE}])`))
-        let html = ''
+        let segments = []
         for(let j = 0; j < tokens.length; j += 2) {
-          html += '<span class="selectable">' + tokens[j] + (j + 1 < tokens.length ? tokens[j + 1] : '') + '</span>'
+          let content = tokens[j] + (j + 1 < tokens.length ? tokens[j + 1] : '')
+          if(content) {
+            segments.push({
+              content,
+              isSelected: false
+            })
+          }
         }
-        pages[i].bodyHTML = html
+        pages[i].bodyTextSegements = segments
       }
       if(!pages[i].result) {
         pages[i].result = defaultResult
@@ -234,21 +242,10 @@ export default {
       }
       this.selectedText = selectedText
     },
+    selectSegment(event, segment) {
+      segment.isSelected = !segment.isSelected
+    },
     spacingOptimizer
-  },
-  mounted() {
-    if(document) {
-      let els = document.querySelectorAll('.selectable')
-      for(let i = 0; i < els.length; i++) {
-        els[i].addEventListener('touchstart', event => {
-          event.target.classList.toggle('selected')
-          event.preventDefault()
-        })
-        els[i].addEventListener('click', event => {
-          event.target.classList.toggle('selected')
-        })
-      }
-    }
   }
 }
 </script>
@@ -378,7 +375,7 @@ $page: #DFE2DB;
                 font-weight: bold;
                 color: $secret;
               }
-              .selected {
+              .selectable.selected {
                 border-left: 4px solid $secret;
               }
             }
