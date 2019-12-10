@@ -1,28 +1,63 @@
 <template>
 <div class="page formosa">
-  <div class="book-container">
-    <div class="book">
-      <div class="content">
-        <div class="book-page" :class="[page.type]" v-for="(page, pageIndex) of pages" :key="pageIndex" v-show="pageIndex === activePageIndex">
-          <div v-if="page.type === 'text'" v-html="page.content"></div>
-          <h3 v-if="page.type === 'title'" v-html="page.content"></h3>
-          <img v-if="page.type === 'image'" :src="`/formosa/${page.content}`" height="100%" />
+  <div class="opening">
+    <div class="content">
+      <h1 class="small">{{ textMap.title }}</h1>
+      <div class="paragraphs vertical" v-html="markdown(textMap.intro)"></div>
+      <div class="start">{{ textMap.start }}</div>
+    </div>
+  </div>
+  <div class="mission">
+    <div class="commander-container">
+      <div class="commander">👮‍</div>
+      <div class="commander-response-text">{{ responseText }}</div>
+    </div>
+    <div class="book-container tcl-container">
+      <div class="book-panel tcl-panel tcl-left-right-margin">
+        <div class="book">
+          <div class="content">
+            <div class="book-page" :class="[page.type]" v-for="(page, pageIndex) of pages" :key="pageIndex" v-show="pageIndex === activePageIndex">
+              <div v-if="page.type === 'text'" v-html="page.content"></div>
+              <h3 v-if="page.type === 'title'" v-html="page.content"></h3>
+              <img v-if="page.type === 'image'" :src="`/formosa/${page.content}`" height="100%" />
+            </div>
+          </div>
+        </div>
+        <div class="prevNext">
+          <button class="input button medium" @click="goPrevPage">←</button>
+          <button class="input button medium" @click="goNextPage">→</button>
         </div>
       </div>
     </div>
-  </div>
-  <div class="controls">
-    <div class="form-field-buttons">
-      <button class="input button" @click="goPrevPage">上一頁</button>
-      <button class="input button" @click="verify">報告長官我好了</button>
-      <button class="input button" @click="goNextPage">下一頁</button>
+    <div class="control-container tcl-container">
+      <div class="controls tcl-panel tcl-left-right-margin with-top-bottom-margin">
+        <div class="form-field-buttons no-wrap no-margin">
+          <button class="input button musou dark" @click="pageIsOkay">{{ textMap.isOkay }}</button>
+          <button class="input button musou dark" @click="pageIsNotOkay">{{ textMap.isNotOkay }}</button>
+        </div>
+      </div>
     </div>
-    <div class="text-align-center font-size-tiny">{{ selectedText }}</div>
   </div>
 </div>
 </template>
 
 <script>
+import { knowsMarkdown } from 'watchout-common-functions/interfaces'
+
+let textMap = {
+  title: '特務學校',
+  intro: '你是新分發的特務。',
+  start: '訓練開始',
+  isOkay: '報告，這沒問題',
+  isNotOkay: '報告，這有問題',
+  responses: {
+    faster: '動作快。',
+    areYouSure: '確定是這樣嗎？',
+    outOfScope: '眼睛看哪裡啊！',
+    emptySelection: '哪裡有問題不會說清楚嗎？',
+    impossible: '怎麼可能沒問題。'
+  }
+}
 let pages = [
   {
     type: 'title',
@@ -63,11 +98,14 @@ let pages = [
 ]
 
 export default {
+  mixins: [knowsMarkdown],
   data() {
     return {
+      textMap,
       activePageIndex: 0,
       pages,
-      selectedText: null
+      selectedText: null,
+      responseText: textMap.responses.faster
     }
   },
   computed: {
@@ -81,21 +119,33 @@ export default {
         this.activePageIndex = this.activePageIndex - 1
       }
     },
-    verify() {
-      this.getSelectedText()
-    },
     goNextPage() {
       if(this.activePageIndex < this.pages.length - 1) {
         this.activePageIndex = this.activePageIndex + 1
       }
     },
+    pageIsOkay() {
+      this.responseText = textMap.responses.impossible
+    },
+    pageIsNotOkay() {
+      this.getSelectedText()
+    },
     getSelectedText() {
+      let selectedText = null
       if(typeof window.getSelection !== 'undefined') {
-        this.selectedText = window.getSelection().toString()
+        selectedText = window.getSelection().toString()
       } else if(typeof document.selection !== 'undefined' && document.selection.type === 'Text') {
-        this.selectedText = document.selection.createRange().text
+        selectedText = document.selection.createRange().text
+      }
+      if(selectedText) {
+        if(['title', 'text'].includes(this.activePage.type) && this.activePage.content.includes(selectedText)) {
+          this.selectedText = selectedText
+          this.responseText = textMap.responses.areYouSure
+        } else {
+          this.responseText = textMap.responses.outOfScope
+        }
       } else {
-        this.selectedText = null
+        this.responseText = textMap.responses.emptySelection
       }
     }
   }
@@ -105,36 +155,113 @@ export default {
 <style lang="scss">
 @import '~watchout-common-assets/styles/resources';
 
+$darkness: #202020;
+$secret: $color-musou;
+$light: #EFEFEF;
+$mission: #DDD;
+$page: white; //#FFF7DD;
+
+@mixin vertical-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  letter-spacing: 0.0625rem;
+}
+
+.paragraphs.vertical {
+  margin: 0 1em;
+}
+.input.button.musou.dark {
+  color: black;
+  font-weight: bold;
+}
+
 .page.formosa {
-  background-color: #aaa;
-  > .book-container {
-    padding: 2rem 0;
-    > .book {
-      @include rect(3/4);
-      max-width: 24rem;
-      margin: 0 auto;
-      .book-page {
-        width: 100%;
-        height: 100%;
-        background-color: rgb(255, 238, 180);
-        writing-mode: vertical-rl;
-        text-orientation: mixed;
-        @include shadow-expanded-soft;
-        &.text {
-          padding: 2rem;
-          font-size: 1.25rem;
-        }
-        &.title {
-          padding: 2rem;
-          font-size: 2rem;
-        }
+  > .opening {
+    @include rect(1);
+    width: 100%;
+    background-color: $darkness;
+    > .content {
+      @include vertical-text;
+      padding: 2rem;
+      color: $secret;
+      > .start {
+        position: absolute;
+        left: 2rem;
+        bottom: 2rem;
+        padding: 0.75rem 0.5rem;
+        background-color: $secret;
+        color: $darkness;
+        font-size: 1.25rem;
+        font-weight: bold;
       }
     }
   }
-  > .controls {
-    max-width: 24rem;
-    margin: 0 auto;
-    padding-bottom: 2rem;
+  > .mission {
+    position: relative;
+    padding: 1rem 0;
+    background-color: $mission;
+    > .commander-container {
+      position: relative;
+      max-width: 36rem;
+      margin: 0 auto;
+      > .commander {
+        padding: 0 0.5rem;
+        text-align: right;
+        font-size: 2rem;
+      }
+      > .commander-response-text {
+        @include vertical-text;
+        position: absolute;
+        top: 0;
+        right: 2.5rem;
+        padding: 0.75rem 0.5rem;
+        min-height: 6rem;
+        max-height: 13rem;
+        border: 2px solid $secret;
+        border-radius: 0.125rem;
+        font-weight: bold;
+        color: $secret;
+        z-index: 5;
+      }
+    }
+
+    > .book-container {
+      > .book-panel {
+        > .book {
+          @include rect(3/4);
+          width: 100%;
+          margin: 0 auto;
+          .book-page {
+            width: 100%;
+            height: 100%;
+            background-color: $page;
+            @include vertical-text;
+            font-family: serif;
+            @include shadow-expanded;
+            &.text {
+              padding: 2rem;
+              font-size: 1.25rem;
+            }
+            &.title {
+              padding: 2rem;
+              font-size: 1.5rem;
+            }
+          }
+        }
+        > .prevNext {
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          > .input {
+            background-color: $secret;
+            border-radius: 50%;
+          }
+        }
+      }
+    }
   }
 }
 </style>
