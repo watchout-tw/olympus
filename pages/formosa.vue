@@ -12,10 +12,8 @@
     </div>
   </div>
   <div class="mission">
-    <div class="commander-container">
-      <div class="commander">👮‍</div>
-      <div class="response-text">{{ responseText }}</div>
-    </div>
+    <div class="commander">👮‍</div>
+    <div class="response-text">{{ responseText }}</div>
     <div class="book-container tcl-container">
       <div class="book-panel tcl-panel tcl-left-right-margin">
         <div class="book">
@@ -56,8 +54,8 @@ let textMap = {
   isOkay: '報告，這沒問題',
   isNotOkay: '報告，這有問題',
   responses: {
-    faster: '動作快。',
-    areYouSure: '確定？',
+    moveAlong: '動作快。',
+    areYouSure: '你確定嗎？',
     outOfScope: '眼睛看哪裡啊！',
     emptySelection: '哪裡有問題不會說清楚嗎？',
     impossible: '怎麼可能沒問題。'
@@ -110,7 +108,7 @@ export default {
       activePageIndex: 0,
       pages,
       selectedText: null,
-      responseText: textMap.responses.faster,
+      responseText: textMap.responses.moveAlong,
       PUNCT
     }
   },
@@ -124,11 +122,13 @@ export default {
       if(this.activePageIndex > 0) {
         this.activePageIndex = this.activePageIndex - 1
       }
+      this.responseText = textMap.responses.moveAlong
     },
     goNextPage() {
       if(this.activePageIndex < this.pages.length - 1) {
         this.activePageIndex = this.activePageIndex + 1
       }
+      this.responseText = textMap.responses.moveAlong
     },
     pageIsOkay() {
       this.responseText = textMap.responses.impossible
@@ -211,32 +211,23 @@ $page: white; //#FFF7DD;
     position: relative;
     padding: 1rem 0;
     background-color: $mission;
-    > .commander-container {
-      position: relative;
-      max-width: 36rem;
-      margin: 0 auto;
-      > .commander {
-        padding: 0 0.5rem;
-        text-align: right;
-        font-size: 2rem;
-      }
-      > .response-text {
-        @include vertical-text;
-        position: absolute;
-        top: 0;
-        right: 2.5rem;
-        margin-top: -1.625rem;
-        padding: 0.75rem 0.5rem;
-        min-height: 6rem;
-        max-height: 13rem;
-        border: 2px solid $secret;
-        border-radius: 0.125rem;
-        font-weight: bold;
-        color: $secret;
-        z-index: 2;
-      }
+    > .commander {
+      padding: 0 1rem;
+      font-size: 2rem;
     }
-
+    > .response-text {
+      @include vertical-text;
+      position: absolute;
+      top: -0.625rem;
+      left: 3.25rem;
+      padding: 0.75rem 0.5rem;
+      max-height: 12.5rem;
+      border: 2px solid $secret;
+      border-radius: 0.125rem;
+      font-weight: bold;
+      color: $secret;
+      z-index: 2;
+    }
     > .book-container {
       > .book-panel {
         > .book {
