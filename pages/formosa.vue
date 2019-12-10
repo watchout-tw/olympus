@@ -25,10 +25,8 @@
             </div>
           </div>
         </div>
-        <div class="prev-next">
-          <div class="prev" :class="{ inactive: activePageIndex < 1 }" @click="goPrevPage"></div>
-          <div class="next" :class="{ inactive: activePageIndex > pages.length - 2 }" @click="goNextPage"></div>
-        </div>
+        <div class="prev" :class="{ inactive: activePageIndex < 1 }" @click="goPrevPage"></div>
+        <div class="next" :class="{ inactive: activePageIndex > pages.length - 2 }" @click="goNextPage"></div>
       </div>
     </div>
     <div class="control-container tcl-container no-margin">
@@ -53,14 +51,15 @@ let textMap = {
     '近年來，國內情勢動盪，據說，有一群所謂「民主運動」的叛亂份子，似乎正在伺機而動。身為特務人員，你的職責是蒐證、調查，揭發叛亂份子的陰謀。',
   start: '訓練開始',
   isOkay: '報告，這沒問題',
-  isNotOkay: '報告，這有問題',
-  responses: {
-    moveAlong: '動作快。',
-    areYouSure: '你確定嗎？',
-    outOfScope: '眼睛看哪裡啊！',
-    emptySelection: '哪裡有問題不會說清楚嗎？',
-    impossible: '怎麼可能沒問題。'
-  }
+  isNotOkay: '報告，這有問題'
+}
+let responses = {
+  moveAlong: '動作快。',
+  tooEasy: '全都有問題？你以為當特務這麼簡單嗎？',
+  areYouSure: '你確定嗎？',
+  outOfScope: '眼睛看哪裡啊！',
+  emptySelection: '哪裡有問題不會說清楚嗎？',
+  impossible: '怎麼可能沒問題。'
 }
 let pages = [
   {
@@ -100,16 +99,23 @@ export default {
   data() {
     return {
       textMap,
-      activePageIndex: 0,
+      responses,
       pages,
+      activePageIndex: 0,
       selectedText: null,
-      responseText: textMap.responses.moveAlong,
+      responseText: responses.moveAlong,
       PUNCT
     }
   },
   computed: {
     activePage() {
       return pages[this.activePageIndex]
+    },
+    activePageText() {
+      return '' +
+        (this.activePage.beforeTitle || PUNCT.SLASH) +
+        (this.activePage.title || PUNCT.SLASH) +
+        (this.activePage.bodyText || PUNCT.SLASH)
     }
   },
   methods: {
@@ -125,16 +131,16 @@ export default {
       if(this.activePageIndex > 0) {
         this.activePageIndex = this.activePageIndex - 1
       }
-      this.responseText = textMap.responses.moveAlong
+      this.responseText = responses.moveAlong
     },
     goNextPage() {
       if(this.activePageIndex < this.pages.length - 1) {
         this.activePageIndex = this.activePageIndex + 1
       }
-      this.responseText = textMap.responses.moveAlong
+      this.responseText = responses.moveAlong
     },
     pageIsOkay() {
-      this.responseText = textMap.responses.impossible
+      this.responseText = responses.impossible
     },
     pageIsNotOkay() {
       this.getSelectedText()
@@ -148,15 +154,17 @@ export default {
       }
       if(selectedText) {
         selectedText = selectedText.trim()
-        if(['title', 'text'].includes(this.activePage.type) && this.activePage.content.includes(selectedText)) {
-          this.selectedText = selectedText
-          this.responseText = textMap.responses.areYouSure
+        if(this.activePage.bodyText === selectedText) {
+          this.responseText = responses.tooEasy
+        } else if(this.activePageText.includes(selectedText)) {
+          this.responseText = responses.areYouSure
         } else {
-          this.responseText = textMap.responses.outOfScope
+          this.responseText = responses.outOfScope
         }
       } else {
-        this.responseText = textMap.responses.emptySelection
+        this.responseText = responses.emptySelection
       }
+      this.selectedText = selectedText
     },
     spacingOptimizer
   }
@@ -246,6 +254,7 @@ $page: #DFE2DB;
       position: absolute;
       top: -0.625rem;
       left: 5rem;
+      margin: 0;
       padding: 0.75rem 0.5rem;
       max-height: 12.5rem;
       border: 2px solid $secret;
@@ -274,29 +283,27 @@ $page: #DFE2DB;
             }
           }
         }
-        > .prev-next {
-          display: flex;
-          justify-content: space-between;
-          width: 100%;
+        > .prev,
+        > .next {
           position: absolute;
+          width: 2rem;
+          height: 2rem;
+          background-color: $light;
+          &.inactive {
+            opacity: 0.25;
+          }
+        }
+        > .prev {
           top: 50%;
+          left: 0;
           transform: translateY(-50%);
-          > .prev,
-          > .next {
-            position: relative;
-            width: 2rem;
-            height: 2rem;
-            background-color: $light;
-            &.inactive {
-              opacity: 0.25;
-            }
-          }
-          > .prev {
-            @include arrow(0.75rem, left);
-          }
-          > .next {
-            @include arrow(0.75rem, right);
-          }
+          @include arrow(0.75rem, left);
+        }
+        > .next {
+          top: 50%;
+          right: 0;
+          transform: translateY(-50%);
+          @include arrow(0.75rem, right);
         }
       }
     }
