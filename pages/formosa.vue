@@ -67,8 +67,7 @@ let pages = [
     image: 'cover.jpg'
   },
   {
-    beforeTitle: '發刊詞',
-    title: '共同來推動新生代政治運動！'
+    image: 'intro-page.jpg'
   },
   {
     bodyText: '玉山蒼蒼，碧海茫茫，婆娑之洋，美麗之島，是我們生長的家鄉。我們深愛這片土地及啜飲其乳汁長大的子民，更關懷我們未來共同的命運。同時我們相信，決定我們未來道路和命運，不再是任何政權和這政權所豢養之文人的權利，而是我們所有人民大眾的權利。'
@@ -172,7 +171,7 @@ $darkness: #202020;
 $secret: $color-musou;
 $light: #EFEFEF;
 $mission: #DDD;
-$page: white; //#FFF7DD;
+$page: #DFE2DB;
 
 @mixin move-to-front {
   z-index: 2;
@@ -265,7 +264,7 @@ $page: white; //#FFF7DD;
             > .page {
               width: 100%;
               height: 100%;
-              padding: 2rem;
+              padding: 2.25rem;
               background-color: $page;
               background-size: cover;
               background-position: center center;
