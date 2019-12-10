@@ -21,8 +21,8 @@ module.exports = {
       { hid: 'description', name: 'description', content: siteDescription }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: getFavicon('watchout') },
-      { rel: 'apple-touch-icon', sizes: '256x256', href: getProjectLogo('watchout') }
+      { rel: 'icon', type: 'image/x-icon', href: getFavicon('musou') },
+      { rel: 'apple-touch-icon', sizes: '256x256', href: getProjectLogo('musou') }
     ]
   },
   loading: {
