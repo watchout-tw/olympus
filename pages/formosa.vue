@@ -48,13 +48,15 @@
 </template>
 
 <script>
-import { knowsMarkdown } from 'watchout-common-functions/interfaces'
+import { knowsFSCache, knowsMarkdown, knowsWatchout } from 'watchout-common-functions/interfaces'
 import { spacingOptimizer, PUNCT } from 'watchout-common-functions/lib/bunko'
+import * as info from '~/data/info'
+import projectCoverImage from '~/static/formosa/project-cover.png'
 
 let textMap = {
   title: '特務學校',
-  intro: '你是新分發的特務。你被教導愛黨、愛國、絕對忠誠。共匪隨時隨地都在滲透我正統中國，絕不能讓他們的詭計得逞。\n\n' +
-    '近年來，國內情勢動盪，據說，有一群所謂「民主運動」的叛亂份子，似乎正在伺機而動。身為特務人員，你的職責是蒐證、調查，揭發叛亂份子的陰謀。',
+  description: '你是新分發的特務，愛黨、愛國、絕對忠誠。你的職責是蒐證、調查，揭發叛亂份子的陰謀。',
+  intro: '你是新分發的特務。你被教導愛黨、愛國、絕對忠誠。共匪隨時隨地在滲透我正統中國，絕不能讓他們的詭計得逞。\n\n據報，近期有所謂「民主」的「黨外」叛亂份子正伺機而動。身為特務人員，你的職責是蒐證、調查，揭發叛亂份子的陰謀，保衛國家。',
   start: '訓練開始',
   isOkay: '報告，這沒問題',
   isNotOkay: '報告，這有問題',
@@ -122,7 +124,7 @@ let pages = [
 ]
 
 export default {
-  mixins: [knowsMarkdown],
+  mixins: [knowsFSCache, knowsMarkdown, knowsWatchout],
   data() {
     for(let i = 0; i < pages.length; i++) {
       if(pages[i].bodyText) {
@@ -172,6 +174,15 @@ export default {
         (this.activePage.beforeTitle || '') +
         (this.activePage.title || '') +
         (this.activePage.bodyText || '')
+    }
+  },
+  head() {
+    let pageTitle = textMap.title + PUNCT.SLASH + info.SITE_TITLE
+    let pageDescription = textMap.description
+    let pageCover = projectCoverImage
+    return {
+      title: pageTitle,
+      meta: this.generateMeta('musou', pageTitle, pageDescription, pageCover)
     }
   },
   methods: {
@@ -321,7 +332,7 @@ $page: #DFE2DB;
           > .action.start {
             display: flex;
             align-items: center;
-            justify-content: flex-end;
+            justify-content: center;
             > label {
               margin-bottom: 0.5rem;
               font-size: 1.25rem;
@@ -334,18 +345,6 @@ $page: #DFE2DB;
               background-color: $secret;
               border-radius: 50%;
               @include arrow(1.125rem, down);
-            }
-          }
-
-          > .actions {
-            text-align: right;
-            > .start {
-              // display: inline-block;
-              padding: 0.75rem 0.5rem;
-              background-color: $secret;
-              font-size: 1.25rem;
-              font-weight: bold;
-              color: $darkness;
             }
           }
         }
@@ -374,7 +373,7 @@ $page: #DFE2DB;
       position: absolute;
       top: 0;
       left: 0;
-      margin: -1.375rem 0 0 5rem;
+      margin: -1rem 0 0 5rem;
       padding: 0.75rem 0.5rem;
       max-height: 8rem;
       background-color: rgba($secret, 0.85);
@@ -399,7 +398,6 @@ $page: #DFE2DB;
               background-position: center center;
               @include vertical-text;
               @include shadow-expanded;
-
               .before-title {
                 font-size: 1rem;
               }
