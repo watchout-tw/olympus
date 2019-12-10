@@ -333,8 +333,7 @@ $page: #DFE2DB;
       position: absolute;
       top: 0;
       left: 0;
-      margin-top: -1.375rem;
-      margin-left: 5rem;
+      margin: -1.375rem 0 0 5rem;
       padding: 0.75rem 0.5rem;
       max-height: 8rem;
       background-color: rgba($secret, 0.85);
@@ -353,7 +352,7 @@ $page: #DFE2DB;
             > .page {
               width: 100%;
               height: 100%;
-              padding: 2.125rem 1.75rem;
+              padding: 1.5rem 2rem;
               background-color: $page;
               background-size: cover;
               background-position: center center;
@@ -361,7 +360,7 @@ $page: #DFE2DB;
               @include shadow-expanded;
 
               .before-title {
-                font-size: 0.875rem;
+                font-size: 1rem;
               }
               .title {
                 font-size: 1.25rem;
