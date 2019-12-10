@@ -17,6 +17,10 @@
       $translateX: -45%;
       $rotate: -135deg;
     }
+    @if $orientation == down {
+      $translateX: -45%;
+      $rotate: 135deg;
+    }
     transform: translate($translateX, $translateY) rotate($rotate)
   }
 }
