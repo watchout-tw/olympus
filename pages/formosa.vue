@@ -375,8 +375,11 @@ $page: #DFE2DB;
                 font-weight: bold;
                 color: $secret;
               }
-              .selectable.selected {
-                border-left: 4px solid $secret;
+              .selectable {
+                border-left: 4px solid transparent;
+                &.selected {
+                  border-left-color: $secret;
+                }
               }
             }
           }
