@@ -6,19 +6,19 @@
         <div class="content">
           <h1 class="small">{{ textMap.title }}</h1>
           <div class="paragraphs vertical" v-html="markdown(textMap.intro)"></div>
-          <div class="start">{{ textMap.start }}</div>
+          <div class="start" @click="start">{{ textMap.start }}</div>
         </div>
       </div>
     </div>
   </div>
-  <div class="mission">
-    <div class="commander">‍</div>
+  <div class="mission" ref="mission">
+    <div class="commander"></div>
     <div class="response-text">{{ responseText }}</div>
     <div class="book-container tcl-container no-margin">
       <div class="book-panel tcl-panel tcl-left-right-margin">
         <div class="book">
           <div class="content">
-            <div class="book-page" v-for="(page, pageIndex) of pages" :key="pageIndex" v-show="pageIndex === activePageIndex" :style="{ backgroundImage: page.image ? `url(/formosa/${page.image})` : '' }">
+            <div class="page" v-for="(page, pageIndex) of pages" :key="pageIndex" v-show="pageIndex === activePageIndex" :style="{ backgroundImage: page.image ? `url(/formosa/${page.image})` : '' }">
               <h3 v-if="page.beforeTitle" v-html="spacingOptimizer(page.beforeTitle)"></h3>
               <h2 v-if="page.title" v-html="spacingOptimizer(page.title)"></h2>
               <div v-if="page.bodyText" v-html="markdown(page.bodyText)"></div>
@@ -114,6 +114,14 @@ export default {
     }
   },
   methods: {
+    start() {
+      if(window) {
+        window.scroll({
+          top: this.$refs.mission.offsetTop - 16,
+          behavior: 'smooth'
+        })
+      }
+    },
     goPrevPage() {
       if(this.activePageIndex > 0) {
         this.activePageIndex = this.activePageIndex - 1
@@ -253,16 +261,18 @@ $page: white; //#FFF7DD;
           @include rect(3/4);
           width: 100%;
           margin: 0 auto;
-          .book-page {
-            width: 100%;
-            height: 100%;
-            padding: 2rem;
-            background-color: $page;
-            background-size: cover;
-            background-position: center center;
-            @include vertical-text;
-            @include shadow-expanded;
-            font-size: 1.25rem;
+          > .content {
+            > .page {
+              width: 100%;
+              height: 100%;
+              padding: 2rem;
+              background-color: $page;
+              background-size: cover;
+              background-position: center center;
+              @include vertical-text;
+              @include shadow-expanded;
+              font-size: 1.25rem;
+            }
           }
         }
         > .prev-next {
