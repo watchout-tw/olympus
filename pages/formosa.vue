@@ -1,18 +1,20 @@
 <template>
 <div class="page formosa">
-  <div class="opening-container tcl-container no-margin">
-    <div class="opening tcl-panel tcl-left-right-margin with-top-bottom-margin">
-      <div class="content">
-        <h1 class="small">{{ textMap.title }}</h1>
-        <div class="paragraphs vertical" v-html="markdown(textMap.intro)"></div>
-        <div class="start">{{ textMap.start }}</div>
+  <div class="opening">
+    <div class="opening-scene-container tcl-container no-margin">
+      <div class="opening-scene tcl-panel tcl-left-right-margin with-top-bottom-margin">
+        <div class="content">
+          <h1 class="small">{{ textMap.title }}</h1>
+          <div class="paragraphs vertical" v-html="markdown(textMap.intro)"></div>
+          <div class="start">{{ textMap.start }}</div>
+        </div>
       </div>
     </div>
   </div>
   <div class="mission">
     <div class="commander-container">
       <div class="commander">👮‍</div>
-      <div class="commander-response-text">{{ responseText }}</div>
+      <div class="response-text">{{ responseText }}</div>
     </div>
     <div class="book-container tcl-container">
       <div class="book-panel tcl-panel tcl-left-right-margin">
@@ -25,9 +27,9 @@
             </div>
           </div>
         </div>
-        <div class="prevNext">
-          <button class="input button medium" @click="goPrevPage">←</button>
-          <button class="input button medium" @click="goNextPage">→</button>
+        <div class="prev-next">
+          <div class="prev" :class="{ inactive: activePageIndex < 1 }" @click="goPrevPage"></div>
+          <div class="next" :class="{ inactive: activePageIndex > pages.length - 2 }" @click="goNextPage"></div>
         </div>
       </div>
     </div>
@@ -45,6 +47,7 @@
 
 <script>
 import { knowsMarkdown } from 'watchout-common-functions/interfaces'
+import { PUNCT } from 'watchout-common-functions/lib/bunko'
 
 let textMap = {
   title: '特務學校',
@@ -54,7 +57,7 @@ let textMap = {
   isNotOkay: '報告，這有問題',
   responses: {
     faster: '動作快。',
-    areYouSure: '確定是這樣嗎？',
+    areYouSure: '確定？',
     outOfScope: '眼睛看哪裡啊！',
     emptySelection: '哪裡有問題不會說清楚嗎？',
     impossible: '怎麼可能沒問題。'
@@ -107,7 +110,8 @@ export default {
       activePageIndex: 0,
       pages,
       selectedText: null,
-      responseText: textMap.responses.faster
+      responseText: textMap.responses.faster,
+      PUNCT
     }
   },
   computed: {
@@ -156,6 +160,7 @@ export default {
 
 <style lang="scss">
 @import '~watchout-common-assets/styles/resources';
+@import 'assets/draw';
 
 $darkness: #202020;
 $secret: $color-musou;
@@ -178,24 +183,26 @@ $page: white; //#FFF7DD;
 }
 
 .page.formosa {
-  > .opening-container {
-    padding: 1rem 0;
+  > .opening {
     background-color: $darkness;
-    > .opening {
-      > .content {
-        width: 100%;
-        max-height: 28rem;
-        @include vertical-text;
-        color: $secret;
-        > .start {
-          position: absolute;
-          left: 0;
-          bottom: 0;
-          padding: 0.75rem 0.5rem;
-          background-color: $secret;
-          font-size: 1.25rem;
-          font-weight: bold;
-          color: $darkness;
+    > .opening-scene-container {
+      padding: 1rem 0;
+      > .opening-scene {
+        > .content {
+          width: 100%;
+          max-height: 28rem;
+          @include vertical-text;
+          color: $secret;
+          > .start {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            padding: 0.75rem 0.5rem;
+            background-color: $secret;
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: $darkness;
+          }
         }
       }
     }
@@ -213,11 +220,12 @@ $page: white; //#FFF7DD;
         text-align: right;
         font-size: 2rem;
       }
-      > .commander-response-text {
+      > .response-text {
         @include vertical-text;
         position: absolute;
         top: 0;
         right: 2.5rem;
+        margin-top: -1.625rem;
         padding: 0.75rem 0.5rem;
         min-height: 6rem;
         max-height: 13rem;
@@ -225,7 +233,7 @@ $page: white; //#FFF7DD;
         border-radius: 0.125rem;
         font-weight: bold;
         color: $secret;
-        z-index: 5;
+        z-index: 2;
       }
     }
 
@@ -251,16 +259,28 @@ $page: white; //#FFF7DD;
             }
           }
         }
-        > .prevNext {
+        > .prev-next {
           display: flex;
           justify-content: space-between;
           width: 100%;
           position: absolute;
           top: 50%;
           transform: translateY(-50%);
-          > .input {
-            background-color: $secret;
-            border-radius: 50%;
+          > .prev,
+          > .next {
+            position: relative;
+            width: 2rem;
+            height: 2rem;
+            background-color: transparent;
+            &.inactive {
+              opacity: 0.25;
+            }
+          }
+          > .prev {
+            @include arrow(0.75rem, left);
+          }
+          > .next {
+            @include arrow(0.75rem, right);
           }
         }
       }
