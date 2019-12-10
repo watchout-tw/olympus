@@ -242,7 +242,7 @@ export default {
       for(let i = 0; i < els.length; i++) {
         els[i].addEventListener('touchstart', event => {
           event.target.classList.toggle('selected')
-          event.preventDefault
+          event.preventDefault()
         })
         els[i].addEventListener('click', event => {
           event.target.classList.toggle('selected')
