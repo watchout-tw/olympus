@@ -64,6 +64,10 @@ let textMap = {
 }
 let pages = [
   {
+    type: 'image',
+    content: 'cover.jpg'
+  },
+  {
     type: 'title',
     content: '發刊詞'
   },
