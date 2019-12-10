@@ -19,9 +19,10 @@
         <div class="book">
           <div class="content">
             <div class="page" v-for="(page, pageIndex) of pages" :key="pageIndex" v-show="pageIndex === activePageIndex" :style="{ backgroundImage: page.image ? `url(/formosa/${page.image})` : '' }">
-              <h3 v-if="page.beforeTitle" v-html="spacingOptimizer(page.beforeTitle)"></h3>
-              <h2 v-if="page.title" v-html="spacingOptimizer(page.title)"></h2>
-              <div v-if="page.bodyText" v-html="markdown(page.bodyText)"></div>
+              <h4 v-if="page.beforeTitle" v-html="spacingOptimizer(page.beforeTitle)" class="before-title"></h4>
+              <h3 v-if="page.title" v-html="spacingOptimizer(page.title)" class="title"></h3>
+              <div v-if="page.bodyText" v-html="markdown(page.bodyText)" class="body-text"></div>
+              <div v-if="page.result && pagesIX[pageIndex].showResult" v-html="markdown(page.result)" class="result"></div>
             </div>
           </div>
         </div>
@@ -53,20 +54,28 @@ let textMap = {
   isOkay: '報告，這沒問題',
   isNotOkay: '報告，這有問題'
 }
+
 let responses = {
   moveAlong: '動作快。',
   tooEasy: '全都有問題？你以為當特務這麼簡單嗎？',
   areYouSure: '你確定嗎？',
+  okay: '沒什麼問題，繼續往下。',
   outOfScope: '眼睛看哪裡啊！',
   emptySelection: '哪裡有問題不會說清楚嗎？',
-  impossible: '怎麼可能沒問題。'
+  impossible: '怎麼可能沒問題。',
+  wellDone: '幹得不錯，重點都有抓到。繼續往下。',
+  notGoodEnough: '嗯，還可以更好。',
+  missingTarget: '根本沒抓到重點啊，用腦！'
 }
+
 let pages = [
   {
     image: 'cover.jpg'
   },
   {
-    image: 'intro-page.png'
+    beforeTitle: '● 發刊詞 ●',
+    title: '共同來推動新生代政治運動！',
+    bodyText: '今年是決定我們未來道路和命運的歷史關鍵時刻，動盪的世局和暗潮汹湧的台灣政治、社會變遷在在逼使我們在一個新的世代來臨之前抉擇我們未來的道路。歷史在試煉著我們！'
   },
   {
     bodyText: '玉山蒼蒼，碧海茫茫，婆娑之洋，美麗之島，是我們生長的家鄉。我們深愛這片土地及啜飲其乳汁長大的子民，更關懷我們未來共同的命運。同時我們相信，決定我們未來道路和命運，不再是任何政權和這政權所豢養之文人的權利，而是我們所有人民大眾的權利。'
@@ -78,7 +87,13 @@ let pages = [
     image: 'directory-2.jpg'
   },
   {
-    bodyText: '國民黨政府面對這一熱烈的選擧活動，在其政治危機來臨時驚慌失措，急急忙忙下令停止選擧，並施展一連串高壓手段，企圖摧毀這一股民主運動的洪流，這造成半年來我們社會的緊張不安。'
+    bodyText: '國民黨政府面對這一熱烈的選擧活動，在其政治危機來臨時驚慌失措，急急忙忙下令停止選擧，並施展一連串高壓手段，企圖摧毀這一股民主運動的洪流，這造成半年來我們社會的緊張不安。',
+    targets: [
+      '高壓手段',
+      '企圖摧毀',
+      '造成'
+    ],
+    result: '誣指政府以高壓手段，摧殘民主運動，造成社會緊張不安。散播觸犯消息，觸犯懲治叛亂條例第六條。'
   },
   {
     bodyText: '三十年來，國民黨已禁忌、神話隱蔽我們國家社會的許許多多問題，扼殺了我們政治的生機，阻礙了社會的進步。'
@@ -97,14 +112,20 @@ let pages = [
 export default {
   mixins: [knowsMarkdown],
   data() {
+    let pagesIX = pages.map(page => ({
+      showResult: false
+    }))
     return {
       textMap,
       responses,
       pages,
+      pagesIX,
       activePageIndex: 0,
       selectedText: null,
       responseText: responses.moveAlong,
-      PUNCT
+      PUNCT,
+      okayCounter: 0,
+      notOkayCounter: 0
     }
   },
   computed: {
@@ -129,23 +150,65 @@ export default {
     },
     goPrevPage() {
       if(this.activePageIndex > 0) {
-        this.activePageIndex = this.activePageIndex - 1
+        this.activePageIndex--
       }
       this.responseText = responses.moveAlong
     },
     goNextPage() {
       if(this.activePageIndex < this.pages.length - 1) {
-        this.activePageIndex = this.activePageIndex + 1
+        this.activePageIndex++
       }
       this.responseText = responses.moveAlong
     },
     pageIsOkay() {
-      this.responseText = responses.impossible
+      this.okayCounter++
+      if(this.activePage.hasOwnProperty('targets')) {
+        this.responseText = responses.impossible
+      } else if(this.okayCounter === 1) {
+        this.responseText = responses.impossible
+      } else {
+        this.responseText = responses.okay
+        this.okayCounter = 0
+      }
     },
     pageIsNotOkay() {
-      this.getSelectedText()
+      this.notOkayCounter++
+      this.updateSelectedText()
+      let text = this.selectedText
+      if(!text) {
+        this.responseText = responses.emptySelection
+        this.notOkayCounter = 0
+      } else if(this.activePage.bodyText === text) { // invalid selected text
+        this.responseText = responses.tooEasy
+        this.notOkayCounter = 0
+      } else if(!this.activePageText.includes(text)) { // invalid
+        this.responseText = responses.outOfScope
+        this.notOkayCounter = 0
+      } else if(this.notOkayCounter === 1) { // valid
+        this.responseText = responses.areYouSure
+      } else if(this.activePage.hasOwnProperty('targets')) {
+        let targets = this.activePage.targets
+        let targetHitCount = 0
+        targets.forEach(target => {
+          targetHitCount += text.includes(target) ? 1 : 0
+        })
+        if(targetHitCount === targets.length) {
+          this.responseText = responses.wellDone
+          this.pagesIX[this.activePageIndex].showResult = true
+        } else if(targetHitCount > 0) {
+          this.responseText = responses.notGoodEnough
+          this.pagesIX[this.activePageIndex].showResult = false
+        } else {
+          this.responseText = responses.missingTarget
+          this.pagesIX[this.activePageIndex].showResult = false
+        }
+        this.notOkayCounter = 0
+      } else {
+        this.responseText = responses.okay
+        this.notOkayCounter = 0
+      }
     },
-    getSelectedText() {
+    updateSelectedText() {
       let selectedText = null
       if(typeof window.getSelection !== 'undefined') {
         selectedText = window.getSelection().toString()
@@ -154,15 +217,6 @@ export default {
       }
       if(selectedText) {
         selectedText = selectedText.trim()
-        if(this.activePage.bodyText === selectedText) {
-          this.responseText = responses.tooEasy
-        } else if(this.activePageText.includes(selectedText)) {
-          this.responseText = responses.areYouSure
-        } else {
-          this.responseText = responses.outOfScope
-        }
-      } else {
-        this.responseText = responses.emptySelection
       }
       this.selectedText = selectedText
     },
@@ -279,7 +333,17 @@ $page: #DFE2DB;
               background-position: center center;
               @include vertical-text;
               @include shadow-expanded;
-              font-size: 1.25rem;
+              font-size: 1.5rem;
+              line-height: $line-height-relaxed;
+
+              .title {
+                font-size: 2rem;
+                line-height: $line-height-relaxed;
+              }
+              .result {
+                font-size: 1rem;
+                color: $secret;
+              }
             }
           }
         }
