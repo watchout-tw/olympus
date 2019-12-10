@@ -49,7 +49,8 @@ import { PUNCT } from 'watchout-common-functions/lib/bunko'
 
 let textMap = {
   title: '特務學校',
-  intro: '你是新分發的特務。你被教導愛黨、愛國、絕對忠誠。共匪隨時隨地都在滲透我正統中國，絕不能讓他們的詭計得逞。',
+  intro: '你是新分發的特務。你被教導愛黨、愛國、絕對忠誠。共匪隨時隨地都在滲透我正統中國，絕不能讓他們的詭計得逞。\n\n' +
+    '近年來，國內情勢動盪，據說，有一群所謂「民主運動」的叛亂份子，似乎正在伺機而動。身為特務人員，你的職責是蒐證、調查，揭發叛亂份子的陰謀。',
   start: '訓練開始',
   isOkay: '報告，這沒問題',
   isNotOkay: '報告，這有問題',
@@ -176,6 +177,15 @@ $page: white; //#FFF7DD;
 
 .paragraphs.vertical {
   margin: 0 1em;
+  > p {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-right: 0;
+    margin-left: 1rem;
+    &:last-child {
+      margin-left: 0;
+    }
+  }
 }
 .input.button.musou.dark {
   color: black;
