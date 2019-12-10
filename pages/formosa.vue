@@ -240,9 +240,12 @@ export default {
     if(document) {
       let els = document.querySelectorAll('.selectable')
       for(let i = 0; i < els.length; i++) {
+        els[i].addEventListener('touchstart', event => {
+          event.target.classList.toggle('selected')
+          event.preventDefault
+        })
         els[i].addEventListener('click', event => {
-          let el = event.target
-          el.classList.toggle('selected')
+          event.target.classList.toggle('selected')
         })
       }
     }
