@@ -56,7 +56,7 @@ import projectCoverImage from '~/static/formosa/project-cover.png'
 let textMap = {
   title: '特務學校',
   description: '你是新分發的特務，愛黨、愛國、絕對忠誠。你的職責是蒐證、調查，揭發叛亂份子的陰謀。',
-  intro: '你是新分發的特務。你被教導愛黨、愛國、絕對忠誠。共匪隨時隨地在滲透我正統中國，絕不能讓他們的詭計得逞。\n\n據報，近期有所謂「民主」的「黨外」叛亂份子正伺機而動。身為特務人員，你的職責是蒐證、調查，揭發叛亂份子的陰謀，保衛國家。',
+  intro: '你是新分發的特務。你被教導愛黨、愛國、絕對忠誠。共匪隨時隨地在滲透我正統中國，絕不能讓他們的詭計得逞。\n\n據報，近期有所謂「民主」的「黨外」份子正伺機而動。身為特務人員，你的職責是蒐證、調查，揭發叛亂份子的陰謀，保衛國家。',
   start: '訓練開始',
   isOkay: '報告，這沒問題',
   isNotOkay: '報告，這有問題',
@@ -66,8 +66,9 @@ let textMap = {
 
 let responses = {
   moveAlong: '動作快。',
-  selectText: '點選找出有問題的文字，仔細點！',
-  tooEasy: '全都有問題？你以為當特務這麼簡單嗎？',
+  start: '翻開這本《美麗島》，找出叛亂的證據。',
+  selectText: '點選有問題的句子，要仔細點！',
+  tooEasy: '全都有問題？你以為當特務這麼簡單？',
   areYouSure: '你確定嗎？',
   okay: '這不是重點，繼續往下。',
   outOfScope: '眼睛看哪裡啊！',
@@ -78,7 +79,9 @@ let responses = {
   missingTarget: '根本沒抓到重點啊，用腦！'
 }
 
-let RES_SQ_TUTORIAL = 1
+const RES_SQ_START = 1
+const RES_SQ_TUTORIAL = 2
+const RES_SQ_PASS = 3
 
 let defaultResult = '尚未構成刑責。'
 
@@ -92,7 +95,7 @@ let pages = [
     bodyText: '今年是決定我們未來道路和命運的歷史關鍵時刻，動盪的世局和暗潮汹湧的台灣政治、社會變遷在在逼使我們在一個新的世代來臨之前抉擇我們未來的道路。歷史在試煉著我們！'
   },
   {
-    bodyText: '玉山蒼蒼，碧海茫茫，婆娑之洋，美麗之島，是我們生長的家鄉。我們深愛這片土地及啜飲其乳汁長大的子民，更關懷我們未來共同的命運。同時我們相信，決定我們未來道路和命運，不再是任何政權和這政權所豢養之文人的權利，而是我們所有人民大眾的權利。'
+    bodyText: '玉山蒼蒼，碧海茫茫，婆娑之洋，美麗之島，是我們生長的家鄉。我們深愛這片土地及啜飲其乳汁長大的子民，更關懷我們未來共同的命運。我們相信，決定我們未來道路和命運，不再是任何政權和政權所豢養之文人的權利，而是我們所有人民的權利。'
   },
   {
     image: 'directory-1.jpg'
@@ -105,12 +108,12 @@ let pages = [
     targets: [
       '高壓手段',
       '企圖摧毀',
-      '造成'
+      '緊張不安'
     ],
     result: '誣指政府以高壓手段，摧殘民主運動，造成社會緊張不安。散播觸犯消息，觸犯懲治叛亂條例第六條。'
   },
   {
-    bodyText: '三十年來，國民黨已禁忌、神話隱蔽我們國家社會的許許多多問題，扼殺了我們政治的生機，阻礙了社會的進步。'
+    bodyText: '三十年來，國民黨以禁忌、神話隱蔽我們國家社會的許許多多問題，扼殺了我們政治的生機，阻礙了社會的進步。'
   },
   {
     bodyText: '「美麗島」雜誌的目標就是要推動新生代政治運動。我們將提供廣大的園地給所有不願意讓禁忌、神話、權勢束縛，而願意站在自己的土地上講話的同胞，共同來耕耘這美麗之島。'
@@ -193,29 +196,54 @@ export default {
           behavior: 'smooth'
         })
       }
-      this.startResponseSequence(RES_SQ_TUTORIAL)
+      this.startResponseSequence(RES_SQ_START)
     },
     startResponseSequence(seqID) {
-      if(seqID === RES_SQ_TUTORIAL) {
+      this.cancelResponseSequence()
+      if(seqID === RES_SQ_START) {
+        this.responseText = responses.moveAlong
+        this.responseSequenceTimer = setTimeout(() => {
+          this.responseText = responses.start
+        }, 1500)
+      } else if(seqID === RES_SQ_TUTORIAL) {
         this.responseText = responses.moveAlong
         this.responseSequenceTimer = setTimeout(() => {
           this.responseText = responses.selectText
-        }, 2000)
+        }, 1500)
+      } else if(seqID === RES_SQ_PASS) {
+        this.responseText = responses.moveAlong
+        this.responseSequenceTimer = setTimeout(() => {
+          this.responseText = responses.okay
+        }, 1000)
+      }
+    },
+    cancelResponseSequence() {
+      if(this.responseSequenceTimer) {
+        clearTimeout(this.responseSequenceTimer)
       }
     },
     goPrevPage() {
       if(this.activePageIndex > 0) {
         this.activePageIndex--
       }
-      this.responseText = responses.moveAlong
+      if(this.activePage.hasText) {
+        this.startResponseSequence(RES_SQ_TUTORIAL)
+      } else {
+        this.startResponseSequence(RES_SQ_PASS)
+      }
     },
     goNextPage() {
       if(this.activePageIndex < this.pages.length - 1) {
         this.activePageIndex++
       }
-      this.startResponseSequence(RES_SQ_TUTORIAL)
+      if(this.activePage.hasText) {
+        this.startResponseSequence(RES_SQ_TUTORIAL)
+      } else {
+        this.startResponseSequence(RES_SQ_PASS)
+      }
     },
     pageIsOkay() {
+      this.cancelResponseSequence()
       this.okayCounter++
       if(this.activePage.hasOwnProperty('targets')) {
         this.responseText = responses.impossible
@@ -228,8 +256,9 @@ export default {
       }
     },
     pageIsNotOkay() {
-      this.notOkayCounter++
+      this.cancelResponseSequence()
       this.updateSelectedText()
+      this.notOkayCounter++
       let text = this.selectedText
       if(!text) {
         this.responseText = responses.emptySelection
@@ -274,7 +303,7 @@ export default {
       this.selectedText = selectedText
     },
     selectSegment(event, segment) {
-      clearTimeout(this.responseSequenceTimer)
+      this.cancelResponseSequence()
       segment.isSelected = !segment.isSelected
     },
     spacingOptimizer
