@@ -74,7 +74,7 @@ let defaultResult = '尚未構成刑責'
 
 let pages = [
   {
-    image: 'cover.jpg'
+    image: 'cover-4-5.jpg'
   },
   {
     beforeTitle: '⬤ 發刊詞 ⬤',
@@ -336,7 +336,7 @@ $page: #DFE2DB;
       margin-top: -1.375rem;
       margin-left: 5rem;
       padding: 0.75rem 0.5rem;
-      max-height: 8.25rem;
+      max-height: 8rem;
       background-color: rgba($secret, 0.85);
       border-radius: 0.125rem;
       font-weight: bold;
@@ -346,31 +346,34 @@ $page: #DFE2DB;
     > .book-container {
       > .book-panel {
         > .book {
-          @include rect(3/4);
+          @include rect(4/5);
           width: 100%;
           margin: 0 auto;
           > .content {
             > .page {
               width: 100%;
               height: 100%;
-              padding: 2.25rem 2rem;
+              padding: 2.125rem 1.75rem;
               background-color: $page;
               background-size: cover;
               background-position: center center;
               @include vertical-text;
               @include shadow-expanded;
-              font-size: 1.3125rem;
-              line-height: $line-height-relaxed;
 
               .before-title {
-                font-size: 0.875em;
+                font-size: 0.875rem;
               }
               .title {
-                font-size: 1.25em;
-                line-height: $line-height-relaxed;
+                font-size: 1.25rem;
                 letter-spacing: 0.0625rem;
+                line-height: $line-height-comfortable;
+              }
+              .body {
+                font-size: 1.25rem;
+                line-height: $line-height-comfortable;
               }
               .result {
+                margin-right: 0.25rem;
                 font-size: 1rem;
                 font-weight: bold;
                 color: $secret;
