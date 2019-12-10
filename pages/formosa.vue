@@ -21,8 +21,8 @@
             <div class="page" v-for="(page, pageIndex) of pages" :key="pageIndex" v-show="pageIndex === activePageIndex" :style="{ backgroundImage: page.image ? `url(/formosa/${page.image})` : '' }">
               <h4 v-if="page.beforeTitle" v-html="spacingOptimizer(page.beforeTitle)" class="before-title"></h4>
               <h3 v-if="page.title" v-html="spacingOptimizer(page.title)" class="title"></h3>
-              <div v-if="page.bodyText" v-html="markdown(page.bodyText)" class="body-text"></div>
-              <div v-if="page.result && pagesIX[pageIndex].showResult" v-html="markdown(page.result)" class="result"></div>
+              <div v-if="page.bodyText" v-html="page.bodyHTML" class="body"></div>
+              <div v-if="page.result && pagesIX[pageIndex].showResult && page.hasText" v-html="markdown(page.result)" class="result"></div>
             </div>
           </div>
         </div>
@@ -59,14 +59,16 @@ let responses = {
   moveAlong: '動作快。',
   tooEasy: '全都有問題？你以為當特務這麼簡單嗎？',
   areYouSure: '你確定嗎？',
-  okay: '沒什麼問題，繼續往下。',
+  okay: '這不是重點，繼續往下。',
   outOfScope: '眼睛看哪裡啊！',
   emptySelection: '哪裡有問題不會說清楚嗎？',
   impossible: '怎麼可能沒問題。',
   wellDone: '幹得不錯，重點都有抓到。繼續往下。',
-  notGoodEnough: '嗯，還可以更好。',
+  notGoodEnough: '有抓到一些重點了，還可以更好。',
   missingTarget: '根本沒抓到重點啊，用腦！'
 }
+
+let defaultResult = '尚未構成刑責'
 
 let pages = [
   {
@@ -112,6 +114,20 @@ let pages = [
 export default {
   mixins: [knowsMarkdown],
   data() {
+    for(let i = 0; i < pages.length; i++) {
+      if(pages[i].bodyText) {
+        let tokens = pages[i].bodyText.split(new RegExp(`([${PUNCT.COMMA}${PUNCT.FSTOP}${PUNCT.EXCLA}${PUNCT.Q}${PUNCT.PAUSE}${PUNCT.L.QUOTE}${PUNCT.R.QUOTE}])`))
+        let html = ''
+        for(let j = 0; j < tokens.length; j += 2) {
+          html += '<span class="selectable">' + tokens[j] + (j + 1 < tokens.length ? tokens[j + 1] : '') + '</span>'
+        }
+        pages[i].bodyHTML = html
+      }
+      if(!pages[i].result) {
+        pages[i].result = defaultResult
+      }
+      pages[i].hasText = !(!pages[i].beforeTitle && !pages[i].title && !pages[i].bodyText)
+    }
     let pagesIX = pages.map(page => ({
       showResult: false
     }))
@@ -134,16 +150,16 @@ export default {
     },
     activePageText() {
       return '' +
-        (this.activePage.beforeTitle || PUNCT.SLASH) +
-        (this.activePage.title || PUNCT.SLASH) +
-        (this.activePage.bodyText || PUNCT.SLASH)
+        (this.activePage.beforeTitle || '') +
+        (this.activePage.title || '') +
+        (this.activePage.bodyText || '')
     }
   },
   methods: {
     start() {
       if(window) {
         window.scroll({
-          top: this.$refs.mission.offsetTop - 16,
+          top: this.$refs.mission.offsetTop - 32, // FIXME
           behavior: 'smooth'
         })
       }
@@ -164,10 +180,11 @@ export default {
       this.okayCounter++
       if(this.activePage.hasOwnProperty('targets')) {
         this.responseText = responses.impossible
-      } else if(this.okayCounter === 1) {
+      } else if(this.okayCounter === 1 && !this.pagesIX[this.activePageIndex].showResult) {
         this.responseText = responses.impossible
       } else {
         this.responseText = responses.okay
+        this.pagesIX[this.activePageIndex].showResult = true
         this.okayCounter = 0
       }
     },
@@ -181,12 +198,9 @@ export default {
       } else if(this.activePage.bodyText === text) { // invalid selected text
         this.responseText = responses.tooEasy
         this.notOkayCounter = 0
-      } else if(!this.activePageText.includes(text)) { // invalid
-        this.responseText = responses.outOfScope
-        this.notOkayCounter = 0
-      } else if(this.notOkayCounter === 1) { // valid
+      } else if(this.notOkayCounter === 1 && !this.pagesIX[this.activePageIndex].showResult) { // valid
         this.responseText = responses.areYouSure
-      } else if(this.activePage.hasOwnProperty('targets')) {
+      } else if(this.activePage.hasOwnProperty('targets')) { // has targets (is not okay)
         let targets = this.activePage.targets
         let targetHitCount = 0
         targets.forEach(target => {
@@ -203,24 +217,35 @@ export default {
           this.pagesIX[this.activePageIndex].showResult = false
         }
         this.notOkayCounter = 0
-      } else {
+      } else { // has no targets (is okay)
         this.responseText = responses.okay
+        this.pagesIX[this.activePageIndex].showResult = true
         this.notOkayCounter = 0
       }
     },
     updateSelectedText() {
-      let selectedText = null
-      if(typeof window.getSelection !== 'undefined') {
-        selectedText = window.getSelection().toString()
-      } else if(typeof document.selection !== 'undefined' && document.selection.type === 'Text') {
-        selectedText = document.selection.createRange().text
-      }
-      if(selectedText) {
-        selectedText = selectedText.trim()
+      let selectedText = []
+      if(document) {
+        let els = document.querySelectorAll('.selectable.selected')
+        for(let i = 0; i < els.length; i++) {
+          selectedText.push(els[i].innerHTML)
+        }
+        selectedText = selectedText.join('').trim()
       }
       this.selectedText = selectedText
     },
     spacingOptimizer
+  },
+  mounted() {
+    if(document) {
+      let els = document.querySelectorAll('.selectable')
+      for(let i = 0; i < els.length; i++) {
+        els[i].addEventListener('click', event => {
+          let el = event.target
+          el.classList.toggle('selected')
+        })
+      }
+    }
   }
 }
 </script>
@@ -232,7 +257,7 @@ export default {
 $darkness: #202020;
 $secret: $color-musou;
 $light: #EFEFEF;
-$mission: #DDD;
+$mission: #B0B0B0;
 $page: #DFE2DB;
 
 @mixin move-to-front {
@@ -306,15 +331,16 @@ $page: #DFE2DB;
     > .response-text {
       @include vertical-text;
       position: absolute;
-      top: -0.625rem;
-      left: 5rem;
-      margin: 0;
+      top: 0;
+      left: 0;
+      margin-top: -1.375rem;
+      margin-left: 5rem;
       padding: 0.75rem 0.5rem;
-      max-height: 12.5rem;
-      border: 2px solid $secret;
+      max-height: 8.25rem;
+      background-color: rgba($secret, 0.85);
       border-radius: 0.125rem;
       font-weight: bold;
-      color: $secret;
+      color: $darkness;
       @include move-to-front;
     }
     > .book-container {
@@ -327,7 +353,7 @@ $page: #DFE2DB;
             > .page {
               width: 100%;
               height: 100%;
-              padding: 2rem;
+              padding: 2.25rem 2rem;
               background-color: $page;
               background-size: cover;
               background-position: center center;
@@ -346,7 +372,11 @@ $page: #DFE2DB;
               }
               .result {
                 font-size: 1rem;
+                font-weight: bold;
                 color: $secret;
+              }
+              .selected {
+                border-left: 4px solid $secret;
               }
             }
           }
