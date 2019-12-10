@@ -327,18 +327,22 @@ $page: #DFE2DB;
             > .page {
               width: 100%;
               height: 100%;
-              padding: 2.25rem;
+              padding: 2rem;
               background-color: $page;
               background-size: cover;
               background-position: center center;
               @include vertical-text;
               @include shadow-expanded;
-              font-size: 1.5rem;
+              font-size: 1.3125rem;
               line-height: $line-height-relaxed;
 
+              .before-title {
+                font-size: 0.875em;
+              }
               .title {
-                font-size: 2rem;
+                font-size: 1.25em;
                 line-height: $line-height-relaxed;
+                letter-spacing: 0.0625rem;
               }
               .result {
                 font-size: 1rem;
