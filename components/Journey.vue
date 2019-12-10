@@ -270,29 +270,7 @@ export default {
 <style lang="scss">
 @import '~watchout-common-assets/styles/resources';
 @import 'assets/subtitle-ish';
-
-@mixin arrow($size, $orientation) {
-  &:before {
-    content: '';
-    display: block;
-    width: $size;
-    height: $size;
-    $border: max($size/5, 0.1875rem) black solid;
-    border-top: $border;
-    border-right: $border;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    $translateX: -65%;
-    $translateY: -50%;
-    $rotate: 45deg;
-    @if $orientation == left {
-      $translateX: -45%;
-      $rotate: -135deg;
-    }
-    transform: translate($translateX, $translateY) rotate($rotate)
-  }
-}
+@import 'assets/draw';
 
 @mixin full-coverage {
   position: absolute;
