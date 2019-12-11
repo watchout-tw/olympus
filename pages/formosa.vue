@@ -76,7 +76,7 @@ let responses = {
   impossible: '怎麼可能沒問題。',
   wellDone: '幹得不錯，重點都有抓到。繼續往下。',
   notGoodEnough: '有抓到一些重點了，還可以更好。',
-  missingTarget: '根本沒抓到重點啊，用腦！'
+  missingTarget: '完全沒有抓到重點，重來！'
 }
 
 const RES_SQ_START = 1
