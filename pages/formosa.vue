@@ -22,7 +22,7 @@
         <div class="book">
           <div class="content">
             <div class="page" v-for="(page, pageIndex) of pages" :key="`page-${pageIndex}`" v-show="pageIndex === activePageIndex" :style="{ backgroundImage: page.image ? `url(/formosa/${page.image})` : '' }">
-              <h4 v-if="page.beforeTitle" v-html="spacingOptimizer(page.beforeTitle)" class="before-title"></h4>
+              <h4 v-if="page.smallTitle" v-html="spacingOptimizer(page.smallTitle)" class="before-title"></h4>
               <h3 v-if="page.title" v-html="spacingOptimizer(page.title)" class="title"></h3>
               <div v-if="page.bodyText" class="body">
                 <span v-for="(segment, segmentIndex) of page.bodyTextSegements" :key="`segment-${segmentIndex}`" class="selectable" :class="{ selected: segment.isSelected }" @click="selectSegment($event, segment)">{{ segment.content }}</span>
@@ -90,7 +90,7 @@ let pages = [
     image: 'cover-4-5.jpg'
   },
   {
-    beforeTitle: '⬤ 發刊詞 ⬤',
+    smallTitle: '發刊詞',
     title: '共同來推動新生代政治運動！',
     bodyText: '今年是決定我們未來道路和命運的歷史關鍵時刻，動盪的世局和暗潮汹湧的台灣政治、社會變遷在在逼使我們在一個新的世代來臨之前抉擇我們未來的道路。歷史在試煉著我們！'
   },
@@ -101,6 +101,7 @@ let pages = [
     image: 'directory-2.jpg'
   },
   {
+    smallTitle: '發刊詞',
     bodyText: '國民黨政府面對這一熱烈的選擧活動，在其政治危機來臨時驚慌失措，急急忙忙下令停止選擧，並施展一連串高壓手段，企圖摧毀這一股民主運動的洪流，這造成半年來我們社會的緊張不安。',
     targets: [
       '高壓手段',
@@ -110,23 +111,27 @@ let pages = [
     result: '誣指政府以高壓手段，摧殘民主運動，造成社會緊張不安。傳播不實消息，觸犯懲治叛亂條例第六條。'
   },
   {
-    bodyText: '三十年來，國民黨以禁忌、神話隱蔽我們國家社會的許多問題，扼殺了我們政治的生機，阻礙了社會的進步。「美麗島」雜誌的目標就是要推動新生代政治運動。我們將提供廣大的園地，給所有願意站在自己的土地上講話的同胞，共同耕耘這美麗之島。',
+    smallTitle: '發刊詞',
+    bodyText: '三十年來，國民黨以禁忌、神話隱蔽我們國家的許多問題，扼殺了政治的生機，阻礙了社會的進步。「美麗島」雜誌的目標就是推動新生代政治運動。我們將提供廣大的園地，給所有願意站在自己的土地上講話的同胞，共同耕耘這美麗之島。',
     targets: [
-      '扼殺了我們政治的生機'
+      '扼殺',
+      '政治的生機'
     ],
     result: '誣指本黨扼殺政治生機。傳播不實消息，觸犯懲治叛亂條例第六條。'
   },
   {
-    bodyText: '三十年來，忽視群衆、背離群衆的國民黨驚奇地發現，「群衆突然成為可見的，且很穩固地盤踞在社會最顯明的地帶。」國民黨面對這一情勢，迷惘無助，無法正確估計其群衆基礎，於是，順應世界潮流之民主化意識與維續政權的統治意識相互掙扎、扯裂。',
+    smallTitle: '民主萬歲',
+    bodyText: '三十年來，忽視群衆、背離群衆的國民黨驚奇地發現，群衆突然成為可見的，且很穩固地盤踞在社會最顯明的地帶。國民黨面對這一情勢，迷惘無助，無法正確估計其群衆基礎，順應世界潮流之民主化意識與維續政權的統治意識相互掙扎、扯裂。',
     targets: [
       '忽視群衆',
       '背離群衆',
       '群衆基礎'
     ],
-    result: '攻訐本黨忽視群衆，背離群衆，無群衆基礎，並稱本黨黨制專政，其偏頗不實旨在打擊本黨。'
+    result: '攻訐本黨忽視群衆，背離群衆，無群衆基礎，偏頗不實，旨在打擊本黨。'
   },
   {
-    bodyText: '國民黨政府依賴特務爲統治工具，表現在這次危機中的，便是軍事特務統治傾向的加強。半年多以來，從余登發案、許信良案，到最近的「七二八」台中事件，「潮流」陳博文事件都是這種傾向加強的結果。',
+    smallTitle: '民主萬歲',
+    bodyText: '國民黨政府依賴特務爲統治工具，半年多以來，從余登發案、許信良案，到最近的「七二八」台中事件，「潮流」陳博文事件，都是軍事特務統治傾向加強的結果。',
     targets: [
       '特務',
       '余登發'
@@ -134,7 +139,8 @@ let pages = [
     result: '表現懼怕軍警治安人員之心態，有利於叛徒余登發之宣傳，觸犯懲治叛亂條例第七條。'
   },
   {
-    bodyText: '一年多以來，我們看到世界各地許多獨裁腐敗的證券紛紛垮台，如伊朗的巴勒維、尼加拉瓜的蘇慕沙、烏干達的阿敏，這是非偶發、非獨特、非區域性的事件，它標示了一個信念：獨裁腐敗政權的最後命運是在全國上下一致的憤怒反對聲中走上滅亡的悲慘道路。',
+    smallTitle: '民主萬歲',
+    bodyText: '一年多以來，伊朗的巴勒維、尼加拉瓜的蘇慕沙、烏干達的阿敏，這是非偶發、非獨特、非區域性的事件，它標示了一個信念：獨裁腐敗政權的最後命運是在全國上下一致的憤怒反對聲中，走上滅亡的悲慘道路。',
     targets: [
       '巴勒維',
       '蘇慕沙',
@@ -143,6 +149,7 @@ let pages = [
     result: '舉巴勒維、蘇幕沙、阿敏之垮台，似別具用心之暗示。'
   },
   {
+    smallTitle: '維護民主體制',
     bodyText: '玉山蒼蒼，碧海茫茫，婆娑之洋，美麗之島，我們豈能容忍，情同手足的弟兄在此相殘；我們豈能容忍，無知之徒縱情地摧殘我美麗家鄉。',
     targets: [
       '手足',
@@ -151,6 +158,7 @@ let pages = [
     result: '言手足弟兄相殘，受無知之徒摧殘，詞義隱晦有台獨意識。'
   },
   {
+    smallTitle: '維護民主體制',
     bodyText: '如此種種，誰說不是軍事統治已出現了明顯的徵兆？權力如果繼續如此濫用的話，當政府和人民間的衝突節節升高之後，其終極的後果，誰能說不會發展成為與民為敵的內戰？',
     targets: [
       '政府和人民間的衝突',
@@ -159,11 +167,21 @@ let pages = [
     result: '政府與人民間衝突，終將成為內戰，似有預見而不違背其本意，有鼓煽民眾背叛政府之作用。具煽動顛覆政府陰謀，觸犯懲治叛亂條例第二條。'
   },
   {
+    smallTitle: '談法統',
     bodyText: '將中華民國的法統奠基在三十多前選出的中央民意代表終身職，已令世人覺其荒誕無稽，啼笑皆非！中華民國立國，原有其滂礡之氣、千秋之勢，奈何半世紀後，千百名中央民意代表老態龍鍾，倚仗而行，怎不令人為之黯然神傷，喟然嘆惋！',
     targets: [
-      '中央民意代表終身職'
+      '中央民意代表終身職',
+      '荒誕無稽'
     ],
     result: '攻訐基本國策及立國法統，具煽動性。違背國策之言論有意圖破壞國體之陰謀，觸犯懲治叛亂條例第二條第三項。'
+  },
+  {
+    smallTitle: '七二八台中事件',
+    bodyText: '中市警局張局長即率隊堵住車門，暴民旋即登場，開始謾罵我們是「共產黨」。他們動手攻擊車身，撕去布條，並揚言要打死我們。鎮暴隊揮動著電棍，一記記無情的落下，落在赤手空拳的黨外人士身上，落在默默無言的台中市民心版上。',
+    targets: [
+      '赤手空拳'
+    ],
+    result: '攻擊政府濫捕無辜，歪曲事實，顛倒是非，挑撥政府與人民情感，居心險惡。傳播不實消息，足以妨害治安或搖動人心，觸犯懲治叛亂條例第六條。'
   }
 ]
 
@@ -188,7 +206,7 @@ export default {
       if(!pages[i].result) {
         pages[i].result = defaultResult
       }
-      pages[i].hasText = !(!pages[i].beforeTitle && !pages[i].title && !pages[i].bodyText)
+      pages[i].hasText = !(!pages[i].smallTitle && !pages[i].title && !pages[i].bodyText)
     }
     let pagesIX = pages.map(page => ({
       showResult: false
@@ -215,7 +233,7 @@ export default {
     },
     activePageText() {
       return '' +
-        (this.activePage.beforeTitle || '') +
+        (this.activePage.smallTitle || '') +
         (this.activePage.title || '') +
         (this.activePage.bodyText || '')
     }
@@ -463,7 +481,7 @@ $page: #DFE2DB;
             > .page {
               width: 100%;
               height: 100%;
-              padding: 1.5rem 2rem;
+              padding: 1.5rem 1.5rem;
               background-color: $page;
               background-size: cover;
               background-position: center center;
@@ -471,6 +489,18 @@ $page: #DFE2DB;
               @include shadow-expanded;
               .before-title {
                 font-size: 1rem;
+                @include iPhone5 {
+                  font-size: 0.875rem;
+                }
+                &:before, &:after { // black circles
+                  content: '';
+                  display: inline-block;
+                  width: 1em;
+                  height: 1em;
+                  border-radius: 50%;
+                  background-color: $darkness;
+                  margin: 0.25rem 0;
+                }
               }
               .title {
                 font-size: 1.5rem;
