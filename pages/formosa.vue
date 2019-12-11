@@ -247,21 +247,21 @@ export default {
     goPrevPage() {
       if(this.activePageIndex > 0) {
         this.activePageIndex--
-      }
-      if(this.activePage.hasText) {
-        this.startResponseSequence(RES_SQ_TUTORIAL)
-      } else {
-        this.startResponseSequence(RES_SQ_PASS)
+        if(this.activePage.hasText) {
+          this.startResponseSequence(RES_SQ_TUTORIAL)
+        } else {
+          this.startResponseSequence(RES_SQ_PASS)
+        }
       }
     },
     goNextPage() {
       if(this.activePageIndex < this.pages.length - 1) {
         this.activePageIndex++
-      }
-      if(this.activePage.hasText) {
-        this.startResponseSequence(RES_SQ_TUTORIAL)
-      } else {
-        this.startResponseSequence(RES_SQ_PASS)
+        if(this.activePage.hasText) {
+          this.startResponseSequence(RES_SQ_TUTORIAL)
+        } else {
+          this.startResponseSequence(RES_SQ_PASS)
+        }
       }
     },
     pageIsOkay() {
