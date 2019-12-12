@@ -1,8 +1,8 @@
 <template>
 <div class="page formosa">
   <div class="opening">
-    <div class="opening-scene-container tcl-container no-margin">
-      <div class="opening-scene tcl-panel tcl-left-right-margin with-top-bottom-margin">
+    <div class="scene-container tcl-container no-margin">
+      <div class="scene tcl-panel tcl-left-right-margin with-top-bottom-margin">
         <div class="content">
           <h1 class="small">{{ textMap.title }}</h1>
           <div class="paragraphs vertical" v-html="markdown(textMap.intro)"></div>
@@ -17,23 +17,21 @@
   <div class="mission" ref="mission">
     <div class="commander"></div>
     <div class="response-text">{{ responseText }}</div>
-    <div class="book-container tcl-container no-margin">
-      <div class="book-panel tcl-panel tcl-left-right-margin">
-        <div class="book">
+    <div class="book-container">
+      <div class="pages" ref="pages">
+        <div class="page" v-for="(page, pageIndex) of pages" :key="`page-${pageIndex}`" :style="{ backgroundImage: page.image ? `url(/formosa/${page.image})` : '' }">
           <div class="content">
-            <div class="page" v-for="(page, pageIndex) of pages" :key="`page-${pageIndex}`" v-show="pageIndex === activePageIndex" :style="{ backgroundImage: page.image ? `url(/formosa/${page.image})` : '' }">
-              <h4 v-if="page.smallTitle" v-html="spacingOptimizer(page.smallTitle)" class="before-title"></h4>
-              <h3 v-if="page.title" v-html="spacingOptimizer(page.title)" class="title"></h3>
-              <div v-if="page.bodyText" class="body">
-                <span v-for="(segment, segmentIndex) of page.bodyTextSegements" :key="`segment-${segmentIndex}`" class="selectable" :class="{ selected: segment.isSelected }" @click="selectSegment($event, segment)">{{ segment.content }}</span>
-              </div>
-              <div v-if="page.result && pagesIX[pageIndex].showResult && page.hasText" v-html="markdown(page.result)" class="result"></div>
+            <h4 v-if="page.smallTitle" v-html="spacingOptimizer(page.smallTitle)" class="before-title"></h4>
+            <h3 v-if="page.title" v-html="spacingOptimizer(page.title)" class="title"></h3>
+            <div v-if="page.bodyText" class="body">
+              <span v-for="(segment, segmentIndex) of page.bodyTextSegements" :key="`segment-${segmentIndex}`" class="selectable" :class="{ selected: segment.isSelected }" @click="selectSegment($event, segment)">{{ segment.content }}</span>
             </div>
+            <div v-if="page.result && pagesIX[pageIndex].showResult && page.hasText" v-html="markdown(page.result)" class="result"></div>
           </div>
         </div>
-        <div class="prev" :class="{ inactive: activePageIndex < 1 }" @click="goPrevPage"></div>
-        <div class="next" :class="{ inactive: activePageIndex > pages.length - 2 }" @click="goNextPage"></div>
       </div>
+      <div class="prev" :class="{ inactive: activePageIndex < 1 }" @click="goPrevPage"></div>
+      <div class="next" :class="{ inactive: activePageIndex > pages.length - 2 }" @click="goNextPage"></div>
     </div>
     <div class="control-container tcl-container no-margin">
       <div class="controls tcl-panel tcl-left-right-margin with-top-bottom-margin">
@@ -367,6 +365,19 @@ export default {
       segment.isSelected = !segment.isSelected
     },
     spacingOptimizer
+  },
+  mounted() {
+    let rem = 16
+    let A = window.innerWidth
+    let B = window.innerHeight
+    let D = 15 * rem
+    let R = 4 / 5
+    let el = this.$refs.pages
+    if((B - D) * R > A) {
+      el.classList.add('width-first')
+    } else {
+      el.classList.add('height-first')
+    }
   }
 }
 </script>
@@ -407,12 +418,60 @@ $page: #DFE2DB;
   font-weight: bold;
 }
 
+@mixin page-content-typography {
+  .before-title {
+    font-size: 1rem;
+    @include iPhone5 {
+      font-size: 0.875rem;
+    }
+    &:before, &:after { // black circles
+      content: '';
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      border-radius: 50%;
+      background-color: $darkness;
+      margin: 0.25rem 0;
+    }
+  }
+  .title {
+    font-size: 1.5rem;
+    letter-spacing: 0.0625rem;
+    line-height: $line-height-comfortable;
+    @include iPhone5 {
+      font-size: 1.25rem;
+    }
+  }
+  .body {
+    font-size: 1.25rem;
+    line-height: $line-height-comfortable;
+    @include iPhone5 {
+      font-size: 1rem;
+    }
+  }
+  .result {
+    margin-right: 0.25rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: $secret;
+    @include iPhone5 {
+      font-size: 0.875rem;
+    }
+  }
+  .selectable {
+    border-left: 4px solid transparent;
+    &.selected {
+      border-left-color: $secret;
+    }
+  }
+}
+
 .page.formosa {
   > .opening {
     background-color: $darkness;
-    > .opening-scene-container {
+    > .scene-container {
       padding: 1rem 0;
-      > .opening-scene {
+      > .scene {
         > .content {
           width: 100%;
           max-height: 24rem;
@@ -442,7 +501,7 @@ $page: #DFE2DB;
   }
   > .mission {
     position: relative;
-    padding: 1rem 0;
+    padding: 0 0 1rem; // 0 top padding because of $P
     background-color: $mission;
     > .commander {
       width: 4rem;
@@ -471,93 +530,78 @@ $page: #DFE2DB;
       color: $darkness;
       @include move-to-front;
     }
+    $P: 1rem;
     > .book-container {
-      > .book-panel {
-        > .book {
-          @include rect(4/5);
-          width: 100%;
-          margin: 0 auto;
+      > .pages {
+        position: relative;
+        display: flex;
+        width: 100%;
+        overflow-x: scroll;
+        overflow-y: visible;
+        -webkit-overflow-scroll: touch;
+        padding: $P 0; // add $P for shadow of .page
+        > .page {
+          flex-shrink: 0;
+          margin: 0 1rem;
+          overflow: hidden;
+          background-color: $page;
+          background-size: cover;
+          background-position: center center;
+          @include shadow;
+          &:first-child {
+            margin-left: 0;
+          }
+          &:last-child {
+            margin-right: 0;
+          }
           > .content {
-            > .page {
-              width: 100%;
-              height: 100%;
-              padding: 1.5rem 1.5rem;
-              background-color: $page;
-              background-size: cover;
-              background-position: center center;
-              @include vertical-text;
-              @include shadow-expanded;
-              .before-title {
-                font-size: 1rem;
-                @include iPhone5 {
-                  font-size: 0.875rem;
-                }
-                &:before, &:after { // black circles
-                  content: '';
-                  display: inline-block;
-                  width: 1em;
-                  height: 1em;
-                  border-radius: 50%;
-                  background-color: $darkness;
-                  margin: 0.25rem 0;
-                }
-              }
-              .title {
-                font-size: 1.5rem;
-                letter-spacing: 0.0625rem;
-                line-height: $line-height-comfortable;
-                @include iPhone5 {
-                  font-size: 1.25rem;
-                }
-              }
-              .body {
-                font-size: 1.25rem;
-                line-height: $line-height-comfortable;
-                @include iPhone5 {
-                  font-size: 1rem;
-                }
-              }
-              .result {
-                margin-right: 0.25rem;
-                font-size: 1rem;
-                font-weight: bold;
-                color: $secret;
-                @include iPhone5 {
-                  font-size: 0.875rem;
-                }
-              }
-              .selectable {
-                border-left: 4px solid transparent;
-                &.selected {
-                  border-left-color: $secret;
-                }
-              }
-            }
+            width: 100%;
+            padding: 1.5rem 1.5rem;
+            @include vertical-text;
+            @include page-content-typography;
           }
         }
-        > .prev,
-        > .next {
-          position: absolute;
-          width: 2rem;
-          height: 2rem;
-          background-color: $light;
-          &.inactive {
-            opacity: 0.25;
+        // now the calculations
+        $D: 15rem;
+        $R: 4 / 5;
+        &.height-first {
+          height: calc(100vh - #{$D - 2 * $P}); // correction for $P
+          > .page {
+            flex-basis: calc((100vh - #{$D}) * #{$R});
           }
         }
-        > .prev {
-          top: 50%;
-          left: 0;
-          transform: translateY(-50%);
-          @include arrow(0.75rem, left);
-        }
-        > .next {
-          top: 50%;
-          right: 0;
-          transform: translateY(-50%);
-          @include arrow(0.75rem, right);
+        &.width-first {
+          height: calc(100vw / #{$R} + 2 * #{$P}); // correction for $P
+          > .page {
+            flex-basis: 100%;
+          }
         }
       }
+      > .prev,
+      > .next {
+        position: absolute;
+        width: 2rem;
+        height: 2rem;
+        background-color: $light;
+        &.inactive {
+          opacity: 0.25;
+        }
+      }
+      > .prev {
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        @include arrow(0.75rem, left);
+      }
+      > .next {
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        @include arrow(0.75rem, right);
+      }
+    } // end of book-container
+    > .control-container {
+      margin-top: -$P; // correction because of $P
     }
   }
 }
