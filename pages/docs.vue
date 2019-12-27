@@ -1,5 +1,8 @@
 <template>
 <div class="page home">
+  <div class="years form-field-many-inputs tight form-field-align-center margin-top-bottom-8">
+    <div class="year input button small flat" v-for="year of years" :key="year" @click="selectedYear = year">{{ year }}</div>
+  </div>
   <div class="docs first-doc margin-top-bottom-8" v-if="hasReferences">
     <reference-preview :reference="references[0]" :data="dataOnReferences" display="tcl" :show-pub-dest="true" :cached-authors="cachedAuthors" :key="references[0].permalink" />
   </div>
@@ -36,6 +39,8 @@ let firstPageSize = 15
 let pageSize = 8
 let currentPage = 1
 
+let minYear = 2013
+
 function makeDocRefs(docs) {
   return docs.map(doc => makeReference('doc', doc.id, { publishedTo: doc.publishedTo }))
 }
@@ -43,8 +48,14 @@ function makeDocRefs(docs) {
 export default {
   mixins: [knowsFSCache, knowsWatchout],
   async asyncData() {
+    let years = []
+    for(let i = +(new Date()).getFullYear(); i >= minYear; i--) {
+      years.push(i)
+    }
+    let selectedYear = -1
+
     let docCount = await firestore.bunko.countDocs({ pubDest: info.CHANNEL_ID })
-    let docs = await firestore.bunko.getDocs({ pubDest: info.CHANNEL_ID, limit: firstPageSize })
+    let docs = await firestore.bunko.getDocs({ pubDest: info.CHANNEL_ID, limit: firstPageSize, year: selectedYear })
     let docRefs = makeDocRefs(docs)
     let dataOnReferences = {}
     for(let i = 0; i < docRefs.length; i++) {
@@ -60,10 +71,12 @@ export default {
       docCount,
       pageSize,
       currentPage,
-      lastDocID: docs[docs.length - 1].id,
+      lastDocID: docs.length > 0 ? docs[docs.length - 1].id : null,
       references: docRefs,
       dataOnReferences,
-      moreButtonStatus
+      moreButtonStatus,
+      years,
+      selectedYear
     }
   },
   head() {
@@ -71,6 +84,11 @@ export default {
     return {
       title: pageTitle,
       meta: this.generateMeta(info.CHANNEL_ID, pageTitle, info.SITE_DESCRIPTION)
+    }
+  },
+  data() {
+    return {
+      yearSelected: -1
     }
   },
   computed: {
@@ -103,9 +121,42 @@ export default {
       }
     }
   },
+  watch: {
+    selectedYear() {
+      console.log(this.selectedYear)
+    }
+  },
   components: {
     ReferencePreview,
     SubmitButton
   }
 }
 </script>
+
+<style lang="scss">
+@import '~watchout-common-assets/styles/resources';
+
+.button.flat {
+  box-shadow: none;
+  &.small {
+    padding: 0.625rem;
+    border-radius: 1.0625rem;
+    height: auto;
+  }
+}
+.form-field-many-inputs {
+  &.tight {
+    > .input {
+      margin: 0.25rem;
+    }
+  }
+}
+
+.page.home {
+  > .years {
+    > .year {
+      color: $color-secondary-text-grey;
+    }
+  }
+}
+</style>
