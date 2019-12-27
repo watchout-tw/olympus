@@ -7,11 +7,11 @@
   </div>
   <div class="section-title with-underline small text-align-center margin-top-single margin-bottom-4"><span>最新內容</span></div>
   <div class="docs first-doc margin-top-bottom-8">
-    <reference-preview :reference="docRefs[0]" :data="dataOnReferences" display="tcl" :show-pub-dest="true" :cachedAuthors="cachedAuthors" />
+    <reference-preview :reference="docRefs[0]" :data="dataOnReferences" display="tcl" :show-pub-dest="false" :read-more-style="null" :cachedAuthors="cachedAuthors" />
   </div>
   <div class="docs tcl-container margin-top-bottom-4">
     <div class="doc tcl-panel tcl-left-right-margin with-top-bottom-margin" :class="{ 'half-width': index > 2 }" v-for="(reference, index) of docRefs" :key="`doc-${index}`" v-if="index > 0">
-      <reference-preview :reference="reference" :data="dataOnReferences" display="vertical" :description="null" :contributor-list-style="null" :read-more-style="null" :show-pub-dest="true" :cachedAuthors="cachedAuthors" />
+      <reference-preview :reference="reference" :data="dataOnReferences" display="vertical" :contributor-list-style="null" :read-more-style="null" :show-pub-dest="false" :cachedAuthors="cachedAuthors" />
     </div>
     <div class="tcl-panel half-width"></div>
     <div class="tcl-panel half-width"></div>
@@ -26,11 +26,11 @@
   </div>
   <div class="section-title with-underline small text-align-center margin-top-single margin-bottom-4"><span>最新專題</span></div>
   <div class="projects first-doc margin-top-bottom-8">
-    <reference-preview :reference="projectRefs[0]" :data="dataOnReferences" display="tcl" :show-pub-dest="true" :cachedAuthors="cachedAuthors" />
+    <reference-preview :reference="projectRefs[0]" :data="dataOnReferences" display="tcl" :show-pub-dest="false" :read-more-style="null" :cachedAuthors="cachedAuthors" />
   </div>
   <div class="docs tcl-container margin-top-bottom-4">
     <div class="doc tcl-panel tcl-left-right-margin with-top-bottom-margin" :class="{ 'half-width': index > 2 }" v-for="(reference, index) of projectRefs" :key="`doc-${index}`" v-if="index > 0">
-      <reference-preview :reference="reference" :data="dataOnReferences" display="vertical" :description="null" :contributor-list-style="null" :read-more-style="null" :show-pub-dest="true" :cachedAuthors="cachedAuthors" />
+      <reference-preview :reference="reference" :data="dataOnReferences" display="vertical" :contributor-list-style="null" :read-more-style="null" :show-pub-dest="false" :cachedAuthors="cachedAuthors" />
     </div>
     <div class="tcl-panel half-width"></div>
     <div class="tcl-panel half-width"></div>

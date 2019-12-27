@@ -1,20 +1,20 @@
 <template>
 <div class="page home">
   <div class="years form-field-many-inputs tight form-field-align-center margin-top-bottom-8">
-    <div class="year input button small flat" v-for="year of years" :key="year" @click="selectedYear = year">{{ year }}</div>
+    <div class="year input button small flat" :class="{ musou: selectedYear === year }" v-for="year of years" :key="year" @click="selectedYear = +year">{{ year }}</div>
   </div>
   <div class="docs first-doc margin-top-bottom-8" v-if="hasReferences">
-    <reference-preview :reference="references[0]" :data="dataOnReferences" display="tcl" :show-pub-dest="true" :cached-authors="cachedAuthors" :key="references[0].permalink" />
+    <reference-preview :reference="references[0]" :data="dataOnReferences" display="tcl" :show-pub-dest="false" :read-more-style="null" :cached-authors="cachedAuthors" :key="references[0].permalink" />
   </div>
   <div class="docs tcl-container margin-top-bottom-4" v-if="hasReferences">
     <div class="doc tcl-panel tcl-left-right-margin with-top-bottom-margin" :class="{ 'half-width': index > 2 }" v-for="(reference, index) of references" :key="reference.permalink" v-if="index > 0">
-      <reference-preview :reference="reference" :data="dataOnReferences" display="vertical" :show-pub-dest="true" :cached-authors="cachedAuthors" />
+      <reference-preview :reference="reference" :data="dataOnReferences" display="vertical" :show-pub-dest="false" :description="null" :read-more-style="null" :cached-authors="cachedAuthors" />
     </div>
     <div class="tcl-panel half-width"></div>
     <div class="tcl-panel half-width"></div>
     <div class="tcl-panel half-width"></div>
   </div>
-  <div class="controls" v-if="references.length > 0">
+  <div class="controls">
     <div class="form-field-many-inputs no-wrap form-field-align-center">
       <submit-button class="musou" :class="{ disabled: !hasMore }" label="更多內容" :state.sync="moreButtonStatus.state" :message.sync="moreButtonStatus.message" @click.native="loadMore" />
     </div>
@@ -36,7 +36,7 @@ import SubmitButton from 'watchout-common-functions/components/button/Submit'
 import * as info from '~/data/info'
 
 let firstPageSize = 15
-let pageSize = 8
+let pageSize = 16
 let currentPage = 1
 
 let minYear = 2013
@@ -53,9 +53,10 @@ export default {
       years.push(i)
     }
     let selectedYear = -1
+    let pubDest = info.CHANNEL_ID
 
-    let docCount = await firestore.bunko.countDocs({ pubDest: info.CHANNEL_ID })
-    let docs = await firestore.bunko.getDocs({ pubDest: info.CHANNEL_ID, limit: firstPageSize, year: selectedYear })
+    let docCount = await firestore.bunko.countDocs({ pubDest })
+    let docs = await firestore.bunko.getDocs({ pubDest, limit: firstPageSize })
     let docRefs = makeDocRefs(docs)
     let dataOnReferences = {}
     for(let i = 0; i < docRefs.length; i++) {
@@ -68,6 +69,7 @@ export default {
     }
 
     return {
+      pubDest,
       docCount,
       pageSize,
       currentPage,
@@ -102,8 +104,15 @@ export default {
   methods: {
     async loadMore() {
       if(this.hasMore) {
+        let options = {
+          pubDest: this.pubDest,
+          lastDocID: this.lastDocID,
+          limit: this.pageSize,
+          ...(this.selectedYear > 0 ? { year: this.selectedYear } : {})
+        }
+
         this.moreButtonStatus.state = STATES.LOADING
-        let docs = await firestore.bunko.getDocs({ pubDest: info.CHANNEL_ID, lastDocID: this.lastDocID, limit: pageSize })
+        let docs = await firestore.bunko.getDocs(options)
         if(docs.length > 0) {
           this.moreButtonStatus.state = STATES.SUCCESS
 
@@ -115,6 +124,7 @@ export default {
 
           this.lastDocID = docs[docs.length - 1].id
           this.currentPage += 1
+          this.pageSize = pageSize
         } else {
           this.moreButtonStatus.state = STATES.FAILED
         }
@@ -122,8 +132,20 @@ export default {
     }
   },
   watch: {
-    selectedYear() {
-      console.log(this.selectedYear)
+    async selectedYear(nextSelectedYear, prevSelectedYear) {
+      if(nextSelectedYear !== prevSelectedYear) {
+        // clear
+        this.references = []
+        this.dataOnReferences = {}
+        this.lastDocID = null
+        this.currentPage = 0
+        this.pageSize = firstPageSize
+        // update docCount
+        this.docCount = 0
+        this.docCount = await firestore.bunko.countDocs({ pubDest: this.pubDest, year: nextSelectedYear })
+      }
+      // load
+      this.loadMore()
     }
   },
   components: {
@@ -154,9 +176,6 @@ export default {
 
 .page.home {
   > .years {
-    > .year {
-      color: $color-secondary-text-grey;
-    }
   }
 }
 </style>
