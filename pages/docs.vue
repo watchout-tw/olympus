@@ -8,7 +8,7 @@
   </div>
   <div class="docs tcl-container margin-top-bottom-4" v-if="hasReferences">
     <div class="doc tcl-panel tcl-left-right-margin with-top-bottom-margin" :class="{ 'half-width': index > 2 }" v-for="(reference, index) of references" :key="reference.permalink" v-if="index > 0">
-      <reference-preview :reference="reference" :data="dataOnReferences" display="vertical" :show-pub-dest="false" :description="null" :read-more-style="null" :cached-authors="cachedAuthors" />
+      <reference-preview :reference="reference" :data="dataOnReferences" display="vertical" :show-pub-dest="false" :title-classes="['medium']" :description="null" :read-more-style="null" :cached-authors="cachedAuthors" />
     </div>
     <div class="tcl-panel half-width"></div>
     <div class="tcl-panel half-width"></div>
@@ -35,8 +35,8 @@ import ReferencePreview from 'watchout-common-functions/components/ReferencePrev
 import SubmitButton from 'watchout-common-functions/components/button/Submit'
 import * as info from '~/data/info'
 
-let firstPageSize = 15
-let pageSize = 16
+let firstPageSize = 23
+let pageSize = 24
 let currentPage = 1
 
 let minYear = 2013
