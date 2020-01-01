@@ -158,22 +158,6 @@ export default {
 <style lang="scss">
 @import '~watchout-common-assets/styles/resources';
 
-.button.flat {
-  box-shadow: none;
-  &.small {
-    padding: 0.625rem;
-    border-radius: 1.0625rem;
-    height: auto;
-  }
-}
-.form-field-many-inputs {
-  &.tight {
-    > .input {
-      margin: 0.25rem;
-    }
-  }
-}
-
 .page.home {
   > .years {
   }
