@@ -520,7 +520,7 @@ export default {
         left: -16px;
         width: 40px;
         height: 60px;
-        background-image: url('/static/draw/hand.svg');
+        background-image: url('/draw/hand.svg');
         animation: move $animation-time $animation-iteration-count;
       }
     }

@@ -184,7 +184,7 @@ export default {
   margin-left: auto;
   margin-right: auto;
   > .draw {
-    background: url('~static/map/world_map_mercator-mod.jpg');
+    background: url('/map/world_map_mercator-mod.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
