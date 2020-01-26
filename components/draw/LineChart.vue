@@ -148,7 +148,7 @@ export default {
         this.submit.state = STATES.LOADING
         this.$emit('update:submittingChartID', this.config.id)
 
-        if(!this.token) {
+        if(!this.token && window && window.grecaptcha) {
           window.grecaptcha.execute()
         } else {
           this.finalize()
