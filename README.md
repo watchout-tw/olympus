@@ -74,6 +74,9 @@ $ npm run dev
 $ npm run build
 $ npm start
 
+# Use pm2 for production deployment
+$ pm2 start npm --name alps -- start
+
 # generate static project
 $ npm run generate
 ```
