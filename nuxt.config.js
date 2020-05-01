@@ -11,7 +11,7 @@ const info = require('./data/info')
 const siteTitle = info.SITE_TITLE
 const siteDescription = info.SITE_DESCRIPTION
 
-module.exports = {
+export default {
   mode: 'universal',
   head: {
     title: siteTitle,
