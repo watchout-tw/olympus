@@ -42,6 +42,10 @@ export default {
       window.addEventListener('resize', this.handleResize)
       this.handleResize()
     }
+    console.log('REF :', this.$refs)
+  },
+  mounted() {
+    console.log('$el.offsetHeight', this.$el.offsetHeight)
   },
   destroyed() {
     if(process.client) {

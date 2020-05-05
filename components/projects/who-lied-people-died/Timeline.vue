@@ -5,16 +5,15 @@
       <h2>武漢肺炎 疫情時光機</h2>
     </div>
     <template v-for="(timeline, sessionIndex) in timelineData">
-      <transition name="fade" :key="'timeline-session' + sessionIndex">
-        <div class="timeline-session">
-          <TimelineHead :text="timeline.head" />
-          <template v-for="(card, cardIndex) in timeline.cards">
-            <!-- timeline-time -->
-            <TimelineTime v-if="card.type === 'time'" :key="'timeline-card' + cardIndex" :card="card" />
-            <TimelineCard v-else-if="card.type === 'card'" :key="'timeline-card' + cardIndex" :card="card" />
-          </template>
-        </div>
-      </transition>
+      <div class="timeline-session" :key="'timeline-session' + sessionIndex">
+        <TimelineHead :text="timeline.head" />
+        <template v-for="(card, cardIndex) in timeline.cards">
+          <!-- timeline-time -->
+          <TimelineTime v-if="card.type === 'TIME'" :key="'timeline-card' + cardIndex" :card="card" />
+          <TimelineCard v-else-if="card.type === 'CARD'" :key="'timeline-card' + cardIndex" :card="card" />
+          <TimelineWarning v-else-if="card.type === 'WARN'" :key="'timeline-card' + cardIndex" :card="card" />
+        </template>
+      </div>
     </template>
   </div>
 </template>
@@ -22,12 +21,15 @@
 import TimelineHead from '~/components/projects/who-lied-people-died/TimelineHead'
 import TimelineTime from '~/components/projects/who-lied-people-died/TimelineTime'
 import TimelineCard from '~/components/projects/who-lied-people-died/TimelineCard'
+import TimelineWarning from '~/components/projects/who-lied-people-died/TimelineWarning'
+
 export default {
   props: ['timelineData'],
   components: {
     TimelineHead,
     TimelineTime,
-    TimelineCard
+    TimelineCard,
+    TimelineWarning
   }
 }
 </script>
