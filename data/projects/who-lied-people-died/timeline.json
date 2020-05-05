@@ -1,0 +1,103 @@
+{
+  "data": [
+    {
+      "head": "2019 年底，出現疑似武漢肺炎的蹤跡，但尚未出現人傳人的現象",
+      "cards": [
+        {
+          "type": "time",
+          "text": "2019 / 12 / 30"
+        },
+        {
+          "type": "card",
+          "area": "中國",
+          "postion": "left",
+          "text": "武漢醫院醫師李文亮在微信私人群組稱「華南水果海鮮市場確診 7 例 SARS」和「最新消息，冠狀病毒感染確定」",
+          "case": null
+        },
+        {
+          "type": "time",
+          "text": "2019 / 12 / 31"
+        },
+        {
+          "type": "card",
+          "area": "中國",
+          "postion": "left",
+          "text": "發現多例肺炎病例與華南海鮮城有關聯，有 27 例肺炎病例，其中 7 例嚴重，目前未有人傳人現象",
+          "case": null
+        },
+        {
+          "type": "card",
+          "area": "台灣",
+          "postion": "right",
+          "text": "啟動邊境檢疫應變措施，針對中國武漢直航班機進行登機檢疫",
+          "case": null
+        },
+        {
+          "type": "card",
+          "area": "台灣",
+          "postion": "right",
+          "text": "通報 WHO 中國武漢至少有 7 例非典型肺炎病例發生，但並不是 SARS，且病患已進行隔離治療，要求提供進一步資訊",
+          "case": null
+        },
+        {
+          "type": "time",
+          "text": "2020 / 01 / 01"
+        },
+        {
+          "type": "card",
+          "area": "中國",
+          "postion": "left",
+          "text": "名散布武漢肺炎不實信息者被依法查處",
+          "case": null
+        },
+        {
+          "type": "time",
+          "text": "2020 / 01 / 03"
+        },
+        {
+          "type": "card",
+          "area": "中國",
+          "postion": "left",
+          "text": "武漢醫院醫師李文亮因「在網際網路上發布不實言論」而被武漢市公安局提出警示和訓誡",
+          "case": null
+        },
+        {
+          "type": "time",
+          "text": "2020 / 01 / 05"
+        },
+        {
+          "type": "card",
+          "area": "中國",
+          "postion": "left",
+          "text": "武漢累積 59 例不明肺炎，其中最早發病者發病時間為 2019 年 12 月 12 日",
+          "case": null
+        },
+        {
+          "type": "card",
+          "area": "WHO",
+          "postion": "left",
+          "text": "不建議限制任何旅遊和貿易",
+          "case": null
+        },
+        {
+          "type": "time",
+          "text": "2020 / 01 / 09"
+        },
+        {
+          "type": "card",
+          "area": "中國",
+          "postion": "left",
+          "text": "出現首例武漢肺炎死亡案例，官方表示未發現明確人傳人證據",
+          "case": null
+        },
+        {
+          "type": "card",
+          "area": "台灣",
+          "postion": "right",
+          "text": "接獲中國通知，病原體初步判定為新型冠狀病毒，該病毒不同於以往發現的人類冠狀病毒",
+          "case": null
+        }
+      ]
+    }
+  ]
+}

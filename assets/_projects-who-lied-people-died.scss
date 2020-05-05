@@ -1,0 +1,67 @@
+@import '~watchout-common-assets/styles/resources';
+$color-green: #38B4AB;
+$color-red: #FF6868;
+$color-yellow: #E6AD26;
+$color-green: #38B4AB;
+$color-blue: #25B1DE;
+$color-gray: #404040;
+$color-border: #efefef;
+$color-black: #242424;
+$text-green: #46beb6;
+$size-md: $bp-md;
+$size-xl: $bp-xl;
+
+h1 {
+  font-weight: 500;
+  font-size: 1.5rem;
+  line-height: 1.875rem;
+  letter-spacing: normal;
+}
+h2 {
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 1.875rem;
+  letter-spacing: normal;
+}
+
+.wrapper {
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  background-color: $color-black;
+  color: white;
+  padding-bottom: 10rem;
+ }
+
+ .text-mini {
+   font-size: 0.875rem;
+   line-height: 1.5rem;
+ }
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
+@media only screen and (min-width:$size-md) {
+}
+
+@media only screen and (min-width:$size-xl) {
+  h1 {
+    font-size: 2.25rem;
+    font-weight: 500;
+    line-height: 3.75rem;
+    letter-spacing: 1.8px;
+  }
+  h2 {
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 1.875rem;
+    letter-spacing: normal;
+  }
+  .wrapper {
+    font-size: 1.125rem;
+  }
+}

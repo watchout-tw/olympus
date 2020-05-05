@@ -1,0 +1,58 @@
+<template>
+  <div class="timeline">
+    <div class="timeline-title">
+      <img src="/projects/WhoLiedPeopleDied/icon-dialog.png">
+      <h2>武漢肺炎 疫情時光機</h2>
+    </div>
+    <template v-for="(timeline, sessionIndex) in timelineData">
+      <transition name="fade" :key="'timeline-session' + sessionIndex">
+        <div class="timeline-session">
+          <TimelineHead :text="timeline.head" />
+          <template v-for="(card, cardIndex) in timeline.cards">
+            <!-- timeline-time -->
+            <TimelineTime v-if="card.type === 'time'" :key="'timeline-card' + cardIndex" :card="card" />
+            <TimelineCard v-else-if="card.type === 'card'" :key="'timeline-card' + cardIndex" :card="card" />
+          </template>
+        </div>
+      </transition>
+    </template>
+  </div>
+</template>
+<script>
+import TimelineHead from '~/components/projects/who-lied-people-died/TimelineHead'
+import TimelineTime from '~/components/projects/who-lied-people-died/TimelineTime'
+import TimelineCard from '~/components/projects/who-lied-people-died/TimelineCard'
+export default {
+  props: ['timelineData'],
+  components: {
+    TimelineHead,
+    TimelineTime,
+    TimelineCard
+  }
+}
+</script>
+<style scoped lang="scss">
+@import '~/assets/_projects-who-lied-people-died.scss';
+.timeline {
+  padding: 0 5%;
+  &-title {
+    display: flex;
+    justify-content: center;
+    color: $color-green;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    img {
+      width: 2rem;
+      height: 2rem;
+      margin-right: 0.625rem;
+    }
+  }
+  &-session {
+    background-color: $color-gray;
+    border-radius: 20px;
+    border: solid 1px $color-border;
+    width: 100%;
+    padding-bottom: 2.5rem;
+  }
+}
+</style>

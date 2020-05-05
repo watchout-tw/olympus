@@ -1,0 +1,36 @@
+<template>
+  <div class="support">
+    <h2 class="title">定期定額募集中</h2>
+    <p>每月 199 元，留下守護台灣的力量！</p>
+    <div class="support-btn"><h2>支持沃草</h2></div>
+  </div>
+</template>
+<style scoped lang="scss">
+@import '~/assets/_projects-who-lied-people-died.scss';
+.support{
+  padding: 4rem 2rem;
+  width: 90%;
+  margin-left: 5%;
+  border-radius: 20px;
+  border: solid 1px $color-border;
+  text-align: center;
+  .title {
+    margin-bottom: 0.5rem;
+  }
+
+  &-btn {
+    margin-top: 2.2rem;
+    border-radius: 42px;
+    border: solid 1.5px text-green;
+    background: linear-gradient(99deg, #46beb6 6%, #4695be 99%);
+    padding: 0.8rem;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  &-btn:hover, &-btn:active {
+    background: #46beb6;
+  }
+}
+
+</style>
