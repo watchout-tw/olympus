@@ -19,13 +19,15 @@
   }
 
   &-btn {
+    margin: 0 auto;
     margin-top: 2.2rem;
     border-radius: 42px;
-    border: solid 1.5px text-green;
-    background: linear-gradient(99deg, #46beb6 6%, #4695be 99%);
+    border: solid 2px $text-green;
+    background-image: linear-gradient(100deg, #46beb6 6%, #4695be 99%);
     padding: 0.8rem;
     text-align: center;
     cursor: pointer;
+    max-width: 16rem;
   }
 
   &-btn:hover, &-btn:active {

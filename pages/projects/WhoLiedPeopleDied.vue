@@ -3,27 +3,35 @@
   <Banner />
   <Timeline :timelineData="timelineData" />
   <ToBeContinued />
+  <Share />
   <Support />
+  <Team />
+  <LastUpdate time="2020/4/24 13:13" />
   <div :class="statisticsBarClass">
     <img src="/projects/WhoLiedPeopleDied/icon-statistics.png">
     <div>確診數</div>
     <div>700,486</div>
   </div>
 </div>
-
 </template>
 <script>
 import Banner from '~/components/projects/who-lied-people-died/Banner'
 import Timeline from '~/components/projects/who-lied-people-died/Timeline'
 import ToBeContinued from '~/components/projects/who-lied-people-died/ToBeContinued'
+import Share from '~/components/projects/who-lied-people-died/Share'
 import Support from '~/components/projects/who-lied-people-died/Support'
+import Team from '~/components/projects/who-lied-people-died/Team'
+import LastUpdate from '~/components/projects/who-lied-people-died/LastUpdate'
 import timelineJson from '~/data/projects/who-lied-people-died/timeline.json'
 export default {
   components: {
     Banner,
     Timeline,
     ToBeContinued,
-    Support
+    Share,
+    Support,
+    Team,
+    LastUpdate
   },
   data() {
     return {
