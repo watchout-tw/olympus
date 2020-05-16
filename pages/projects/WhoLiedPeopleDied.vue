@@ -1,17 +1,17 @@
 <template>
 <div class="wrapper">
   <Banner />
+  <div :class="statisticsBarClass">
+    <img src="/projects/WhoLiedPeopleDied/icon-statistics.png">
+    <div>確診數</div>
+    <div>700,486</div>
+  </div>
   <Timeline :timelineData="timelineData" />
   <ToBeContinued />
   <Share />
   <Support />
   <Team />
   <LastUpdate time="2020/4/24 13:13" />
-  <div :class="statisticsBarClass">
-    <img src="/projects/WhoLiedPeopleDied/icon-statistics.png">
-    <div>確診數</div>
-    <div>700,486</div>
-  </div>
 </div>
 </template>
 <script>
@@ -65,7 +65,7 @@ export default {
     statisticsBarClass() {
       const res = {}
       console.log('this.window.scrolled', this.window.scrolled)
-      if(this.window.scrolled > this.window.height) {
+      if(this.window.scrolled > this.window.height - 200) {
         res['statistics-bar-fixed-top'] = true
       } else {
         res['statistics-bar'] = true
@@ -104,8 +104,8 @@ export default {
 .statistics-bar, .statistics-bar-fixed-top {
   width: 100%;
   padding-left: 5%;
-  padding-top: 0.6rem;
-  padding-bottom: 0.6rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   background-color: $color-black;
   display: flex;
   line-height: 2rem;
@@ -121,6 +121,7 @@ export default {
 .statistics-bar-fixed-top {
   position: fixed;
   top: 0;
+  z-index: 901;
 }
 
 @media only screen and (min-width:$bp-md) {

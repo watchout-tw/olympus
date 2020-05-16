@@ -37,11 +37,11 @@ export default {
 @import '~/assets/_projects-who-lied-people-died.scss';
 .timeline {
   padding: 0 5%;
+  margin-top: 3rem;
   &-title {
-    display: flex;
+    display: none;
     justify-content: center;
     color: $color-green;
-    margin-top: 2rem;
     margin-bottom: 1rem;
     img {
       width: 2rem;
@@ -55,6 +55,14 @@ export default {
     border: solid 1px $color-border;
     width: 100%;
     padding-bottom: 2.5rem;
+  }
+}
+
+@media only screen and (min-width:$size-md) {
+  .timeline {
+    &-title {
+      display: flex;
+    }
   }
 }
 </style>

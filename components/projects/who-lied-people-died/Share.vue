@@ -30,7 +30,6 @@
   .icons {
     display: flex;
     justify-content: space-between;
-    width: 60%;
     max-width: 14rem;
     margin: 0 auto;
   }

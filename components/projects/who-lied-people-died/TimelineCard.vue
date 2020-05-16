@@ -75,5 +75,9 @@ export default {
     right: 1rem;
     opacity: 0.65;
   }
+
+  &-active {
+    box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.86);
+  }
 }
 </style>

@@ -1,8 +1,10 @@
 <template>
   <div class="banner">
     <div class="banner-info-box">
-      <h1>武漢肺炎 疫情時光機</h1>
-      <p>跟著沃草將時間倒回2019年底，隨著武漢肺炎的疫情推展，台灣、世界衛生組織（WHO）、中國和其他各國是如何應對？</p>
+      <div class="banner-info-box-item">
+        <h1>武漢肺炎 疫情時光機</h1>
+        <p>跟著沃草將時間倒回2019年底，隨著武漢肺炎的疫情推展，台灣、世界衛生組織（WHO）、中國和其他各國是如何應對？</p>
+      </div>
     </div>
     <div class="banner-read-more">
       <div>往下看更多</div>
@@ -17,32 +19,37 @@
   width: 100%;
   height: 100vh;
   background-image: url('/projects/WhoLiedPeopleDied/banner-667.jpg');
-  background-position: top center;
+  background-position: center -60px;
   background-repeat: no-repeat;
   background-size: cover;
-  padding: 5%;
   color:white;
 
   &-info-box {
     position: absolute;
-    bottom: 5rem;
-    background-color: $color-black;
-    border-radius: 20px;
-    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.38);
-    width: 90%;
-    padding: 25px 20px;
-
-    h1 {
-      margin-bottom: 0.625rem;
-      color: $text-green;
+    display: flex;
+    align-items: flex-end;
+    bottom: 0;
+    padding: 0rem 1rem 0rem 1rem;
+    height: 18rem;
+    width: 100%;
+    background: linear-gradient(0deg, #0a0a0a 0%, rgba(15, 15, 15, 0.84) 71%, rgba(0, 0, 0, 0) 100%);
+    &-item {
+      h1, p {
+        display: block;
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 0.625rem;
+        color: $text-green;
+      }
     }
   }
 
   &-read-more {
     position: absolute;
-    width: 90%;
+    width: 100%;
     text-align: center;
-    bottom: 1rem;
+    bottom: 11rem;
     img {
       margin: 0 auto;
       margin-top: 1.2rem;
@@ -68,6 +75,7 @@
 @media only screen and (min-width:$size-md) {
   .banner {
     background-image: url('/projects/WhoLiedPeopleDied/banner-1440.jpg');
+    background-position: top center;
   }
 }
 

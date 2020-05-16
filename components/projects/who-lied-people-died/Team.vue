@@ -16,8 +16,9 @@
   </div>
 </template>
 <style scoped lang="scss">
+@import '~/assets/_projects-who-lied-people-died.scss';
 .br{
-  padding-left: 3.75rem;
+  padding-left: 5%;
   margin-top: 2.5rem;
   margin-bottom: 4rem;
   text-align: left;
@@ -33,19 +34,31 @@
     margin-bottom: 1.5rem;
   }
   .row {
-
     display: flex;
     &-left {
       padding-top: 1rem;
       padding-right: 1.5rem;
       border-right: 1px solid white;
+      width: 30%;
     }
     &-right {
+      width: 70%;
       padding-top: 1rem;
       padding-left: 1.5rem;
     }
   }
-
 }
-
+@media only screen and (min-width:$size-md) {
+  .br{
+    padding-left: 3.75rem;
+    .row {
+      &-left {
+        width: auto;
+      }
+      &-right {
+        width: auto;
+      }
+    }
+  }
+}
 </style>
