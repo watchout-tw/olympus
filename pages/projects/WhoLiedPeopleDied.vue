@@ -4,13 +4,14 @@
   <StatisticsBar :fixed="ifStatisticsBarFixed" :cases="spotlight.currentCase" />
   <Timeline :timelineData="timelineData" v-on:timelinerefs="getTimeLineRefs" />
   <ToBeContinued />
-  <Share />
+  <Share :url="meta.url" />
   <Support />
   <Team />
   <LastUpdate :time="lastUpdateTime" />
 </div>
 </template>
 <script>
+import { getBaseURL } from 'watchout-common-functions/lib/watchout'
 import Banner from '~/components/projects/who-lied-people-died/Banner'
 import StatisticsBar from '~/components/projects/who-lied-people-died/StatisticsBar'
 import Timeline from '~/components/projects/who-lied-people-died/Timeline'
@@ -45,7 +46,27 @@ export default {
         currentCase: null,
         last: null,
         queue: []
+      },
+      meta: {
+        coverUrl: `${getBaseURL('musou')}projects/WhoLiedPeopleDied/banner-1440.jpg`,
+        url: `${getBaseURL('musou')}projects/WhoLiedPeopleDied`,
+        title: '武漢肺炎防疫時間軸',
+        description: '武漢肺炎（COVID-19）自2019年底從中國武漢爆發，全球陷入重大病毒危機之中，至今確診數已突破百萬例。跟著沃草將時間倒回武漢肺炎爆發之初，隨著疫情推展，看看台灣、世界衛生組織（WHO）、中國和其他各國是如何防疫？'
       }
+    }
+  },
+  head() {
+    return {
+      title: this.meta.title,
+      meta: [
+        { hid: 'description', name: 'description', content: this.meta.description },
+        { hid: 'twitter:card', name: 'twitter:card', content: 'summary' },
+        { hid: 'twitter:creator', name: 'twitter:creator', content: '@watchoutTW' },
+        { hid: 'og:url', name: 'og:url', content: this.meta.url },
+        { hid: 'og:title', name: 'og:title', content: this.meta.title },
+        { hid: 'og:description', name: 'og:description', content: this.meta.description },
+        { hid: 'og:image', name: 'og:image', content: this.meta.coverUrl }
+      ]
     }
   },
   created() {

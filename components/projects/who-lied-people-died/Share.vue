@@ -16,14 +16,8 @@
 </template>
 <script>
 import { getPlatformShareURLs } from 'watchout-common-functions/functions'
-import { getBaseURL } from 'watchout-common-functions/lib/watchout'
 export default {
-  props: ['fixed', 'cases'],
-  data() {
-    return {
-      url: `${getBaseURL('musou')}projects/WhoLiedPeopleDied`
-    }
-  },
+  props: ['url'],
   computed: {
     twitterShare() {
       return getPlatformShareURLs(this.url).twitter
