@@ -3,12 +3,11 @@
     <template v-for="(timeline, sessionIndex) in timelineData">
       <div class="timeline-session" :key="'timeline-session' + sessionIndex">
         <TimelineHead :text="timeline.head" />
-        <template v-for="(card, cardIndex) in timeline.cards">
-          <!-- timeline-time -->
-          <TimelineTime v-if="card.type === 'TIME'" :key="'timeline-card' + cardIndex" :card="card" />
-          <TimelineCard v-else-if="card.type === 'EVENT'" :key="'timeline-card' + cardIndex" :card="card" />
-          <TimelineWarning v-else-if="card.type === 'WARN'" :key="'timeline-card' + cardIndex" :card="card" />
-        </template>
+        <div v-for="(card, cardIndex) in timeline.cards" ref="timelines" :key="'timeline-' + cardIndex">
+          <TimelineTime v-if="card.type === 'TIME'" :card="card" />
+          <TimelineCard v-else-if="card.type === 'EVENT'" :card="card" />
+          <TimelineWarning v-else-if="card.type === 'WARN'" :card="card" />
+        </div>
       </div>
     </template>
   </div>
@@ -26,6 +25,9 @@ export default {
     TimelineTime,
     TimelineCard,
     TimelineWarning
+  },
+  mounted() {
+    this.$emit('timelinerefs', this.$refs.timelines)
   }
 }
 </script>

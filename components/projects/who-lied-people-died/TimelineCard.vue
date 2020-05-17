@@ -38,7 +38,8 @@ export default {
   padding: 1rem;
   width: 95%;
   position: relative;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+  transition: box-shadow 0.3s ease-in-out;
   &-left {
     border-radius: 0px 20px 20px 0;
   }
@@ -66,6 +67,7 @@ export default {
   }
 
   &-active {
+    padding: 2rem;
     box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.86);
   }
 }

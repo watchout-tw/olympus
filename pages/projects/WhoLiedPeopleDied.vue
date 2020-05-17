@@ -1,8 +1,8 @@
 <template>
 <div class="wrapper">
   <Banner />
-  <StatisticsBar :fixed="ifStatisticsBarFixed" cases="499,00" />
-  <Timeline :timelineData="timelineData" />
+  <StatisticsBar :fixed="ifStatisticsBarFixed" :cases="spotlight.currentCase" />
+  <Timeline :timelineData="timelineData" v-on:timelinerefs="getTimeLineRefs" />
   <ToBeContinued />
   <Share />
   <Support />
@@ -40,7 +40,12 @@ export default {
       },
       isMobile: false,
       lastUpdateTime: timelineJson.lastUpdateTime,
-      timelineData: timelineJson.data
+      timelineData: timelineJson.data,
+      spotlight: {
+        currentCase: null,
+        last: null,
+        queue: []
+      }
     }
   },
   created() {
@@ -49,10 +54,6 @@ export default {
       window.addEventListener('resize', this.handleResize)
       this.handleResize()
     }
-    console.log('REF :', this.$refs)
-  },
-  mounted() {
-    console.log('$el.offsetHeight', this.$el.offsetHeight)
   },
   destroyed() {
     if(process.client) {
@@ -62,7 +63,6 @@ export default {
   },
   computed: {
     ifStatisticsBarFixed() {
-      console.log('this.window.scrolled', this.window.scrolled)
       if(this.window.scrolled > this.window.height - 100) return true
       return false
     }
@@ -73,11 +73,37 @@ export default {
     },
     handleScroll() {
       this.window.scrolled = window.scrollY
+      if(this.spotlight.queue.length > 0) {
+        const targetEvent = this.spotlight.queue[0]
+        const showPoint = this.window.height * 0.4
+        if(this.window.scrolled > (targetEvent.offsetTop - showPoint)) {
+          targetEvent.node.classList.add('timeline-card-active')
+          if(this.spotlight.last) {
+            this.spotlight.last.node.classList.remove('timeline-card-active')
+          }
+          this.spotlight.last = targetEvent
+          this.spotlight.queue.shift()
+          this.spotlight.currentCase = targetEvent.case
+        }
+      }
     },
     handleResize() {
       this.window.width = window.innerWidth
       this.window.height = window.innerHeight
       this.checkIsMobile()
+    },
+    getTimeLineRefs(refs) {
+      const events = refs.map(node => {
+        const card = node.getElementsByClassName('timeline-card')
+        if(card.length === 0) return null
+        if(card[0].getElementsByClassName('timeline-card-case').length === 0) return null
+        return {
+          offsetTop: card[0].offsetTop,
+          case: (card[0].getElementsByClassName('timeline-card-case')[0].innerHTML).split('：')[1],
+          node: card[0]
+        }
+      }).filter(node => node !== null)
+      this.spotlight.queue = events
     }
   }
 }
