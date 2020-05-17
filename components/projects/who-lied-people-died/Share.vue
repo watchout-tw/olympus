@@ -11,10 +11,12 @@
 <style scoped lang="scss">
 @import '~/assets/_projects-who-lied-people-died.scss';
 .br{
-  padding: 2rem 2rem;
   width: 90%;
-  margin-left: 5%;
+  margin: 0 auto;
   margin-bottom: 2.5rem;
+  max-width: 1080px;
+  background-color: $color-gray;
+  padding: 2rem 2rem;
   border-radius: 20px;
   border: solid 1px $color-border;
   text-align: center;

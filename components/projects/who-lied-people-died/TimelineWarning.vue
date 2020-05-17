@@ -2,16 +2,25 @@
    <div class="timeline-warn">
      <div class="timeline-warn-time">
        <img src="/projects/WhoLiedPeopleDied/icon-warning.png">
-       <p>{{ card.date }}</p>
+       <p>{{ showDate }}</p>
      </div>
      <div class="timeline-warn-text">
-       {{ card.text }}
+       {{ card.textHan }}
      </div>
    </div>
 </template>
 <script>
 export default {
-  props: ['card']
+  props: ['card'],
+  computed: {
+    showDate() {
+      const { date } = this.card
+      const year = date.substring(0, 4)
+      const month = date.substring(4, 6)
+      const day = date.substring(6, 8)
+      return `${year} / ${month} / ${day}`
+    }
+  }
 }
 </script>
 <style scoped lang="scss">

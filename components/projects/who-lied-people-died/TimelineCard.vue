@@ -1,8 +1,8 @@
 <template>
   <div :class="cardClass">
-    <h2>{{ card.area }}</h2>
-    <p>{{ card.text }}</p>
-    <div v-if="ifWHO" class="timeline-card-case">確診數：{{ card.case ? card.case : '--' }}</div>
+    <h2>{{ card.countryName }}</h2>
+    <p>{{ card.textHan }}</p>
+    <div v-if="ifWHO" class="timeline-card-case">確診數：{{ showCase }}</div>
   </div>
 </template>
 <script>
@@ -10,35 +10,24 @@ export default {
   props: ['card'],
   computed: {
     ifWHO() {
-      const { area } = this.card
-      return (area !== 'WHO')
+      const { areaType } = this.card
+      return (areaType !== 'WHO')
     },
     cardClass() {
-      const { area, postion } = this.card
+      const { areaType, postion } = this.card
       let resClass = {
         'timeline-card': true
       }
-      switch(area) {
-        case '中國':
-          resClass['timeline-card-China'] = true
-          break
-        case '台灣':
-          resClass['timeline-card-Taiwan'] = true
-          break
-        case 'WHO':
-          resClass['timeline-card-WHO'] = true
-          break
-        default:
-          resClass['timeline-card-world'] = true
-          break
-      }
-
-      if(postion === 'right') {
-        resClass['timeline-card-right'] = true
-      } else {
-        resClass['timeline-card-left'] = true
-      }
+      resClass[`timeline-card-${areaType}`] = true
+      resClass[`timeline-card-${postion}`] = true
       return resClass
+    },
+    showCase() {
+      const { counrtyCase } = this.card
+      return (counrtyCase !== '?' &&
+              counrtyCase !== '-' &&
+              counrtyCase !== '')
+        ? counrtyCase : '--'
     }
   }
 }
@@ -57,16 +46,16 @@ export default {
     margin-left: 5%;
     border-radius: 20px 0px 0px 20px;
   }
-  &-China {
+  &-CHINA {
     background: $color-red;
   }
-  &-Taiwan {
+  &-TAIWAN {
     background: $color-green;
   }
   &-WHO {
     background: $color-blue;
   }
-  &-World {
+  &-WORLD {
     background: $color-yellow;
   }
   &-case {

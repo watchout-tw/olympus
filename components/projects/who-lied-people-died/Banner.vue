@@ -29,11 +29,12 @@
     display: flex;
     align-items: flex-end;
     bottom: 0;
-    padding: 0rem 1rem 0rem 1rem;
-    height: 18rem;
+    height: 20rem;
     width: 100%;
-    background: linear-gradient(0deg, #0a0a0a 0%, rgba(15, 15, 15, 0.84) 71%, rgba(0, 0, 0, 0) 100%);
+    background: linear-gradient(0deg, #242424 0%, rgba(15, 15, 15, 0.84) 71%, rgba(0, 0, 0, 0) 100%);
     &-item {
+      width: 100%;
+      padding: 0 5%;
       h1, p {
         display: block;
       }
@@ -74,14 +75,30 @@
 
 @media only screen and (min-width:$size-md) {
   .banner {
-    background-image: url('/projects/WhoLiedPeopleDied/banner-1440.jpg');
+    background-image: url('/projects/WhoLiedPeopleDied/banner-768.jpg');
     background-position: top center;
+
+    &-info-box {
+      &-item {
+        h1, p {
+          display: block;
+          text-align: left;
+        }
+      }
+    }
   }
+
 }
 
 @media only screen and (min-width:$size-xl) {
   .banner {
-    background-image: url('/projects/WhoLiedPeopleDied/banner-1440.jpg');
+    background-image: url('/projects/WhoLiedPeopleDied/banner-1920.jpg');
+    background-position: top center;
+    &-info-box {
+      &-item {
+        padding: 0 10%;
+      }
+    }
   }
 }
 

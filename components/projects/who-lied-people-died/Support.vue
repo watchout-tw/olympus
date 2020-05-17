@@ -8,9 +8,11 @@
 <style scoped lang="scss">
 @import '~/assets/_projects-who-lied-people-died.scss';
 .support{
+  background-color: $color-gray;
   padding: 4rem 2rem;
   width: 90%;
-  margin-left: 5%;
+  margin: 0 auto;
+  max-width: 1080px;
   border-radius: 20px;
   border: solid 1px $color-border;
   text-align: center;
@@ -34,5 +36,4 @@
     background: #46beb6;
   }
 }
-
 </style>

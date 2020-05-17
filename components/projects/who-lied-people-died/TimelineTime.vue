@@ -1,9 +1,18 @@
 <template>
-   <div class="timeline-time">{{ card.text }}</div>
+   <div class="timeline-time">{{ showDate }}</div>
 </template>
 <script>
 export default {
-  props: ['card']
+  props: ['card'],
+  computed: {
+    showDate() {
+      const { date } = this.card
+      const year = date.substring(0, 4)
+      const month = date.substring(4, 6)
+      const day = date.substring(6, 8)
+      return `${year} / ${month} / ${day}`
+    }
+  }
 }
 </script>
 <style scoped lang="scss">

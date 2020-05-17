@@ -1,21 +1,18 @@
 <template>
 <div class="wrapper">
   <Banner />
-  <div :class="statisticsBarClass">
-    <img src="/projects/WhoLiedPeopleDied/icon-statistics.png">
-    <div>確診數</div>
-    <div>700,486</div>
-  </div>
+  <StatisticsBar :fixed="ifStatisticsBarFixed" cases="499,00" />
   <Timeline :timelineData="timelineData" />
   <ToBeContinued />
   <Share />
   <Support />
   <Team />
-  <LastUpdate time="2020/4/24 13:13" />
+  <LastUpdate :time="lastUpdateTime" />
 </div>
 </template>
 <script>
 import Banner from '~/components/projects/who-lied-people-died/Banner'
+import StatisticsBar from '~/components/projects/who-lied-people-died/StatisticsBar'
 import Timeline from '~/components/projects/who-lied-people-died/Timeline'
 import ToBeContinued from '~/components/projects/who-lied-people-died/ToBeContinued'
 import Share from '~/components/projects/who-lied-people-died/Share'
@@ -26,6 +23,7 @@ import timelineJson from '~/data/projects/who-lied-people-died/timeline.json'
 export default {
   components: {
     Banner,
+    StatisticsBar,
     Timeline,
     ToBeContinued,
     Share,
@@ -41,6 +39,7 @@ export default {
         scrolled: 0
       },
       isMobile: false,
+      lastUpdateTime: timelineJson.lastUpdateTime,
       timelineData: timelineJson.data
     }
   },
@@ -62,15 +61,10 @@ export default {
     }
   },
   computed: {
-    statisticsBarClass() {
-      const res = {}
+    ifStatisticsBarFixed() {
       console.log('this.window.scrolled', this.window.scrolled)
-      if(this.window.scrolled > this.window.height - 200) {
-        res['statistics-bar-fixed-top'] = true
-      } else {
-        res['statistics-bar'] = true
-      }
-      return res
+      if(this.window.scrolled > this.window.height - 100) return true
+      return false
     }
   },
   methods: {
@@ -99,29 +93,6 @@ export default {
 
 .show {
   opacity: 1.0;
-}
-
-.statistics-bar, .statistics-bar-fixed-top {
-  width: 100%;
-  padding-left: 5%;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  background-color: $color-black;
-  display: flex;
-  line-height: 2rem;
-  img {
-      width: 2rem;
-      height: 2rem;
-      margin-right: 0.625rem;
-    }
-  div {
-    margin-right: 0.625rem;
-  }
-}
-.statistics-bar-fixed-top {
-  position: fixed;
-  top: 0;
-  z-index: 901;
 }
 
 @media only screen and (min-width:$bp-md) {

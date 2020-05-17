@@ -1,7 +1,7 @@
 <template>
   <div class="timeline-head">
     <img src="/projects/WhoLiedPeopleDied/kusakun.png">
-    <p>{{ text }}</p>
+    <p>{{ text.textHan }}</p>
   </div>
 </template>
 <script>

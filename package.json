@@ -29,6 +29,7 @@
     "firebase": "^7.14.0",
     "lodash": "^4.17.15",
     "lodash.debounce": "^4.0.8",
+    "luxon": "^1.24.1",
     "mapbox-gl": "^0.51.0",
     "pangu": "^3.3.0",
     "parse-color": "^1.0.0",

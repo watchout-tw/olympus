@@ -1,4 +1,5 @@
 const fs = require('fs')
+const { DateTime } = require('luxon')
 const get = require('lodash/get')
 const findLast = require('lodash/findLast')
 
@@ -88,7 +89,11 @@ const createTimeline = () => {
           }
       }
     })
-    fs.writeFileSync(OUTPUT_PATH, JSON.stringify(oData, null, 2), { encoding: 'utf8' })
+    // const updateTime = DateTime.local().toLocaleString(DateTime.DATETIME_FULL)
+    fs.writeFileSync(OUTPUT_PATH, JSON.stringify({
+      lastUpdateTime: DateTime.local().toFormat('yyyy/MM/dd TT'),
+      data: oData
+    }, null, 2), { encoding: 'utf8' })
   } catch(error) {
     console.error(error)
   }

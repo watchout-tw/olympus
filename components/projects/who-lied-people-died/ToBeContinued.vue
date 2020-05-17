@@ -6,16 +6,17 @@
 .to-be-continued{
   position: relative;
   height: 1;
-  border-top: white dashed 0.2rem;
+  border-top: white dashed 0.1rem;
   margin-top: 1rem;
-  width: 90%;
-  margin: 3rem 5%;
+  width: 85%;
+  max-width: 1080px;
+  margin: 3rem auto;
   div {
     position: absolute;
     text-align: center;
     width: 7rem;
     background-color: $color-black;
-    bottom: -0.8rem;
+    bottom: -0.6rem;
     left: 50%;
     margin-left: -3.5rem;
   }
