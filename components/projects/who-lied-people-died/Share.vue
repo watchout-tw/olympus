@@ -2,12 +2,41 @@
   <div class="br">
     <div class="title">認同請分享</div>
     <div class="icons">
-      <div class="icon icon-twitter"></div>
-      <div class="icon icon-line"></div>
-      <div class="icon icon-facebook"></div>
+      <a :href="twitterShare" target="_blank">
+        <div class="icon icon-twitter"></div>
+      </a>
+      <a :href="lineShare" target="_blank">
+        <div class="icon icon-line"></div>
+      </a>
+      <a target="_blank" :href="facebookShare">
+        <div class="icon icon-facebook"></div>
+      </a>
     </div>
   </div>
 </template>
+<script>
+import { getPlatformShareURLs } from 'watchout-common-functions/functions'
+import { getBaseURL } from 'watchout-common-functions/lib/watchout'
+export default {
+  props: ['fixed', 'cases'],
+  data() {
+    return {
+      url: `${getBaseURL('musou')}projects/WhoLiedPeopleDied`
+    }
+  },
+  computed: {
+    twitterShare() {
+      return getPlatformShareURLs(this.url).twitter
+    },
+    lineShare() {
+      return getPlatformShareURLs(this.url).line
+    },
+    facebookShare() {
+      return getPlatformShareURLs(this.url).facebook
+    }
+  }
+}
+</script>
 <style scoped lang="scss">
 @import '~/assets/_projects-who-lied-people-died.scss';
 .br{

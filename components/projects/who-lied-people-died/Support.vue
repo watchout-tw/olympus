@@ -1,9 +1,11 @@
 <template>
-  <div class="support">
-    <h2 class="title">定期定額募集中</h2>
-    <p>每月 199 元，留下守護台灣的力量！</p>
-    <div class="support-btn"><h2>支持沃草</h2></div>
-  </div>
+    <div class="support">
+      <h2 class="title">定期定額募集中</h2>
+      <p>每月 199 元，留下守護台灣的力量！</p>
+      <a href="https://watchout.backme.tw/checkout/332/7818" target="_blank">
+        <div class="support-btn"><h2>支持沃草</h2></div>
+      </a>
+    </div>
 </template>
 <style scoped lang="scss">
 @import '~/assets/_projects-who-lied-people-died.scss';
