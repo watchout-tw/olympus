@@ -51,6 +51,10 @@ export default {
     ],
     // Extend webpack config here
     extend(config, ctx) {
+      // To require('fs')
+      config.node = {
+        fs: 'empty'
+      }
       // Run ESLint on save
       if(ctx.isDev && ctx.isClient) {
         config.module.rules.push({
