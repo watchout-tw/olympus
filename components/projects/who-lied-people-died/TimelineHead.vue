@@ -12,7 +12,7 @@ export default {
 <style scoped lang="scss">
 @import '~/assets/_projects-who-lied-people-died.scss';
 .timeline-head{
-  text-align: left;
+  text-align: center;
   color: $color-black;
   background-color: white;
   border-radius: 20px 20px 0 0;

@@ -26,19 +26,23 @@ export default {
 <style scoped lang="scss">
 @import '~/assets/_projects-who-lied-people-died.scss';
 .timeline-warn{
+  text-align: center;
   margin-top: 2.5rem;
   margin-bottom: 0.5rem;
-  widows: 100%;
+  width: 100%;
   padding: 1rem;
   background-color: $color-border;
   color: $color-red;
+  p {
+    margin-bottom: 0.5rem;
+  }
   &-time{
     display: flex;
+    justify-content: center;
     img{
       width: 1.5rem;
       height: 1.5rem;
       margin-right: 1rem;
-
       animation: pulse 1s infinite ease-in;
 
       @keyframes pulse {

@@ -62,27 +62,31 @@ export default {
   .icon {
     background-position: center center;
     background-repeat: no-repeat;
-    background-size: 60%;
+    background-size: 100%;
     cursor: pointer;
     width: 3.5rem;
     height: 3.5rem;
     object-fit: contain;
     border-radius: 3.5rem;
-    border: solid 2px #46beb6;
-
-    &:hover {
-      background-color: $text-green;
-    }
   }
 
   .icon-facebook {
     background-image: url('/projects/WhoLiedPeopleDied/icon-facebook.png');
+    &:hover {
+      background-image: url('/projects/WhoLiedPeopleDied/icon-facebook-hover.png');
+    }
   }
   .icon-line {
     background-image: url('/projects/WhoLiedPeopleDied/icon-line.png');
+    &:hover {
+      background-image: url('/projects/WhoLiedPeopleDied/icon-line-hover.png');
+    }
   }
   .icon-twitter {
     background-image: url('/projects/WhoLiedPeopleDied/icon-twitter.png');
+    &:hover {
+      background-image: url('/projects/WhoLiedPeopleDied/icon-twitter-hover.png');
+    }
   }
 
 }

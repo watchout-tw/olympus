@@ -1,8 +1,8 @@
 <template>
 <div class="wrapper">
   <Banner />
-  <StatisticsBar :fixed="ifStatisticsBarFixed" :cases="spotlight.currentCase" />
-  <Timeline :timelineData="timelineData" v-on:timelinerefs="getTimeLineRefs" />
+  <StatisticsBar :fixed="ifStatisticsBarFixed" :cases="spotlight.currentCase" :date="spotlight.date" />
+  <Timeline :timelineData="timelineData" @timelinerefs="getTimeLineRefs" />
   <ToBeContinued />
   <Share :url="meta.url" />
   <Support />
@@ -45,12 +45,13 @@ export default {
       spotlight: {
         currentCase: null,
         last: null,
+        date: null,
         queue: []
       },
       meta: {
         coverUrl: `${getBaseURL('musou')}projects/WhoLiedPeopleDied/banner-1440.jpg`,
         url: `${getBaseURL('musou')}projects/WhoLiedPeopleDied`,
-        title: '武漢肺炎防疫時間軸',
+        title: '武漢肺炎疫情時光機：回到疫情開端／沃草國會無雙',
         description: '武漢肺炎（COVID-19）自2019年底從中國武漢爆發，全球陷入重大病毒危機之中，至今確診數已突破百萬例。跟著沃草將時間倒回武漢肺炎爆發之初，隨著疫情推展，看看台灣、世界衛生組織（WHO）、中國和其他各國是如何防疫？'
       }
     }
@@ -96,7 +97,7 @@ export default {
       this.window.scrolled = window.scrollY
       if(this.spotlight.queue.length > 0) {
         const targetEvent = this.spotlight.queue[0]
-        const showPoint = this.window.height * 0.4
+        const showPoint = this.window.height * 0.45
         if(this.window.scrolled > (targetEvent.offsetTop - showPoint)) {
           targetEvent.node.classList.add('timeline-card-active')
           if(this.spotlight.last) {
@@ -105,6 +106,7 @@ export default {
           this.spotlight.last = targetEvent
           this.spotlight.queue.shift()
           this.spotlight.currentCase = targetEvent.case
+          this.spotlight.date = targetEvent.date
         }
       }
     },
@@ -117,10 +119,11 @@ export default {
       const events = refs.map(node => {
         const card = node.getElementsByClassName('timeline-card')
         if(card.length === 0) return null
-        if(card[0].getElementsByClassName('timeline-card-case').length === 0) return null
+        if(card[0].getElementsByClassName('timeline-world-case').length === 0) return null
         return {
           offsetTop: card[0].offsetTop,
-          case: (card[0].getElementsByClassName('timeline-card-case')[0].innerHTML).split('：')[1],
+          case: (card[0].getElementsByClassName('timeline-world-case')[0].innerHTML),
+          date: (card[0].getElementsByClassName('timeline-date')[0].innerHTML),
           node: card[0]
         }
       }).filter(node => node !== null)

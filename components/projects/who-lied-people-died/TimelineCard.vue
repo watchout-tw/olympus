@@ -2,16 +2,24 @@
   <div :class="cardClass">
     <h2>{{ card.countryName }}</h2>
     <p>{{ card.textHan }}</p>
-    <div v-if="ifWHO" class="timeline-card-case">確診數：{{ showCase }}</div>
+    <div :class="caseClass">確診數：{{ showCountryCase }}</div>
+    <div class="timeline-world-case" style="display:none">{{ card.worldCase }}</div>
+    <div class="timeline-date" style="display:none">{{ card.date }}</div>
   </div>
 </template>
 <script>
 export default {
   props: ['card'],
   computed: {
-    ifWHO() {
-      const { areaType } = this.card
-      return (areaType !== 'WHO')
+    caseClass() {
+      const { areaType, countryName } = this.card
+      let resClass = {
+        'timeline-card-case': true
+      }
+      if(areaType === 'WHO' || countryName === '歐盟') {
+        resClass['timeline-card-hide'] = true
+      }
+      return resClass
     },
     cardClass() {
       const { areaType, postion } = this.card
@@ -22,12 +30,12 @@ export default {
       resClass[`timeline-card-${postion}`] = true
       return resClass
     },
-    showCase() {
+    showCountryCase() {
       const { counrtyCase } = this.card
       return (counrtyCase !== '?' &&
               counrtyCase !== '-' &&
               counrtyCase !== '')
-        ? counrtyCase : '--'
+        ? counrtyCase : '？'
     }
   }
 }
@@ -40,7 +48,15 @@ export default {
   position: relative;
   margin-bottom: 2rem;
   transition: box-shadow 0.3s ease-in-out;
+  h2 {
+    margin-bottom: 0.5rem;
+  }
+  p {
+    margin-bottom: 0rem;
+  }
+
   &-left {
+    margin-left: 1px;
     border-radius: 0px 20px 20px 0;
   }
   &-right {
@@ -67,8 +83,12 @@ export default {
   }
 
   &-active {
-    padding: 2rem;
+    border: solid 3px #ffffff;
     box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.86);
+  }
+
+  &-hide {
+    display: none;
   }
 }
 </style>

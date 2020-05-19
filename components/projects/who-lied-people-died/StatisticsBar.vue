@@ -1,19 +1,22 @@
 <template>
   <div :class="statisticsBarClass">
-    <div class="title">
-      <img src="/projects/WhoLiedPeopleDied/icon-dialog.png">
-      <h2>武漢肺炎 疫情時光機</h2>
-    </div>
-    <div class="case">
-      <img src="/projects/WhoLiedPeopleDied/icon-statistics.png">
-      <div>確診數</div>
-      <div>{{ cases }}</div>
+    <div class="statisticsBar-wrapper">
+      <div class="title">
+        <img src="/projects/WhoLiedPeopleDied/icon-dialog.png">
+        <h2>武漢肺炎 疫情時光機</h2>
+      </div>
+      <div class="case">
+        <img src="/projects/WhoLiedPeopleDied/icon-statistics.png">
+        <div>{{ showDate }}</div>
+        <div>全球確診數</div>
+        <div>{{ showCases }}</div>
+      </div>
     </div>
   </div>
 </template>
 <script>
 export default {
-  props: ['fixed', 'cases'],
+  props: ['fixed', 'cases', 'date'],
   computed: {
     statisticsBarClass() {
       const res = {}
@@ -23,6 +26,22 @@ export default {
         res['statistics-bar'] = true
       }
       return res
+    },
+    showCases() {
+      if(!this.cases) return '？'
+      console.log('his.cases ;', this.cases)
+      return (this.cases !== '--' &&
+              this.cases !== '？' &&
+              this.cases !== '')
+        ? this.cases : '？'
+    },
+    showDate() {
+      let d = this.date
+      if(!d) return ''
+      d = d.toString()
+      if(d === '') return ''
+
+      return `${d[0]}${d[1]}${d[2]}${d[3]} / ${d[4]}${d[5]} / ${d[6]}${d[7]}`
     }
   }
 }
@@ -31,11 +50,23 @@ export default {
 @import '~/assets/_projects-who-lied-people-died.scss';
 .statistics-bar, .statistics-bar-fixed-top{
   width: 100%;
-  padding:1rem 5%;
   background-color: $color-dark;
+}
+.statistics-bar-fixed-top {
+  position: fixed;
+  top: -1px;
+  z-index: 901;
+}
+
+.statisticsBar-wrapper {
   display: flex;
   justify-content: space-between;
+  width: 90%;
+  margin: 0 auto;
+  max-width: 1080px;
+  padding: 1rem 0;
   line-height: 2rem;
+
   .title {
     display: none;
   }
@@ -56,11 +87,6 @@ export default {
     margin-right: 0;
   }
 }
-.statistics-bar-fixed-top {
-  position: fixed;
-  top: 0;
-  z-index: 901;
-}
 
 @media only screen and (min-width:$size-md) {
   .statistics-bar, .statistics-bar-fixed-top{
@@ -69,10 +95,4 @@ export default {
     }
   }
 }
-@media only screen and (min-width:$bp-xl) {
-  .statistics-bar, .statistics-bar-fixed-top{
-     padding:1rem 10%;
-  }
-}
-
 </style>

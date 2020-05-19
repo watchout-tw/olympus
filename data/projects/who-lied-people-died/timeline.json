@@ -1,5 +1,5 @@
 {
-  "lastUpdateTime": "2020/05/16 17:12:40",
+  "lastUpdateTime": "2020/05/19 16:06:26",
   "data": [
     {
       "head": {
@@ -18,6 +18,7 @@
           "areaType": "CHINA",
           "countryName": "中國",
           "counrtyCase": "?",
+          "worldCase": "？",
           "textEn": "",
           "textHan": "武漢醫院醫師李文亮在微信私人群組稱「華南水果海鮮市場確診 7 例 SARS」和「最新消息，冠狀病毒感染確定」"
         },
@@ -32,6 +33,7 @@
           "areaType": "CHINA",
           "countryName": "中國",
           "counrtyCase": "?",
+          "worldCase": "？",
           "textEn": "",
           "textHan": "發現多例肺炎病例與華南海鮮城有關聯，有 27 例肺炎病例，其中 7 例嚴重，目前未有人傳人現象"
         },
@@ -42,6 +44,7 @@
           "areaType": "TAIWAN",
           "countryName": "台灣",
           "counrtyCase": "0",
+          "worldCase": "？",
           "textEn": "",
           "textHan": "啟動邊境檢疫應變措施，針對中國武漢直航班機進行登機檢疫"
         },
@@ -52,6 +55,7 @@
           "areaType": "TAIWAN",
           "countryName": "台灣",
           "counrtyCase": "0",
+          "worldCase": "？",
           "textEn": "",
           "textHan": "通報 WHO 中國武漢至少有 7 例非典型肺炎病例發生，但並不是 SARS，且病患已進行隔離治療，要求提供進一步資訊"
         },
@@ -66,6 +70,7 @@
           "areaType": "CHINA",
           "countryName": "中國",
           "counrtyCase": "?",
+          "worldCase": "？",
           "textEn": "",
           "textHan": "8 名散布武漢肺炎不實信息者被依法查處"
         },
@@ -80,6 +85,7 @@
           "areaType": "CHINA",
           "countryName": "中國",
           "counrtyCase": "?",
+          "worldCase": "？",
           "textEn": "",
           "textHan": "武漢醫院醫師李文亮因「在網際網路上發布不實言論」而被武漢市公安局提出警示和訓誡"
         },
@@ -94,6 +100,7 @@
           "areaType": "CHINA",
           "countryName": "中國",
           "counrtyCase": "?",
+          "worldCase": "？",
           "textEn": "",
           "textHan": "武漢累計 59 例不明肺炎，其中最早發病者發病時間為 2019 年 12 月 12 日"
         },
@@ -104,6 +111,7 @@
           "areaType": "WHO",
           "countryName": "WHO",
           "counrtyCase": "-",
+          "worldCase": "？",
           "textEn": "WHO does not recommend any specific measures for travellers, or any travel or trade restrictions. ",
           "textHan": "不建議限制任何旅遊和貿易"
         },
@@ -118,6 +126,7 @@
           "areaType": "CHINA",
           "countryName": "中國",
           "counrtyCase": "?",
+          "worldCase": "？",
           "textEn": "",
           "textHan": "出現首例武漢肺炎死亡案例，官方表示未發現明確人傳人證據"
         },
@@ -128,6 +137,7 @@
           "areaType": "TAIWAN",
           "countryName": "台灣",
           "counrtyCase": "0",
+          "worldCase": "？",
           "textEn": "",
           "textHan": "接獲中國通知，病原體初步判定為新型冠狀病毒，該病毒不同於以往發現的人類冠狀病毒"
         },
@@ -142,6 +152,7 @@
           "areaType": "WHO",
           "countryName": "WHO",
           "counrtyCase": "-",
+          "worldCase": "？",
           "textEn": "",
           "textHan": "不建議對來往武漢的民眾進行健康篩檢，這通常需要許多資源而且沒什麼優點，也不建議針對中國進行任何的旅遊或貿易限制"
         },
@@ -156,6 +167,7 @@
           "areaType": "CHINA",
           "countryName": "中國",
           "counrtyCase": "41",
+          "worldCase": "？",
           "textEn": "",
           "textHan": "武漢官方表示，自 2020 年 1 月 3 日沒發現新病例，且並未發現人傳人證據，也沒有醫護人員感染"
         },
@@ -170,6 +182,7 @@
           "areaType": "WHO",
           "countryName": "WHO",
           "counrtyCase": "-",
+          "worldCase": "？",
           "textEn": "",
           "textHan": "將造成武漢肺炎疫情的病毒命名為「 2019 新型冠狀病毒」（2019-nCOV）"
         }
@@ -192,6 +205,7 @@
           "areaType": "WHO",
           "countryName": "WHO",
           "counrtyCase": "-",
+          "worldCase": "？",
           "textEn": "Preliminary investigations conducted by the Chinese authorities have found no clear evidence of human-to-human transmission of the novel #coronavirus (2019-nCoV) identified in #Wuhan, #China🇨🇳.",
           "textHan": "根據中國官方調查，目前並無任何人傳人證據"
         },
@@ -202,6 +216,7 @@
           "areaType": "WORLD",
           "countryName": "泰國",
           "counrtyCase": "1",
+          "worldCase": "？",
           "textEn": "A tourist in Thailand has become the first person outside China diagnosed with a new, pneumonia-like virus that has already infected dozens of people.",
           "textHan": "一名來自中國武漢的女性被診斷出武漢肺炎。是第一位出現在中國以外的病例，據報已影響數十人"
         },
@@ -216,6 +231,7 @@
           "areaType": "WORLD",
           "countryName": "日本",
           "counrtyCase": "1",
+          "worldCase": "？",
           "textEn": "",
           "textHan": "神奈川縣確診首例日本個案，是一名從中國武漢返國的 30 歲男性"
         },
@@ -230,6 +246,7 @@
           "areaType": "CHINA",
           "countryName": "中國",
           "counrtyCase": "45",
+          "worldCase": "？",
           "textEn": "",
           "textHan": "武漢市百步亭社區舉辦「萬家宴」，四萬多個家庭端出自家料理共享"
         },
@@ -244,6 +261,7 @@
           "areaType": "CHINA",
           "countryName": "中國",
           "counrtyCase": "62",
+          "worldCase": "？",
           "textEn": "",
           "textHan": "官方媒體表示，Wuhan Virus（武漢病毒）疫情「可防可控」"
         },
@@ -258,6 +276,7 @@
           "areaType": "WORLD",
           "countryName": "南韓",
           "counrtyCase": "1",
+          "worldCase": "？",
           "textEn": "",
           "textHan": "訪韓中國旅客確診感染武漢肺炎，是一名居住在中國武漢的35歲女性"
         },
@@ -268,6 +287,7 @@
           "areaType": "CHINA",
           "countryName": "中國",
           "counrtyCase": "198",
+          "worldCase": "？",
           "textEn": "",
           "textHan": "新型冠狀病毒可人傳人，並已在醫護人員之間傳染"
         },
@@ -282,6 +302,7 @@
           "areaType": "TAIWAN",
           "countryName": "台灣",
           "counrtyCase": "1",
+          "worldCase": "282",
           "textEn": "",
           "textHan": "首例武漢肺炎確診，是一名曾在中國武漢工作的 50 多歲台商。即日起提升武漢旅遊疫情建議至第三級警告，提醒民眾如非必要應避免前往當地"
         },
@@ -292,6 +313,7 @@
           "areaType": "WORLD",
           "countryName": "美國",
           "counrtyCase": "1",
+          "worldCase": "282",
           "textEn": "",
           "textHan": "華盛頓州確診首例美國個案，該病患近期曾去中國武漢"
         },
@@ -306,6 +328,7 @@
           "areaType": "WHO",
           "countryName": "WHO",
           "counrtyCase": "-",
+          "worldCase": "314",
           "textEn": "",
           "textHan": "在疫情報告中將台灣納在中國轄下，稱為 Taiwan, China (中國台灣)"
         },
@@ -320,6 +343,7 @@
           "areaType": "WHO",
           "countryName": "WHO",
           "counrtyCase": "-",
+          "worldCase": "581",
           "textEn": "",
           "textHan": "在疫情報告中將台灣納在中國轄下，稱為 Taipei Municipality（台北直轄市)"
         },
@@ -330,6 +354,7 @@
           "areaType": "CHINA",
           "countryName": "中國",
           "counrtyCase": "571",
+          "worldCase": "581",
           "textEn": "",
           "textHan": "武漢市宣佈封城"
         }
@@ -352,6 +377,7 @@
           "areaType": "WHO",
           "countryName": "WHO",
           "counrtyCase": "-",
+          "worldCase": "581",
           "textEn": "",
           "textHan": "針對武漢肺炎疫情召開會議，認為疫情未達「國際關注公共衛生緊急事件（PHEIC）」，並感謝中國對疫情的控制"
         },
@@ -366,6 +392,7 @@
           "areaType": "TAIWAN",
           "countryName": "台灣",
           "counrtyCase": "1",
+          "worldCase": "846",
           "textEn": "",
           "textHan": "為確保口罩供應國內所需及確保國人健康，將管制口罩出口"
         },
@@ -376,6 +403,7 @@
           "areaType": "WHO",
           "countryName": "WHO",
           "counrtyCase": "-",
+          "worldCase": "846",
           "textEn": "For the moment, WHO does not recommend any broader restrictions on travel or trade.  We recommend exit screening at airports as part of a comprehensive set of containment measures",
           "textHan": "不建議限制更多的旅遊和貿易，建議可在機場設置檢疫措施"
         },
@@ -390,6 +418,7 @@
           "areaType": "CHINA",
           "countryName": "中國",
           "counrtyCase": "2,741",
+          "worldCase": "2,798",
           "textEn": "",
           "textHan": "武漢市長周先旺回應「沒有及時公佈疫情訊息」時表示，地方政府需要獲得中央授權才能披露疫情"
         },
@@ -404,6 +433,7 @@
           "areaType": "WHO",
           "countryName": "WHO",
           "counrtyCase": "-",
+          "worldCase": "4,593",
           "textEn": "We appreciate the seriousness with which China is taking this outbreak, especially the commitment from top leadership, and the transparency they have demonstrated, including sharing data and genetic sequence of the virus.",
           "textHan": "秘書長譚德塞赴中訪問習近平，並讚賞中國對防疫的重視，特別是高層領導和其展現的資訊透明程度"
         },
@@ -414,6 +444,7 @@
           "areaType": "WORLD",
           "countryName": "德國",
           "counrtyCase": "1",
+          "worldCase": "4,593",
           "textEn": "",
           "textHan": "德國出現首例武漢肺炎，據信是被從中國上海來的同事傳染"
         },
@@ -428,6 +459,7 @@
           "areaType": "WHO",
           "countryName": "WHO",
           "counrtyCase": "-",
+          "worldCase": "7,818",
           "textEn": "",
           "textHan": "根據現有資訊，不建議各國限制任何旅遊和貿易"
         },
@@ -438,6 +470,7 @@
           "areaType": "WORLD",
           "countryName": "南韓",
           "counrtyCase": "4",
+          "worldCase": "7,818",
           "textEn": "",
           "textHan": "向中國緊急提供 500 萬美元的防疫物資"
         },
@@ -448,6 +481,7 @@
           "areaType": "WHO",
           "countryName": "WHO",
           "counrtyCase": "-",
+          "worldCase": "7,818",
           "textEn": "",
           "textHan": "將疫情提升為「國際關注公共衛生緊急事件（PHEIC）」，並感謝中國高層的領導和政治承諾"
         },
@@ -462,6 +496,7 @@
           "areaType": "WORLD",
           "countryName": "英國",
           "counrtyCase": "2",
+          "worldCase": "9,826",
           "textEn": "",
           "textHan": "出現首兩位武漢肺炎病例"
         },
@@ -472,6 +507,7 @@
           "areaType": "WORLD",
           "countryName": "美國",
           "counrtyCase": "6",
+          "worldCase": "9,826",
           "textEn": "",
           "textHan": "宣布自 2 月 2 日起，禁止近 14 日內曾到訪過中國的外國人入境美國"
         },
@@ -482,6 +518,7 @@
           "areaType": "CHINA",
           "countryName": "中國",
           "counrtyCase": "9,720",
+          "worldCase": "9,826",
           "textEn": "",
           "textHan": "國家衛生健康委員會通報，確診病例首度突破萬，達 11,791 例"
         },
@@ -492,6 +529,7 @@
           "areaType": "TAIWAN",
           "countryName": "台灣",
           "counrtyCase": "9",
+          "worldCase": "9,826",
           "textEn": "",
           "textHan": "每日釋出約 260 萬片口罩供民生需求，140 萬片供醫療或公務防疫及儲備需求"
         },
@@ -518,6 +556,7 @@
           "areaType": "WORLD",
           "countryName": "南韓",
           "counrtyCase": "15",
+          "worldCase": "17,391",
           "textEn": "",
           "textHan": "首爾市政府表示，上月 13 至 25 日有 65 位中國武漢旅客下落不明"
         },
@@ -528,8 +567,9 @@
           "areaType": "CHINA",
           "countryName": "中國",
           "counrtyCase": "17,238",
+          "worldCase": "17,391",
           "textEn": "",
-          "textHan": "習近平在中央政治局常委會表示，要有效影響國際輿論，講好中國抗擊疫情故事，並加強網路媒體控管，讓網路充滿正能量"
+          "textHan": "主席習近平在中央政治局常委會表示，要有效影響國際輿論，講好中國抗擊疫情故事，並加強網路媒體控管，讓網路充滿正能ㄓ量"
         },
         {
           "type": "EVENT",
@@ -538,8 +578,9 @@
           "areaType": "CHINA",
           "countryName": "中國",
           "counrtyCase": "17,238",
+          "worldCase": "17,391",
           "textEn": "",
-          "textHan": "中方本著公開、透明和負責任的態度同WHO和國際社會加強合作，自 1 月 3 日起，共 30 次向美方通報疫情信息和防控措施，美國政府迄未向中方提供任何實質性幫助"
+          "textHan": "中方本著公開、透明和負責任的態度同 WHO 和國際社會加強合作，自 1 月 3 日起，共 30 次向美方通報疫情信息和防控措施，美國政府迄未向中方提供任何實質性幫助"
         },
         {
           "type": "TIME",
@@ -552,8 +593,9 @@
           "areaType": "TAIWAN",
           "countryName": "台灣",
           "counrtyCase": "10",
+          "worldCase": "20,630",
           "textEn": "",
-          "textHan": "WHO誤植台灣武漢肺炎確診數 13 例，且列在「台北，中國」項下，已表達抗議並要求更正確診數為 10 例及台灣名稱。"
+          "textHan": "WHO 誤植台灣武漢肺炎確診數 13 例，且列在「台北，中國」項下，已表達抗議並要求更正確診數為 10 例及台灣名稱"
         },
         {
           "type": "EVENT",
@@ -562,6 +604,7 @@
           "areaType": "WORLD",
           "countryName": "泰國",
           "counrtyCase": "19",
+          "worldCase": "20,630",
           "textEn": "",
           "textHan": "減少醫用口罩出口，防止國內供應短缺，並將口罩和洗手液列為管制商品"
         },
@@ -576,6 +619,7 @@
           "areaType": "WHO",
           "countryName": "WHO",
           "counrtyCase": "-",
+          "worldCase": "24,554",
           "textEn": "",
           "textHan": "宣告需要 6.75 億美金來對抗中國和世界各地的「新型冠狀病毒疫情」"
         },
@@ -586,6 +630,7 @@
           "areaType": "WHO",
           "countryName": "WHO",
           "counrtyCase": "-",
+          "worldCase": "24,554",
           "textEn": "",
           "textHan": "重申呼籲各國不用實施不必要的旅遊和貿易限制，會造成恐懼和污名且對防疫無益"
         },
@@ -596,6 +641,7 @@
           "areaType": "TAIWAN",
           "countryName": "台灣",
           "counrtyCase": "11",
+          "worldCase": "24,554",
           "textEn": "",
           "textHan": "因中國新型冠狀病毒肺炎個案已超過兩萬例，疫情指揮中心將暫緩中國人入境"
         },
@@ -606,6 +652,7 @@
           "areaType": "WHO",
           "countryName": "WHO",
           "counrtyCase": "-",
+          "worldCase": "24,554",
           "textEn": "",
           "textHan": "在疫情報告中將台灣納在中國轄下，並稱為 Taipei and environs (台北及周邊)"
         },
@@ -620,6 +667,7 @@
           "areaType": "TAIWAN",
           "countryName": "台灣",
           "counrtyCase": "11",
+          "worldCase": "28,276",
           "textEn": "",
           "textHan": "有中港澳旅遊史入境者，實施居家檢疫 14 天"
         },
@@ -630,8 +678,9 @@
           "areaType": "TAIWAN",
           "countryName": "台灣",
           "counrtyCase": "11",
+          "worldCase": "28,276",
           "textEn": "",
-          "textHan": "口罩販售實名制上路，建議健康民眾及一般學生無須戴口罩，請民眾將口罩留給需要的人，讓資源發揮最大效用。"
+          "textHan": "口罩販售實名制上路，建議健康民眾及一般學生無須戴口罩，請民眾將口罩留給需要的人，讓資源發揮最大效用"
         }
       ]
     },
@@ -652,6 +701,7 @@
           "areaType": "CHINA",
           "countryName": "中國",
           "counrtyCase": "31,211",
+          "worldCase": "31,481",
           "textEn": "",
           "textHan": "武漢醫院醫師李文亮感染新型冠狀病毒感染肺炎，於凌晨去世"
         },
@@ -666,6 +716,7 @@
           "areaType": "CHINA",
           "countryName": "中國",
           "counrtyCase": "34,598",
+          "worldCase": "34,886",
           "textEn": "",
           "textHan": "將「新型冠狀病毒感染的肺炎」暫命名為「新型冠狀病毒肺炎」，簡稱「新冠肺炎」"
         },
@@ -680,6 +731,7 @@
           "areaType": "WHO",
           "countryName": "WHO",
           "counrtyCase": "-",
+          "worldCase": "43,103",
           "textEn": "",
           "textHan": "將武漢肺炎命名為 COVID-19"
         },
@@ -694,6 +746,7 @@
           "areaType": "TAIWAN",
           "countryName": "台灣",
           "counrtyCase": "18",
+          "worldCase": "45,171",
           "textEn": "",
           "textHan": "經濟部宣布，口罩禁止出口、政府徵用口罩同步延長到 4 月底"
         },
@@ -708,6 +761,7 @@
           "areaType": "WORLD",
           "countryName": "法國",
           "counrtyCase": "11",
+          "worldCase": "50,580",
           "textEn": "",
           "textHan": "歐洲出現的首位死亡案例，是一名\b在法國停留的 80 歲中國男性"
         },
@@ -722,6 +776,7 @@
           "areaType": "CHINA",
           "countryName": "中國",
           "counrtyCase": "70,635",
+          "worldCase": "71,429",
           "textEn": "",
           "textHan": "中國武漢確診案例激增，出現醫護人員感染"
         },
@@ -732,8 +787,9 @@
           "areaType": "WHO",
           "countryName": "WHO",
           "counrtyCase": "-",
+          "worldCase": "71,429",
           "textEn": "",
-          "textHan": "秘書長譚德塞表示，採取「全面措施」來因應武漢肺炎疫情沒幫助。"
+          "textHan": "秘書長譚德塞表示，採取「全面措施」來因應武漢肺炎疫情沒幫助"
         },
         {
           "type": "TIME",
@@ -746,6 +802,7 @@
           "areaType": "TAIWAN",
           "countryName": "台灣",
           "counrtyCase": "22",
+          "worldCase": "73,332",
           "textEn": "",
           "textHan": "日本橫濱港的鑽石公主號郵輪確診病例共 445 人，我國籍旅客有 4 人確診，將包機返台隔離檢疫，該郵輪自即日起列為武漢肺炎感染區"
         },
@@ -760,6 +817,7 @@
           "areaType": "WORLD",
           "countryName": "義大利",
           "counrtyCase": "9",
+          "worldCase": "77,794",
           "textEn": "",
           "textHan": "歐洲出現首位因武漢肺炎死亡的當地人病例，該例為義大利的 77 歲男性"
         },
@@ -774,6 +832,7 @@
           "areaType": "CHINA",
           "countryName": "中國",
           "counrtyCase": "77,042",
+          "worldCase": "78,811",
           "textEn": "",
           "textHan": "官媒《環球時報》表示，有些國家防疫太慢，可以參考中國經驗"
         },
@@ -788,6 +847,7 @@
           "areaType": "TAIWAN",
           "countryName": "台灣",
           "counrtyCase": "28",
+          "worldCase": "79,331",
           "textEn": "",
           "textHan": "將南韓旅遊疫情升至第三級警告，非必要勿前往，如入境需進行 14 天居家檢疫"
         },
@@ -802,8 +862,9 @@
           "areaType": "WHO",
           "countryName": "WHO",
           "counrtyCase": "-",
+          "worldCase": "80,239",
           "textEn": "",
-          "textHan": "高級顧問 Bruce Aylward 在北京舉行記者會表示，世界欠了武漢人民"
+          "textHan": "高級顧問艾沃德（Bruce Aylward）在北京舉行記者會表示，世界欠了武漢人民"
         },
         {
           "type": "WARN",
@@ -822,6 +883,7 @@
           "areaType": "WORLD",
           "countryName": "南韓",
           "counrtyCase": "1,261",
+          "worldCase": "81,109",
           "textEn": "",
           "textHan": "實施口罩與洗手液緊急供需調整措施，規定口罩出口至多一成，五成以上用於公眾"
         },
@@ -832,8 +894,9 @@
           "areaType": "WHO",
           "countryName": "WHO",
           "counrtyCase": "-",
+          "worldCase": "81,109",
           "textEn": "",
-          "textHan": "高級顧問 Bruce Aylward 公開讚揚中國知道如何保護人民生命，表示自己若感染想在中國治療"
+          "textHan": "高級顧問艾沃德（Bruce Aylward）公開讚揚中國知道如何保護人民生命，表示自己若感染想在中國治療"
         },
         {
           "type": "TIME",
@@ -846,6 +909,7 @@
           "areaType": "TAIWAN",
           "countryName": "台灣",
           "counrtyCase": "32",
+          "worldCase": "82,294",
           "textEn": "",
           "textHan": "將義大利旅遊疫情升至第三級警告，非必要勿前往，如入境需進行 14 天居家檢疫"
         },
@@ -860,6 +924,7 @@
           "areaType": "WORLD",
           "countryName": "美國",
           "counrtyCase": "62",
+          "worldCase": "87,137",
           "textEn": "",
           "textHan": "出現首位死亡病例"
         },
@@ -880,6 +945,7 @@
           "areaType": "WHO",
           "countryName": "WHO",
           "counrtyCase": "-",
+          "worldCase": "90,869",
           "textEn": "",
           "textHan": "呼籲不要將病毒和地名或族裔連結，像是武漢病毒、中國病毒或亞洲病毒"
         },
@@ -894,8 +960,9 @@
           "areaType": "WORLD",
           "countryName": "俄羅斯",
           "counrtyCase": "3",
+          "worldCase": "93,091",
           "textEn": "",
-          "textHan": "禁止包括口罩、塑膠鞋套、手套、外科刷手消毒液、防毒面具、防護服等17種醫療用品出口"
+          "textHan": "禁止包括口罩、塑膠鞋套、手套、外科刷手消毒液、防毒面具、防護服等 17 種醫療用品出口"
         },
         {
           "type": "EVENT",
@@ -904,6 +971,7 @@
           "areaType": "WORLD",
           "countryName": "德國",
           "counrtyCase": "196",
+          "worldCase": "93,091",
           "textEn": "",
           "textHan": "禁止輸出各類醫療防護用品，例如口罩、手套和隔離衣等，但國際援助任務不在此限"
         }
@@ -912,7 +980,7 @@
     {
       "head": {
         "textEn": "",
-        "textHan": "全球確診數在一個月內突破100萬名病例，多位國際名人確診"
+        "textHan": "全球確診數在一個月內突破 100 萬名病例，多位國際名人確診"
       },
       "cards": [
         {
@@ -932,8 +1000,9 @@
           "areaType": "WHO",
           "countryName": "WHO",
           "counrtyCase": "-",
+          "worldCase": "101,927",
           "textEn": "",
-          "textHan": "秘書長譚德塞感謝中國捐贈約 6 億台幣給世界衛生組織共同對抗武漢肺炎。當天 WHO 也仍拒絕宣布疫情已進入「大流行（pandemics）」階段。認為一旦宣布可能會令全球受到驚嚇，並使部分國家放棄防疫。"
+          "textHan": "秘書長譚德塞感謝中國捐贈約 6 億台幣給 WHO 共同對抗武漢肺炎。當天 WHO 也仍拒絕宣布疫情已進入「大流行（pandemics）」階段。認為一旦宣布可能會令全球受到驚嚇，並使部分國家放棄防疫"
         },
         {
           "type": "TIME",
@@ -946,8 +1015,9 @@
           "areaType": "CHINA",
           "countryName": "中國",
           "counrtyCase": "80,859",
+          "worldCase": "105,586",
           "textEn": "",
-          "textHan": "赴中國考察專家組負責人 Bruce Aylward：全世界真的欠了武漢人民的情，我想讓武漢人民知道，世界知道你們所做的貢獻"
+          "textHan": "赴中國考察專家組負責人艾沃德（ Bruce Aylward）：全世界真的欠了武漢人民的情，我想讓武漢人民知道，世界知道你們所做的貢獻"
         },
         {
           "type": "TIME",
@@ -960,6 +1030,7 @@
           "areaType": "WHO",
           "countryName": "WHO",
           "counrtyCase": "-",
+          "worldCase": "118,319",
           "textEn": "COVID-19 can be characterized as a pandemic. ",
           "textHan": "宣告 COVID-19 疫情為「全球大流行（pandemics）」"
         },
@@ -974,6 +1045,7 @@
           "areaType": "CHINA",
           "countryName": "中國",
           "counrtyCase": "80,981",
+          "worldCase": "125,260",
           "textEn": "",
           "textHan": "中國外交部發言人趙立堅稱，可能是美軍把肺炎疫情帶到武漢：「美國欠我們一個解釋」"
         },
@@ -988,6 +1060,7 @@
           "areaType": "WORLD",
           "countryName": "澳洲",
           "counrtyCase": "140",
+          "worldCase": "132,758",
           "textEn": "",
           "textHan": "好萊塢名人湯姆漢克斯（Tom Hanks）和妻子在澳洲拍片時一起確診"
         },
@@ -998,6 +1071,7 @@
           "areaType": "CHINA",
           "countryName": "中國",
           "counrtyCase": "80,991",
+          "worldCase": "132,758",
           "textEn": "",
           "textHan": "《南華早報》報導，中國最早案例可追溯到 2019/11/17"
         },
@@ -1012,8 +1086,9 @@
           "areaType": "WORLD",
           "countryName": "西班牙",
           "counrtyCase": "5,753",
+          "worldCase": "153,517",
           "textEn": "",
-          "textHan": "總理夫人確診，全國因武漢肺炎封鎖15天"
+          "textHan": "總理夫人確診，全國因武漢肺炎封鎖 15 天"
         },
         {
           "type": "TIME",
@@ -1026,8 +1101,9 @@
           "areaType": "WHO",
           "countryName": "WHO",
           "counrtyCase": "-",
+          "worldCase": "167,515",
           "textEn": "",
-          "textHan": "從 3/16 之後的官方疫情報告中找不到台灣或台北的病例數"
+          "textHan": "台灣的確診病例數從官方疫情報告中消失"
         },
         {
           "type": "WARN",
@@ -1046,6 +1122,7 @@
           "areaType": "CHINA",
           "countryName": "中國",
           "counrtyCase": "81,174",
+          "worldCase": "209,839",
           "textEn": "",
           "textHan": "宣稱湖北新增確診病例為 0"
         },
@@ -1060,6 +1137,7 @@
           "areaType": "TAIWAN",
           "countryName": "台灣",
           "counrtyCase": "135",
+          "worldCase": "234,073",
           "textEn": "",
           "textHan": "全球旅遊疫情升至第三級警告，國人應避免所有非必要之出國旅遊，自國外入境者需進行14天居家檢疫"
         },
@@ -1074,6 +1152,7 @@
           "areaType": "WORLD",
           "countryName": "紐西蘭",
           "counrtyCase": "189",
+          "worldCase": "413,467",
           "textEn": "",
           "textHan": "總理阿爾登（Jacinda Ardern）宣布進入全國緊急狀態，於晚間 11:59 開始全面封鎖，防止疫情擴散"
         },
@@ -1084,6 +1163,7 @@
           "areaType": "WORLD",
           "countryName": "英國",
           "counrtyCase": "8,081",
+          "worldCase": "413,467",
           "textEn": "",
           "textHan": "王儲查爾斯王子（Charles, Prince of Wales）確診 "
         },
@@ -1098,6 +1178,7 @@
           "areaType": "CHINA",
           "countryName": "中國",
           "counrtyCase": "81,961",
+          "worldCase": "462,684",
           "textEn": "",
           "textHan": "WHO 秘書長譚德塞感謝中國金援抗疫，習近平高度讚賞譚徳塞：「在你的帶領下，世界衛生組織積極推動抗擊疫情國際合作，得到國際社會廣泛認可。」"
         },
@@ -1118,8 +1199,20 @@
           "areaType": "WORLD",
           "countryName": "英國",
           "counrtyCase": "11,662",
+          "worldCase": "509,164",
           "textEn": "",
-          "textHan": "首相強森（Boris Johnson）確診"
+          "textHan": "首相強森確診"
+        },
+        {
+          "type": "EVENT",
+          "postion": "right",
+          "date": "20200327",
+          "areaType": "WORLD",
+          "countryName": "日本",
+          "counrtyCase": "1,387",
+          "worldCase": "509,164",
+          "textEn": "",
+          "textHan": "副首相麻生：所以有很多人說，應該把 WHO 改稱為 CHO（中國衛生組織）"
         },
         {
           "type": "TIME",
@@ -1132,8 +1225,9 @@
           "areaType": "WHO",
           "countryName": "WHO",
           "counrtyCase": "-",
+          "worldCase": "571,659",
           "textEn": "",
-          "textHan": "Bruce Aylward 視訊訪問被問及 WHO 是否重新考慮接納台灣時，他先裝作沒聽見，接著疑似切斷視訊"
+          "textHan": "高級顧問艾沃德（Bruce Aylward）視訊訪問被問及 WHO 是否重新考慮接納台灣時，他先裝作沒聽見，接著疑似切斷視訊"
         },
         {
           "type": "WARN",
@@ -1152,6 +1246,7 @@
           "areaType": "WORLD",
           "countryName": "日本",
           "counrtyCase": "1,866",
+          "worldCase": "693,282",
           "textEn": "",
           "textHan": "東京奧運宣佈延期至 2021 年 7 月"
         },
@@ -1162,8 +1257,9 @@
           "areaType": "WORLD",
           "countryName": "日本",
           "counrtyCase": "1,866",
+          "worldCase": "693,282",
           "textEn": "",
-          "textHan": "日本諧星志村健染疫去世，享年 70 歲"
+          "textHan": "諧星志村健染疫去世，享年 70 歲"
         },
         {
           "type": "EVENT",
@@ -1172,8 +1268,20 @@
           "areaType": "WHO",
           "countryName": "WHO",
           "counrtyCase": "-",
+          "worldCase": "693,282",
           "textEn": "",
-          "textHan": "突發衛生事件執行主任 Mike Ryan 在日內瓦的記者會宣稱：「目前沒有確切證據證明大眾戴口罩可能帶來好處。」並稱有證據顯示若戴口罩方式不當，可能帶來反效果"
+          "textHan": "秘書長譚德塞感謝中國捐贈約 6 億台幣給 WHO 共同對抗武漢肺炎"
+        },
+        {
+          "type": "EVENT",
+          "postion": "left",
+          "date": "20200330",
+          "areaType": "WHO",
+          "countryName": "WHO",
+          "counrtyCase": "-",
+          "worldCase": "693,282",
+          "textEn": "",
+          "textHan": "WHO 仍拒絕宣布疫情已進入「大流行（pandemics）」階段"
         },
         {
           "type": "WARN",
@@ -1204,23 +1312,24 @@
           "areaType": "WORLD",
           "countryName": "美國",
           "counrtyCase": "241,703",
+          "worldCase": "1,051,697",
           "textEn": "",
-          "textHan": "川普指示，政府停止出口 N95 口罩及其他個人防護裝備到其他國家"
-        },
-        {
-          "type": "WARN",
-          "date": "20200408",
-          "textEn": "",
-          "textHan": "德國確診數突破 10 萬（103,228）例"
+          "textHan": "總統川普指示，政府停止出口 N95 口罩及其他個人防護裝備到其他國家"
         }
       ]
     },
     {
       "head": {
         "textEn": "",
-        "textHan": "WHO 秘書長譚德塞公開直指台灣歧視他的種族身份，而外界也對 WHO 面對疫情的作為發表評論"
+        "textHan": "WHO 秘書長譚德塞公開直指台灣歧視他的種族身份，外界也對 WHO 面對疫情的作為發表評論"
       },
       "cards": [
+        {
+          "type": "WARN",
+          "date": "20200408",
+          "textEn": "",
+          "textHan": "德國確診數突破 10 萬（103,228）例"
+        },
         {
           "type": "TIME",
           "date": "20200408"
@@ -1232,6 +1341,7 @@
           "areaType": "WHO",
           "countryName": "WHO",
           "counrtyCase": "-",
+          "worldCase": "1,353,361",
           "textEn": "",
           "textHan": "秘書長譚德塞：台灣在 3 個月前開始以人身攻擊、種族歧視攻擊我"
         },
@@ -1246,6 +1356,7 @@
           "areaType": "TAIWAN",
           "countryName": "台灣",
           "counrtyCase": "380",
+          "worldCase": "1,436,198",
           "textEn": "",
           "textHan": "總統蔡英文：台灣向來反對任何形式的歧視，我們長年被排除在國際組織之外，比誰都知道被歧視和孤立是什麼滋味"
         },
@@ -1266,6 +1377,7 @@
           "areaType": "WORLD",
           "countryName": "德國",
           "counrtyCase": "113,525",
+          "worldCase": "1,521,252",
           "textEn": "",
           "textHan": "入境德國需強制隔離 14 天"
         },
@@ -1276,6 +1388,7 @@
           "areaType": "WHO",
           "countryName": "WHO",
           "counrtyCase": "-",
+          "worldCase": "1,521,252",
           "textEn": "",
           "textHan": "否認台灣曾警告武漢肺炎可能人傳人"
         },
@@ -1286,6 +1399,7 @@
           "areaType": "TAIWAN",
           "countryName": "台灣",
           "counrtyCase": "382",
+          "worldCase": "1,521,252",
           "textEn": "",
           "textHan": "回應 WHO，2019 年底我國尚未有病例，無法明示該疾病已人傳人。但強調非典型肺炎特性且病患均隔離治療，公衛專業人員即能由此研判該等病例有「人傳人」的可能"
         },
@@ -1312,8 +1426,9 @@
           "areaType": "WORLD",
           "countryName": "美國",
           "counrtyCase": "524,514",
+          "worldCase": "1,773,084",
           "textEn": "",
-          "textHan": "總統川普回應疫情來自美軍一說：「我們都知道它（武漢肺炎）從哪裡來」"
+          "textHan": "總統川普回應疫情來自美軍一說：我們都知道它（武漢肺炎）從哪裡來"
         },
         {
           "type": "TIME",
@@ -1326,6 +1441,7 @@
           "areaType": "TAIWAN",
           "countryName": "台灣",
           "counrtyCase": "393",
+          "worldCase": "1,844,863",
           "textEn": "",
           "textHan": "台灣民間集資刊登紐約時報廣告 #TaiwanCanHelp ，向世界發聲台灣對世界的貢獻與努力不該被漠視"
         },
@@ -1336,6 +1452,7 @@
           "areaType": "WORLD",
           "countryName": "美國",
           "counrtyCase": "553,822",
+          "worldCase": "1,844,863",
           "textEn": "Today I’m instructing my administration to halt funding of the World Health Organization while a review is conducted to assess the World Health Organization’s role in severely mismanaging and covering up the spread of the coronavirus.  Everybody knows what’s going on there.",
           "textHan": "總統川普：指示美國政府停止對 WHO 的資助"
         },
@@ -1346,6 +1463,7 @@
           "areaType": "TAIWAN",
           "countryName": "台灣",
           "counrtyCase": "393",
+          "worldCase": "1,844,863",
           "textEn": "",
           "textHan": "自 3/9 以來，首次無新增病例"
         },
@@ -1366,8 +1484,9 @@
           "areaType": "WORLD",
           "countryName": "日本",
           "counrtyCase": "8,582",
+          "worldCase": "1,991,562",
           "textEn": "",
-          "textHan": "日本全國進入緊急狀態"
+          "textHan": "全國進入緊急狀態"
         },
         {
           "type": "EVENT",
@@ -1376,6 +1495,7 @@
           "areaType": "WORLD",
           "countryName": "德國",
           "counrtyCase": "134,753",
+          "worldCase": "1,991,562",
           "textEn": "",
           "textHan": "最大報《畫報》大篇幅批判習近平和中國應對武漢肺炎疫情蔓延負責"
         },
@@ -1390,7 +1510,7 @@
     {
       "head": {
         "textEn": "",
-        "textHan": "各國官員質疑WHO能力，並對中國喊話"
+        "textHan": "各國官員質疑 WHO 能力，並對中國喊話"
       },
       "cards": [
         {
@@ -1410,18 +1530,9 @@
           "areaType": "WORLD",
           "countryName": "英國",
           "counrtyCase": "103,097",
+          "worldCase": "2,074,529",
           "textEn": "",
-          "textHan": "外交大臣 Dominic Raab：未來可能對中國進行清算"
-        },
-        {
-          "type": "EVENT",
-          "postion": "right",
-          "date": "20200417",
-          "areaType": "WORLD",
-          "countryName": "英國",
-          "counrtyCase": "103,097",
-          "textEn": "UK Foreign Secretary Dominic Raab told a news conference on Thursday that \"hard questions\" would have be asked about how the outbreak started \"and how it couldn't have been stopped earlier\".  He said there would have to be a \"deep dive\" into how the virus was able to spread from China and said it could not be \"business as usual\" after the crisis.",
-          "textHan": "英國外交大臣：必須深入研究病毒如何從中國開始傳播"
+          "textHan": "外交大臣 Dominic Raab：未來可能對中國進行清算；必須深入研究病毒如何從中國開始傳播"
         },
         {
           "type": "EVENT",
@@ -1430,6 +1541,7 @@
           "areaType": "CHINA",
           "countryName": "中國",
           "counrtyCase": "84,149",
+          "worldCase": "2,074,529",
           "textEn": "",
           "textHan": "武漢市大幅訂正病例數，並增加 1,290 確診死亡病例，剛好為原先死亡人數的 50%"
         },
@@ -1440,8 +1552,9 @@
           "areaType": "CHINA",
           "countryName": "中國",
           "counrtyCase": "84,149",
+          "worldCase": "2,074,529",
           "textEn": "",
-          "textHan": "堅定支持WHO領導抗疫，反對削弱WHO行為"
+          "textHan": "堅定支持 WHO 領導抗疫，反對削弱 WHO 行為"
         },
         {
           "type": "EVENT",
@@ -1450,6 +1563,7 @@
           "areaType": "WORLD",
           "countryName": "法國",
           "counrtyCase": "107,778",
+          "worldCase": "2,074,529",
           "textEn": "Let’s not be so naive as to say it’s been much better at handling this. There are clearly things that have happened that we don’t know about",
           "textHan": "總統馬克宏談中國疫情控制：別天真了，顯然發生了一些我們不知道的事情"
         },
@@ -1460,8 +1574,9 @@
           "areaType": "WORLD",
           "countryName": "美國",
           "counrtyCase": "632,781",
+          "worldCase": "2,074,529",
           "textEn": "Trump: Why did the W.H.O. Ignore an email from Taiwanese health officials in late December alerting them to the possibility that CoronaVirus could be transmitted between humans? ",
-          "textHan": "川普質問 WHO：為何忽略台灣曾提出武漢肺炎病毒可能人傳人的警告？"
+          "textHan": "總統川普質問 WHO：為何忽略台灣曾提出武漢肺炎病毒可能人傳人的警告？"
         },
         {
           "type": "EVENT",
@@ -1470,6 +1585,7 @@
           "areaType": "WHO",
           "countryName": "WHO",
           "counrtyCase": "-",
+          "worldCase": "2,074,529",
           "textEn": "",
           "textHan": "對於中國武漢調高 50% 死亡病例，WHO 表示武漢在疫情爆發醫療能量不足，現在重新比對資料才能補完數據"
         },
@@ -1484,6 +1600,7 @@
           "areaType": "TAIWAN",
           "countryName": "台灣",
           "counrtyCase": "398",
+          "worldCase": "2,160,207",
           "textEn": "",
           "textHan": "疫情指揮中心宣布，台灣海軍艦隊上出現武漢肺炎確診案例"
         },
@@ -1492,30 +1609,6 @@
           "date": "20200419",
           "textEn": "",
           "textHan": "日本確診數突破 1 萬（10,361）例"
-        },
-        {
-          "type": "TIME",
-          "date": "20200420"
-        },
-        {
-          "type": "EVENT",
-          "postion": "right",
-          "date": "20200420",
-          "areaType": "WORLD",
-          "countryName": "俄羅斯",
-          "counrtyCase": "42,853",
-          "textEn": "",
-          "textHan": "在過去 24小 時內，增加 6,060 名確診病例"
-        },
-        {
-          "type": "EVENT",
-          "postion": "right",
-          "date": "20200420",
-          "areaType": "WORLD",
-          "countryName": "俄羅斯",
-          "counrtyCase": "42,853",
-          "textEn": "",
-          "textHan": "總統普丁：我們的朋友（中國）在二月遇到困難時，俄羅斯送了 200 萬個口罩，現在我們收到 1.5 億個來自中國的口罩"
         },
         {
           "type": "TIME",
@@ -1528,6 +1621,7 @@
           "areaType": "WORLD",
           "countryName": "土耳其",
           "counrtyCase": "90,980",
+          "worldCase": "2,397,217",
           "textEn": "",
           "textHan": "累計病例數突破 9 萬例，宣布 31 個省自 23日凌晨起封鎖 4 天"
         },
@@ -1538,6 +1632,7 @@
           "areaType": "WHO",
           "countryName": "WHO",
           "counrtyCase": "-",
+          "worldCase": "2,397,217",
           "textEn": "",
           "textHan": "秘書長譚德塞：疫情通報最早來自中國"
         },
@@ -1548,6 +1643,7 @@
           "areaType": "WORLD",
           "countryName": "德國",
           "counrtyCase": "143,457",
+          "worldCase": "2,397,217",
           "textEn": "",
           "textHan": "總理梅克爾呼籲中國，透明面對武漢肺炎病毒源頭問題"
         },
@@ -1562,6 +1658,7 @@
           "areaType": "WHO",
           "countryName": "WHO",
           "counrtyCase": "-",
+          "worldCase": "2,471,136",
           "textEn": "",
           "textHan": "秘書長譚德塞：我認為我們在正確的時機宣告公共衛生緊急事件，當時全世界有足夠時間去因應"
         },
@@ -1572,6 +1669,7 @@
           "areaType": "WORLD",
           "countryName": "美國",
           "counrtyCase": "776,907",
+          "worldCase": "2,471,136",
           "textEn": "",
           "textHan": "密蘇里州提告中國隱匿疫情"
         },
@@ -1592,8 +1690,15 @@
           "areaType": "CHINA",
           "countryName": "中國",
           "counrtyCase": "84,302",
+          "worldCase": "2,544,792",
           "textEn": "",
           "textHan": "對 WHO 增加 3000 萬美元的現匯捐款，用於新冠肺炎疫情防控、支持發展中國家衛生體系建設等工作"
+        },
+        {
+          "type": "WARN",
+          "date": "20200424",
+          "textEn": "",
+          "textHan": "土耳其確診數突破 10 萬（101,790）例"
         },
         {
           "type": "TIME",
@@ -1606,18 +1711,9 @@
           "areaType": "WORLD",
           "countryName": "美國",
           "counrtyCase": "830,053",
+          "worldCase": "2,626,321",
           "textEn": "",
-          "textHan": "國務卿：若這個組織（WHO）拿不出美國要的成果，美方將會與世界各地夥伴合作，創造一個能確實達成預期目的的架構、形式及治理模式 "
-        },
-        {
-          "type": "EVENT",
-          "postion": "left",
-          "date": "20200424",
-          "areaType": "",
-          "countryName": "",
-          "counrtyCase": "",
-          "textEn": "",
-          "textHan": "土耳其確診數突破 10 萬（101,790）例"
+          "textHan": "國務卿蓬佩奧（Mike Pompeo）：如果 WHO 拿不出美國要的成果，美方將會與世界各地夥伴合作，創造一個能確實達成預期目的的架構、形式及治理模式"
         },
         {
           "type": "TIME",
@@ -1630,8 +1726,9 @@
           "areaType": "WORLD",
           "countryName": "加拿大",
           "counrtyCase": "42,739",
+          "worldCase": "2,719,896",
           "textEn": "",
-          "textHan": "加拿大公共衛生署：從中國進口的 100 萬個 KN95 口罩未達嚴格的標準，因此無法供給前線防疫的醫護人員使用。 "
+          "textHan": "加拿大公共衛生署：從中國進口的 100 萬個 KN95 口罩未達嚴格的標準，因此無法供給前線防疫的醫護人員使用"
         },
         {
           "type": "EVENT",
@@ -1640,6 +1737,7 @@
           "areaType": "WHO",
           "countryName": "WHO",
           "counrtyCase": "-",
+          "worldCase": "2,719,896",
           "textEn": "",
           "textHan": "WHO 與多國合作研發武漢肺炎疫苗試劑，美國拒絕參加"
         },
@@ -1654,6 +1752,7 @@
           "areaType": "WORLD",
           "countryName": "歐盟",
           "counrtyCase": "-",
+          "worldCase": "2,804,796",
           "textEn": "",
           "textHan": "對四款中國製的口罩發布「嚴重警示」通報，強調不符標準、過濾能力不足"
         },
@@ -1668,8 +1767,15 @@
           "areaType": "CHINA",
           "countryName": "中國",
           "counrtyCase": "84,341",
+          "worldCase": "2,878,196",
           "textEn": "",
           "textHan": "湖北省健委會：截至 4 月 27 日，全省現有確診病例 0 例，現有疑似病例 0 例"
+        },
+        {
+          "type": "WARN",
+          "date": "20200428",
+          "textEn": "",
+          "textHan": "全球死亡數突破 20萬（202,597）例"
         },
         {
           "type": "TIME",
@@ -1682,14 +1788,9 @@
           "areaType": "WHO",
           "countryName": "WHO",
           "counrtyCase": "-",
+          "worldCase": "2,954,222",
           "textEn": "",
-          "textHan": "秘書長譚德塞：聽從 WHO 建議的國家，比其它國家有能力防疫。WHO 給予的是基於科學實證的建議，各國可以接受或不接受，最終是各國要承擔自己的責任"
-        },
-        {
-          "type": "WARN",
-          "date": "20200428",
-          "textEn": "",
-          "textHan": "全球死亡數突破 20萬（202,597）例"
+          "textHan": "秘書長譚德塞：WHO 給予的是基於科學實證的建議，各國可以接受或不接受，最終是各國要承擔自己的責任"
         },
         {
           "type": "WARN",
@@ -1720,6 +1821,7 @@
           "areaType": "WHO",
           "countryName": "WHO",
           "counrtyCase": "-",
+          "worldCase": "3,175,207",
           "textEn": "",
           "textHan": "駐中國代表蓋立（Gauden Galea）受訪時表示中國多次拒絕 WHO 參與武漢肺炎來源的調查"
         },
@@ -1730,8 +1832,9 @@
           "areaType": "CHINA",
           "countryName": "中國",
           "counrtyCase": "84,385",
+          "worldCase": "3,175,207",
           "textEn": "",
-          "textHan": "湖北疫情應變級別調降，全中國解除一級警戒"
+          "textHan": "湖北下調疫情應變級別，全中國解除一級警戒"
         },
         {
           "type": "EVENT",
@@ -1740,9 +1843,18 @@
           "areaType": "WHO",
           "countryName": "WHO",
           "counrtyCase": "-",
+          "worldCase": "3,175,207",
           "textEn": "",
           "textHan": "宣布維持武漢肺炎為「國際關注公共衛生緊急事件（PHEIC）」"
-        },
+        }
+      ]
+    },
+    {
+      "head": {
+        "textEn": "",
+        "textHan": "各國力挺台灣參與世界衛生大會（WHA）"
+      },
+      "cards": [
         {
           "type": "TIME",
           "date": "20200502"
@@ -1754,6 +1866,7 @@
           "areaType": "WORLD",
           "countryName": "美國",
           "counrtyCase": "1,340,591",
+          "worldCase": "3,267,184",
           "textEn": "",
           "textHan": "「國務院及駐聯合國代表團」在推特發起 #TweetForTaiwan，力挺台灣參加 WHA"
         },
@@ -1768,6 +1881,7 @@
           "areaType": "WORLD",
           "countryName": "歐盟",
           "counrtyCase": "-",
+          "worldCase": "3,435,894",
           "textEn": "",
           "textHan": "為研發武漢肺炎疫苗發起募資 75 億美元的募款"
         },
@@ -1776,6 +1890,21 @@
           "date": "20200505",
           "textEn": "",
           "textHan": "巴西確診數突破 10 萬（101,147）例"
+        },
+        {
+          "type": "TIME",
+          "date": "20200505"
+        },
+        {
+          "type": "EVENT",
+          "postion": "right",
+          "date": "20200505",
+          "areaType": "WORLD",
+          "countryName": "紐西蘭",
+          "counrtyCase": "1,137",
+          "worldCase": "3,517,345",
+          "textEn": "",
+          "textHan": "副總理兼外交部長皮特斯（Winston Peters）表示，可能將台灣、韓國、新加坡納入紐澳隔離圈，但現階段尚不考慮中國"
         },
         {
           "type": "TIME",
@@ -1788,18 +1917,9 @@
           "areaType": "TAIWAN",
           "countryName": "台灣",
           "counrtyCase": "439",
+          "worldCase": "3,588,773",
           "textEn": "",
           "textHan": "國光生技研發武漢肺炎疫苗，目前動物試驗結果優良，目標下半年啟動人體試驗"
-        },
-        {
-          "type": "EVENT",
-          "postion": "right",
-          "date": "20200506",
-          "areaType": "WORLD",
-          "countryName": "法國",
-          "counrtyCase": "",
-          "textEn": "",
-          "textHan": "法國製藥商 Sanofi SA 表示，將在全球招募數千名受試者，與英國製藥商 GlaxoSmithKline Plc 合作開發武漢肺炎疫苗"
         },
         {
           "type": "TIME",
@@ -1811,7 +1931,8 @@
           "date": "20200507",
           "areaType": "CHINA",
           "countryName": "中國",
-          "counrtyCase": "",
+          "counrtyCase": "84,409",
+          "worldCase": "3,672,238",
           "textEn": "",
           "textHan": "國家衛健委發言人米鋒宣布，全國所有縣級行政區疫情降為低風險"
         },
@@ -1825,9 +1946,10 @@
           "date": "20200509",
           "areaType": "WORLD",
           "countryName": "美國",
-          "counrtyCase": "",
+          "counrtyCase": "1,193,452",
+          "worldCase": "3,855,809",
           "textEn": "",
-          "textHan": "參眾兩院的外交事務委員會領袖致函給近 60 個國家，呼籲他們支持台灣參加世界衛生組織"
+          "textHan": "參眾兩院的外交事務委員會領袖致函給近 60 個國家，呼籲他們支持台灣參加 WHO"
         },
         {
           "type": "WARN",
@@ -1845,9 +1967,176 @@
           "date": "20200512",
           "areaType": "CHINA",
           "countryName": "中國",
-          "counrtyCase": "",
+          "counrtyCase": "84,451",
+          "worldCase": "4,088,848",
           "textEn": "",
           "textHan": "武漢全市推動為期十天的全民篩檢"
+        },
+        {
+          "type": "TIME",
+          "date": "20200513"
+        },
+        {
+          "type": "EVENT",
+          "postion": "left",
+          "date": "20200513",
+          "areaType": "CHINA",
+          "countryName": "中國",
+          "counrtyCase": "84,458",
+          "worldCase": "4,170,424",
+          "textEn": "",
+          "textHan": "吉林省吉林市爆發群聚感染，宣布封城"
+        },
+        {
+          "type": "TIME",
+          "date": "20200514"
+        },
+        {
+          "type": "EVENT",
+          "postion": "right",
+          "date": "20200514",
+          "areaType": "WORLD",
+          "countryName": "歐盟",
+          "counrtyCase": "-",
+          "worldCase": "4,248,389",
+          "textEn": "",
+          "textHan": "歐洲議會和歐盟國會議員 100 多人聯名致函歐盟 27 個會員國衛生部長，呼籲 WHO 邀請台灣衛福部長陳時中參加 WHA"
+        },
+        {
+          "type": "EVENT",
+          "postion": "right",
+          "date": "20200514",
+          "areaType": "WORLD",
+          "countryName": "美國",
+          "counrtyCase": "1,340,098",
+          "worldCase": "4,248,389",
+          "textEn": "",
+          "textHan": "中央情報局（CIA）報告，中國 1 月間試圖阻止 WHO 對武漢肺炎疫情提出示警，卻在同時間暗囤醫療物資"
+        },
+        {
+          "type": "WARN",
+          "date": "20200516",
+          "textEn": "",
+          "textHan": "全球死亡數突破 30 萬（302,059）例"
+        },
+        {
+          "type": "TIME",
+          "date": "20200516"
+        },
+        {
+          "type": "EVENT",
+          "postion": "right",
+          "date": "20200516",
+          "areaType": "WORLD",
+          "countryName": "德國",
+          "counrtyCase": "173,772",
+          "worldCase": "4,425,485",
+          "textEn": "",
+          "textHan": "議員雷赫特（Ulrich Lechte）：如果台灣是 WHA 觀察員，疫情可能就不會這麼嚴重"
+        },
+        {
+          "type": "EVENT",
+          "postion": "left",
+          "date": "20200516",
+          "areaType": "CHINA",
+          "countryName": "中國",
+          "counrtyCase": "84,478",
+          "worldCase": "4,425,485",
+          "textEn": "",
+          "textHan": "國家衛健委科教司監察專員劉登峰表示，中國曾在 1 月初銷毀引發武漢肺炎疫情的病毒樣本，理由是要確保生物安全"
+        },
+        {
+          "type": "EVENT",
+          "postion": "right",
+          "date": "20200516",
+          "areaType": "WORLD",
+          "countryName": "美國",
+          "counrtyCase": "1,382,362",
+          "worldCase": "4,425,485",
+          "textEn": "",
+          "textHan": "取得中國人民解放軍國防科技大學外流的新資料，內容顯示中國武漢肺炎病例可能多達 64 萬例"
+        },
+        {
+          "type": "TIME",
+          "date": "20200517"
+        },
+        {
+          "type": "EVENT",
+          "postion": "left",
+          "date": "20200517",
+          "areaType": "CHINA",
+          "countryName": "中國",
+          "counrtyCase": "84,484",
+          "worldCase": "4,525,497",
+          "textEn": "",
+          "textHan": "防疫專家鍾南山表示，爆發第二波疫情的風險愈來愈大，武漢地方政府在疫情爆發之初曾隱瞞關鍵資訊"
+        }
+      ]
+    },
+    {
+      "head": {
+        "textEn": "",
+        "textHan": "WHO 召開 WHA，台灣未受到邀請"
+      },
+      "cards": [
+        {
+          "type": "TIME",
+          "date": "20200518"
+        },
+        {
+          "type": "EVENT",
+          "postion": "right",
+          "date": "20200518",
+          "areaType": "WORLD",
+          "countryName": "澳洲",
+          "counrtyCase": "-",
+          "worldCase": "4,618,821",
+          "textEn": "",
+          "textHan": "呼籲 WHO 就武漢肺炎疫情進行獨立調查，122 國支持，引來中國反對"
+        },
+        {
+          "type": "EVENT",
+          "postion": "right",
+          "date": "20200518",
+          "areaType": "TAIWAN",
+          "countryName": "台灣",
+          "counrtyCase": "440",
+          "worldCase": "4,618,821",
+          "textEn": "",
+          "textHan": "衛生福利部長陳時中對於台灣未收到 WHA 邀請函表達遺憾跟不滿，並向 WHO 秘書處遞交抗議函"
+        },
+        {
+          "type": "EVENT",
+          "postion": "left",
+          "date": "20200518",
+          "areaType": "WHO",
+          "countryName": "WHO",
+          "counrtyCase": "-",
+          "worldCase": "4,618,821",
+          "textEn": "",
+          "textHan": "秘書長譚德塞邀請中國國家主席習近平在 WHA 開幕式致辭"
+        },
+        {
+          "type": "EVENT",
+          "postion": "left",
+          "date": "20200518",
+          "areaType": "CHINA",
+          "countryName": "中國",
+          "counrtyCase": "84,494",
+          "worldCase": "4,618,821",
+          "textEn": "",
+          "textHan": "國家主席習近平：「中方始終本著公開、透明、負責任的態度，及時向世衛組織及相關國家通報疫情信息。」並稱 WHO 在譚德塞的帶領下，獲得國際社會的高度讚賞"
+        },
+        {
+          "type": "EVENT",
+          "postion": "left",
+          "date": "20200518",
+          "areaType": "WHO",
+          "countryName": "WHO",
+          "counrtyCase": "-",
+          "worldCase": "4,618,821",
+          "textEn": "",
+          "textHan": "WHA 決議年底復會處理，是否給予台灣觀察員身分的提案 "
         }
       ]
     }
