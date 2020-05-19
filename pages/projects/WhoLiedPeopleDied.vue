@@ -11,6 +11,7 @@
 </div>
 </template>
 <script>
+import findLast from 'lodash/findLast'
 import { getBaseURL } from 'watchout-common-functions/lib/watchout'
 import Banner from '~/components/projects/who-lied-people-died/Banner'
 import StatisticsBar from '~/components/projects/who-lied-people-died/StatisticsBar'
@@ -96,15 +97,18 @@ export default {
     handleScroll() {
       this.window.scrolled = window.scrollY
       if(this.spotlight.queue.length > 0) {
-        const targetEvent = this.spotlight.queue[0]
-        const showPoint = this.window.height * 0.45
-        if(this.window.scrolled > (targetEvent.offsetTop - showPoint)) {
+        const showPointStart = this.window.height * 0.5
+        const targetEvent = findLast(this.spotlight.queue, item => {
+          return this.window.scrolled > item.offsetTop - showPointStart
+        })
+        if(targetEvent) {
           targetEvent.node.classList.add('timeline-card-active')
           if(this.spotlight.last) {
-            this.spotlight.last.node.classList.remove('timeline-card-active')
+            if(this.spotlight.last.offsetTop !== targetEvent.offsetTop) {
+              this.spotlight.last.node.classList.remove('timeline-card-active')
+            }
           }
           this.spotlight.last = targetEvent
-          this.spotlight.queue.shift()
           this.spotlight.currentCase = targetEvent.case
           this.spotlight.date = targetEvent.date
         }

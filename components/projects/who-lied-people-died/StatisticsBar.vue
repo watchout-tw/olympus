@@ -29,7 +29,6 @@ export default {
     },
     showCases() {
       if(!this.cases) return '？'
-      console.log('his.cases ;', this.cases)
       return (this.cases !== '--' &&
               this.cases !== '？' &&
               this.cases !== '')
