@@ -49,7 +49,7 @@
       border-right: 1px solid white;
       width: 30%;
       max-width: 8rem;
-      min-width: 6rem;
+      min-width: 6.5rem;
     }
     &-right {
       padding-top: 1rem;
