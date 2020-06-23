@@ -56,7 +56,7 @@ export default {
   }
 
   &-left {
-    margin-left: 1px;
+    margin-left: 0px;
     border-radius: 0px 20px 20px 0;
   }
   &-right {

@@ -1,5 +1,5 @@
 {
-  "lastUpdateTime": "2020/05/22 16:50:39",
+  "lastUpdateTime": "2020/06/23 21:39:14",
   "data": [
     {
       "head": {
@@ -2137,6 +2137,293 @@
           "worldCase": "4,618,821",
           "textEn": "",
           "textHan": "WHA 決議年底復會處理，是否給予台灣觀察員身分的提案 "
+        },
+        {
+          "type": "WARN",
+          "date": "20200523",
+          "textEn": "",
+          "textHan": "全球確診數突破 500 萬（5,103,006）例"
+        },
+        {
+          "type": "TIME",
+          "date": "20200527"
+        },
+        {
+          "type": "EVENT",
+          "postion": "left",
+          "date": "20200527",
+          "areaType": "WHO",
+          "countryName": "WHO",
+          "counrtyCase": "-",
+          "worldCase": "5,488,825",
+          "textEn": "",
+          "textHan": "秘書長譚德塞宣布成立「世衛基金會」（WHO Foundation），緩解 WHO 的現金短缺"
+        }
+      ]
+    },
+    {
+      "head": {
+        "textEn": "",
+        "textHan": "台灣疫情趨緩，防疫解禁，但國際疫情持續升溫：北京自 6/11 出現第二波疫情，全球確診數 8 天內新增 100 萬病例"
+      },
+      "cards": [
+        {
+          "type": "WARN",
+          "date": "20200530",
+          "textEn": "",
+          "textHan": "美國死亡數突破 10 萬（100,304）例"
+        },
+        {
+          "type": "TIME",
+          "date": "20200530"
+        },
+        {
+          "type": "EVENT",
+          "postion": "right",
+          "date": "20200530",
+          "areaType": "WORLD",
+          "countryName": "美國",
+          "counrtyCase": "1,694,864",
+          "worldCase": "5,817,385",
+          "textEn": "",
+          "textHan": "川普：我們將從今日起中止與 WHO 的關係，將援助資金轉挹注到世界其他地方與值得挹注的全球公衛緊急需求項目"
+        },
+        {
+          "type": "WARN",
+          "date": "20200601",
+          "textEn": "",
+          "textHan": "全球確診數突破 600 萬（6,057,853）例"
+        },
+        {
+          "type": "TIME",
+          "date": "20200601"
+        },
+        {
+          "type": "EVENT",
+          "postion": "right",
+          "date": "20200601",
+          "areaType": "TAIWAN",
+          "countryName": "台灣",
+          "counrtyCase": "443",
+          "worldCase": "6,057,853",
+          "textEn": "",
+          "textHan": "口罩管制禁令解除，各大零售通路開始販售口罩"
+        },
+        {
+          "type": "WARN",
+          "date": "20200602",
+          "textEn": "",
+          "textHan": "巴西確診數突破 50 萬（514,849）例"
+        },
+        {
+          "type": "TIME",
+          "date": "20200606"
+        },
+        {
+          "type": "EVENT",
+          "postion": "left",
+          "date": "20200606",
+          "areaType": "WHO",
+          "countryName": "WHO",
+          "counrtyCase": "-",
+          "worldCase": "6,663,304",
+          "textEn": "",
+          "textHan": "譚德塞：在疫情嚴重的地區以及難以維持社交距離的地區，必須戴口罩"
+        },
+        {
+          "type": "TIME",
+          "date": "20200607"
+        },
+        {
+          "type": "EVENT",
+          "postion": "left",
+          "date": "20200607",
+          "areaType": "WHO",
+          "countryName": "WHO",
+          "counrtyCase": "-",
+          "worldCase": "6,799,713",
+          "textEn": "",
+          "textHan": "前秘書長布倫特蘭德（Gro Harlem Brundtland）：中國拖延通報是疫情擴大的原因"
+        },
+        {
+          "type": "EVENT",
+          "postion": "left",
+          "date": "20200607",
+          "areaType": "CHINA",
+          "countryName": "中國",
+          "counrtyCase": "84,629",
+          "worldCase": "6,799,713",
+          "textEn": "",
+          "textHan": "外交部副部長馬朝旭：為展現對 WHO 的支持，提供 5000 萬美元的援助"
+        },
+        {
+          "type": "EVENT",
+          "postion": "right",
+          "date": "20200607",
+          "areaType": "TAIWAN",
+          "countryName": "台灣",
+          "counrtyCase": "443",
+          "worldCase": "6,799,713",
+          "textEn": "",
+          "textHan": "衛生福利部長陳時中：防疫解禁，搭高鐵、看電影或看棒球不需梅花座，位置也能坐滿、能吃東西，但還是要戴口罩"
+        },
+        {
+          "type": "WARN",
+          "date": "20200608",
+          "textEn": "",
+          "textHan": "全球死亡數突破 40 萬（400,857）例"
+        },
+        {
+          "type": "WARN",
+          "date": "20200609",
+          "textEn": "",
+          "textHan": "全球確診數突破 700 萬（7,039,918）例"
+        },
+        {
+          "type": "TIME",
+          "date": "20200610"
+        },
+        {
+          "type": "EVENT",
+          "postion": "left",
+          "date": "20200610",
+          "areaType": "WHO",
+          "countryName": "WHO",
+          "counrtyCase": "-",
+          "worldCase": "7,145,539",
+          "textEn": "",
+          "textHan": "流行病學家范科霍芙（Maria Van Kerkhove）原稱武漢肺炎無症狀患者造成的傳播「非常罕見」，但隨即在 24 小時內改口，收回原說法"
+        },
+        {
+          "type": "WARN",
+          "date": "20200611",
+          "textEn": "",
+          "textHan": "俄羅斯確診數突破 50 萬（502,436）例"
+        },
+        {
+          "type": "TIME",
+          "date": "20200612"
+        },
+        {
+          "type": "EVENT",
+          "postion": "left",
+          "date": "20200612",
+          "areaType": "CHINA",
+          "countryName": "中國",
+          "counrtyCase": "84,659",
+          "worldCase": "7,410,510",
+          "textEn": "",
+          "textHan": "北京相隔 56 日無新增病例後，連續三日新增本土確診病例"
+        },
+        {
+          "type": "TIME",
+          "date": "20200613"
+        },
+        {
+          "type": "EVENT",
+          "postion": "left",
+          "date": "20200613",
+          "areaType": "CHINA",
+          "countryName": "中國",
+          "counrtyCase": "84,671",
+          "worldCase": "7,553,182",
+          "textEn": "",
+          "textHan": "北京新發地市場的工作人員和切魚砧板上，皆驗出 2019 冠狀病毒"
+        },
+        {
+          "type": "TIME",
+          "date": "20200614"
+        },
+        {
+          "type": "EVENT",
+          "postion": "left",
+          "date": "20200614",
+          "areaType": "CHINA",
+          "countryName": "中國",
+          "counrtyCase": "84,729",
+          "worldCase": "7,690,708",
+          "textEn": "",
+          "textHan": "北京新增 51 位本土病例，確認與新發地市場有關，已封閉休市且全面消毒"
+        },
+        {
+          "type": "WARN",
+          "date": "20200617",
+          "textEn": "",
+          "textHan": "全球確診數突破 800 萬（8,061,550）例"
+        },
+        {
+          "type": "WARN",
+          "date": "20200618",
+          "textEn": "",
+          "textHan": "美國確診數突破 400 萬（4,015,386）例"
+        },
+        {
+          "type": "TIME",
+          "date": "20200618"
+        },
+        {
+          "type": "EVENT",
+          "postion": "left",
+          "date": "20200618",
+          "areaType": "WHO",
+          "countryName": "WHO",
+          "counrtyCase": "-",
+          "worldCase": "8,385,440",
+          "textEn": "",
+          "textHan": "譚德塞讚賞中國一帶一路有助健康發展，並讚賞中國對全球疫情的協助"
+        },
+        {
+          "type": "TIME",
+          "date": "20200619"
+        },
+        {
+          "type": "EVENT",
+          "postion": "left",
+          "date": "20200619",
+          "areaType": "WHO",
+          "countryName": "WHO",
+          "counrtyCase": "-",
+          "worldCase": "8,385,440",
+          "textEn": "",
+          "textHan": "譚德塞：昨日在全世界新增超過 15 萬病例，是單日新增最多確診的一天，幾乎一半是來自美洲，南亞與中東確診數量也相當多，全世界都進入一個新的危險階段"
+        },
+        {
+          "type": "EVENT",
+          "postion": "right",
+          "date": "20200619",
+          "areaType": "WORLD",
+          "countryName": "印度",
+          "counrtyCase": "380,532",
+          "worldCase": "8,385,440",
+          "textEn": "",
+          "textHan": "境內通報確診數，單日新增超過 1 萬例"
+        },
+        {
+          "type": "WARN",
+          "date": "20200621",
+          "textEn": "",
+          "textHan": "巴西確診數突破 100 萬（1,032,913）例"
+        },
+        {
+          "type": "TIME",
+          "date": "20200622"
+        },
+        {
+          "type": "EVENT",
+          "postion": "left",
+          "date": "20200622",
+          "areaType": "WHO",
+          "countryName": "WHO",
+          "counrtyCase": "-",
+          "worldCase": "8,860,331",
+          "textEn": "",
+          "textHan": "譚德塞：政治化操作持續令全球武漢肺炎疫情惡化"
+        },
+        {
+          "type": "WARN",
+          "date": "20200623",
+          "textEn": "",
+          "textHan": "全球確診數突破 900 萬（9,074,624）例"
         }
       ]
     }
