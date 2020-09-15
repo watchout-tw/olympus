@@ -51,7 +51,7 @@ import { knowsBunko, knowsFSCache, knowsMarkdown, knowsWatchout } from 'watchout
 import ShareToPlatforms from 'watchout-common-functions/components/ShareToPlatforms'
 import DocHeader from 'watchout-common-functions/components/comp/DocHeader'
 import BetterLongForm from 'watchout-common-functions/components/BetterLongForm'
-import BetterMap from 'watchout-common-functions/components/map/BetterMap'
+import BetterMap from 'watchout-common-functions/components/BetterMap'
 import * as info from '~/data/info'
 import { projects, modules } from '~/config'
 import Swipe from '~/components/Swipe'
