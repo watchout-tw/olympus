@@ -39,6 +39,9 @@ export default {
   modules: [
     ['@nuxtjs/google-tag-manager', { id: 'GTM-TF76PLV' }]
   ],
+  buildModules: [
+    '@nuxtjs/eslint-module'
+  ],
   // Server middleware
   serverMiddleware: [
     '~/servermiddleware/301.js'
@@ -54,15 +57,6 @@ export default {
       // To require('fs')
       config.node = {
         fs: 'empty'
-      }
-      // Run ESLint on save
-      if(ctx.isDev && ctx.isClient) {
-        config.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/
-        })
       }
     }
   }
