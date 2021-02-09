@@ -36,8 +36,11 @@ export default {
   ],
   // Nuxt.js modules
   modules: [
-    ['@nuxtjs/google-tag-manager', { id: 'GTM-TF76PLV' }]
+    '@nuxtjs/gtm'
   ],
+  gtm: {
+    id: 'GTM-TF76PLV'
+  },
   buildModules: [
     '@nuxtjs/eslint-module'
   ],
