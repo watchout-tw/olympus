@@ -32,7 +32,7 @@ export default {
       return (this.cases !== '--' &&
               this.cases !== '？' &&
               this.cases !== '')
-        ? this.cases : '？'
+        ? this.cases : '？' // eslint-disable-line multiline-ternary
     },
     showDate() {
       let d = this.date

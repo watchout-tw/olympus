@@ -35,7 +35,7 @@ export default {
       return (counrtyCase !== '?' &&
               counrtyCase !== '-' &&
               counrtyCase !== '')
-        ? counrtyCase : '？'
+        ? counrtyCase : '？' // eslint-disable-line multiline-ternary
     }
   }
 }

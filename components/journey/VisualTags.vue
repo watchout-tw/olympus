@@ -13,7 +13,7 @@ export default {
   props: ['mainVisual', 'actual', 'canvas', 'tags', 'getStyles'],
   computed: {
     visualTagContainerStyles() {
-      return this.mainVisual ? {
+      return this.mainVisual ? { // eslint-disable-line multiline-ternary
         width: this.mainVisual.width * this.zoom + 'px',
         height: this.mainVisual.height * this.zoom + 'px',
         top: this.offset.top + 'px',

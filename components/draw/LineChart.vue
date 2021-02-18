@@ -437,7 +437,7 @@ export default {
         const start = self.util.axes.x.scale.range()[0]
         const step = self.util.axes.x.scale.step()
         let target
-        for(target = 0; x > start + step * (target + 0.5); target++) {}
+        for(target = 0; x > start + step * (target + 0.5); target++) {} // eslint-disable-line no-empty
         if(target < self.rows.orig.length && !self.rows.orig[target].fix) {
           self.rows.user[target].y = self.util.axes.y.scale.invert(y)
           self.rows.user[target].show = true
