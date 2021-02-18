@@ -1,5 +1,3 @@
-const pkg = require('./package')
-
 function getFavicon(projectID) {
   return 'https://raw.githubusercontent.com/watchout-tw/watchout-common-assets/master/images/logo/' + projectID + '/small.png'
 }
@@ -7,6 +5,7 @@ function getProjectLogo(projectID) {
   return 'https://raw.githubusercontent.com/watchout-tw/watchout-common-assets/master/images/logo/' + projectID + '/large.png'
 }
 
+const i18n = require('./config/i18n')
 const info = require('./data/info')
 const siteTitle = info.SITE_TITLE
 const siteDescription = info.SITE_DESCRIPTION
@@ -36,11 +35,13 @@ export default {
   ],
   // Nuxt.js modules
   modules: [
-    '@nuxtjs/gtm'
+    '@nuxtjs/gtm',
+    'nuxt-i18n'
   ],
   gtm: {
     id: 'GTM-TF76PLV'
   },
+  i18n: i18n.config,
   buildModules: [
     '@nuxtjs/eslint-module'
   ],
