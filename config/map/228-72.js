@@ -21,8 +21,8 @@ export default {
         feature: {
           primaryField: 'date'
         },
-        start: '回到1947的台灣⋯',
-        restart: '再次回到1947的台灣⋯',
+        start: 'message.map228.go_back_to_1947',
+        restart: 'message.map228.go_back_to_1947_again',
         flyLayerPaint: {
           'circle-color': [
             'match', ['get', 'isLatest'],
