@@ -86,9 +86,10 @@ export default {
     scenes: [
       {
         id: 'opening',
+        name: '開場',
         classes: ['wide', 'opening'],
-        beforeTitle: '《二二八日記》',
-        title: '你不知道你失去了什麼',
+        beforeTitle: 'message.anotherJourney.diary228',
+        title: 'message.anotherJourney.openSceneTitle',
         mainVisual: {
           type: 'image',
           url: 'journey/another-future-dark.jpg',
@@ -100,6 +101,7 @@ export default {
       },
       {
         id: '1945-08-15',
+        name: '第一景',
         classes: ['wide'],
         date: '1945-08-15',
         mainVisual: {
@@ -110,10 +112,10 @@ export default {
           magnify: false
         },
         subtitle: [
-          '這就是天皇的聲音？',
-          '戰爭終於要結束了嗎？',
-          '總算不再是殖民地',
-          '台灣人能做自己的主人了吧？'
+          'message.anotherJourney.scene1.subtitle.line1',
+          'message.anotherJourney.scene1.subtitle.line2',
+          'message.anotherJourney.scene1.subtitle.line3',
+          'message.anotherJourney.scene1.subtitle.line4'
         ],
         backgroundAudio: {
           id: 'japanese-surrender-broadcast'
@@ -130,9 +132,10 @@ export default {
       },
       {
         id: '1945-10-08',
+        name: '第二景',
         classes: ['wide'],
         date: '1945-10-08',
-        description: '台灣人要讀自己的報紙，這是台灣第一個留美博士林茂生創立的《民報》，以後每天讀，當作學習國字，擺脫殖民惡習的功課。',
+        description: 'message.anotherJourney.scene2.description',
         mainVisual: {
           type: 'image',
           url: 'journey/another-future-images/creation_of_minpo.jpg',
@@ -143,9 +146,10 @@ export default {
       },
       {
         id: '1945-10-11',
+        name: '第三景',
         classes: ['wide'],
         date: '1945-10-11',
-        description: '擺脫殖民的身份，不再是二等公民，台灣人是應該歡欣。本省應踐行三民主義，率先做個模範省。',
+        description: 'message.anotherJourney.scene3.description',
         mainVisual: {
           type: 'image',
           url: 'journey/another-future-images/1945-10-11.gif',
@@ -166,9 +170,10 @@ export default {
       },
       {
         id: '1945-10-12',
+        name: '第四景',
         classes: ['wide'],
         date: '1945-10-12',
-        description: '台灣人才濟濟，除哲學博士林茂生，又有醫學博士杜聰明、施江南，經濟學博士陳炘，就像杜聰明博士說的一樣，台灣人有科學技術者至少上萬，要建設新生台灣，綽綽有餘。',
+        description: 'message.anotherJourney.scene4.description',
         mainVisual: {
           type: 'image',
           url: 'journey/another-future-images/1945-10-12.gif',
@@ -229,9 +234,10 @@ export default {
       },
       {
         id: '1945-10-18',
+        name: '第五景',
         classes: ['wide'],
         date: '1945-10-18',
-        description: '聽別人說《民報》文字太艱澀，我覺得這正是台灣人需要努力的地方，已經回歸祖國，別再看日文、講日語，多讀國文報紙吧！',
+        description: 'message.anotherJourney.scene5.description',
         mainVisual: {
           type: 'image',
           url: 'journey/another-future-images/1945-10-18.gif',
@@ -268,9 +274,10 @@ export default {
       },
       {
         id: '1945-10-28',
+        name: '第六景',
         classes: ['wide'],
         date: '1945-10-28',
-        description: '已從台北二中畢業好一段時間，現由哲學博士林茂生主持家長會，台灣文化協會的黃朝生兄也一同參與，真替學弟們感到放心。',
+        description: 'message.anotherJourney.scene6.description',
         mainVisual: {
           type: 'image',
           url: 'journey/another-future-images/1945-10-28.gif',
@@ -299,9 +306,10 @@ export default {
       },
       {
         id: '1945-11-15',
+        name: '第七景',
         classes: ['wide'],
         date: '1945-11-15',
-        description: '別的不敢說，台灣人才裡，醫生和律師最多，政府應該加以錄用。剛接收還未上軌道，但法院應速速開辦，不得拖延才是。',
+        description: 'message.anotherJourney.scene7.description',
         mainVisual: {
           type: 'image',
           url: 'journey/another-future-images/1945-11-15.gif',
@@ -326,9 +334,10 @@ export default {
       },
       {
         id: '1945-12-27',
+        name: '第八景',
         classes: ['wide'],
         date: '1945-12-27',
-        description: '檢察官有偵查犯罪和維持社會安寧之責，今已光復，日籍檢察官總算去職，首席檢察官雖不是台籍人士，但至少是同胞。之後願能多聘用本省法律人士。',
+        description: 'message.anotherJourney.scene8.description',
         mainVisual: {
           type: 'image',
           url: 'journey/another-future-images/1945-12-27.gif',
@@ -349,9 +358,10 @@ export default {
       },
       {
         id: '1946-01-18',
+        name: '第九景',
         classes: ['wide'],
         date: '1946-01-18',
-        description: '要作選出代表的準備，選出代表台灣人自己民意的代表。看來亦有不少推事、檢察官由台人擔當，甚好。',
+        description: 'message.anotherJourney.scene9.description',
         mainVisual: {
           type: 'image',
           url: 'journey/another-future-images/1946-01-18.gif',
@@ -396,9 +406,10 @@ export default {
       },
       {
         id: '1946-02-12',
+        name: '第十景',
         classes: ['wide'],
         date: '1946-02-12',
-        description: '竟有公務員搭火車不買票，以前不曾見過。據說這是外省人帶來的作風，盼能改進。明明戰爭已經結束，怎麼米價還一直漲，比三個月前高了三倍。',
+        description: 'message.anotherJourney.scene10.description',
         mainVisual: {
           type: 'image',
           url: 'journey/another-future-images/1946-02-12.gif',
@@ -463,9 +474,10 @@ export default {
       },
       {
         id: '1946-02-21',
+        name: '第十一景',
         classes: ['wide'],
         date: '1946-02-21',
-        description: '怎麼連首席檢察官也在走私，怪不得物價飛漲。許久不見的天花病出現了，過去「種痘防疫」的政策取消了嗎？',
+        description: 'message.anotherJourney.scene11.description',
         mainVisual: {
           type: 'image',
           url: 'journey/another-future-images/1946-02-21.gif',
@@ -490,9 +502,10 @@ export default {
       },
       {
         id: '1946-03-16',
+        name: '第十二景',
         classes: ['wide'],
         date: '1946-03-16',
-        description: '人才輩出，一時之選。',
+        description: 'message.anotherJourney.scene12.description',
         mainVisual: {
           type: 'image',
           url: 'journey/another-future-images/1946-03-16.gif',
@@ -545,9 +558,10 @@ export default {
       },
       {
         id: '1946-03-30',
+        name: '第十三景',
         classes: ['wide'],
         date: '1946-03-30',
-        description: '大報紙居然把大畫家陳澄波的名字給寫錯，來寫封信要求訂正一下。',
+        description: 'message.anotherJourney.scene13.description',
         mainVisual: {
           type: 'image',
           url: 'journey/another-future-images/1946-03-30.gif',
@@ -624,9 +638,10 @@ export default {
       },
       {
         id: '1946-03-31',
+        name: '第十四景',
         classes: ['wide'],
         date: '1946-03-31',
-        description: '日本政府殖民台灣五十年，壓榨了台灣人民不少財產，日產清查一定得公平，千萬不能交給人格品行有疑者。',
+        description: 'message.anotherJourney.scene14.description',
         mainVisual: {
           type: 'image',
           url: 'journey/another-future-images/1946-03-31.gif',
@@ -695,9 +710,10 @@ export default {
       },
       {
         id: '1946-04-06',
+        name: '第十五景',
         classes: ['wide'],
         date: '1946-04-06',
-        description: '專賣局查緝私煙查到自己口袋裡，一個股長就可以貪污敲詐超過十萬元，惡劣！',
+        description: 'message.anotherJourney.scene15.description',
         mainVisual: {
           type: 'image',
           url: 'journey/another-future-images/1946-04-06.gif',
@@ -734,9 +750,10 @@ export default {
       },
       {
         id: '1946-04-16',
+        name: '第十六景',
         classes: ['wide'],
         date: '1946-04-16',
-        description: '王添灯從市參議員選上省參議員了，更上一層樓！',
+        description: 'message.anotherJourney.scene16.description',
         mainVisual: {
           type: 'image',
           url: 'journey/another-future-images/1946-04-16.gif',
@@ -789,9 +806,10 @@ export default {
       },
       {
         id: '1946-04-19',
+        name: '第十七景',
         classes: ['wide'],
         date: '1946-04-19',
-        description: '原來我們的參議會權力只有這樣，難怪「議而不決，決而不行」。政府支出又被公務員津貼補助佔了一大款，「爾俸爾祿，民脂民膏」，為政者得要苦民所苦啊！',
+        description: 'message.anotherJourney.scene17.description',
         mainVisual: {
           type: 'image',
           url: 'journey/another-future-images/1946-04-19.gif',
@@ -828,9 +846,10 @@ export default {
       },
       {
         id: '1946-05-07',
+        name: '第十八景',
         classes: ['wide'],
         date: '1946-05-07',
-        description: '買教科書的錢竟被挪去走私，但官員怎是答非所問，莫名其妙。又各縣市預算收入僅有一億餘元，支出卻逾九億，錢哪來？',
+        description: 'message.anotherJourney.scene18.description',
         mainVisual: {
           type: 'image',
           url: 'journey/another-future-images/1946-05-07.gif',
@@ -883,9 +902,10 @@ export default {
       },
       {
         id: '1946-07-14',
+        name: '第十九景',
         classes: ['wide'],
         date: '1946-07-14',
-        description: '捐給孩童的糧食居然被市府人員私吞，負責本案的王育霖檢察官據說是台灣人，應要為台人討公道。',
+        description: 'message.anotherJourney.scene19.description',
         mainVisual: {
           type: 'image',
           url: 'journey/another-future-images/1946-07-14.gif',
@@ -922,9 +942,10 @@ export default {
       },
       {
         id: '1946-07-16',
+        name: '第二十景',
         classes: ['wide'],
         date: '1946-07-16',
-        description: '貪污瀆職公務員橫行，媒體據實報導還來信恐嚇，《民報》用整版貪污事件回擊真是痛快！',
+        description: 'message.anotherJourney.scene20.description',
         mainVisual: {
           type: 'image',
           url: 'journey/another-future-images/1946-07-16.gif',
@@ -973,9 +994,10 @@ export default {
       },
       {
         id: '1946-08-13',
+        name: '第二十一景',
         classes: ['wide'],
         date: '1946-08-13',
-        description: '王育霖檢察官果然有膽識，直接帶憲兵和法警到市府訊問貪瀆官員，這些貪官還四處嚷嚷說市府被憲兵包圍，真不要臉。',
+        description: 'message.anotherJourney.scene21.description',
         mainVisual: {
           type: 'image',
           url: 'journey/another-future-images/1946-08-13.gif',
@@ -1008,9 +1030,10 @@ export default {
       },
       {
         id: '1946-10-14',
+        name: '第二十二景',
         classes: ['wide'],
         date: '1946-10-14',
-        description: '全台建設百廢待舉，反先去籌獻金一億元建館慶祝蔣介石六十歲生日，荒謬！',
+        description: 'message.anotherJourney.scene22.description',
         mainVisual: {
           type: 'image',
           url: 'journey/another-future-images/1946-10-14.gif',
@@ -1047,9 +1070,10 @@ export default {
       },
       {
         id: '1946-10-16',
+        name: '第二十三景',
         classes: ['wide'],
         date: '1946-10-16',
-        description: '陳儀說什麼寬大仁愛是中國人長處，要台人成為地道的中國人，這不就是要我們也一起做事隨便嗎？',
+        description: 'message.anotherJourney.scene23.description',
         mainVisual: {
           type: 'image',
           url: 'journey/another-future-images/1946-10-16.gif',
@@ -1134,9 +1158,10 @@ export default {
       },
       {
         id: '1946-11-18',
+        name: '第二十四景',
         classes: ['wide'],
         date: '1946-11-18',
-        description: '警察打傷殺害法院法警又拘留其他當事人，法官、檢察官都已經同意保釋，為何還不放人？又不是古代衙門，縣長難道可以說押人就押人？',
+        description: 'message.anotherJourney.scene24.description',
         mainVisual: {
           type: 'image',
           url: 'journey/another-future-images/1946-11-18.gif',
@@ -1209,9 +1234,10 @@ export default {
       },
       {
         id: '1946-11-26',
+        name: '第二十五景',
         classes: ['wide'],
         date: '1946-11-26',
-        description: '媒體報導警察開槍亂打人，社長居然被告上法庭成筆禍。已是參議員的王添灯先生還因此官司纏身，殖民政府都不至如此。',
+        description: 'message.anotherJourney.scene25.description',
         mainVisual: {
           type: 'image',
           url: 'journey/another-future-images/1946-11-26.gif',
@@ -1244,9 +1270,10 @@ export default {
       },
       {
         id: '1947-02-12',
+        name: '第二十六景',
         classes: ['wide'],
         date: '1947-02-12',
-        description: '專賣事業反倒成圖利私人的工具，專賣公司內又多是外省人，薪資比縣市長還高，台灣人要去哪呢？',
+        description: 'message.anotherJourney.scene26.description',
         mainVisual: {
           type: 'image',
           url: 'journey/another-future-images/1947-02-12.gif',
@@ -1283,9 +1310,10 @@ export default {
       },
       {
         id: '1947-02-26',
+        name: '第二十七景',
         classes: ['wide'],
         date: '1947-02-26',
-        description: '過去殖民時期臺灣人被壓榨的財富都歸到了日產，現在被盜賣又不追究，跟殖民政府有何異？王育霖不當檢察官了嗎？',
+        description: 'message.anotherJourney.scene27.description',
         mainVisual: {
           type: 'image',
           url: 'journey/another-future-images/1947-02-26.gif',
@@ -1330,9 +1358,10 @@ export default {
       },
       {
         id: '1947-02-28',
+        name: '第二十八景',
         classes: ['wide'],
         date: '1947-02-28',
-        description: '這政府不只是謀財，還來害命，實在可惡！今日聽聞眾人將到行政長官公署前討公道，得一起去才行。',
+        description: 'message.anotherJourney.scene28.description',
         mainVisual: {
           type: 'image',
           url: 'journey/another-future-images/1947-02-28.gif',
@@ -1369,60 +1398,65 @@ export default {
       },
       {
         id: '1947-03-09',
+        name: '第二十九景',
         classes: ['wide'],
         date: '1947-03-09',
         backgroundAudio: {
           id: 'martial-law-declaration-broadcast'
         },
         subtitle: [
-          '前幾天，陳儀宣布台北戒嚴',
-          '廣播說不會傷害守法民眾，會保護人民',
-          '大家也正在組成委員會跟陳儀談判',
-          '討論如何讓民眾安心',
-          '這幾日街頭仍不斷傳來間歇的槍聲',
-          '聽說中國兵從基隆上岸',
-          '《民報》也停刊了',
-          '不知道他們還好嗎？'
+          'message.anotherJourney.scene29.subtitle.line1',
+          'message.anotherJourney.scene29.subtitle.line2',
+          'message.anotherJourney.scene29.subtitle.line3',
+          'message.anotherJourney.scene29.subtitle.line4',
+          'message.anotherJourney.scene29.subtitle.line5',
+          'message.anotherJourney.scene29.subtitle.line6',
+          'message.anotherJourney.scene29.subtitle.line7',
+          'message.anotherJourney.scene29.subtitle.line8'
         ]
       },
       {
         id: '林茂生',
+        name: '第三十景',
         classes: ['square'],
+        description: 'message.anotherJourney.scene30.description',
         mainVisual: {
           type: 'image',
           url: 'journey/another-future-images/林茂生.jpg',
           width: 800,
           height: 800,
           magnify: false
-        },
-        description: '東京大學文學士、美國哥倫比亞大學哲學博士，是臺灣歷史上第一位留美博士。創辦《台灣民報》。二二八事件時，被武裝人員以陳儀長官找談話為由帶走，就再也沒出現過。'
+        }
       },
       {
         id: '施江南',
+        name: '第三十一景',
         classes: ['square'],
+        description: 'message.anotherJourney.scene31.description',
         mainVisual: {
           type: 'image',
           url: 'journey/another-future-images/施江南.jpg',
           width: 800,
           height: 800,
           magnify: false
-        },
-        description: '東京大學醫學博士，是第二位拿到醫學博士的台灣人。二二八事件時臥病在床，被軍人從醫院帶走後失蹤。'
+        }
       },
       {
         id: '陳炘',
+        name: '第三十二景',
         classes: ['square'],
+        description: 'message.anotherJourney.scene32.description',
         mainVisual: {
           type: 'image',
           url: 'journey/another-future-images/陳炘.jpg',
           width: 800,
           height: 800,
           magnify: false
-        },
-        description: '美國哥倫比亞大學經濟學博士，創設日治時期第一家台灣人經營的金融機構「大東信託」。二二八事件時，擔任臺灣信託公司董事長，被軍隊逮捕後遭到處死。'
+        }
       },
       {
         id: '黃朝生',
+        name: '第三十三景',
         classes: ['square'],
         mainVisual: {
           type: 'image',
@@ -1431,10 +1465,11 @@ export default {
           height: 800,
           magnify: false
         },
-        description: '醫師，日治時期時曾因抗日被捕，戰後籌組「臺灣省政治建設協會」，第一屆台北市參議員。二二八事件時，被陳儀列為叛亂首謀，被私下處決。'
+        description: 'message.anotherJourney.scene33.description'
       },
       {
         id: '林界',
+        name: '第三十四景',
         classes: ['square'],
         mainVisual: {
           type: 'image',
@@ -1443,10 +1478,11 @@ export default {
           height: 800,
           magnify: false
         },
-        description: '《台灣新生報》高雄印刷廠廠長，第一屆高雄市苓雅區區長。二二八事件時，至高雄壽山要塞司令部和彭孟緝談判，要求約束軍人行為，後被以「暴徒首犯」為由處決。'
+        description: 'message.anotherJourney.scene34.description'
       },
       {
         id: '吳鴻麒',
+        name: '第三十五景',
         classes: ['square'],
         mainVisual: {
           type: 'image',
@@ -1455,10 +1491,11 @@ export default {
           height: 800,
           magnify: false
         },
-        description: '曾任台北地方法院和高等法院法官，戰後因辦理「員林事件」得罪警方。二二八事件爆發後，在法院處理公文時被帶走，多日之後屍體於台北南港橋下被發現。姪子吳伯雄曾任中國國民黨主席。'
+        description: 'message.anotherJourney.scene35.description'
       },
       {
         id: '楊元丁',
+        name: '第三十六景',
         classes: ['square'],
         mainVisual: {
           type: 'image',
@@ -1467,10 +1504,11 @@ export default {
           height: 800,
           magnify: false
         },
-        description: '日治時期曾因抗日被捕，戰後籌組「臺灣省政治建設協會」，第一屆基隆市參議員、副議長。二二八事件時失蹤，多日之後遺體於基隆海邊被尋獲。'
+        description: 'message.anotherJourney.scene36.description'
       },
       {
         id: '王添灯',
+        name: '第三十七景',
         classes: ['square'],
         mainVisual: {
           type: 'image',
@@ -1479,10 +1517,11 @@ export default {
           height: 800,
           magnify: false
         },
-        description: '第一屆台北市參議員、台灣省參議員，《人民導報》社長，三民主義青年團臺北分團主任。戰後多次於議會或報紙抨擊當局貪污腐敗，遭當局控告。二二八事件時被逮捕，遭私下處決。'
+        description: 'message.anotherJourney.scene37.description'
       },
       {
         id: '王育霖',
+        name: '第三十八景',
         classes: ['square'],
         mainVisual: {
           type: 'image',
@@ -1491,10 +1530,11 @@ export default {
           height: 800,
           magnify: false
         },
-        description: '東京大學法律系畢業，戰後曾任新竹地檢署檢察官。曾於調查新竹市長貪瀆案件時倍受打壓，後辭任檢察官，擔任《台灣民報》法律顧問。二二八事件時，被拘捕於西本願寺、遭受刑求，後被處死。'
+        description: 'message.anotherJourney.scene38.description'
       },
       {
         id: '陳澄波',
+        name: '第三十九景',
         classes: ['square'],
         mainVisual: {
           type: 'image',
@@ -1503,31 +1543,29 @@ export default {
           height: 800,
           magnify: false
         },
-        description: '台灣知名畫家，東京美術學校研究所畢業，第一屆嘉義市參議員。二二八事件時，至嘉義水上機場與軍隊談判卻遭逮捕，後未經審判於嘉義車站前被槍決。'
+        description: 'message.anotherJourney.scene39.description'
       },
       {
         id: 'closing',
+        name: '第四十景',
         classes: ['wide', 'closing'],
         subtitle: [
-          '誰能料想三月會做洪水！',
-          '那突發的巨浪，沖破了那堅固的防堤。',
-          '那無情的巨浪，流失了那美麗的田園。',
-          '那激怒的巨浪，淹沈了那平和的城市。',
-          '誰能料想三月會做洪水！',
-          '有一位勇敢的青年，曾有過洋的經驗，',
-          '未到防堤就被狂浪捲沒去了。',
-          '有一位理智的青年，抱有新進的理論，',
-          '未到田園就被泥海埋沒去了。',
-          '有一位熱血的青年，吐露無限的純情，',
-          '未到城市就被崩山壓沒去了。',
-          '誰能料想三月會做洪水！',
-          '洪水一過，滿地平坡！',
-          '洪水一過，族親四散！',
-          '洪水一過，人心如灰！',
-          '誰能料想三月會做洪水！',
-          '國家何時再建？',
-          '民族何時復興？',
-          '社會何時改革？'
+          'message.anotherJourney.scene40.subtitle.line1',
+          'message.anotherJourney.scene40.subtitle.line2',
+          'message.anotherJourney.scene40.subtitle.line3',
+          'message.anotherJourney.scene40.subtitle.line4',
+          'message.anotherJourney.scene40.subtitle.line5',
+          'message.anotherJourney.scene40.subtitle.line6',
+          'message.anotherJourney.scene40.subtitle.line7',
+          'message.anotherJourney.scene40.subtitle.line8',
+          'message.anotherJourney.scene40.subtitle.line9',
+          'message.anotherJourney.scene40.subtitle.line10',
+          'message.anotherJourney.scene40.subtitle.line11',
+          'message.anotherJourney.scene40.subtitle.line12',
+          'message.anotherJourney.scene40.subtitle.line13',
+          'message.anotherJourney.scene40.subtitle.line14',
+          'message.anotherJourney.scene40.subtitle.line15',
+          'message.anotherJourney.scene40.subtitle.line16'
         ],
         mainVisual: {
           type: 'image',
@@ -1540,9 +1578,9 @@ export default {
     ] // end of scenes
   },
   references: [
-    '二二八事件紀念基金會',
-    '中研院台灣史研究所台灣日記知識庫',
-    '國立公共資訊圖書館數位典藏服務網',
-    '國史館臺灣文獻館臺灣省行政長官公署檔案'
+    'message.anotherJourney.references.memorialFoudation',
+    'message.anotherJourney.references.taiwanDiaryArchive',
+    'message.anotherJourney.references.digitalCollectionService',
+    'message.anotherJourney.references.officialDocuments'
   ]
 }

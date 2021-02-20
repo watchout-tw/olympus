@@ -12,12 +12,12 @@
       <div class="text-container" :style="getStyles('textContainer')">
         <div class="text">
           <div class="date" v-if="activeScene.date"><span>{{ activeSceneDateString }}</span><span v-if="sequence.default.toggles.showCountdown" class="countdown">{{ activeSceneCountDown }}</span></div>
-          <h3 v-if="activeScene.beforeTitle" class="before-title font-size-body body-style"><span>{{ activeScene.beforeTitle }}</span></h3>
+          <h3 v-if="activeScene.beforeTitle" class="before-title font-size-body body-style"><span>{{ $t(activeScene.beforeTitle) }}</span></h3>
           <template v-if="activeScene.title">
-            <h1 v-if="activeSceneClasses.includes('opening')" class="title small"><span>{{ activeScene.title }}</span></h1>
-            <h2 v-else class="title small"><span>{{ activeScene.title }}</span></h2>
+            <h1 v-if="activeSceneClasses.includes('opening')" class="title small"><span>{{ $t(activeScene.title) }}</span></h1>
+            <h2 v-else class="title small"><span>{{ $t(activeScene.title) }}</span></h2>
           </template>
-          <div class="paragraphs" v-if="activeScene.description" v-html="markdown(activeScene.description)"></div>
+          <div class="paragraphs" v-if="activeScene.description" v-html="markdown($t(activeScene.description))"></div>
         </div>
       </div>
     </div>
@@ -111,7 +111,13 @@ export default {
       return this.activeScene.date ? new Date(this.activeScene.date) : undefined
     },
     activeSceneDateString() {
-      return this.activeSceneDate ? this.activeSceneDate.getFullYear() + '年' + (this.activeSceneDate.getMonth() + 1) + '月' + this.activeSceneDate.getDate() + '日' : undefined
+      if(this.$router.currentRoute.path.substring(0, 3).includes('en') && this.activeSceneDate) {
+        return `${this.activeSceneDate.toLocaleString('default', { month: 'long' })} ${this.activeSceneDate.getDate()}, ${this.activeSceneDate.getFullYear()}`
+      } else if(this.activeSceneDate) {
+        return this.activeSceneDate.getFullYear() + '年' + (this.activeSceneDate.getMonth() + 1) + '月' + this.activeSceneDate.getDate() + '日'
+      } else {
+        return undefined
+      }
     },
     activeSceneCountDown() {
       let result = null

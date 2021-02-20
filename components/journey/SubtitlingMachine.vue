@@ -28,7 +28,8 @@ export default {
       return this.lines ? this.lines.length < 1 : true
     },
     lineTokens() {
-      return !this.isEmpty && this.lineIndex > -1 ? this.tokenize(this.lines[this.lineIndex]) : undefined
+      // translat subtitles here
+      return !this.isEmpty && this.lineIndex > -1 ? this.tokenize(this.$t(this.lines[this.lineIndex])) : undefined
     },
     lineText() {
       return this.lineTokens && this.tokenIndex > -1 ? this.lineTokens.slice(0, this.tokenIndex + 1).join('') : undefined

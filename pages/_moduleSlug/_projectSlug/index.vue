@@ -24,7 +24,7 @@
     </template>
   </div>
   <div class="share margin-top-bottom-double">
-    <div class="section-title with-underline text-align-center margin-top-bottom-single"><span>認同請分享</span></div>
+    <div class="section-title with-underline text-align-center margin-top-bottom-single"><span>{{ $t('message.share') }}</span></div>
     <share-to-platforms :url="shareURL" />
   </div>
   <div class="tcl-container margin-top-bottom-double">
@@ -35,9 +35,9 @@
   </div>
   <div class="references-container tcl-container" v-if="project.references && project.references.length > 0">
     <div class="references tcl-panel tcl-left-right-margin">
-      <h4 class="margin-top-bottom-4">參考資料</h4>
+      <h4 class="margin-top-bottom-4">{{ $t('message.references') }}</h4>
       <ul class="items font-size-small">
-        <li class="item paragraphs no-margin a-text-parent" v-for="(item, index) of project.references" v-html="markdown(item)" :key="index"></li>
+        <li class="item paragraphs no-margin a-text-parent" v-for="(item, index) of project.references" v-html="markdown($t(item))" :key="index"></li>
       </ul>
     </div>
     <div class="tcl-panel"></div>
