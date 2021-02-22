@@ -2,67 +2,67 @@ const map228Translation = require('../data/map/2019-228-translation')
 const anotherJourneyTranslation = require('../data/journey/another-future-translation')
 
 let map228ZH = {}
-let map228TLJ = {}
+let map228TB = {}
 let map228EN = {}
 
 map228Translation.forEach((row, index) => {
   var plusOneIdx = index + 1
   map228ZH['stop' + plusOneIdx] = {}
-  map228TLJ['stop' + plusOneIdx] = {}
+  map228TB['stop' + plusOneIdx] = {}
   map228EN['stop' + plusOneIdx] = {}
   if (row.title) {
     map228ZH['stop' + plusOneIdx].title = row.title
-    map228TLJ['stop' + plusOneIdx].title = row.tlj_title
+    map228TB['stop' + plusOneIdx].title = row.tb_title
     map228EN['stop' + plusOneIdx].title = row.en_title
   }
   if (row.image_caption) {
     map228ZH['stop' + plusOneIdx].image_caption = row.image_caption
-    map228TLJ['stop' + plusOneIdx].image_caption = row.tlj_image_caption
+    map228TB['stop' + plusOneIdx].image_caption = row.tb_image_caption
     map228EN['stop' + plusOneIdx].image_caption = row.en_image_caption
   }
   if (row.image_license) {
     map228ZH['stop' + plusOneIdx].image_license = row.image_license
-    map228TLJ['stop' + plusOneIdx].image_license = row.tlj_image_license
+    map228TB['stop' + plusOneIdx].image_license = row.tb_image_license
     map228EN['stop' + plusOneIdx].image_license = row.en_image_license
   }
   if (row.description) {
     map228ZH['stop' + plusOneIdx].description = row.description
-    map228TLJ['stop' + plusOneIdx].description = row.tlj_description
+    map228TB['stop' + plusOneIdx].description = row.tb_description
     map228EN['stop' + plusOneIdx].description = row.en_description
   }
   if (row.date) {
     map228ZH['stop' + plusOneIdx].date = row.date
-    map228TLJ['stop' + plusOneIdx].date = row.tlj_date
+    map228TB['stop' + plusOneIdx].date = row.tb_date
     map228EN['stop' + plusOneIdx].date = row.en_date
   }
 })
 
 let journeyZH = {}
-let journeyTLJ = {}
+let journeyTB = {}
 let journeyEN = {}
 
 anotherJourneyTranslation.forEach((row, index) => {
   var plusOneIdx = index + 1
   journeyZH['scene' + plusOneIdx] = {}
-  journeyTLJ['scene' + plusOneIdx] = {}
+  journeyTB['scene' + plusOneIdx] = {}
   journeyEN['scene' + plusOneIdx] = {}
   if (row.description) {
     journeyZH['scene' + plusOneIdx].description = row.description
-    journeyTLJ['scene' + plusOneIdx].description = row.tlj_description
+    journeyTB['scene' + plusOneIdx].description = row.tb_description
     journeyEN['scene' + plusOneIdx].description = row.en_description
   }
   if (row.subtitle) {
     var subtitles = row.subtitle.split('\n')
-    var tlj_subtitles = row.tlj_subtitle.split('\n')
+    var tb_subtitles = row.tb_subtitle.split('\n')
     var en_subtitles = row.en_subtitle.split('\n')
     journeyZH['scene' + plusOneIdx].subtitle = {}
-    journeyTLJ['scene' + plusOneIdx].subtitle = {}
+    journeyTB['scene' + plusOneIdx].subtitle = {}
     journeyEN['scene' + plusOneIdx].subtitle = {}
     subtitles.forEach((item, idx) => {
       journeyZH['scene' + plusOneIdx].subtitle['line' + (idx + 1)] = item
     })
-    tlj_subtitles.forEach((item, idx) => {
-      journeyTLJ['scene' + plusOneIdx].subtitle['line' + (idx + 1)] = item
+    tb_subtitles.forEach((item, idx) => {
+      journeyTB['scene' + plusOneIdx].subtitle['line' + (idx + 1)] = item
     })
     en_subtitles.forEach((item, idx) => {
       journeyEN['scene' + plusOneIdx].subtitle['line' + (idx + 1)] = item
@@ -78,8 +78,8 @@ export const config = {
       name: 'English'
     },
     {
-      code: 'tlj',
-      name: '漢羅台文'
+      code: 'tb',
+      name: '臺文'
     },
     {
       code: 'zh',
@@ -117,12 +117,12 @@ export const config = {
           }
         }
       },
-      tlj: {
+      tb: {
         message: {
           references: '參考資料',
           share: '認同請分享',
           map228: {
-            ...map228TLJ,
+            ...map228TB,
             prev: '頂一站',
             next: '後一站',
             disappear_elite: '那些消失的台灣菁英…還沒翻譯',
@@ -130,7 +130,7 @@ export const config = {
             go_back_to_1947_again: '再次回到 1947 的台灣…'
           },
           anotherJourney: {
-            ...journeyTLJ,
+            ...journeyTB,
             diary228: '【二二八日記】',
             openSceneTitle: '你不知影你失去siánn-mi̍h',
             references: {

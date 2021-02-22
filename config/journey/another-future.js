@@ -1411,8 +1411,7 @@ export default {
           'message.anotherJourney.scene29.subtitle.line4',
           'message.anotherJourney.scene29.subtitle.line5',
           'message.anotherJourney.scene29.subtitle.line6',
-          'message.anotherJourney.scene29.subtitle.line7',
-          'message.anotherJourney.scene29.subtitle.line8'
+          'message.anotherJourney.scene29.subtitle.line7'
         ]
       },
       {
