@@ -22,6 +22,7 @@ import ReferencePreview from 'watchout-common-functions/components/ReferencePrev
 import * as info from '~/data/info'
 
 export default {
+  nuxtI18n: false,
   mixins: [knowsFSCache, knowsWatchout],
   async asyncData() {
     let projects = await firestore.bunko.getProjects({ pubDest: info.CHANNEL_ID })

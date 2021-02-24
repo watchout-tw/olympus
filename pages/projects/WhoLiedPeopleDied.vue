@@ -23,6 +23,7 @@ import Team from '~/components/projects/who-lied-people-died/Team'
 import LastUpdate from '~/components/projects/who-lied-people-died/LastUpdate'
 import timelineJson from '~/data/projects/who-lied-people-died/timeline.json'
 export default {
+  nuxtI18n: false,
   components: {
     Banner,
     StatisticsBar,

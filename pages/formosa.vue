@@ -184,6 +184,7 @@ let pages = [
 ]
 
 export default {
+  nuxtI18n: false,
   mixins: [knowsFSCache, knowsMarkdown, knowsWatchout],
   data() {
     for(let i = 0; i < pages.length; i++) {

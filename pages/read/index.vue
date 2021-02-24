@@ -14,6 +14,7 @@ import defaultCoverImage from 'watchout-common-assets/images/default-cover-image
 import * as info from '~/data/info'
 
 export default {
+  nuxtI18n: false,
   mixins: [knowsWatchout],
   head() {
     const pageTitle = '閱讀' + info.SEPARATOR + info.SITE_TITLE

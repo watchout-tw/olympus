@@ -19,6 +19,7 @@ import defaultCoverImage from 'watchout-common-assets/images/default-cover-image
 import * as info from '~/data/info'
 
 export default {
+  nuxtI18n: false,
   mixins: [knowsFSCache, knowsWatchout],
   async asyncData({ params, error }) {
     let doc = await firestore.bunko.getDoc(params.id, true)

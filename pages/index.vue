@@ -58,6 +58,7 @@ import * as info from '~/data/info'
 const getLimit = 7
 
 export default {
+  nuxtI18n: false,
   mixins: [knowsFSCache, knowsWatchout],
   async asyncData() {
     // get docs with pub-dest filter

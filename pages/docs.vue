@@ -46,6 +46,7 @@ function makeDocRefs(docs) {
 }
 
 export default {
+  nuxtI18n: false,
   mixins: [knowsFSCache, knowsWatchout],
   async asyncData() {
     let years = []
