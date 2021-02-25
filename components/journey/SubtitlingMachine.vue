@@ -48,17 +48,21 @@ export default {
   },
   methods: {
     isLatin(string) {
-      return /[A-Za-z0-9`~$%^&*\-=+\\|/!;:,.?]/.test(string)
+      // FIXME: should include all tb unicode
+      return /[A-Za-z0-9`~$%^&*\-=+\\|/!;:,.?\u00ea]/.test(string)
     },
     tokenize(sentence, addSpaceBack = true) {
-      let segments = pangu.spacing(sentence.toUpperCase()).split(' ')
+      let segments = pangu.spacing(sentence).split(' ')
       if(addSpaceBack) {
         for(let i = segments.length - 2; i >= 0; i--) {
-          if(this.isLatin(segments[i]) && this.isLatin(segments[i + 1])) {
+          if(!this.isLatin(segments[i]) && !this.isLatin(segments[i + 1])) {
+            continue
+          } else {
             segments.splice(i + 1, 0, ' ')
           }
         }
       }
+
       return segments.map(segment => {
         if(this.isLatin(segment) === false) {
           return segment.split('')
