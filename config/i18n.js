@@ -94,6 +94,7 @@ export const config = {
     messages: {
       en: {
         message: {
+          siteTitle: 'Watchout Musou',
           references: 'References',
           share: 'Share',
           map228: {
@@ -119,6 +120,7 @@ export const config = {
       },
       tb: {
         message: {
+          siteTitle: '沃草國會無雙',
           references: '參考資料',
           share: '認同請分享',
           map228: {
@@ -144,6 +146,7 @@ export const config = {
       },
       zh: {
         message: {
+          siteTitle: '沃草國會無雙',
           references: '參考資料',
           share: '認同請分享',
           map228: {
