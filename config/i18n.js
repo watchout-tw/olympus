@@ -100,9 +100,9 @@ export const config = {
             ...map228EN,
             prev: 'Previous',
             next: 'Next',
-            disappear_elite: 'The Lost Generation of Taiwanese',
+            disappear_elite: 'The Lost Generation of Taiwanese...',
             go_back_to_1947: 'Back to 1947 Taiwan',
-            go_back_to_1947_again: 'Back to 1947 Taiwan'
+            go_back_to_1947_again: 'Back to 1947 Taiwan again'
           },
           anotherJourney: {
             ...journeyEN,
@@ -125,9 +125,9 @@ export const config = {
             ...map228TB,
             prev: '頂一站',
             next: '後一站',
-            disappear_elite: '那些消失的台灣菁英',
-            go_back_to_1947: '回到 1947 的台灣',
-            go_back_to_1947_again: '再次回到 1947 的台灣…'
+            disappear_elite: '那些消失的台灣菁英…',
+            go_back_to_1947: '回到 1947 年的台灣',
+            go_back_to_1947_again: '再次回到 1947 年的台灣'
           },
           anotherJourney: {
             ...journeyTB,
@@ -151,8 +151,8 @@ export const config = {
             prev: '上一站',
             next: '下一站',
             disappear_elite: '那些消失的台灣菁英…',
-            go_back_to_1947: '回到 1947 的台灣…',
-            go_back_to_1947_again: '再次回到 1947 的台灣…'
+            go_back_to_1947: '轉去 1947 年的臺灣',
+            go_back_to_1947_again: '閣一擺轉去 1947 年的臺灣'
           },
           anotherJourney: {
             ...journeyZH,
