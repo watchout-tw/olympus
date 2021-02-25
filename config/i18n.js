@@ -100,9 +100,9 @@ export const config = {
             ...map228EN,
             prev: 'Previous',
             next: 'Next',
-            disappear_elite: '那些消失的台灣菁英…NOT TRANSLATED YET',
-            go_back_to_1947: 'Go back to 1947, Taiwan',
-            go_back_to_1947_again: 'Go back to 1947 again'
+            disappear_elite: 'The Lost Generation of Taiwanese',
+            go_back_to_1947: 'Back to 1947 Taiwan',
+            go_back_to_1947_again: 'Back to 1947 Taiwan'
           },
           anotherJourney: {
             ...journeyEN,
@@ -125,14 +125,14 @@ export const config = {
             ...map228TB,
             prev: '頂一站',
             next: '後一站',
-            disappear_elite: '那些消失的台灣菁英…還沒翻譯',
-            go_back_to_1947: '回到 1947 的台灣…還沒翻譯',
+            disappear_elite: '那些消失的台灣菁英',
+            go_back_to_1947: '回到 1947 的台灣',
             go_back_to_1947_again: '再次回到 1947 的台灣…'
           },
           anotherJourney: {
             ...journeyTB,
             diary228: '【二二八日記】',
-            openSceneTitle: '你不知影你失去siánn-mi̍h',
+            openSceneTitle: '你不知影你失去 siánn-mi̍h',
             references: {
               memorialFoudation: '二二八事件紀念基金會',
               taiwanDiaryArchive: '中研院台灣史研究所台灣日記智識庫',

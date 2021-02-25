@@ -26,13 +26,13 @@
   {
     "id": "5",
     "description": "聽別人說《民報》文字太艱澀，我覺得這正是台灣人需要努力的地方，已經回歸祖國，別再看日文、講日語，多讀國文報紙吧！",
-    "tb_description": "聽別人講《民報》文字太 pháinn-tha̍k，我覺得這正 sī 台灣人需要努力 ê 所在 ，已經回歸祖國，別再 tha̍k 日文、講日語，多讀國文ê報紙！",
+    "tb_description": "聽別人講《民報》文字太 pháinn-tha̍k，我覺得這正 sī 台灣人需要努力 ê 所在 ，已經回歸祖國，別再 tha̍k 日文、講日語，多讀國文 ê 報紙！",
     "en_description": "It is heard that Minpao was too difficult and sophisticated for readers. But I think we Formosan people should put more effort into understanding the new culture. We were already part of our fatherland now. Stop reading and speaking Japanese! Read more newspapers in Mandarin!"
   },
   {
     "id": "6",
     "description": "已從台北二中畢業好一段時間，現由哲學博士林茂生主持家長會，台灣文化協會的黃朝生兄也一同參與，真替學弟們感到放心。",
-    "tb_description": "已從台北二中畢業好一段時間，現此時由哲學博士林茂生主持家長會，台灣文化協會 ê 黃朝生兄也做伙參與，真替學弟in感著放心。",
+    "tb_description": "已從台北二中畢業好一段時間，現此時由哲學博士林茂生主持家長會，台灣文化協會 ê 黃朝生兄也做伙參與，真替學弟 in 感著放心。",
     "en_description": "It has been a while since I graduated from Taipei Secondary High School. Now the parental association was hosted by Dr. Lin Mosei (林茂生, 1887-1947), and Mr. N̂g Tiâu-sing (黃朝生, 1904-1947) of Taiwanese Culture Association (台灣文化協會) also attended. I felt so relieved for the young students."
   },
   {
@@ -50,7 +50,7 @@
   {
     "id": "9",
     "description": "要作選出代表的準備，選出代表台灣人自己民意的代表。看來亦有不少推事、檢察官由台人擔當，甚好。",
-    "tb_description": "要作選出代表 ê 準備，選出代表台灣人自己民意 ê 代表。看來ia̍h有不少推事、檢察官由台人擔當，甚好。",
+    "tb_description": "要作選出代表 ê 準備，選出代表台灣人自己民意 ê 代表。看來 ia̍h 有不少推事、檢察官由台人擔當，甚好。",
     "en_description": "For representatives, we should choose our native Formosan leaders. It seems that there were also plenty of Formosan judges and prosecutors. This was in prospect."
   },
   {
@@ -62,7 +62,7 @@
   {
     "id": "11",
     "description": "怎麼連首席檢察官也在走私，怪不得物價飛漲。許久不見的天花病出現了，過去「種痘防疫」的政策取消了嗎？",
-    "tb_description": "án-tsuánn 連首席檢察官iā-tī 走私，bē-kuài--tit物價飛漲。許久不見 ê 天花病出現，過去「種痘防疫」 ê 政策甘 sī 取消？",
+    "tb_description": "án-tsuánn 連首席檢察官 iā-tī 走私，bē-kuài--tit 物價飛漲。許久不見 ê 天花病出現，過去「種痘防疫」 ê 政策甘 sī 取消？",
     "en_description": "How come the chair prosecutor was also smuggling? No wonder the prices were skyrocket rising. Smallpox reappeared after a long while. Had the ‘smallpox vaccine’ policy been canceled?"
   },
   {
@@ -92,7 +92,7 @@
   {
     "id": "16",
     "description": "王添灯從市參議員選上省參議員了，更上一層樓！",
-    "tb_description": "王添灯tuì市參議員選著省參議員，sing-kip 更上一層樓！",
+    "tb_description": "王添灯 tuì 市參議員選著省參議員，sing-kip 更上一層樓！",
     "en_description": "Ông Thiam-teng (王添灯, 1901-1947) became a provincial councilor from a city councilor. Congratulations!"
   },
   {
@@ -134,7 +134,7 @@
   {
     "id": "23",
     "description": "陳儀說什麼寬大仁愛是中國人長處，要台人成為地道的中國人，這不就是要我們也一起做事隨便嗎？",
-    "tb_description": "陳儀說甚物寬大仁愛 sī 中國人長處，要台人成為真正 ê 中國人，這不就 sī 要咱也一起做事ló-tshó？",
+    "tb_description": "陳儀說甚物寬大仁愛 sī 中國人長處，要台人成為真正 ê 中國人，這不就 sī 要咱也一起做事 ló-tshó？",
     "en_description": "Chen Yi (陳儀, 1883-1950) claimed that benevolence was a Chinese characteristic and asked Formosan should also be so authentic Chinese. But should we Formosan be so careless and irresponsible, too?"
   },
   {
@@ -146,7 +146,7 @@
   {
     "id": "25",
     "description": "媒體報導警察開槍亂打人，社長居然被告上法庭成筆禍。已是參議員的王添灯先生還因此官司纏身，殖民政府都不至如此。",
-    "tb_description": "媒體報導警察開槍亂打人，社長居然 hōo 告上法庭成筆禍。已 sī 參議員 ê 王添灯先生iáu-koh因此官司纏身，殖民政府攏不至如此。",
+    "tb_description": "媒體報導警察開槍亂打人，社長居然 hōo 告上法庭成筆禍。已 sī 參議員 ê 王添灯先生 iáu-koh 因此官司纏身，殖民政府攏不至如此。",
     "en_description": "A press reported a police brutality story, and the chairperson was prosecuted and the expression freedom was infringed. Ông Thiam-teng (王添灯, 1901-1947), a provincial councilor, was even framed. Even a colonial regime  had not even done so."
   },
   {
@@ -164,7 +164,7 @@
   {
     "id": "28",
     "description": "這政府不只是謀財，還來害命，實在可惡！今日聽聞眾人將到行政長官公署前討公道，得一起去才行。",
-    "tb_description": "這政府不只 sī 謀財，還來害命，實在可惡！今日聽聞眾人teh-bueh 著行政長官公署前討公道，得做夥去才行。",
+    "tb_description": "這政府不只 sī 謀財，還來害命，實在可惡！今日聽聞眾人 teh-bueh 著行政長官公署前討公道，得做夥去才行。",
     "en_description": "The government was not only thirsty for money, but also taking lives. That was so terrible. Today it was heard that people demonstrated in front of the Taiwan Provincial Administration Office. Shall we go?"
   },
   {
@@ -183,7 +183,7 @@
     "id": "31",
     "description": "京都帝國大學醫學博士，是第二位拿到醫學博士的台灣人。二二八事件時臥病在床，被軍人從醫院帶走後失蹤。",
     "tb_description": "京都帝國大學醫學博士， sī 頭二位拿著醫學博士 ê 台灣人。二二八代誌時陣臥病 tī 床， hōo 軍人從病院帶走後失蹤。",
-    "en_description": "Si Kang-lam (施江南, 1902-1947). Doctorate of Medicine and of Philosophy at the Kyoto Imperial University. He was the second Formosan who held such a doctorate’s degree. ). At the time of the 228 incident, he was hospitalized but still taken by military men, and then made to disappear."
+    "en_description": "Si Kang-lam (施江南, 1902-1947). Doctorate of Medicine and of Philosophy at the Kyoto Imperial University. He was the second Formosan who held such a doctorate’s degree. At the time of the 228 incident, he was hospitalized but still taken by military men, and then made to disappear."
   },
   {
     "id": "32",
@@ -200,13 +200,13 @@
   {
     "id": "34",
     "description": "《台灣新生報》高雄印刷廠廠長，第一屆高雄市苓雅區區長。二二八事件時，至高雄壽山要塞司令部和彭孟緝談判，要求約束軍人行為，後被以「暴徒首犯」為由處決。",
-    "tb_description": "《台灣新生報》高雄印刷廠廠長，頭一屆高雄市苓雅區區長。二二八代誌時陣，著高雄壽山要塞司令部 kap 彭孟緝談判，要求約束軍人行為，後 hōo 以「暴徒首犯」為由hōo處決。",
+    "tb_description": "《台灣新生報》高雄印刷廠廠長，頭一屆高雄市苓雅區區長。二二八代誌時陣，著高雄壽山要塞司令部 kap 彭孟緝談判，要求約束軍人行為，後 hōo 以「暴徒首犯」為由 hōo 處決。",
     "en_description": "Lîm Kài (林界, 1910-1947)\nFactory manager of ‚Taiwan Shin Sheng Daily News‘ (台灣新生報) Kaohsiung division. He was the first head of Lîng-ngá (苓雅) District of Kaohsiung City. At the 228 incident, he went to the Kaohsiung Fortress Command at Shoushan (壽山) headquarters to negotiate with General Peng Meng-Chi (彭孟緝, 1908-1997) and demanded to control military demeanors. Afterward, he was executed in the name of ‘head of thugs’."
   },
   {
     "id": "35",
     "description": "曾任台北地方法院和高等法院法官，戰後因辦理「員林事件」得罪警方。二二八事件爆發後，在法院處理公文時被帶走，多日之後屍體於台北南港橋下被發現。姪子吳伯雄曾任中國國民黨主席。",
-    "tb_description": "曾任台北地方法院 kap 高等法院法官，戰後因辦理「員林代誌」得罪警方。二二八代誌爆發liáu-āu， tī 法院處理公文時陣 hōo 帶走，幾日liáu-āu屍體tī 台北南港橋下 hōo 發現。姪子吳伯雄曾任中國國民黨主席。",
+    "tb_description": "曾任台北地方法院 kap 高等法院法官，戰後因辦理「員林代誌」得罪警方。二二八代誌爆發 liáu-āu， tī 法院處理公文時陣 hōo 帶走，幾日 liáu-āu 屍體 tī 台北南港橋下 hōo 發現。姪子吳伯雄曾任中國國民黨主席。",
     "en_description": "Ngô͘ Hông-kî (吳鴻麒, 1902-1947). Judge at Taipei District Court and Higher Court. After the war, he was seen as a troublemaker amongst the police, because he was on the case of police violence case ‘Yuan-lin Incident’ (員林事件). After the outbreak of the 228 incident, he was taken away from the Higher Court office. A few days later, his body was found under the Nankang (南港) bridge of Taipei. Although he was a victim under the Chinese Nationalist Party regime, his nephew Wu Po-hsiung (吳伯雄, 1939-)  was the chairperson of the Chinese National Party (Kuomintang)."
   },
   {
@@ -224,13 +224,13 @@
   {
     "id": "38",
     "description": "東京帝國大學法律系畢業，戰後曾任新竹地檢署檢察官。曾於調查新竹市長貪瀆案件時倍受打壓，後辭任檢察官，擔任《民報》法律顧問。二二八事件時，被拘捕於西本願寺、遭受刑求，後被處死。",
-    "tb_description": "東京帝國大學法律系畢業，戰後曾任新竹地檢署檢察官。曾tī調查新竹市長貪瀆案件時陣倍受打壓，後辭任檢察官，擔任《民報》 法律顧問。二二八代誌時陣， hōo 拘捕tī西本願寺、hōo 受刑求，後 hōo 處死。",
+    "tb_description": "東京帝國大學法律系畢業，戰後曾任新竹地檢署檢察官。曾 tī 調查新竹市長貪瀆案件時陣倍受打壓，後辭任檢察官，擔任《民報》 法律顧問。二二八代誌時陣， hōo 拘捕 tī 西本願寺、hōo 受刑求，後 hōo 處死。",
     "en_description": "Ông Io̍k-lîm (王育霖, 1919-1947). Studied law and graduated from the Tokyo Imperial University. He was once a prosecutor in the Hsinchu District Prosecutor's Office. He resigned from the office because he was under tremendous suppression while investigating the corruption of the Hsinchu City Mayor. And later, he became a legal advisor of ‘Civic Bulletin’ (Minpao 民報). At the 228 incident, he was in custody and mauled in the Nishi Honganji Temple, and then executed."
   },
   {
     "id": "39",
     "description": "台灣知名畫家，東京美術學校研究所畢業，第一屆嘉義市參議員。二二八事件時，至嘉義水上機場與軍隊談判卻遭逮捕，後未經審判於嘉義車站前被槍決。",
-    "tb_description": "台灣知名畫家，東京美術學校研究所畢業，頭一屆嘉義市參議員。二二八代誌時陣，tī嘉義水上機場 kap 軍隊談判卻 hōo 逮捕，後未經審判tī 嘉義車站前 hōo 槍決。",
+    "tb_description": "台灣知名畫家，東京美術學校研究所畢業，頭一屆嘉義市參議員。二二八代誌時陣，tī 嘉義水上機場 kap 軍隊談判卻 hōo 逮捕，後未經審判 tī 嘉義車站前 hōo 槍決。",
     "en_description": "Tân Tîng-Pho (陳澄波, 1895-1947). A known painter and artist who graduated from Tōkyō Bijutsu Gakkō (東京美術學校). He was elected the first-term Chiayi Councilor. At the outbreak of the 228 incident, he went to the Shuishang Airport to negotiate with the military but was detained. He was executed in front of the Chiayi Train Station without any due process."
   },
   {
