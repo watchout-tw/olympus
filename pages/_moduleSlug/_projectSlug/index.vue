@@ -92,7 +92,7 @@ export default {
       pageTitle = this.doc.titleTB + info.SEPARATOR + this.$t(info.SITE_TITLE)
       pageDescription = this.doc.descriptionTB
     } else {
-      pageTitle = this.doc.title + info.SEPARATOR + info.SITE_TITLE
+      pageTitle = this.doc.title + info.SEPARATOR + this.$t(info.SITE_TITLE)
       pageDescription = this.doc.description
     }
     let pageCover = this.doc.image

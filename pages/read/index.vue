@@ -17,7 +17,7 @@ export default {
   nuxtI18n: false,
   mixins: [knowsWatchout],
   head() {
-    const pageTitle = '閱讀' + info.SEPARATOR + info.SITE_TITLE
+    const pageTitle = '閱讀' + info.SEPARATOR + this.$t(info.SITE_TITLE)
     const pageDescription = info.SITE_DESCRIPTION
     return {
       title: pageTitle,

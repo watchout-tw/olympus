@@ -34,7 +34,7 @@ export default {
     }, processedDoc)
   },
   head() {
-    const pageTitle = this.doc.title + info.SEPARATOR + info.SITE_TITLE
+    const pageTitle = this.doc.title + info.SEPARATOR + this.$t(info.SITE_TITLE)
     const pageDescription = this.doc.description
     const pageImage = this.doc.imageObj ? this.doc.imageObj.permalink : defaultCoverImage
     return {

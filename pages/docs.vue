@@ -83,7 +83,7 @@ export default {
     }
   },
   head() {
-    const pageTitle = '文件列表' + info.SEPARATOR + info.SITE_TITLE
+    const pageTitle = '文件列表' + info.SEPARATOR + this.$t(info.SITE_TITLE)
     return {
       title: pageTitle,
       meta: this.generateMeta(info.CHANNEL_ID, pageTitle, info.SITE_DESCRIPTION)
