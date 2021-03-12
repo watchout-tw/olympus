@@ -88,6 +88,7 @@ export const config = {
     }
   ],
   defaultLocale: 'zh',
+  detectBrowserLanguage: false,
   strategy: 'prefix_except_default',
   vueI18n: {
     fallbackLocale: 'zh',
