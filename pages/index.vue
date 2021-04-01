@@ -2,7 +2,7 @@
 <div class="page index">
   <div class="tcl-container">
     <div class="tcl-panel full-width with-padding">
-      <no-ssr><welcome /></no-ssr>
+      <client-only><welcome /></client-only>
     </div>
   </div>
   <div class="section-title with-underline small text-align-center margin-top-single margin-bottom-4"><span>最新內容</span></div>
@@ -10,7 +10,7 @@
     <reference-preview :reference="docRefs[0]" :data="dataOnReferences" display="tcl" :show-pub-dest="false" :read-more-style="null" :cachedAuthors="cachedAuthors" />
   </div>
   <div class="docs tcl-container margin-top-bottom-4">
-    <div class="doc tcl-panel tcl-left-right-margin with-top-bottom-margin" :class="{ 'half-width': index > 2 }" v-for="(reference, index) of docRefs" :key="`doc-${index}`" v-if="index > 0">
+    <div class="doc tcl-panel tcl-left-right-margin with-top-bottom-margin" :class="{ 'half-width': index > 1 }" v-for="(reference, index) of docRefsExceptFirst" :key="`doc-${index}`">
       <reference-preview :reference="reference" :data="dataOnReferences" display="vertical" :contributor-list-style="null" :read-more-style="null" :show-pub-dest="false" :cachedAuthors="cachedAuthors" />
     </div>
     <div class="tcl-panel half-width"></div>
@@ -29,7 +29,7 @@
     <reference-preview :reference="projectRefs[0]" :data="dataOnReferences" display="tcl" :show-pub-dest="false" :read-more-style="null" :cachedAuthors="cachedAuthors" />
   </div>
   <div class="docs tcl-container margin-top-bottom-4">
-    <div class="doc tcl-panel tcl-left-right-margin with-top-bottom-margin" :class="{ 'half-width': index > 2 }" v-for="(reference, index) of projectRefs" :key="`doc-${index}`" v-if="index > 0">
+    <div class="doc tcl-panel tcl-left-right-margin with-top-bottom-margin" :class="{ 'half-width': index > 1 }" v-for="(reference, index) of projectRefsExceptFirst" :key="`doc-${index}`">
       <reference-preview :reference="reference" :data="dataOnReferences" display="vertical" :contributor-list-style="null" :read-more-style="null" :show-pub-dest="false" :cachedAuthors="cachedAuthors" />
     </div>
     <div class="tcl-panel half-width"></div>
@@ -87,6 +87,14 @@ export default {
     return {
       title: pageTitle,
       meta: this.generateMeta(info.CHANNEL_ID, pageTitle, pageDescription, defaultCoverImage)
+    }
+  },
+  computed: {
+    docRefsExceptFirst() {
+      return this.docRefs.slice(1, this.docRefs.length)
+    },
+    projectRefsExceptFirst() {
+      return this.projectRefs.slice(1, this.projectRefs.length)
     }
   },
   components: {
