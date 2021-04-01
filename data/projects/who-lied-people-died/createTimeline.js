@@ -3,7 +3,7 @@ const { DateTime } = require('luxon')
 const get = require('lodash/get')
 const findLast = require('lodash/findLast')
 
-const SOURCE_PATH = './timeline.tsv'
+const SOURCE_PATH = '../../../assets/timeline.tsv'
 const OUTPUT_PATH = './timeline.json'
 
 const getDate = itemArr => itemArr[0]
