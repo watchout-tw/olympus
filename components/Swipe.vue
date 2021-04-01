@@ -31,8 +31,8 @@
         <div class="answer" :class="activeCard.data.answer"></div>
         <div class="but paragraphs" v-html="markdown(activeCard.data.but)"></div>
         <template v-if="showMore">
-          <div class="more">
-            <div class="section" v-if="activeCard.data.more" v-for="(section, index) in activeCard.data.more" :class="section.type" :key="index">
+          <div class="more" v-if="activeCard.data.more">
+            <div class="section" v-for="(section, index) in activeCard.data.more" :class="section.type" :key="index">
               <template v-if="section.type === 'markdown'">
                 <div class="content paragraphs a-text-only" v-if="section.content" v-html="markdown(section.content)"></div>
               </template>

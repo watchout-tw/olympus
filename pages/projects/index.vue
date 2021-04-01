@@ -4,7 +4,7 @@
     <reference-preview :reference="references[0]" :data="dataOnReferences" display="tcl" :show-pub-dest="true" :cached-authors="cachedAuthors" />
   </div>
   <div class="docs tcl-container margin-top-bottom-4" v-if="hasReferences">
-    <div class="doc tcl-panel tcl-left-right-margin with-top-bottom-margin" :class="{ 'half-width': index >= 4 }" v-for="(reference, index) of references" :key="index" v-if="index > 0">
+    <div class="doc tcl-panel tcl-left-right-margin with-top-bottom-margin" :class="{ 'half-width': index >= 3 }" v-for="(reference, index) of referenceExceptFirst" :key="index">
       <reference-preview :reference="reference" :data="dataOnReferences" display="vertical" :show-pub-dest="true" :cached-authors="cachedAuthors" />
     </div>
     <div class="tcl-panel half-width"></div>
@@ -47,6 +47,9 @@ export default {
   computed: {
     hasReferences() {
       return this.references.length > 0
+    },
+    referenceExceptFirst() {
+      return this.references.slice(0, this.references.length)
     }
   },
   components: {

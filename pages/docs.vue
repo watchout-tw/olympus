@@ -7,7 +7,7 @@
     <reference-preview :reference="references[0]" :data="dataOnReferences" display="tcl" :show-pub-dest="false" :read-more-style="null" :cached-authors="cachedAuthors" :key="references[0].permalink" />
   </div>
   <div class="docs tcl-container margin-top-bottom-4" v-if="hasReferences">
-    <div class="doc tcl-panel tcl-left-right-margin with-top-bottom-margin" :class="{ 'half-width': index > 2 }" v-for="(reference, index) of references" :key="reference.permalink" v-if="index > 0">
+    <div class="doc tcl-panel tcl-left-right-margin with-top-bottom-margin" :class="{ 'half-width': index > 1 }" v-for="(reference, index) of referencesExceptFirst" :key="reference.permalink">
       <reference-preview :reference="reference" :data="dataOnReferences" display="vertical" :show-pub-dest="false" :title-classes="['medium']" :description="null" :read-more-style="null" :cached-authors="cachedAuthors" />
     </div>
     <div class="tcl-panel half-width"></div>
@@ -100,6 +100,9 @@ export default {
     },
     hasMore() {
       return this.references.length < this.docCount
+    },
+    referencesExceptFirst() {
+      return this.references.slice(0, this.references.length)
     }
   },
   methods: {
