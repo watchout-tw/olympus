@@ -66,7 +66,8 @@ export default {
     const project = projects.find(project => project.id === params.projectSlug)
     return !!module && !!project
   },
-  async asyncData({ params, error }) {
+  async asyncData({ params, route, error }) {
+    console.log('Current Path:', route.path)
     let module = modules.find(module => module.id === params.moduleSlug)
     let project = projects.find(project => project.id === params.projectSlug)
 

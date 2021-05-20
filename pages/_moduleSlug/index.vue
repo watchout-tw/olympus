@@ -30,7 +30,8 @@ export default {
     const module = modules.find(module => module.id === params.moduleSlug)
     return !!module
   },
-  async asyncData({ params }) {
+  async asyncData({ params, route }) {
+    console.log('Current Path:', route.path)
     let moduleSlug = params.moduleSlug
     let module = modules.find(module => module.id === params.moduleSlug)
     let projects = await firestore.bunko.getProjects({ pubDest: 'musou' })

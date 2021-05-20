@@ -16,6 +16,9 @@ import * as info from '~/data/info'
 export default {
   nuxtI18n: false,
   mixins: [knowsWatchout],
+  async asyncData({ route }) {
+    console.log('Current Path:', route.path)
+  },
   head() {
     const pageTitle = '閱讀' + info.SEPARATOR + this.$t(info.SITE_TITLE)
     const pageDescription = info.SITE_DESCRIPTION

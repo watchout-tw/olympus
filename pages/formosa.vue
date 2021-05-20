@@ -186,6 +186,9 @@ let pages = [
 export default {
   nuxtI18n: false,
   mixins: [knowsFSCache, knowsMarkdown, knowsWatchout],
+  async asyncData({ route }) {
+    console.log('Current Path:', route.path)
+  },
   data() {
     for(let i = 0; i < pages.length; i++) {
       if(pages[i].bodyText) {

@@ -24,7 +24,8 @@ import * as info from '~/data/info'
 export default {
   nuxtI18n: false,
   mixins: [knowsFSCache, knowsWatchout],
-  async asyncData() {
+  async asyncData({ route }) {
+    console.log('Current Path:', route.path)
     let projects = await firestore.bunko.getProjects({ pubDest: info.CHANNEL_ID })
     let projectRefs = projects.map(project => makeReference('project', project.slug, { publishedTo: project.publishedTo }))
     let dataOnReferences = {}

@@ -60,7 +60,8 @@ const getLimit = 7
 export default {
   nuxtI18n: false,
   mixins: [knowsFSCache, knowsWatchout],
-  async asyncData() {
+  async asyncData({ route }) {
+    console.log('Current Path:', route.path)
     // get docs with pub-dest filter
     let docs = await firestore.bunko.getDocs({ pubDest: info.CHANNEL_ID, limit: getLimit })
     let docRefs = docs.map(doc => makeReference('doc', doc.id, { publishedTo: doc.publishedTo }))

@@ -21,7 +21,8 @@ import * as info from '~/data/info'
 export default {
   nuxtI18n: false,
   mixins: [knowsFSCache, knowsWatchout],
-  async asyncData({ params, error }) {
+  async asyncData({ params, route, error }) {
+    console.log('Current Path:', route.path)
     let doc = await firestore.bunko.getDoc(params.id, true)
     if(!(doc && doc.publishedTo === info.CHANNEL_ID)) { // FIXME: better error handling
       error({ statusCode: 404 })

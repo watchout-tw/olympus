@@ -48,7 +48,8 @@ function makeDocRefs(docs) {
 export default {
   nuxtI18n: false,
   mixins: [knowsFSCache, knowsWatchout],
-  async asyncData() {
+  async asyncData({ route }) {
+    console.log('Current Path:', route.path)
     let years = []
     for(let i = +(new Date()).getFullYear(); i >= minYear; i--) {
       years.push(i)
