@@ -54,7 +54,7 @@ export default {
     }
   },
   head() {
-    let pageTitle = this.module.title + info.SEPARATOR + this.$t(info.SITE_TITLE)
+    let pageTitle = this.module.title + info.SEPARATOR + this.$t(info.COMPANY_TITLE)
     let pageDescription = info.SITE_DESCRIPTION
     return {
       title: pageTitle,

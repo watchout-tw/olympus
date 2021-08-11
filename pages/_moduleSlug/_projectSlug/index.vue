@@ -87,13 +87,13 @@ export default {
     let pageTitle
     let pageDescription
     if(this.$router.currentRoute.path.substring(0, 3).includes('en')) {
-      pageTitle = this.doc.titleEN + info.SEPARATOR + this.$t(info.SITE_TITLE)
+      pageTitle = this.doc.titleEN + info.SEPARATOR + this.$t(info.COMPANY_TITLE)
       pageDescription = this.doc.descriptionEN
     } else if(this.$router.currentRoute.path.substring(0, 3).includes('tb')) {
-      pageTitle = this.doc.titleTB + info.SEPARATOR + this.$t(info.SITE_TITLE)
+      pageTitle = this.doc.titleTB + info.SEPARATOR + this.$t(info.COMPANY_TITLE)
       pageDescription = this.doc.descriptionTB
     } else {
-      pageTitle = this.doc.title + info.SEPARATOR + this.$t(info.SITE_TITLE)
+      pageTitle = this.doc.title + info.SEPARATOR + this.$t(info.COMPANY_TITLE)
       pageDescription = this.doc.description
     }
     let pageCover = this.doc.image

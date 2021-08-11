@@ -241,7 +241,7 @@ export default {
     }
   },
   head() {
-    let title = textMap.title + PUNCT.SLASH + this.$t(info.SITE_TITLE)
+    let title = textMap.title + PUNCT.SLASH + this.$t(info.COMPANY_TITLE)
     let description = textMap.description
     let image = projectCoverImage
     let meta = this.generateMeta('musou', title, description, image)

@@ -1,3 +1,4 @@
+export const COMPANY_TITLE = 'message.companyTitle'
 export const SITE_TITLE = 'message.siteTitle'
 export const SITE_DESCRIPTION = '沃草國會無雙是⋯'
 export const L_DOUBLE_BRACKET = '《'

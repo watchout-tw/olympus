@@ -6,31 +6,31 @@ let map228TB = {}
 let map228EN = {}
 
 map228Translation.forEach((row, index) => {
-  var plusOneIdx = index + 1
+  let plusOneIdx = index + 1
   map228ZH['stop' + plusOneIdx] = {}
   map228TB['stop' + plusOneIdx] = {}
   map228EN['stop' + plusOneIdx] = {}
-  if (row.title) {
+  if(row.title) {
     map228ZH['stop' + plusOneIdx].title = row.title
     map228TB['stop' + plusOneIdx].title = row.tb_title
     map228EN['stop' + plusOneIdx].title = row.en_title
   }
-  if (row.image_caption) {
+  if(row.image_caption) {
     map228ZH['stop' + plusOneIdx].image_caption = row.image_caption
     map228TB['stop' + plusOneIdx].image_caption = row.tb_image_caption
     map228EN['stop' + plusOneIdx].image_caption = row.en_image_caption
   }
-  if (row.image_license) {
+  if(row.image_license) {
     map228ZH['stop' + plusOneIdx].image_license = row.image_license
     map228TB['stop' + plusOneIdx].image_license = row.tb_image_license
     map228EN['stop' + plusOneIdx].image_license = row.en_image_license
   }
-  if (row.description) {
+  if(row.description) {
     map228ZH['stop' + plusOneIdx].description = row.description
     map228TB['stop' + plusOneIdx].description = row.tb_description
     map228EN['stop' + plusOneIdx].description = row.en_description
   }
-  if (row.date) {
+  if(row.date) {
     map228ZH['stop' + plusOneIdx].date = row.date
     map228TB['stop' + plusOneIdx].date = row.tb_date
     map228EN['stop' + plusOneIdx].date = row.en_date
@@ -42,29 +42,29 @@ let journeyTB = {}
 let journeyEN = {}
 
 anotherJourneyTranslation.forEach((row, index) => {
-  var plusOneIdx = index + 1
+  let plusOneIdx = index + 1
   journeyZH['scene' + plusOneIdx] = {}
   journeyTB['scene' + plusOneIdx] = {}
   journeyEN['scene' + plusOneIdx] = {}
-  if (row.description) {
+  if(row.description) {
     journeyZH['scene' + plusOneIdx].description = row.description
     journeyTB['scene' + plusOneIdx].description = row.tb_description
     journeyEN['scene' + plusOneIdx].description = row.en_description
   }
-  if (row.subtitle) {
-    var subtitles = row.subtitle.split('\n')
-    var tb_subtitles = row.tb_subtitle.split('\n')
-    var en_subtitles = row.en_subtitle.split('\n')
+  if(row.subtitle) {
+    let subtitles = row.subtitle.split('\n')
+    let tbSubtitles = row.tb_subtitle.split('\n')
+    let enSubtitles = row.en_subtitle.split('\n')
     journeyZH['scene' + plusOneIdx].subtitle = {}
     journeyTB['scene' + plusOneIdx].subtitle = {}
     journeyEN['scene' + plusOneIdx].subtitle = {}
     subtitles.forEach((item, idx) => {
       journeyZH['scene' + plusOneIdx].subtitle['line' + (idx + 1)] = item
     })
-    tb_subtitles.forEach((item, idx) => {
+    tbSubtitles.forEach((item, idx) => {
       journeyTB['scene' + plusOneIdx].subtitle['line' + (idx + 1)] = item
     })
-    en_subtitles.forEach((item, idx) => {
+    enSubtitles.forEach((item, idx) => {
       journeyEN['scene' + plusOneIdx].subtitle['line' + (idx + 1)] = item
     })
   }
@@ -95,6 +95,7 @@ export const config = {
     messages: {
       en: {
         message: {
+          companyTitle: 'Watchout',
           siteTitle: 'Watchout Musou',
           references: 'References',
           share: 'Share',
@@ -121,6 +122,7 @@ export const config = {
       },
       tb: {
         message: {
+          companyTitle: '沃草',
           siteTitle: '沃草國會無雙',
           references: '參考資料',
           share: '認同請分享',
@@ -147,6 +149,7 @@ export const config = {
       },
       zh: {
         message: {
+          companyTitle: '沃草',
           siteTitle: '沃草國會無雙',
           references: '參考資料',
           share: '認同請分享',
