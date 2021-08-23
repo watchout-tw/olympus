@@ -50,7 +50,7 @@ export default {
       return this.references.length > 0
     },
     referenceExceptFirst() {
-      return this.references.slice(0, this.references.length)
+      return this.references.slice(1, this.references.length)
     }
   },
   components: {

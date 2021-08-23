@@ -163,8 +163,4 @@ export default {
 <style lang="scss">
 @import '~watchout-common-assets/styles/resources';
 
-.page.home {
-  > .years {
-  }
-}
 </style>
