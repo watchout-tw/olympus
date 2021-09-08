@@ -140,7 +140,6 @@ export default {
       if(this.submit.state !== STATES.DEFAULT) {
         return
       }
-
       if(this.score === UNDONE_SCORE) {
         this.submit.state = STATES.INCOMPLETE
         this.submit.message = SUBMIT_MESSAGES[STATES.INCOMPLETE]

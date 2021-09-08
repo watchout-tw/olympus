@@ -130,7 +130,7 @@ export const config = {
             ...map228TB,
             prev: '頂一站',
             next: '後一站',
-            disappear_elite: '那些消失的台灣菁英…',
+            disappear_elite: '彼陣消失的臺灣 gâu 人',
             go_back_to_1947: '轉去 1947 年的臺灣',
             go_back_to_1947_again: '閣一擺轉去 1947 年的臺灣'
           },
