@@ -36,12 +36,19 @@ export default {
   // Nuxt.js modules
   modules: [
     '@nuxtjs/gtm',
-    'nuxt-i18n'
+    'nuxt-i18n',
+    '@nuxtjs/robots'
   ],
   gtm: {
     id: 'GTM-TF76PLV'
   },
   i18n: i18n.config,
+  robots: [
+    {
+      UserAgent: '*',
+      Allow: '/' // accepts function
+    }
+  ],
   buildModules: [
     '@nuxtjs/eslint-module'
   ],
