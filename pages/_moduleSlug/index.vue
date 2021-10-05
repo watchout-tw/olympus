@@ -25,6 +25,7 @@ import * as info from '~/data/info'
 import { modules } from '~/config'
 
 export default {
+  nuxtI18n: false,
   mixins: [knowsFSCache, knowsWatchout],
   validate({ params }) {
     const module = modules.find(module => module.id === params.moduleSlug)
