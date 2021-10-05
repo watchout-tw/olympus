@@ -1,8 +1,36 @@
+import * as firestore from 'watchout-common-functions/lib/firestore'
+import * as util from 'watchout-common-functions/lib/util'
+import * as watchout from 'watchout-common-functions/lib/watchout'
+
 function getFavicon(projectID) {
   return 'https://raw.githubusercontent.com/watchout-tw/watchout-common-assets/master/images/logo/' + projectID + '/small.png'
 }
 function getProjectLogo(projectID) {
   return 'https://raw.githubusercontent.com/watchout-tw/watchout-common-assets/master/images/logo/' + projectID + '/large.png'
+}
+async function getDynamicRoutes() {
+  let routes = []
+  let pubDest = info.CHANNEL_ID
+  await firestore.sys.init({})
+  let docs = await firestore.bunko.getDocs({ pubDest, limit: -1 })
+  routes = routes.concat(docs.map(doc => {
+    return {
+      url: `/read/${doc.id}`,
+      changefreq: 'yearly',
+      lastmod: util.fsTSToDateObj(doc.contentUpdatedAt || doc.publishedAt)
+    }
+  }))
+
+  let projects = await firestore.bunko.getProjects({ pubDest: 'musou' })
+  routes = routes.concat(projects.map(project => {
+    return {
+      url: `/${project.slug}`,
+      changefreq: 'yearly',
+      lastmod: util.fsTSToDateObj(project.contentUpdatedAt || project.publishedAt)
+    }
+  }))
+
+  return routes
 }
 
 const i18n = require('./config/i18n')
@@ -37,7 +65,8 @@ export default {
   modules: [
     '@nuxtjs/gtm',
     'nuxt-i18n',
-    '@nuxtjs/robots'
+    '@nuxtjs/robots',
+    '@nuxtjs/sitemap'
   ],
   gtm: {
     id: 'GTM-TF76PLV'
@@ -46,9 +75,18 @@ export default {
   robots: [
     {
       UserAgent: '*',
-      Allow: '/' // accepts function
+      Allow: '/', // accepts function
+      Sitemap: watchout.getBaseURL('musou')
     }
   ],
+  sitemap: async function() {
+    return {
+      hostname: watchout.getBaseURL('musou'),
+      gzip: true,
+      exclude: [],
+      routes: await getDynamicRoutes()
+    }
+  },
   buildModules: [
     '@nuxtjs/eslint-module'
   ],
