@@ -1,6 +1,10 @@
 import * as firestore from 'watchout-common-functions/lib/firestore'
 import * as util from 'watchout-common-functions/lib/util'
 import * as watchout from 'watchout-common-functions/lib/watchout'
+const i18n = require('./config/i18n')
+const info = require('./data/info')
+const siteTitle = info.SITE_TITLE
+const siteDescription = info.SITE_DESCRIPTION
 
 function getFavicon(projectID) {
   return 'https://raw.githubusercontent.com/watchout-tw/watchout-common-assets/master/images/logo/' + projectID + '/small.png'
@@ -8,7 +12,8 @@ function getFavicon(projectID) {
 function getProjectLogo(projectID) {
   return 'https://raw.githubusercontent.com/watchout-tw/watchout-common-assets/master/images/logo/' + projectID + '/large.png'
 }
-async function getDynamicRoutes() {
+
+async function getSitemap() {
   let routes = []
   let pubDest = info.CHANNEL_ID
   await firestore.sys.init({})
@@ -16,27 +21,34 @@ async function getDynamicRoutes() {
   routes = routes.concat(docs.map(doc => {
     return {
       url: `/read/${doc.id}`,
-      changefreq: 'yearly',
+      changefreq: 'monthly',
       lastmod: util.fsTSToDateObj(doc.contentUpdatedAt || doc.publishedAt)
     }
   }))
+  let latestDoc = docs.reduce((prev, curr) => {
+    return util.fsTSCompare(prev.contentUpdatedAt || prev.publishedAt, curr.contentUpdatedAt || curr.publishedAt) > 0 ? prev : curr
+  })
 
-  let projects = await firestore.bunko.getProjects({ pubDest: 'musou' })
+  let projects = await firestore.bunko.getProjects({ pubDest })
   routes = routes.concat(projects.map(project => {
     return {
       url: `/${project.slug}`,
-      changefreq: 'yearly',
+      changefreq: 'monthly',
       lastmod: util.fsTSToDateObj(project.contentUpdatedAt || project.publishedAt)
     }
   }))
 
-  return routes
+  return {
+    hostname: watchout.getBaseURL('musou'),
+    gzip: true,
+    exclude: [],
+    defaults: {
+      changefreq: 'weekly',
+      lastmod: util.fsTSToDateObj(latestDoc.contentUpdatedAt || latestDoc.publishedAt)
+    },
+    routes: routes
+  }
 }
-
-const i18n = require('./config/i18n')
-const info = require('./data/info')
-const siteTitle = info.SITE_TITLE
-const siteDescription = info.SITE_DESCRIPTION
 
 export default {
   head: {
@@ -80,12 +92,7 @@ export default {
     }
   ],
   sitemap: async function() {
-    return {
-      hostname: watchout.getBaseURL('musou'),
-      gzip: true,
-      exclude: [],
-      routes: await getDynamicRoutes()
-    }
+    return await getSitemap()
   },
   buildModules: [
     '@nuxtjs/eslint-module'
