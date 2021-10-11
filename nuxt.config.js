@@ -1,6 +1,7 @@
 import * as firestore from 'watchout-common-functions/lib/firestore'
 import * as util from 'watchout-common-functions/lib/util'
 import * as watchout from 'watchout-common-functions/lib/watchout'
+import config from 'watchout-common-functions/config/config'
 const i18n = require('./config/i18n')
 const info = require('./data/info')
 const siteTitle = info.SITE_TITLE
@@ -50,6 +51,19 @@ async function getSitemap() {
   }
 }
 
+function getRobotsTXT() {
+  let allow = {
+    UserAgent: '*',
+    Allow: '/', // accepts function
+    Sitemap: watchout.getBaseURL('musou')
+  }
+  let notallow = {
+    UserAgent: '*',
+    Disallow: '/' // accepts function
+  }
+  return [].push(config.env === 'production' ? allow : notallow)
+}
+
 export default {
   head: {
     title: siteTitle,
@@ -84,13 +98,7 @@ export default {
     id: 'GTM-TF76PLV'
   },
   i18n: i18n.config,
-  robots: [
-    {
-      UserAgent: '*',
-      Allow: '/', // accepts function
-      Sitemap: watchout.getBaseURL('musou')
-    }
-  ],
+  robots: getRobotsTXT(),
   sitemap: async function() {
     return await getSitemap()
   },
