@@ -61,7 +61,9 @@ function getRobotsTXT() {
     UserAgent: '*',
     Disallow: '/' // accepts function
   }
-  return [].push(config.env === 'production' ? allow : notallow)
+  let robots = []
+  robots.push(config.env === 'production' ? allow : notallow)
+  return robots
 }
 
 export default {
