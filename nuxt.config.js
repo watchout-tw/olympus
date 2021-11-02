@@ -51,29 +51,22 @@ async function getSitemap() {
   }
 }
 
-function getRobotsTXT() {
-  let allow = {
-    UserAgent: '*',
-    Allow: '/', // accepts function
-    Sitemap: watchout.getBaseURL('musou')
+function getMeta() {
+  let meta = [
+    { charset: 'utf-8' },
+    { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+    { hid: 'description', name: 'description', content: siteDescription }
+  ]
+  if(config.env !== 'production') {
+    meta.push({ name: 'robots', content: 'noindex' })
   }
-  let notallow = {
-    UserAgent: '*',
-    Disallow: '/' // accepts function
-  }
-  let robots = []
-  robots.push(config.env === 'production' ? allow : notallow)
-  return robots
+  return meta
 }
 
 export default {
   head: {
     title: siteTitle,
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: siteDescription }
-    ],
+    meta: getMeta(),
     link: [
       { rel: 'icon', type: 'image/x-icon', href: getFavicon('musou') },
       { rel: 'apple-touch-icon', sizes: '256x256', href: getProjectLogo('musou') }
@@ -100,7 +93,11 @@ export default {
     id: 'GTM-TF76PLV'
   },
   i18n: i18n.config,
-  robots: getRobotsTXT(),
+  robots: {
+    UserAgent: '*',
+    Allow: '/', // accepts function
+    Sitemap: watchout.getBaseURL('musou')
+  },
   sitemap: async function() {
     return await getSitemap()
   },
