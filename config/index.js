@@ -1,5 +1,6 @@
 import projYulamchia from '~/config/role-play/yulamchia'
 import projTsaiFirstYear from '~/config/draw/tsai-first-year'
+import proj1218Referendum from '~/config/quiz/1218-referendum'
 import proj748 from '~/config/map/748'
 import projTerror30 from '~/config/role-play/terror-30'
 import projRepublicOfChina from '~/config/quiz/republic-of-china'
@@ -31,7 +32,8 @@ export const projects = [
   projTerror30,
   proj748,
   projTsaiFirstYear,
-  projYulamchia
+  projYulamchia,
+  proj1218Referendum
 ]
 
 export const modules = [
