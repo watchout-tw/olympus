@@ -8,7 +8,7 @@ export default {
     replacements: [
       {
         key: 'gc',
-        regexp: /^[O1]{1}-[O1]{1}-[O1]{1}-[O1]{1}$/
+        regexp: /^[0-1]{1}-[0-1]{1}-[0-1]{1}-[0-1]{1}$/
       }
     ]
   },
