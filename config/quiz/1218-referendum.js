@@ -8,7 +8,7 @@ export default {
     replacements: [
       {
         key: 'gc',
-        regexp: /^[OX]{4}$/
+        regexp: /^[O1]{1}-[O1]{1}-[O1]{1}-[O1]{1}$/
       }
     ]
   },
@@ -33,12 +33,12 @@ export default {
         options: [
           {
             title: '同意',
-            value: 'O',
+            value: '1',
             details: null
           },
           {
             title: '不同意',
-            value: 'X',
+            value: '0',
             details: null
           }
         ],
@@ -54,12 +54,12 @@ export default {
         options: [
           {
             title: '同意',
-            value: 'O',
+            value: '1',
             details: null
           },
           {
             title: '不同意',
-            value: 'X',
+            value: '0',
             details: null
           }
         ],
@@ -75,12 +75,12 @@ export default {
         options: [
           {
             title: '同意',
-            value: 'O',
+            value: '1',
             details: null
           },
           {
             title: '不同意',
-            value: 'X',
+            value: '0',
             details: null
           }
         ],
@@ -96,12 +96,12 @@ export default {
         options: [
           {
             title: '同意',
-            value: 'O',
+            value: '1',
             details: null
           },
           {
             title: '不同意',
-            value: 'X',
+            value: '0',
             details: null
           }
         ],
@@ -124,27 +124,27 @@ export default {
         {
           title: '四個不同意，台灣更有力',
           description: '你跟民主進步黨、台灣基進意見一致',
-          pattern: 'X-X-X-X'
+          pattern: '0-0-0-0'
         },
         {
           title: '四個都同意，台灣更美麗',
           description: '你跟中國國民黨、新黨意見一致',
-          pattern: 'O-O-O-O'
+          pattern: '1-1-1-1'
         },
         {
           title: '兩好兩壞',
           description: '你跟台灣民眾黨意見一致',
-          pattern: 'X-O-X-O'
+          pattern: '0-1-0-1'
         },
         {
           title: '充分理解、理性投票',
           description: '你跟時代力量意見一致',
-          pattern: 'X-O-O-O'
+          pattern: '0-1-1-1'
         },
         {
           title: '一好三壞',
           description: '你跟綠黨意見一致',
-          pattern: 'X-X-O-X'
+          pattern: '0-0-1-0'
         }
       ],
       defaultSelection: {
