@@ -2,12 +2,12 @@ export default {
   id: '1218-referendum',
   module: 'quiz',
   image: {
-    default: 'quiz/1218-referendum.png',
-    pathTemplate: 'quiz/1218-referendum-{1}.png',
+    default: 'quiz/1218-referendum.jpg',
+    pathTemplate: 'quiz/1218-referendum-{1}.jpg',
     replacements: [
       {
         key: 'gc',
-        regexp: /^[0-1]{1}-[0-1]{1}-[0-1]{1}-[0-1]{1}$/
+        regexp: /^[OX]{4}$/
       }
     ]
   },
@@ -27,7 +27,8 @@ export default {
     scenes: [
       {
         id: 1,
-        title: '【核四商轉】您是否同意核四啟封商轉發電？',
+        title: '核四商轉',
+        description: '您是否同意核四啟封商轉發電？',
         options: [
           {
             title: '同意',
@@ -47,7 +48,8 @@ export default {
       },
       {
         id: 2,
-        title: '【禁萊豬進口】你是否同意政府應全面禁止進口含有萊克多巴胺之乙型受體素豬隻之肉品、內臟及其相關產製品？',
+        title: '禁萊豬進口',
+        description: '你是否同意政府應全面禁止進口含有萊克多巴胺之乙型受體素豬隻之肉品、內臟及其相關產製品？',
         options: [
           {
             title: '同意',
@@ -67,7 +69,8 @@ export default {
       },
       {
         id: 3,
-        title: '【公投綁大選】你是否同意公民投票案公告成立後半年內，若該期間內遇有全國性選舉時，在符合公民投票法規定之情形下，公民投票應與該選舉同日舉行？',
+        title: '公投綁大選',
+        description: '你是否同意公民投票案公告成立後半年內，若該期間內遇有全國性選舉時，在符合公民投票法規定之情形下，公民投票應與該選舉同日舉行？',
         options: [
           {
             title: '同意',
@@ -87,7 +90,8 @@ export default {
       },
       {
         id: 4,
-        title: '【三接遷址】您是否同意中油第三天然氣接收站遷離桃園大潭藻礁海岸及海域？（即北起觀音溪出海口，南至新屋溪出海口之海岸，及由上述海岸最低潮線往外平行延伸五公里之海域',
+        title: '三接遷址',
+        description: '您是否同意中油第三天然氣接收站遷離桃園大潭藻礁海岸及海域？（即北起觀音溪出海口，南至新屋溪出海口之海岸，及由上述海岸最低潮線往外平行延伸五公里之海域',
         options: [
           {
             title: '同意',
