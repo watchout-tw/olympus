@@ -1,6 +1,7 @@
 export default {
   id: '1218-referendum',
   module: 'quiz',
+  willUpdateShareURL: true,
   image: {
     default: 'quiz/1218-referendum.jpg',
     pathTemplate: 'quiz/1218-referendum-{1}.jpg',
