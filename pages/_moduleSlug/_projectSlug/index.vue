@@ -27,7 +27,8 @@
     <div class="section-title with-underline text-align-center margin-top-bottom-single"><span>{{ $t('message.share') }}</span></div>
     <share-to-platforms :url="shareURL" />
   </div>
-  <div class="tcl-container margin-top-bottom-double">
+  <!-- 只有 project config 有給定 show: false 才隱藏-->
+  <div class="tcl-container margin-top-bottom-double" v-if="!project.docHeader || project.docHeader.show">
     <div class="tcl-panel tcl-left-right-margin">
       <doc-header :doc="doc" titleSize="small" :description="true" :cachedAuthors="cachedAuthors" />
     </div>
