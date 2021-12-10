@@ -165,20 +165,5 @@ export default {
       }
     }
   ],
-  closing: '四項公投結果，將影響臺灣未來將怎麼走！12 月 18 日請記得攜帶身分證，到你的戶籍地投票所投下神聖的一票，也別忘記按下社群分享，在臉書和推特  #宣告你的投票意志 喔！',
-  references: [
-    '[2014年沃草《市長給問嗎》各候選人的回答](https://ask.watchout.tw/games/2014-taipei)',
-    '[2014/12/27《ETtoday》記者黃瀞瑩專訪台北市長柯文哲](https://www.ettoday.net/news/20141227/444198.htm)',
-    '[2018/10/9《風傳媒》報導](https://www.storm.mg/article/533275)',
-    '[2015/10/23《蘋果》報導](https://tw.news.appledaily.com/life/realtime/20151023/717425)',
-    '[2015/8/3《中央社》報導](https://www.cna.com.tw/news/firstnews/201508030349.aspx)',
-    '[2011/12/12《民視》報導：時任台大醫院醫師柯文哲的發言（2:22）](https://youtu.be/yq5847mEp8k?t=142)',
-    '[2014/12/22《獨立媒體》影音：當選台北市長的柯文哲關於雙城論壇的發言（0:39）](https://youtu.be/bpzd3Uljl6g?t=39)',
-    '[2017/8/12《蘋果日報》報導](https://tw.appledaily.com/new/realtime/20170812/1180775/)',
-    '[2015/1/11《風傳媒》報導](https://www.storm.mg/article/39683)',
-    '[2017/2/28《風傳媒》報導](https://www.storm.mg/lifestyle/228523)',
-    '[2017/3/27《中央社》報導](https://www.cna.com.tw/news/aopl/201703280216.aspx)',
-    '[2018/10/27《自由時報》報導](http://news.ltn.com.tw/news/politics/breakingnews/2594088)',
-    '[2018/8/23《臉書》柯文哲「認同卡」內容](https://www.facebook.com/DoctorKoWJ/photos/a.136856586416330/1452270054874970/)'
-  ]
+  closing: '四項公投結果，將影響臺灣未來將怎麼走！12 月 18 日請記得攜帶身分證，到你的戶籍地投票所投下神聖的一票，也別忘記按下社群分享，在臉書和推特  #宣告你的投票意志 喔！'
 }
