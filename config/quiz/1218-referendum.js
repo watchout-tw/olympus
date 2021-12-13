@@ -46,7 +46,7 @@ export default {
           }
         ],
         speechTarget: {
-          id: 1798,
+          id: 1218,
           speechType: 'musou_long_form_scene_response'
         }
       },
@@ -67,7 +67,7 @@ export default {
           }
         ],
         speechTarget: {
-          id: 1799,
+          id: 1219,
           speechType: 'musou_long_form_scene_response'
         }
       },
@@ -88,7 +88,7 @@ export default {
           }
         ],
         speechTarget: {
-          id: 1800,
+          id: 1220,
           speechType: 'musou_long_form_scene_response'
         }
       },
@@ -109,7 +109,7 @@ export default {
           }
         ],
         speechTarget: {
-          id: 1801,
+          id: 1221,
           speechType: 'musou_long_form_scene_response'
         }
       }
