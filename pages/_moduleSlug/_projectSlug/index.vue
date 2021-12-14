@@ -5,7 +5,7 @@
       <swipe :module="module" :project="project" :shareURL="shareURL" />
     </template>
     <template v-else-if="['quiz', 'role-play'].includes(project.module)">
-      <better-long-form :module="module" :project="project" :doc="doc" />
+      <better-long-form :module="module" :project="project" :doc="doc" @updateShareURL="updateShareURL" />
     </template>
     <template v-else-if="project.module === 'draw'">
       <draw :module="module" :project="project" :doc="doc" />
@@ -27,7 +27,8 @@
     <div class="section-title with-underline text-align-center margin-top-bottom-single"><span>{{ $t('message.share') }}</span></div>
     <share-to-platforms :url="shareURL" />
   </div>
-  <div class="tcl-container margin-top-bottom-double">
+  <!-- 只有 project config 有給定 show: false 才隱藏-->
+  <div class="tcl-container margin-top-bottom-double" v-if="!project.docHeader || project.docHeader.show">
     <div class="tcl-panel tcl-left-right-margin">
       <doc-header :doc="doc" titleSize="small" :description="true" :cachedAuthors="cachedAuthors" />
     </div>
@@ -81,7 +82,8 @@ export default {
     return {
       module,
       project,
-      doc
+      doc,
+      shareURL: ''
     }
   },
   head() {
@@ -127,12 +129,20 @@ export default {
       meta: this.generateMeta('musou', pageTitle, pageDescription, pageCover)
     }
   },
+  mounted() {
+    this.shareURL = this.getMusouProjectURL(this.module.id, this.project.id)
+  },
   computed: {
     pageStyles() {
       return this.project.page && this.project.page.styles ? this.project.page.styles : {}
-    },
-    shareURL() {
-      return this.getMusouProjectURL(this.module.id, this.project.id)
+    }
+    // shareURL() {
+    //   return this.getMusouProjectURL(this.module.id, this.project.id)
+    // }
+  },
+  methods: {
+    updateShareURL(url) {
+      this.shareURL = url
     }
   },
   components: {
