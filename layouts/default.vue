@@ -4,6 +4,7 @@
   <nuxt />
   <footer-standard />
   <modal-manager />
+  <support-watchout v-if="showSupport" id="musou" />
 </main>
 </template>
 
@@ -13,6 +14,7 @@ import { knowsWindowManagement } from 'watchout-common-functions/interfaces'
 import NavBar from 'watchout-common-functions/components/NavBar'
 import FooterStandard from 'watchout-common-functions/components/FooterStandard'
 import ModalManager from 'watchout-common-functions/components/ModalManager'
+import SupportWatchout from 'watchout-common-functions/components/SupportWatchout'
 import menu from '~/data/menu'
 
 export default {
@@ -26,7 +28,8 @@ export default {
   components: {
     NavBar,
     FooterStandard,
-    ModalManager
+    ModalManager,
+    SupportWatchout
   }
 }
 </script>
