@@ -61,7 +61,6 @@ import Journey from '~/components/Journey'
 import CategorizedBrowser from '~/components/CategorizedBrowser'
 
 export default {
-  nuxtI18n: false,
   mixins: [knowsBunko, knowsFSCache, knowsMarkdown, knowsWatchout],
   validate({ params }) {
     const module = modules.find(module => module.id === params.moduleSlug)
