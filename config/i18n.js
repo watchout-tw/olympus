@@ -98,6 +98,7 @@ export const config = {
           companyTitle: 'Watchout',
           siteTitle: 'Watchout Musou',
           references: 'References',
+          switchLanguage: 'Translation',
           share: 'Share',
           map228: {
             ...map228EN,
@@ -125,6 +126,7 @@ export const config = {
           companyTitle: '沃草',
           siteTitle: '沃草國會無雙',
           references: '參考資料',
+          switchLanguage: '切換其它語言',
           share: '認同請分享',
           map228: {
             ...map228TB,
@@ -152,6 +154,7 @@ export const config = {
           companyTitle: '沃草',
           siteTitle: '沃草國會無雙',
           references: '參考資料',
+          switchLanguage: '切換其它語言',
           share: '認同請分享',
           map228: {
             ...map228ZH,

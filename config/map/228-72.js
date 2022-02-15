@@ -6,6 +6,7 @@ let colors = {
 export default {
   id: '228-72',
   module: 'map',
+  hasTranslation: true,
   dataSource: '2019-228',
   sections: [
     {

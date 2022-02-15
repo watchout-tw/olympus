@@ -23,6 +23,14 @@
       <div class="not-available margin-double text-align-center">技術升級中，需要多一點點時間。</div>
     </template>
   </div>
+  <div class="translation margin-top-bottom-double" v-if="project.hasTranslation">
+    <div class="section-title with-underline text-align-center margin-top-bottom-single"><span>{{ $t('message.switchLanguage') }}</span></div>
+    <div class="tags text-align-center">
+      <a v-if="!isInTB" class="input button flat" :href="getTranslationURL('tb')">台羅</a>
+      <a v-if="!isInEN" class="input button flat" :href="getTranslationURL('en')">English</a>
+      <a v-if="!isInZH" class="input button flat" :href="getTranslationURL()">中文</a>
+    </div>
+  </div>
   <div class="share margin-top-bottom-double">
     <div class="section-title with-underline text-align-center margin-top-bottom-single"><span>{{ $t('message.share') }}</span></div>
     <share-to-platforms :url="shareURL" />
@@ -81,6 +89,7 @@ export default {
     return {
       module,
       project,
+      projectSlug,
       doc,
       shareURL: ''
     }
@@ -134,12 +143,21 @@ export default {
   computed: {
     pageStyles() {
       return this.project.page && this.project.page.styles ? this.project.page.styles : {}
+    },
+    isInTB() {
+      return this.$router.currentRoute.path.substring(0, 3).includes('tb')
+    },
+    isInEN() {
+      return this.$router.currentRoute.path.substring(0, 3).includes('en')
+    },
+    isInZH() {
+      return !this.isInTB && !this.isInEN
     }
-    // shareURL() {
-    //   return this.getMusouProjectURL(this.module.id, this.project.id)
-    // }
   },
   methods: {
+    getTranslationURL(lang) {
+      return this.getBaseURL('musou') + (lang ? `${lang}/` : '') + this.projectSlug
+    },
     updateShareURL(url) {
       this.shareURL = url
     }

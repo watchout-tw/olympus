@@ -6,6 +6,7 @@ const defaultDarkTextColor = '#333'
 export default {
   id: 'another-future',
   module: 'journey',
+  hasTranslation: true,
   sequence: {
     autoplay: false,
     startDate: '1945-10-08',
