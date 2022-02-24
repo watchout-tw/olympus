@@ -26,7 +26,7 @@
   <div class="translation margin-top-bottom-double" v-if="project.hasTranslation">
     <div class="section-title with-underline text-align-center margin-top-bottom-single"><span>{{ $t('message.switchLanguage') }}</span></div>
     <div class="tags text-align-center">
-      <a v-if="!isInTB" class="input button flat" :href="getTranslationURL('tb')">台羅</a>
+      <a v-if="!isInTB" class="input button flat" :href="getTranslationURL('tb')">臺文 Tâi-bûn</a>
       <a v-if="!isInEN" class="input button flat" :href="getTranslationURL('en')">English</a>
       <a v-if="!isInZH" class="input button flat" :href="getTranslationURL()">中文</a>
     </div>
